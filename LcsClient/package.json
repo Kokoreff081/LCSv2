@@ -1,0 +1,44 @@
+{
+  "name": "lcsclient",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "@latelier/vue-signalr": "^1.1.9",
+    "@microsoft/signalr": "^6.0.7",
+    "@quangdao/vue-signalr": "^1.0.1",
+    "@vuepic/vue-datepicker": "^3.3.1",
+    "admin-lte": "^3.2.0",
+    "jquery": "^3.6.1",
+    "konva": "^8.3.10",
+    "mitt": "^3.0.0",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.18.0",
+    "vue-cookies": "^1.8.3",
+    "vue-loader": "^17.0.0",
+    "vue-datepicker-next": "^1.0.2",
+    "vue-i18n": "^9.1.10",
+    "vue-konva": "^3.0.1",
+    "vue3-slider": "^1.8.0",
+    "vue3-charts": "^1.1.31",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "vite": "^4.4.9",
+    "axios": "^1.5.0",
+    "css-loader": "^6.7.1",
+    "vue-i18n": "^9.1.10"
+  }
+}

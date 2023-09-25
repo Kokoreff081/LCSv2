@@ -1,0 +1,76 @@
+﻿using Acn.Rdm;
+using Acn.ArtNet.IO;
+
+namespace Acn.ArtNet.Packets
+{
+    public class ArtRdmSubPacket : ArtNetPacket
+    {
+        public ArtRdmSubPacket()
+            : base(ArtNetOpCodes.RdmSub)
+        {
+            RdmVersion = 1;
+        }
+
+        public ArtRdmSubPacket(ArtNetReceiveData data)
+            : base(data)
+        {
+
+        }
+
+        #region Packet Properties
+
+        public byte RdmVersion { get; set; }
+
+        public UId DeviceId { get; set; }
+
+        public RdmCommands Command { get; set; }
+
+        public RdmParameters ParameterId { get; set; }
+
+        public short SubDevice { get; set; }
+
+        public short SubCount { get; set; }
+
+        public byte[] RdmData { get; set; }
+
+
+        #endregion
+
+        protected override void ReadData(ArtNetBinaryReader data)
+        {
+            RdmBinaryReader reader = new RdmBinaryReader(data.BaseStream);
+            
+            base.ReadData(data);            
+
+            RdmVersion = data.ReadByte();
+            data.BaseStream.Seek(1, SeekOrigin.Current);
+            DeviceId = reader.ReadUId();
+            data.BaseStream.Seek(1, SeekOrigin.Current);
+            Command = (RdmCommands) data.ReadByte();
+            ParameterId = (RdmParameters) reader.ReadNetwork16();
+            SubDevice = reader.ReadNetwork16();
+            SubCount = reader.ReadNetwork16();
+            data.BaseStream.Seek(4, SeekOrigin.Current);
+        }
+
+        protected override void WriteData(ArtNetBinaryWriter data)
+        {
+            RdmBinaryWriter writer = new RdmBinaryWriter(data.BaseStream);
+
+            base.WriteData(data);
+
+            writer.Write(RdmVersion);
+            writer.Write(new byte[1]);
+            writer.Write(DeviceId);
+            writer.Write(new byte[1]);
+            writer.Write((byte)Command);
+            writer.WriteNetwork((short)ParameterId);
+            writer.WriteNetwork(SubDevice);
+            writer.WriteNetwork(SubCount);
+            writer.Write(new byte[4]);
+            writer.Write(RdmData);
+        }
+
+
+    }
+}

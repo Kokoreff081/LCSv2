@@ -1,0 +1,30 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea.LCSv2.iml
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+bin
+obj
+node_modules
+appsettings.local.json
+*.db
+*.db-shm
+*.db-wal
+*.local.json
+/Packages
+Output-Tests.txt
+*.plog
+.vs
+*.exe
+!/Resources/Hydra/bin2/hydra.exe
+logs
+.idea
+*.bak

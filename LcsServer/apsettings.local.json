@@ -1,0 +1,23 @@
+{
+  "https_port": 443,
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "LightCadProjectsFolder": "D:\\LightCadProjects",
+  "DefaultProjectFolder": "стенд",
+  "DefaultIpAddress": "http://192.168.40.137:37763",
+  "DefaultIpForDiscovery": "92.168.1.60",
+  "ModbusEnabled": true,
+  "RdmDiscoveryForbiddenGlobal": false,
+  "DefaultIpForModbus": "92.168.1.60",
+  "DefaultPortForModbus": 502,
+  "DefaultProjectName": "стенд.lcdz",
+  "QueueCapacity": "100",
+  "ConnectionStrings": {
+    "DefaultConnection": "DataSource=D:\\LCSDB3\\LCS3.db"
+  }
+}

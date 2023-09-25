@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "yqYpPdAqSpjxjnrR58Rd1HnmEjNjfR3J7zx42wWqEAc=",
+  "Source": "LcsServer",
+  "BasePath": "_content/LcsServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

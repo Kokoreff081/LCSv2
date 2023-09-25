@@ -1,0 +1,25 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "LightControlServiceDev": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VUE_APP_MAINURL": "https://localhost:7291"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7291;http://localhost:5291"
+    },
+    "LightControlServiceProd": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "VUE_APP_MAINURL": "http://192.168.40.137:37763"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://192.168.40.137:37763"
+    }
+  }
+}
