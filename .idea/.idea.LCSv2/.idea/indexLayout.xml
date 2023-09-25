@@ -2,8 +2,8 @@
 <project version="4">
   <component name="UserContentModel">
     <attachedFolders>
-      <Path>LcsClient</Path>
       <Path>LcsClient2</Path>
+      <Path>lcsclient</Path>
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />

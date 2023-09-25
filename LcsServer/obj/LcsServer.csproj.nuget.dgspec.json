@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Intiled\\LCSv2\\LcsServer\\LcsServer.csproj": {}
+    "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\LcsServer\\LcsServer.csproj": {}
   },
   "projects": {
-    "E:\\Intiled\\LCSv2\\Acn\\Acn.csproj": {
+    "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\Acn\\Acn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Intiled\\LCSv2\\Acn\\Acn.csproj",
+        "projectUniqueName": "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\Acn\\Acn.csproj",
         "projectName": "Acn",
-        "projectPath": "E:\\Intiled\\LCSv2\\Acn\\Acn.csproj",
-        "packagesPath": "C:\\Users\\Aelmaris\\.nuget\\packages\\",
-        "outputPath": "E:\\Intiled\\LCSv2\\Acn\\obj\\",
+        "projectPath": "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\Acn\\Acn.csproj",
+        "packagesPath": "C:\\Users\\svet\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\Acn\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Aelmaris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\svet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -30,8 +30,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "E:\\Intiled\\21.2.6-packages": {},
-          "E:\\Intiled\\22.1.6-packages": {},
+          "D:\\22.1.6-packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,21 +68,21 @@
         }
       }
     },
-    "E:\\Intiled\\LCSv2\\LcsServer\\LcsServer.csproj": {
+    "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\LcsServer\\LcsServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Intiled\\LCSv2\\LcsServer\\LcsServer.csproj",
+        "projectUniqueName": "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\LcsServer\\LcsServer.csproj",
         "projectName": "LcsServer",
-        "projectPath": "E:\\Intiled\\LCSv2\\LcsServer\\LcsServer.csproj",
-        "packagesPath": "C:\\Users\\Aelmaris\\.nuget\\packages\\",
-        "outputPath": "E:\\Intiled\\LCSv2\\LcsServer\\obj\\",
+        "projectPath": "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\LcsServer\\LcsServer.csproj",
+        "packagesPath": "C:\\Users\\svet\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\LcsServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Aelmaris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\svet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -95,16 +94,15 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "E:\\Intiled\\21.2.6-packages": {},
-          "E:\\Intiled\\22.1.6-packages": {},
+          "D:\\22.1.6-packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\Intiled\\LCSv2\\Acn\\Acn.csproj": {
-                "projectPath": "E:\\Intiled\\LCSv2\\Acn\\Acn.csproj"
+              "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\Acn\\Acn.csproj": {
+                "projectPath": "D:\\Users\\akokorev\\RiderProjects\\LCSv2\\Acn\\Acn.csproj"
               }
             }
           }

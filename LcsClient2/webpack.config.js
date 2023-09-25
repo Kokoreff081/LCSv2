@@ -1,6 +1,8 @@
 ﻿const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
     mode: 'development',
@@ -13,9 +15,19 @@ module.exports = {
         path: path.resolve(__dirname, './dist/'),
         filename: '[name].js',
     },
+    devServer:{
+        allowedHosts: 'all',
+        https: true,
+        host: '127.0.0.1',
+        port: 7292
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'LightControlService',
+            template: 'index.html'
+        }),
     ],
     module: {
         rules: [

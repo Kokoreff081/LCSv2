@@ -22,3 +22,15 @@ E:\Intiled\LCSv2\Acn\obj\Debug\net6.0\Acn.dll
 E:\Intiled\LCSv2\Acn\obj\Debug\net6.0\refint\Acn.dll
 E:\Intiled\LCSv2\Acn\obj\Debug\net6.0\Acn.pdb
 E:\Intiled\LCSv2\Acn\obj\Debug\net6.0\ref\Acn.dll
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\bin\Debug\net6.0\Acn.deps.json
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\bin\Debug\net6.0\Acn.dll
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\bin\Debug\net6.0\Acn.pdb
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\Acn.csproj.AssemblyReference.cache
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\Acn.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\Acn.AssemblyInfoInputs.cache
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\Acn.AssemblyInfo.cs
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\Acn.csproj.CoreCompileInputs.cache
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\Acn.dll
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\refint\Acn.dll
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\Acn.pdb
+D:\Users\akokorev\RiderProjects\LCSv2\Acn\obj\Debug\net6.0\ref\Acn.dll

@@ -74,96 +74,97 @@
      </table>-->
         </div>
     </div>
-    <!--</div>
-    </div>-->
+  <!--</div>
+  </div>-->
 </template>
 <script>
-    import { HTTP } from '../../global/commonHttpRequest';
-    import $ from "jquery";
-    import DataTable from 'primevue/datatable';
-    import Column from 'primevue/column';
-    import InputText from 'primevue/inputtext';
-    import { FilterMatchMode, FilterOperator } from 'primevue/api';
-    import Button from 'primevue/button';
+import { HTTP } from '../../global/commonHttpRequest';
+import $ from "jquery";
+//import DataTable from "datatables.net";
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import InputText from 'primevue/inputtext';
+import { FilterMatchMode, FilterOperator } from 'primevue/api';
+import Button from 'primevue/button';
 
-    export default {
-        name: 'Log',
-        components: {
-            'dataTable': DataTable,
-            'column': Column,
-            'InputText': InputText,
-            'PrimButton': Button,
-        },
-        emits:['cleanBadger'],
-        data: function () {
-            return {
-                polling: null,
-                columns: [ 'id','level', 'deviceId', 'description', 'dateTime' ],
-                options: {
-                    paging: true,
-                    search: {
-                        return: true,
-                    },
-                    order:[[4, 'desc']]
+export default {
+    name: 'Log',
+    components: {
+        'dataTable': DataTable,
+        'column': Column,
+        'InputText': InputText,
+        'PrimButton': Button,
+    },
+    emits:['cleanBadger'],
+    data: function () {
+        return {
+            polling: null,
+            columns: [ 'id','level', 'deviceId', 'description', 'dateTime' ],
+            options: {
+                paging: true,
+                search: {
+                    return: true,
                 },
-                tableData: [],
-                logs: [],
-                filters: {
-                    'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
-                },
-            }
-        },
-        created() {
-            console.log('log is now on develop stage');
-            
-            /*this.tableData.splice(0);
-            HTTP.get('/Logs')
-                .then(response => {
-                    console.log(response.data);
-                    for (let i = 0; i < response.data.length; i++) {
-                        let item = response.data[i];
-                        this.tableData.push(item);
-                    }
-                })
-                .catch(e => {
-                    console.log(e);
+                order:[[4, 'desc']]
+            },
+            tableData: [],
+            logs: [],
+            filters: {
+                'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
+            },
+        }
+    },
+    created() {
+        console.log('log is now on develop stage');
+
+        /*this.tableData.splice(0);
+        HTTP.get('/Logs')
+            .then(response => {
+                console.log(response.data);
+                for (let i = 0; i < response.data.length; i++) {
+                    let item = response.data[i];
+                    this.tableData.push(item);
+                }
+            })
+            .catch(e => {
+                console.log(e);
+            });
+        */
+
+    },
+    mounted() {
+        HTTP.get('/Logs')
+            .then(response => {
+                console.log(response.data);
+                this.tableData = response.data;
+                $(document).ready(function () {
+                    $('#logs').DataTable();
                 });
-            */
-            
-        },
-        mounted() {
-            HTTP.get('/Logs')
-                .then(response => {
-                    console.log(response.data);
-                    this.tableData = response.data;
-                    $(document).ready(function () {
-                        $('#logs').DataTable();
-                    });  
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-                    
-        },
-        methods: {
-            refreshLogs: function () {
-                this.polling = setTimeout(() => {
-                    this.tableData.splice(0);
-                    HTTP.get('/Logs')
-                        .then(response => {
-                            for (let i = 0; i < response.data.length; i++) {
-                                let item = response.data[i];
-                                this.tableData.push(item);
-                            }
-                            this.$emit('cleanBadger');
-                        })
-                        .catch(e => {
-                            console.log(e);
-                        })
-                }, 10);
-            }
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
+    },
+    methods: {
+        refreshLogs: function () {
+            this.polling = setTimeout(() => {
+                this.tableData.splice(0);
+                HTTP.get('/Logs')
+                    .then(response => {
+                        for (let i = 0; i < response.data.length; i++) {
+                            let item = response.data[i];
+                            this.tableData.push(item);
+                        }
+                        this.$emit('cleanBadger');
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
+            }, 10);
         }
     }
+}
 </script>
 <style>
 
