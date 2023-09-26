@@ -1,0 +1,58 @@
+<div class="container-fluid">
+<div class="row align-items-center">
+  <div class="col-12">
+    <div class="status_legend">
+      <div class="status_legend">
+        <h3>{{$t("labels.log")}}</h3>
+      </div>
+      <div class="status_legend">
+        <Button @click="refreshLogs" class="btn btn-info">
+          {{$t('labels.logRefresh')}}
+          <i class="fa-thin fa-arrow-rotate-right"></i>
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+    <dataTable :value="tableData" :paginator="true" :rows="15" :rowsPerPageOptions="[15,30,60]" v-model:filters="filters"
+               :globalFilterFields="columns" :scrollable="true" scrollHeight="70vh">
+      <template #header>
+        <div class="flex justify-content-end">
+                        <span class="p-input-icon-left ">
+                            <i class="pi pi-search" />
+                            <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
+                        </span>
+        </div>
+      </template>
+      <column field="id" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+        <template #header>
+          <span>{{$t('labels.logId')}}</span>
+        </template>
+      </column>
+      <column field="level" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+        <template #header>
+          <span>{{$t('labels.logLevel')}}</span>
+        </template>
+      </column>
+      <column field="dateTime" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+        <template #header>
+          <span>{{$t('labels.logDateTime')}}</span>
+        </template>
+      </column>
+
+      <column field="description" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+        <template #header>
+          <span>{{$t('labels.logDescription')}}</span>
+        </template>
+      </column>
+      <column field="deviceId" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+        <template #header>
+          <span>{{$t('labels.logDeviceId')}}</span>
+        </template>
+      </column>
+    </dataTable>
+  </div>
+</div>
+</div>

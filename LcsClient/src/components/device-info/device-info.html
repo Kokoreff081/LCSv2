@@ -1,0 +1,210 @@
+<div class="container-fluid">
+    <div class="row" v-if="device && (device.Type=='ArtNetGateway' || device.Type=='GatewayUniverse')">
+        <table class="table" v-if="device && device.Type=='ArtNetGateway'">
+            <tr>
+                <td class="td_label">{{$t("labels.deviceFirmwareVersion")}}</td>
+                <td class="td_value">{{device.FirmwareVersion}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceOem")}}</td>
+                <td class="td_value">{{device.Oem}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceUbeaVersion")}}</td>
+                <td class="td_value">{{device.UbeaVersion}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceIsUbeaSupport")}}</td>
+                <td class="td_value">{{device.UbeaVersion}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceIsRdmSupported")}}</td>
+                <td class="td_value">{{device.UbeaVersion}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceRomBoot")}}</td>
+                <td class="td_value">{{device.UbeaVersion}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceEstaCode")}}</td>
+                <td class="td_value">{{device.EstaCode}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceNodeReport")}}</td>
+                <td class="td_value">{{device.NodeReport}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceStyle")}}</td>
+                <td class="td_value">{{device.Style}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceMacAddress")}}</td>
+                <td class="td_value">{{device.MacAddress}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceIpAddress")}}</td>
+                <td class="td_value">{{device.Id}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceWebSupport")}}</td>
+                <td class="td_value">{{device.UbeaVersion}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceDhcpCapable")}}</td>
+                <td class="td_value">{{device.UbeaVersion}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceArtNet3Capable")}}</td>
+                <td class="td_value">{{device.UbeaVersion}}</td>
+            </tr>
+        </table>
+        <table class="table" v-if="device && device.Type=='GatewayUniverse'">
+            <tr>
+                <td class="td_label">{{$t("labels.deviceParentId")}}</td>
+                <td class="td_value">{{device.ParentId}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceId")}}</td>
+                <td class="td_value">{{device.Id}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceType")}}</td>
+                <td class="td_value">{{device.Type}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceStatus")}}</td>
+                <td class="td_value">{{device.DeviceStatus}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.devicePortAddress")}}</td>
+                <td class="td_value">{{device.PortAddress}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.devicePortOutputStatus")}}</td>
+                <td class="td_value">{{device.OutputStatus}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="row" v-if="device && device.Type=='RdmDevice'">
+        <table class="table">
+            <tr>
+                <td class="td_value" colspan="2">
+                    <PrimButton :label="$t('labels.deviceReload')" icon="pi pi-refresh" @click="reloadDeviceData(device.Id, device)" class="p-button-text" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceLabel")}}</td>
+                <td class="td_value"><input type="text" v-model="device.Label" @change="changeLabel(device.Id, device.Label)" class="rdmInput" /></td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceUid")}}</td>
+                <td class="td_value">{{device.Id}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceIsIdentityOn")}}</td>
+                <td class="td_value"><input type="checkbox" id="{{device.Id}}" v-model="device.IsIdentifyOn" @change="highlightLamp(device.Id, device)" class="rdmInput" /></td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceSoftwareVersionLabel")}}</td>
+                <td class="td_value">{{device.SoftwareVersionIdLabel}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceDmxStartAddress")}}</td>
+                <td class="td_value"><input type="text" v-model="device.DmxAddress" @change="changeDmxAddress(device.Id, device.DmxAddress)" class="rdmInput" /></td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceFootprint")}}</td>
+                <td class="td_value">{{device.DmxFootprint}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceName")}}</td>
+                <td class="td_value">{{device.DisplayName}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceSoftwareVersionId")}}</td>
+                <td class="td_value">{{device.SoftwareVersionIdLabel}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceBootSoftwareVersionId")}}</td>
+                <td class="td_value">{{device.BootSoftwareVersionId}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceBootSoftwareVersionLabel")}}</td>
+                <td class="td_value">{{device.BootSoftwareVersionLabel}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceModelId")}}</td>
+                <td class="td_value">{{device.DeviceModelId}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceManufacturer")}}</td>
+                <td class="td_value">{{device.Manufacturer}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceModel")}}</td>
+                <td class="td_value">{{device.Model}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.devicePowerCycles")}}</td>
+                <td class="td_value">{{device.PowerCycles}}</td>
+            </tr>
+            <tr v-if="device.DeviceHours">
+                <td class="td_label">{{$t("labels.deviceHours")}}</td>
+                <td class="td_value">{{device.DeviceHours}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceLampHours")}}</td>
+                <td class="td_value">{{device.LampHours}}</td>
+            </tr>
+            <tr v-if="device.LampStrikes">
+                <td class="td_label">{{$t("labels.deviceLampStrikes")}}</td>
+                <td class="td_value">{{device.LampStrikes}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceSensorsCount")}}</td>
+                <td class="td_value">{{device.SensorCount}}</td>
+            </tr>
+            <tr v-if="device.SensorCount > 0">
+                <td class="td_label">{{$t("labels.deviceSensors")}}</td>
+                <td style="float:right;">
+                    <sensors :sensors="sensorsArr"></sensors>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceSubDeviceCount")}}</td>
+                <td class="td_value">{{device.SubDeviceCount}}</td>
+            </tr>
+            <tr v-if="device.PanInvert">
+                <td class="td_label">{{$t("labels.devicePanInvert")}}</td>
+                <td class="td_value">{{device.PanInvert}}</td>
+            </tr>
+            <tr v-if="device.TiltInvert">
+                <td class="td_label">{{$t("labels.deviceTiltInvert")}}</td>
+                <td class="td_value">{{device.TiltInvert}}</td>
+            </tr>
+            <tr v-if="device.PanTiltSwap">
+                <td class="td_label">{{$t("labels.devicePanTiltSwap")}}</td>
+                <td class="td_value">{{device.PanTiltSwap}}</td>
+            </tr>
+            <tr>
+                <td class="td_label">{{$t("labels.deviceLastSeen")}}</td>
+                <td class="td_value">{{new Date(device.LastSeen).toLocaleString()}}</td>
+            </tr>
+            <tr v-if="device.Parameters && device.Parameters.length">
+                <td class="td_label">{{$t("labels.deviceParameters")}}</td>
+                <td style="float:right;">
+                    <table>
+                        <tr>
+                            <th class="td_value">{{$t("labels.deviceParametersDescription")}}</th>
+                            <th class="td_value">{{$t("labels.deviceParametersCurValue")}}</th>
+                        </tr>
+                        <tr v-for="(item, index) in device.Parameters">
+                            <td class="td_label">{{item.Description}}</td>
+                            <td class="td_value"><input type="text" class="rdmInput" v-model="item.Value" @change="changeParam(item, device.Id)" /></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

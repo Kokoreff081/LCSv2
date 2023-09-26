@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-2">{{ $t("labels.currentProject") }}</div>
+  <div class="col-sm-2 custom-file">
+    <app-input
+      icon="upload"
+      class="mb-3"
+      type="file"
+      placeholder="Upload project file"
+      autocomplete="off"
+      v-model="currentFile"
+      ></app-input>
+  </div>
+  <div class="col-sm-2">
+    <Button class="btn btn-primary btn-block" @click="refreshCurProject">
+      <i class="fa fa-edit"></i> &nbsp;
+      {{ $t('labels.projectRefreshButton') }}
+    </Button>
+  </div>
+</div>

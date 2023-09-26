@@ -1,29 +1,51 @@
-# lcsclient
+<p align="center" style="margin-bottom: 32px">
+  <a href="https://erdkse.com" >
+    <img src="https://raw.githubusercontent.com/erdkse/adminlte-3-vue/main/srcassets/img/logo.png" alt="AdminLTE logo" width="75" height="75">
+  </a>
+</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+<h1 align="center">Admin LTE 3.2.0 - Vue 3.3.4</h1>
 
-## Recommended IDE Setup
+<p>
+  This repository is a form of original AdminLTE project. It is aim to use AdminLTE template with Vue.
+</p>
+<br>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+<span align="center">
 
-## Customize configuration
+[![Run on Repl.it](https://repl.it/badge/github/erdkse/adminlte-3-vue)](https://repl.it/github/erdkse/adminlte-3-vue)
+![Vercel](https://img.shields.io/github/deployments/erdkse/adminlte-3-vue/production.svg?logo=vercel&label=vercel)
+![Issues](https://img.shields.io/github/issues/erdkse/adminlte-3-vue)
+![Forks](https://img.shields.io/github/forks/erdkse/adminlte-3-vue)
+![Stars](https://img.shields.io/github/stars/erdkse/adminlte-3-vue)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+![GitHub last commit](https://img.shields.io/github/last-commit/erdkse/adminlte-3-vue.svg)
+[![License](https://img.shields.io/github/license/erdkse/adminlte-3-vue.svg)](LICENSE)
+![Sponsors](https://img.shields.io/github/sponsors/erdkse.svg)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+</span>
 
-## Project Setup
+<br>
 
-```sh
+To login website use:
+
+`username:` admin@example.com<br />
+`password:` admin<br />
+
+## Project setup
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compiles and hot-reloads for development
 
-```sh
+```
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Compiles and minifies for production
 
-```sh
+```
 npm run build
 ```

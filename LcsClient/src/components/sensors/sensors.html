@@ -1,0 +1,14 @@
+<div>
+    <table>
+        <tr>
+            <th class="td_value">{{$t("labels.deviceSensorNumber")}}</th>
+            <th class="td_value">{{$t("labels.deviceSensorDescription")}}</th>
+            <th class="td_value">{{$t("labels.deviceSensorCurValue")}}</th>
+        </tr>
+        <tr v-for="item in sensors">
+            <td class="td_label">{{item.SensorNumber}}</td>
+            <td class="td_value">{{item.Description}}</td>
+            <td class="td_value" :class="{warning: item.PresentValueIsOutOfNormalRange}">{{item.SensorValue}}</td>
+        </tr>
+    </table>
+</div>

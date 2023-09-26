@@ -1,0 +1,21 @@
+﻿.clock-inner {
+  display: flex;
+  /* align-items: center;*/
+  margin-top:-18px;
+  margin-left:10px;
+  width: 75px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.hour, .min, .secs {
+  font-size: 1.2em;
+}
+
+.dots {
+  font-size: 1.2em;
+}
+
+.default {
+  color: #3cc5e7;
+}
