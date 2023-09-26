@@ -21,13 +21,13 @@ namespace LcsServer.Controllers
         }
         
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<string> Login(LoginModel model)
+        public async Task<string> Login([FromBody]LoginModel model)
         {
             var response = new
             {
                 access_token = "",
-                username = ""
+                username = "",
+                role = ""
             };
             if (ModelState.IsValid)
             {
@@ -56,7 +56,8 @@ namespace LcsServer.Controllers
                         response = new
                         {
                             access_token = encodedJwt,
-                            username = model.Login
+                            username = model.Login,
+                            role = user.Role
                         };
                     }
 
