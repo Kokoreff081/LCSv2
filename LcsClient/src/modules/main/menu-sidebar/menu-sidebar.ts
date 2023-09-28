@@ -35,6 +35,10 @@ export const MENU = [
         path: '/blank'
     },
     {
+        name: i18n.global.t('labels.devices'),
+        path: '/devicelist'
+    },
+    {
         name: i18n.global.t('labels.mainMenu'),
         children: [
             {

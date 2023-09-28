@@ -23,11 +23,13 @@ export const authLogin = (login: string, password: string) => {
             .then(response=>{
                 let data = response.data;
                 if(data.access_tocken != "") {
+                    let token:string = data.access_token;
                     let userProfile = {
                         login: data.username,
-                        access_token: data.access_tocken,
+                        access_token: token,
                         role: data.role
                     }
+                    console.log(userProfile);
                     localStorage.setItem('authentication', JSON.stringify({profile: userProfile}));
                     return res({ profile: userProfile});
                 }

@@ -22,32 +22,41 @@ export default class Devices extends Vue {
     public devices:any;
     public onlyRdmDevices:any;
     public onlyArtnetDevices:any;
+    public onlyArtnetUniverses:any;
     public discovering:boolean;
     public columns:any = ['DeviceName', 'Label', 'DmxAddress', 'SoftwareVersionIdLabel', 'DmxFootprint', 'IpAddress', 'ParentPort'];
     public displayDeviceInfo:boolean = false;
     public selectedDevice:any = null; 
-    created(){
+    mounted(){
         let user = this.$store.state.auth.authentication.profile;
         if(user && user.role == 'user' || user.role=='admin') {
             let token = user.access_token;
-            instance.get('/Devices')
-                .then(response => {
-                    this.devices = response.data;
-                    this.discovering = response.data.DeviceScanning;
-                    this.onlyArtnetDevices = response.data.Only
-                    /*this.devices.ToTreeTable.forEach(function (item:any) {
-                        TreeTable.expandedKeys[item.key] = true;
-                        item.children.forEach(function (elem:any) {
-                            this.expandedKeys[elem.key] = true;
-                            elem.children.forEach(function (child:any) {
-                                this.expandedKeys[child.key] = true;
+            console.log(token);
+            let headers= {"Authorization": "Bearer " + token};
+            setTimeout(() => {
+                instance.get('/Devices', {headers})
+                    .then(response => {
+                        this.devices = response.data;
+                        console.log(this.devices);
+                        this.discovering = response.data.DeviceScanning;
+                        this.onlyArtnetDevices = response.data.OnlyArtNetControllers;
+                        this.onlyRdmDevices = response.data.OnlyRdmDevices;
+                        this.onlyArtnetUniverses = response.data.OnlyArtNetUniverses;
+
+                        /*this.devices.ToTreeTable.forEach(function (item:any) {
+                            TreeTable.expandedKeys[item.key] = true;
+                            item.children.forEach(function (elem:any) {
+                                this.expandedKeys[elem.key] = true;
+                                elem.children.forEach(function (child:any) {
+                                    this.expandedKeys[child.key] = true;
+                                }, this);
                             }, this);
-                        }, this);
-                    }, this);*/
-                })
-                .catch(e => {
-                    console.log(e);
-                });
+                        }, this);*/
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
+            }, 5);
         }
     }
 }
