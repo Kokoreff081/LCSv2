@@ -5,22 +5,24 @@ namespace LcsServer.Controllers;
 
 public class LogsController : Controller
 {
-    private DesignTimeDbContextFactory _db;
+    private DatabaseContext _db;
+    private IServiceProvider _serviceProvider;
 
-    public LogsController(DesignTimeDbContextFactory db)
+    public LogsController(IServiceProvider serviceProvider)
     {
-        _db = db;
+        //_db = db;
+        _serviceProvider = serviceProvider;
     }
     
     [HttpGet]
     public JsonResult Index()
     {
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
-            var logs = db.Events.ToList();
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var logs = _db.Events.ToList();
             return new JsonResult(logs);
         }
-
-        
     }
 }

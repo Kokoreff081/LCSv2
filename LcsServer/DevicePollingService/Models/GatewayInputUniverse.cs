@@ -7,7 +7,7 @@ namespace LcsServer.DevicePollingService.Models;
 public class GatewayInputUniverse : GatewayUniverse
 {
     private InputStatuses _inputStatus;
-
+    private IServiceProvider _serviceProvider;
     public GatewayInputUniverse(
         string parentId,
         IPAddress address,
@@ -15,8 +15,9 @@ public class GatewayInputUniverse : GatewayUniverse
         int portAddress,
         byte universe,
         PortTypes portType,
-        InputStatuses inputStatus, DatabaseContext context = null) : base(parentId, address, index, portAddress, universe, true, portType, context)
+        InputStatuses inputStatus, IServiceProvider serviceProvider = null) : base(parentId, address, index, portAddress, universe, true, portType, serviceProvider)
     {
+        _serviceProvider = _serviceProvider;
         InputStatus = inputStatus;
     }
 

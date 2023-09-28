@@ -14,10 +14,12 @@ namespace LcsServer.Controllers
 {
     public class AccountController : ControllerBase
     {
-        private DesignTimeDbContextFactory db;
-        public AccountController(DesignTimeDbContextFactory context)
+        private DatabaseContext db;
+        private IServiceProvider _serviceProvider;
+        public AccountController(DatabaseContext context, IServiceProvider serviceProvider)
         {
-            db = context;
+            _serviceProvider = serviceProvider;
+            //db = context;
         }
         
         [HttpPost]
@@ -31,10 +33,12 @@ namespace LcsServer.Controllers
             };
             if (ModelState.IsValid)
             {
-                using (var _db = db.CreateDbContext(null))
+                var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+                using (var scope = scopeFactory.CreateScope())
                 {
-                    var users = _db.Users.ToList();
-                    User? user = _db.Users.ToList()
+                    db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                    var users = db.Users.ToList();
+                    User? user = db.Users.ToList()
                         .FirstOrDefault(u => u.Login == model.Login && u.Password == model.Password);
                     if (user != null)
                     {

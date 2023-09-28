@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Data;
+using System.Net;
 using System.Text;
 using Acn.ArtNet.Packets;
 using Acn.Rdm;
@@ -22,21 +23,24 @@ namespace WebInterface.Controllers;
 
 public class DevicesController : Controller
 {
-    private DesignTimeDbContextFactory _db;
+    private DatabaseContext _db;
     private readonly IConfiguration Configuration;
     private ToWebInterface toWeb;
     private const string RdmScan = "DeviceScanning";
     private readonly IBackgroundTaskQueue _taskQueue;
-    
-    public DevicesController(IConfiguration _configuration, DesignTimeDbContextFactory context, IBackgroundTaskQueue taskQueue)
+    private IServiceProvider _serviceProvider;
+    public DevicesController(IConfiguration _configuration, IServiceProvider serviceProvider, IBackgroundTaskQueue taskQueue)
     {
-        _db = context;
+        _serviceProvider = serviceProvider;
+        //_db = context;
         Configuration = _configuration;
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
             toWeb = new ToWebInterface()
             {
-                DeviceScanning = db.Settings.Where(w => w.Name == RdmScan).First().IsEnabled,
+                DeviceScanning = _db.Settings.Where(w => w.Name == RdmScan).First().IsEnabled,
                 OnlyArtNetControllers = new List<ArtnetGateWayToWeb>(),
                 OnlyArtNetUniverses = new List<GatewayUniverseToWeb>()
             };
@@ -47,14 +51,16 @@ public class DevicesController : Controller
     
     private void FillDevices()
     {
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
-            var devices = db.Devices.OrderBy(o => o.Type).ToList();
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var devices = _db.Devices.OrderBy(o => o.Type).ToList();
             var gatewayUniverseId = new List<string>();
             var artNet = new ArtnetGateWayToWeb();
             foreach (var device in devices)
             {
-                var deviceParams = db.DeviceParams
+                var deviceParams = _db.DeviceParams
                     .Where(w => w.DeviceId == device.Id)
                     .OrderByDescending(o => o.LastPoll)
                     .ToList();
@@ -180,19 +186,19 @@ public class DevicesController : Controller
                     rdmDev.SensorCount = byte.Parse(deviceParams.First(f => f.ParamName == "SensorCount").ParamValue);
                     if (rdmDev.SensorCount > 0)
                     {
-                        var sensorsInDb = db.Sensors.Where(w => w.deviceId == rdmDev.Id).OrderByDescending(o=>o.LastPoll).ToList();
+                        var sensorsInDb = _db.Sensors.Where(w => w.deviceId == rdmDev.Id).OrderByDescending(o=>o.LastPoll).ToList();
                         var lst = new List<Sensor>();
-                        foreach (var dbSensor in sensorsInDb)
+                        foreach (var _dbSensor in sensorsInDb)
                         {
-                            var lastValues = db.SensorValues.Where(w => w.SensorId == dbSensor.SensorId)
+                            var lastValues = _db.SensorValues.Where(w => w.SensorId == _dbSensor.SensorId)
                                 .OrderByDescending(o => o.Timestamp).First();
-                            lst.Add(new Sensor(dbSensor.SensorId, rdmDev.Id)
+                            lst.Add(new Sensor(_dbSensor.SensorId, rdmDev.Id)
                             {
-                                Description = dbSensor.description,
-                                Unit = (SensorDefinition.SensorUnit)dbSensor.SensorUnitId,
+                                Description = _dbSensor.description,
+                                Unit = (SensorDefinition.SensorUnit)_dbSensor.SensorUnitId,
                                 NormalMaxValue = lastValues.NormalMaxValue, NormalMinValue = lastValues.NormalMinValue,
                                 PresentValue = (short)lastValues.Value,
-                                SensorNumber = (byte)dbSensor.SensorNumber
+                                SensorNumber = (byte)_dbSensor.SensorNumber
                             });
                         }
 
@@ -340,10 +346,12 @@ public class DevicesController : Controller
                
             return JsonConvert.SerializeObject(json);
         }
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
-            var device = db.Devices.First(f => f.deviceId == nda.id);
-            var deviceParam = db.DeviceParams
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var device = _db.Devices.First(f => f.deviceId == nda.id);
+            var deviceParam = _db.DeviceParams
                 .Where(w => w.DeviceId == device.Id && w.ParamName == "DmxAddress")
                 .OrderByDescending(o => o.LastPoll)
                 .First();
@@ -371,10 +379,12 @@ public class DevicesController : Controller
                
             return JsonConvert.SerializeObject(json);
         }
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
-            var device = db.Devices.First(f => f.deviceId == crl.id);
-            var deviceParam = db.DeviceParams
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var device = _db.Devices.First(f => f.deviceId == crl.id);
+            var deviceParam = _db.DeviceParams
                 .Where(w => w.DeviceId == device.Id && w.ParamName == "Label")
                 .OrderByDescending(o => o.LastPoll)
                 .First();
@@ -396,10 +406,12 @@ public class DevicesController : Controller
     [Authorize(Roles = "admin")]
     public async Task<string> LampIdentity([FromBody]LampHighlight lamp)
     {
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
-            var device = db.Devices.First(f => f.deviceId == lamp.id);
-            var deviceParam = db.DeviceParams
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var device = _db.Devices.First(f => f.deviceId == lamp.id);
+            var deviceParam = _db.DeviceParams
                 .Where(w => w.DeviceId == device.Id && w.ParamName == "Label")
                 .OrderByDescending(o => o.LastPoll)
                 .First();
@@ -436,10 +448,12 @@ public class DevicesController : Controller
             return JsonConvert.SerializeObject(json);
         }
 
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
-            var device = db.Devices.First(f => f.deviceId == cp.id);
-            var deviceParam = db.DeviceParams
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var device = _db.Devices.First(f => f.deviceId == cp.id);
+            var deviceParam = _db.DeviceParams
                 .Where(w => w.DeviceId == device.Id && w.ParamId == cp.parameterId.ToString())
                 .OrderByDescending(o => o.LastPoll)
                 .First();

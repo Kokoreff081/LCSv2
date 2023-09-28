@@ -24,84 +24,108 @@ public class ArtNetGateway : BaseDevice
         private byte[] _macAddress = new byte[6];
         private PollReplyStatus2 _status2;
         private string _manufacturer;
-
+        private IServiceProvider _serviceProvider;
         //public ArtNetGateway()
         //{
 
         //}
 
         // Уникальное ID art-Net устройства присваивается как IpAddress:Port (например: 192.168.76.240:6454)
-        public ArtNetGateway(byte[] ipAddress, short port, DatabaseContext context = null) : base(string.Join(".", ipAddress) + $":{port}", string.Empty)
+        public ArtNetGateway(byte[] ipAddress, short port, IServiceProvider serviceProvider = null) : base(string.Join(".", ipAddress) + $":{port}", string.Empty)
         {
-            _db = context;
+            _serviceProvider = serviceProvider;
             IpAddress = ipAddress;
-            var device = _db.Devices.First(f => f.deviceId == Id);
-            var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-            var param = new DeviceParam();
-            if (list.Any(a => a.ParamName == nameof(IpAddress)))
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
             {
-                param = list.First(f => f.ParamName == nameof(IpAddress));
-                param.ParamValue = new IPAddress(ipAddress).ToString();
-                //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                _db.SaveChanges();
-            }
-            else
-            {
-                param = new DeviceParam()
-                    { DeviceId = device.Id, ParamName = nameof(IpAddress), LastPoll = DateTime.Now };
-                param.ParamValue = new IPAddress(ipAddress).ToString();
-                _db.DeviceParams.Add(param);
-                _db.SaveChanges();
-            }
-            Port = port;
-            list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-            
-            if (list.Any(a => a.ParamName == nameof(Port)))
-            {
-                param = list.First(f => f.ParamName == nameof(Port));
-                param.ParamValue = port.ToString();
-                //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                _db.SaveChanges();
-            }
-            else
-            {
-                param = new DeviceParam()
-                    { DeviceId = device.Id, ParamName = nameof(Port), LastPoll = DateTime.Now };
-                param.ParamValue = port.ToString();
-                _db.DeviceParams.Add(param);
-                _db.SaveChanges();
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                var device = _db.Devices.First(f => f.deviceId == Id);
+                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
+                var param = new DeviceParam();
+                if (list.Any(a => a.ParamName == nameof(IpAddress)))
+                {
+                    param = list.First(f => f.ParamName == nameof(IpAddress));
+                    param.ParamValue = new IPAddress(ipAddress).ToString();
+                    //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    param = new DeviceParam()
+                        { DeviceId = device.Id, ParamName = nameof(IpAddress), LastPoll = DateTime.Now };
+                    param.ParamValue = new IPAddress(ipAddress).ToString();
+                    _db.DeviceParams.Add(param);
+                    _db.SaveChanges();
+                }
+
+                Port = port;
+                list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
+
+                if (list.Any(a => a.ParamName == nameof(Port)))
+                {
+                    param = list.First(f => f.ParamName == nameof(Port));
+                    param.ParamValue = port.ToString();
+                    //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    param = new DeviceParam()
+                        { DeviceId = device.Id, ParamName = nameof(Port), LastPoll = DateTime.Now };
+                    param.ParamValue = port.ToString();
+                    _db.DeviceParams.Add(param);
+                    _db.SaveChanges();
+                }
             }
         }
 
         public byte[] IpAddress { get; }
 
         public short Port { get; }
+        
+        private async void AddParamToDb(string val, string paramName)
+        {
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                var device = _db.Devices.First(f => f.deviceId == Id);
+                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
+                var param = new DeviceParam();
+                if (list.Any(a => a.ParamName == paramName))
+                {
+                    param = list.First(f => f.ParamName == paramName);
+                    if (param.ParamValue == val)
+                        param.LastPoll = DateTime.Now;
+                    else
+                    {
+                        param.ParamValue = val;
+                        param.LastPoll = DateTime.Now;
+                        _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
+                    }
+
+                    _db.Entry(param).Property(p => p.LastPoll).IsModified = true;
+                }
+                else
+                {
+                    param = new DeviceParam()
+                        { DeviceId = device.Id, ParamName = paramName, LastPoll = DateTime.Now };
+                    param.ParamValue = val;
+                    _db.DeviceParams.Add(param);
+                }
+
+                await _db.SaveChangesAsync();
+            }
+
+
+        }
         public string Manufacturer
         {
             get { return _manufacturer; }
             set
             {
                 _manufacturer = value;
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(Manufacturer)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(Manufacturer));
-                        param.ParamValue = value;
-                        //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(Manufacturer), LastPoll = DateTime.Now };
-                        param.ParamValue = value;
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-                
+                AddParamToDb(value.ToString(), nameof(Manufacturer));
             }
         }
 
@@ -111,26 +135,7 @@ public class ArtNetGateway : BaseDevice
             set
             {
                 _firmwareVersion = value;
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(FirmwareVersion)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(FirmwareVersion));
-                        param.ParamValue = value.ToString();
-                        //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(FirmwareVersion), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-                
+                AddParamToDb(value.ToString(), nameof(FirmwareVersion));
             }
         }
 
@@ -151,26 +156,7 @@ public class ArtNetGateway : BaseDevice
             set
             {
                 _oem = value;
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(Oem)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(Oem));
-                        param.ParamValue = value.ToString();
-                        //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(Oem), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-                
+                AddParamToDb(value.ToString(), nameof(Oem));
             }
         }
 
@@ -180,26 +166,7 @@ public class ArtNetGateway : BaseDevice
             set
             {
                 _ubeaVersion = value;
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(UbeaVersion)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(UbeaVersion));
-                        param.ParamValue = value.ToString();
-                        //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(UbeaVersion), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-                
+                AddParamToDb(value.ToString(), nameof(UbeaVersion));
             }
         }
 
@@ -209,27 +176,8 @@ public class ArtNetGateway : BaseDevice
             set
             {
                 _status = value;
-
-                    var valParam = (int)value;
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(Status)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(Status));
-                        param.ParamValue = valParam.ToString();
-                        //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(Status), LastPoll = DateTime.Now };
-                        param.ParamValue = valParam.ToString();
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-               
+                var valParam = (int)value;
+                AddParamToDb(valParam.ToString(), nameof(Status));
             }
         }
 
@@ -239,25 +187,7 @@ public class ArtNetGateway : BaseDevice
             set
             {
                 _estaCode = value;
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(EstaCode)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(EstaCode));
-                        param.ParamValue = value.ToString();
-                       // _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(EstaCode), LastPoll = DateTime.Now, ParamId = ""};
-                        param.ParamValue = value.ToString();
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
+                AddParamToDb(value.ToString(), nameof(EstaCode));
             }
         }
 
@@ -267,26 +197,8 @@ public class ArtNetGateway : BaseDevice
             set
             {
                 _longName = value;
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(LongName)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(LongName));
-                        param.ParamValue = value.Contains("\0") ? value.Substring(0, value.IndexOf('\0')) : value;
-                        //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(LongName), LastPoll = DateTime.Now, ParamId = ""};
-                        param.ParamValue = value.Contains("\0") ? value.Substring(0, value.IndexOf('\0')) : value;
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-               
+                var valParam = value.Contains("\0") ? value.Substring(0, value.IndexOf('\0')) : value;
+                AddParamToDb(valParam.ToString(), nameof(LongName));
             }
         }
 
@@ -307,26 +219,8 @@ public class ArtNetGateway : BaseDevice
             set
             {
                 _nodeReport = value;
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(NodeReport)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(NodeReport));
-                        param.ParamValue = value.Contains("\0") ? value.Substring(0, value.IndexOf('\0')) : value;
-                        //_db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(NodeReport), LastPoll = DateTime.Now };
-                        param.ParamValue = value.Contains("\0") ? value.Substring(0, value.IndexOf('\0')) : value;
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-                
+                var valParam = value.Contains("\0") ? value.Substring(0, value.IndexOf('\0')) : value;
+                AddParamToDb(valParam.ToString(), nameof(NodeReport));
             }
         }
 
@@ -398,26 +292,7 @@ public class ArtNetGateway : BaseDevice
                 }
 
                 var valParam = sb.ToString();
-
-                    var device = _db.Devices.First(f => f.deviceId == Id);
-                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(MacAddress)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(MacAddress));
-                        param.ParamValue = valParam;
-                        _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        _db.SaveChanges();
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(MacAddress), LastPoll = DateTime.Now };
-                        param.ParamValue = valParam;
-                        _db.DeviceParams.Add(param);
-                        _db.SaveChanges();
-                    }
-                
+                AddParamToDb(valParam, nameof(MacAddress));
             }
         }
 
@@ -436,18 +311,16 @@ public class ArtNetGateway : BaseDevice
 
         protected override void OnDeviceLost()
         {
-            /*LogManager.GetInstance().WriteDeviceMessage(new GatewayLogMessage()
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
             {
-                IpAddress = string.Join(".", IpAddress),
-                MacAdddress = string.Join(":", MacAddress),
-            });*/
-
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                 _db.Events.Add(new Event()
                 {
                     deviceId = Id, level = "DeviceLost", dateTime = DateTime.Now,
                     Description = $"Device {DisplayLongName} has been losted!"
                 });
                 _db.SaveChanges();
-            
+            }
         }
     }

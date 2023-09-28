@@ -17,6 +17,7 @@ public abstract class GatewayUniverse : BaseDevice
     private byte _universe;
     private int _portAddress;
     private PortTypes _portType;
+    private IServiceProvider _serviceProvider;
     protected GatewayUniverse(
         string parentId,
         IPAddress address,
@@ -24,9 +25,9 @@ public abstract class GatewayUniverse : BaseDevice
         int portAddress,
         byte universe,
         bool isInUniverse,
-        PortTypes portType, DatabaseContext context = null) : base($"{parentId}:{isInUniverse}:{index}", parentId)
+        PortTypes portType, IServiceProvider serviceProvider = null) : base($"{parentId}:{isInUniverse}:{index}", parentId)
     {
-        _db = context;
+        _serviceProvider = serviceProvider;
         IpAddress = address;
         Index = index;
         PortAddress = portAddress;
@@ -34,34 +35,51 @@ public abstract class GatewayUniverse : BaseDevice
         PortType = portType;
        
     }
+    private async void AddParamToDb(string val, string paramName)
+    {
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
+        {
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var device = _db.Devices.First(f => f.deviceId == Id);
+            var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
+            var param = new DeviceParam();
+            if (list.Any(a => a.ParamName == paramName))
+            {
+                param = list.First(f => f.ParamName == paramName);
+                if (param.ParamValue == val)
+                    param.LastPoll = DateTime.Now;
+                else
+                {
+                    param.ParamValue = val;
+                    param.LastPoll = DateTime.Now;
+                    _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
+                }
 
+                _db.Entry(param).Property(p => p.LastPoll).IsModified = true;
+            }
+            else
+            {
+                param = new DeviceParam()
+                    { DeviceId = device.Id, ParamName = paramName, LastPoll = DateTime.Now };
+                param.ParamValue = val;
+                _db.DeviceParams.Add(param);
+            }
+
+            await _db.SaveChangesAsync();
+        }
+
+
+    }
     public IPAddress IpAddress { get; }
-
+    
     public int Index
     {
         get { return _index; }
         set
         {
             _index = value;
-                var device = _db.Devices.First(f => f.deviceId == Id);
-                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                var param = new DeviceParam();
-                if (list.Any(a => a.ParamName == nameof(Index)))
-                {
-                    param = list.First(f => f.ParamName == nameof(Index));
-                    param.ParamValue = value.ToString();
-                    _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                    _db.SaveChanges();
-                }
-                else
-                {
-                    param = new DeviceParam()
-                        { DeviceId = device.Id, ParamName = nameof(Index), LastPoll = DateTime.Now };
-                    param.ParamValue = value.ToString();
-                    _db.DeviceParams.Add(param);
-                    _db.SaveChanges();
-                }
-            
+            AddParamToDb(value.ToString(), nameof(Index));
         }
     }
 
@@ -71,25 +89,7 @@ public abstract class GatewayUniverse : BaseDevice
         set
         {
             _universe = value;
-                var device = _db.Devices.First(f => f.deviceId == Id);
-                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                var param = new DeviceParam();
-                if (list.Any(a => a.ParamName == nameof(Universe)))
-                {
-                    param = list.First(f => f.ParamName == nameof(Universe));
-                    param.ParamValue = value.ToString();
-                    _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                    _db.SaveChanges();
-                }
-                else
-                {
-                    param = new DeviceParam()
-                        { DeviceId = device.Id, ParamName = nameof(Universe), LastPoll = DateTime.Now };
-                    param.ParamValue = value.ToString();
-                    _db.DeviceParams.Add(param);
-                    _db.SaveChanges();
-                }
-            
+            AddParamToDb(value.ToString(), nameof(Universe));
         }
     }
 
@@ -102,25 +102,7 @@ public abstract class GatewayUniverse : BaseDevice
         set
         {
             _portIndex = value;
-                var device = _db.Devices.First(f => f.deviceId == Id);
-                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                var param = new DeviceParam();
-                if (list.Any(a => a.ParamName == nameof(PortIndex)))
-                {
-                    param = list.First(f => f.ParamName == nameof(PortIndex));
-                    param.ParamValue = value.ToString();
-                    _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                    _db.SaveChanges();
-                }
-                else
-                {
-                    param = new DeviceParam()
-                        { DeviceId = device.Id, ParamName = nameof(PortIndex), LastPoll = DateTime.Now };
-                    param.ParamValue = value.ToString();
-                    _db.DeviceParams.Add(param);
-                    _db.SaveChanges();
-                }
-            
+            AddParamToDb(value.ToString(), nameof(PortIndex));
         }
     }
 
@@ -130,26 +112,7 @@ public abstract class GatewayUniverse : BaseDevice
         set
         {
             _portAddress = value;
-
-                var device = _db.Devices.First(f => f.deviceId == Id);
-                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                var param = new DeviceParam();
-                if (list.Any(a => a.ParamName == nameof(PortAddress)))
-                {
-                    param = list.First(f => f.ParamName == nameof(PortAddress));
-                    param.ParamValue = value.ToString();
-                    _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                    _db.SaveChanges();
-                }
-                else
-                {
-                    param = new DeviceParam()
-                        { DeviceId = device.Id, ParamName = nameof(PortAddress), LastPoll = DateTime.Now };
-                    param.ParamValue = value.ToString();
-                    _db.DeviceParams.Add(param);
-                    _db.SaveChanges();
-                }
-            
+            AddParamToDb(value.ToString(), nameof(PortAddress));
         }
     }
 
@@ -159,26 +122,8 @@ public abstract class GatewayUniverse : BaseDevice
         set
         {
             _portType = value;
-                var valParam = (int)value;
-                var device = _db.Devices.First(f => f.deviceId == Id);
-                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                var param = new DeviceParam();
-                if (list.Any(a => a.ParamName == nameof(PortType)))
-                {
-                    param = list.First(f => f.ParamName == nameof(PortType));
-                    param.ParamValue = valParam.ToString();
-                    _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                    _db.SaveChanges();
-                }
-                else
-                {
-                    param = new DeviceParam()
-                        { DeviceId = device.Id, ParamName = nameof(PortType), LastPoll = DateTime.Now };
-                    param.ParamValue = valParam.ToString();
-                    _db.DeviceParams.Add(param);
-                    _db.SaveChanges();
-                }
-            
+            var valParam = (int)value;
+            AddParamToDb(valParam.ToString(), nameof(PortType));
         }
     }
 
@@ -190,12 +135,16 @@ public abstract class GatewayUniverse : BaseDevice
 
     protected override void OnDeviceLost()
     {
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
+        {
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
             _db.Events.Add(new Event()
             {
                 deviceId = Id, level = "DeviceLost", dateTime = DateTime.Now,
                 Description = $"Device {Name} has been losted!"
             });
             _db.SaveChanges();
-        
+        }
     }
 }

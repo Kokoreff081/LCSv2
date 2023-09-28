@@ -20,7 +20,7 @@ namespace LcsServer.DatabaseLayer
         public DbSet<StatusOfDevice> DeviceStatuses => Set<StatusOfDevice>();
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
             //Database.Migrate();
         }
 

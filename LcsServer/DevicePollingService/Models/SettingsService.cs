@@ -11,11 +11,12 @@ public class SettingsService : ISettingsService
 
     private DatabaseContext _db;
     private readonly ISerializationManagerRDM _serializationManager;
+    private IServiceProvider _serviceProvider;
 
-    public SettingsService(ISerializationManagerRDM serializationManager, DatabaseContext context)
+    public SettingsService(ISerializationManagerRDM serializationManager, IServiceProvider serviceProvider)
     {
         _serializationManager = serializationManager;
-        _db = context;
+        _serviceProvider = serviceProvider;
         _settings = new Dictionary<SettingsTypes, BaseSettings>();
     }
 
@@ -52,8 +53,13 @@ public class SettingsService : ISettingsService
         }
         catch (Exception ex)
         {
-            _db.Events.Add(new Event() { level = "Error", dateTime = DateTime.Now, Description = ex.Message });
-            _db.SaveChanges();
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                _db.Events.Add(new Event() { level = "Error", dateTime = DateTime.Now, Description = ex.Message });
+                _db.SaveChanges();
+            }
         }
     }
 

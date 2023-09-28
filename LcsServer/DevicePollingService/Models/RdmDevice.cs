@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Acn.Rdm;
 using Acn.Rdm.Packets.Control;
@@ -47,22 +48,25 @@ public class RdmDevice : BaseDevice
         private readonly Dictionary<RdmParameters, string> _unsupportedParameters = new Dictionary<RdmParameters, string>();
         private readonly Dictionary<byte, PersonalityDescription> _personalityDescriptions = new Dictionary<byte, PersonalityDescription>();
         private DateTime _lastSeen;
-        private DesignTimeDbContextFactory _db;
+        private DatabaseContext _db;
+        private object locker = new object();
+        private IServiceProvider _serviceProvider;
 
-        public RdmDevice(RdmDeviceBroker rdmDeviceBroker, UId uId, RdmEndPoint address, byte devicePort, string parentId, DesignTimeDbContextFactory dbOperations) : base(uId.ToString(), parentId)
+        public RdmDevice(RdmDeviceBroker rdmDeviceBroker, UId uId, RdmEndPoint address, byte devicePort, string parentId, IServiceProvider serviceProvider) : base(uId.ToString(), parentId)
         {
+            _serviceProvider = serviceProvider;
             RdmDeviceBroker = rdmDeviceBroker;
             UId = uId;
             Address = address;
             DevicePort = devicePort;
             _sensors = new Dictionary<string, Sensor>();
             _parameters = new Dictionary<string, ParameterInformation>();
-            _db = dbOperations;
+            
         }
 
         public RdmDevice(RdmDeviceBroker rdmDeviceBroker, UId uId, RdmEndPoint address, byte devicePort, string parentId,
-            List<Sensor> sensors, List<ParameterInformation> parameters, DesignTimeDbContextFactory databaseOperations) :
-            this(rdmDeviceBroker, uId, address, devicePort, parentId, databaseOperations)
+            List<Sensor> sensors, List<ParameterInformation> parameters, DatabaseContext databaseOperations, IServiceProvider serviceProvider) :
+            this(rdmDeviceBroker, uId, address, devicePort, parentId, serviceProvider)
         {
             _sensors = sensors.ToDictionary(x => x.Id, x => x);
             _parameters = parameters.ToDictionary(x => x.Id, x => x);
@@ -74,7 +78,7 @@ public class RdmDevice : BaseDevice
 
         public override string Type => nameof(RdmDevice);
 
-        protected override void OnDeviceLost()
+        protected override async void OnDeviceLost()
         {
             /*
             LogManager.GetInstance().WriteDeviceMessage(new RdmDeviceLogMessage()
@@ -91,13 +95,51 @@ public class RdmDevice : BaseDevice
             logInfo.level = "Error";
             logInfo.Description = $"device {DisplayName}-{Address.Address} lost connection";
             logInfo.dateTime = DateTime.Now;
-            using (var db = _db.CreateDbContext(null))
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
             {
-                db.Events.Add(logInfo);
-                db.SaveChanges();
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                _db.Events.Add(logInfo);
+                await _db.SaveChangesAsync();
             }
         }
 
+        private async void AddParamToDb(string val, string paramName)
+        {
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                var device = _db.Devices.First(f => f.deviceId == Id);
+                var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
+                var param = new DeviceParam();
+                if (list.Any(a => a.ParamName == paramName))
+                {
+                    param = list.First(f => f.ParamName == paramName);
+                    if (param.ParamValue == val)
+                        param.LastPoll = DateTime.Now;
+                    else
+                    {
+                        param.ParamValue = val;
+                        param.LastPoll = DateTime.Now;
+                        _db.Entry(param).Property(p => p.ParamValue).IsModified = true;
+                    }
+
+                    _db.Entry(param).Property(p => p.LastPoll).IsModified = true;
+                }
+                else
+                {
+                    param = new DeviceParam()
+                        { DeviceId = device.Id, ParamName = paramName, LastPoll = DateTime.Now };
+                    param.ParamValue = val;
+                    _db.DeviceParams.Add(param);
+                }
+
+                await _db.SaveChangesAsync();
+            }
+
+
+        }
         public UId UId { get; }
 
         public RdmEndPoint Address { get; }
@@ -112,33 +154,7 @@ public class RdmDevice : BaseDevice
                 _subDeviceId = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(SubDeviceId)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(SubDeviceId));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(SubDeviceId), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(SubDeviceId));
             }
         }
 
@@ -150,33 +166,7 @@ public class RdmDevice : BaseDevice
                 _manufacturer = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(Manufacturer)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(Manufacturer));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(Manufacturer), LastPoll = DateTime.Now };
-                        param.ParamValue = value;
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value, nameof(Manufacturer));
             }
         }
 
@@ -188,33 +178,7 @@ public class RdmDevice : BaseDevice
                 _model = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(Model)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(Model));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(Model), LastPoll = DateTime.Now };
-                        param.ParamValue = value;
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value, nameof(Model));
             }
         }
 
@@ -236,33 +200,7 @@ public class RdmDevice : BaseDevice
                 _label = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(Label)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(Label));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(Label), LastPoll = DateTime.Now };
-                        param.ParamValue = value;
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value, nameof(Label));
             }
         }
 
@@ -331,33 +269,7 @@ public class RdmDevice : BaseDevice
                 _mode = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(Mode)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(Mode));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(Mode), LastPoll = DateTime.Now };
-                        param.ParamValue = value;
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value, nameof(Mode));
             }
         }
 
@@ -373,33 +285,7 @@ public class RdmDevice : BaseDevice
                 _panInvert = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(PanInvert)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(PanInvert));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(PanInvert), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(PanInvert));
             }
         }
 
@@ -411,33 +297,7 @@ public class RdmDevice : BaseDevice
                 _tiltInvert = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(TiltInvert)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(TiltInvert));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(TiltInvert), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(TiltInvert));
             }
         }
 
@@ -449,33 +309,7 @@ public class RdmDevice : BaseDevice
                 _panTiltSwap = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(PanTiltSwap)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(PanTiltSwap));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(PanTiltSwap), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(PanTiltSwap));
             }
         }
 
@@ -487,33 +321,7 @@ public class RdmDevice : BaseDevice
                 _deviceHours = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(DeviceHours)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(DeviceHours));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(DeviceHours), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(DeviceHours));
             }
         }
 
@@ -525,33 +333,7 @@ public class RdmDevice : BaseDevice
                 _lampHours = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(LampHours)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(LampHours));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(LampHours), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(LampHours));
             }
         }
 
@@ -578,33 +360,7 @@ public class RdmDevice : BaseDevice
                 _powerCycles = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(PowerCycles)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(PowerCycles));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(PowerCycles), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(PowerCycles));
             }
         }
 
@@ -616,34 +372,7 @@ public class RdmDevice : BaseDevice
                 _lampStrikes = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(LampStrikes)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(LampStrikes));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value != null ? value.ToString() : "0";
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(LampStrikes), LastPoll = DateTime.Now };
-                        param.ParamValue = value != null ? value.ToString() : "0";
-                        db.DeviceParams.Add(param);
-                        
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(LampStrikes));
             }
         }
 
@@ -655,33 +384,7 @@ public class RdmDevice : BaseDevice
                 _isIdentifyOn = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(IsIdentifyOn)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(IsIdentifyOn));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(IsIdentifyOn), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(IsIdentifyOn));
             }
         }
 
@@ -707,33 +410,7 @@ public class RdmDevice : BaseDevice
                 _dmxAddress = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(DmxAddress)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(DmxAddress));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(DmxAddress), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(DmxAddress));
             }
         }
 
@@ -745,33 +422,7 @@ public class RdmDevice : BaseDevice
                 _dmxFootprint = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(DmxFootprint)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(DmxFootprint));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(DmxFootprint), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(DmxFootprint));
             }
         }
 
@@ -783,33 +434,7 @@ public class RdmDevice : BaseDevice
                 _rdmProtocolVersion = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(RdmProtocolVersion)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(RdmProtocolVersion));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(RdmProtocolVersion), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(RdmProtocolVersion));
             }
         }
 
@@ -821,33 +446,7 @@ public class RdmDevice : BaseDevice
                 _deviceModelId = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(DeviceModelId)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(DeviceModelId));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(DeviceModelId), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(DeviceModelId));
             }
         }
 
@@ -859,34 +458,8 @@ public class RdmDevice : BaseDevice
                 _productCategory = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var valParam = (int)value;
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(ProductCategory)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(ProductCategory));
-                        if (param.ParamValue == valParam.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = valParam.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(ProductCategory), LastPoll = DateTime.Now };
-                        param.ParamValue = valParam.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                var valParam = (int)value;
+                AddParamToDb(valParam.ToString(), nameof(ProductCategory));
             }
         }
 
@@ -898,33 +471,7 @@ public class RdmDevice : BaseDevice
                 _softwareVersionId = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(SoftwareVersionId)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(SoftwareVersionId));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(SoftwareVersionId), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(SoftwareVersionId));
             }
         }
 
@@ -950,33 +497,7 @@ public class RdmDevice : BaseDevice
                 _softwareVersionLabel = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(SoftwareVersionLabel)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(SoftwareVersionLabel));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(SoftwareVersionLabel), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value, nameof(SoftwareVersionLabel));
             }
         }
 
@@ -988,35 +509,7 @@ public class RdmDevice : BaseDevice
                 _bootSoftwareVersionId = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(BootSoftwareVersionId)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(BootSoftwareVersionId));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                        {
-                            DeviceId = device.Id, ParamName = nameof(BootSoftwareVersionId), LastPoll = DateTime.Now
-                        };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(BootSoftwareVersionId));
             }
         }
 
@@ -1028,35 +521,7 @@ public class RdmDevice : BaseDevice
                 _bootSoftwareVersionLabel = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(BootSoftwareVersionLabel)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(BootSoftwareVersionLabel));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                        {
-                            DeviceId = device.Id, ParamName = nameof(BootSoftwareVersionLabel), LastPoll = DateTime.Now
-                        };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(BootSoftwareVersionLabel));
             }
         }
 
@@ -1068,33 +533,7 @@ public class RdmDevice : BaseDevice
                 _dmxPersonality = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(DmxPersonality)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(DmxPersonality));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(DmxPersonality), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(DmxPersonality));
             }
         }
 
@@ -1122,33 +561,7 @@ public class RdmDevice : BaseDevice
                 _dmxPersonalityCount = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(DmxPersonalityCount)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(DmxPersonalityCount));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(DmxPersonalityCount), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(DmxPersonalityCount));
             }
         }
 
@@ -1160,33 +573,7 @@ public class RdmDevice : BaseDevice
                 _subDeviceCount = value;
                 if (value == null)
                     return;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(SubDeviceCount)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(SubDeviceCount));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(SubDeviceCount), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(SubDeviceCount));
             }
         }
 
@@ -1198,34 +585,7 @@ public class RdmDevice : BaseDevice
                 if (value == null)
                     return;
                 _sensorCount = value;
-                
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam();
-                    if (list.Any(a => a.ParamName == nameof(SensorCount)))
-                    {
-                        param = list.First(f => f.ParamName == nameof(SensorCount));
-                        if (param.ParamValue == value.ToString())
-                            param.LastPoll = DateTime.Now;
-                        else
-                        {
-                            param.ParamValue = value.ToString();
-                            param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.ParamValue).IsModified = true;
-                        }
-                        db.Entry(param).Property(p => p.LastPoll).IsModified = true;
-                    }
-                    else
-                    {
-                        param = new DeviceParam()
-                            { DeviceId = device.Id, ParamName = nameof(SensorCount), LastPoll = DateTime.Now };
-                        param.ParamValue = value.ToString();
-                        db.DeviceParams.Add(param);
-                    }
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(SensorCount));
             }
         }
 
@@ -1235,16 +595,7 @@ public class RdmDevice : BaseDevice
             set
             {
                 _lastSeen = value;
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
-                    var param = new DeviceParam()
-                        { DeviceId = device.Id, ParamName = nameof(LastSeen), LastPoll = DateTime.Now };
-                    param.ParamValue = value.ToString();
-                    db.DeviceParams.Add(param);
-                    db.SaveChanges();
-                }
+                AddParamToDb(value.ToString(), nameof(LastSeen));
             }
         }
 
@@ -1263,7 +614,7 @@ public class RdmDevice : BaseDevice
             AddSensor(sensor);
         }
 
-        private void AddSensor(Sensor sensor)
+        private async void AddSensor(Sensor sensor)
         {
             
             if (_sensors.ContainsKey(sensor.Id))
@@ -1279,32 +630,36 @@ public class RdmDevice : BaseDevice
                 currentSensor.RecordValueSupport = sensor.RecordValueSupport;
                 currentSensor.SensorType = sensor.SensorType;
                 currentSensor.Unit = sensor.Unit;
-                using (var db = _db.CreateDbContext(null))
+                var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+                using (var scope = scopeFactory.CreateScope())
                 {
-                    var sensorDb = db.Sensors.First(f => f.SensorId == sensor.Id);
+                    _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                    var sensorDb = _db.Sensors.First(f => f.SensorId == sensor.Id);
                     sensorDb.LastPoll = DateTime.Now;
-                    db.Update(sensorDb);
-                    db.SaveChanges();
+                    _db.Update(sensorDb);
+                    await _db.SaveChangesAsync();
                 }
             }
             else
             {
                 _sensors.Add(sensor.Id, sensor);
-                using (var db = _db.CreateDbContext(null))
+                var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+                using (var scope = scopeFactory.CreateScope())
                 {
+                    _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                     var sensorToDb = new SensorDb()
                     {
                         deviceId = Id, SensorUnitId = (int)sensor.Unit, description = sensor.Description,
                         SensorId = sensor.Id, SensorNumber = sensor.SensorNumber, LastPoll = DateTime.Now
                     };
-                    db.Sensors.Add(sensorToDb);
-                    db.SaveChanges();
+                    _db.Sensors.Add(sensorToDb);
+                    await _db.SaveChangesAsync();
                 }
             }
             
         }
 
-        public void SensorValueReceived(string sensorId, short presentValue, short minValue, short maxValue, short recordedValue)
+        public async void SensorValueReceived(string sensorId, short presentValue, short minValue, short maxValue, short recordedValue)
         {
             if (!_sensors.ContainsKey(sensorId))
             {
@@ -1331,10 +686,12 @@ public class RdmDevice : BaseDevice
                 SensorUnitId = (int)sensor.Unit,
                 Timestamp = DateTime.Now,
             };
-            using (var db = _db.CreateDbContext(null))
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
             {
-                db.SensorValues.Add(sensorVal);
-                db.SaveChanges();
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                _db.SensorValues.Add(sensorVal);
+                await _db.SaveChangesAsync();
             }
 
         }
@@ -1370,7 +727,8 @@ public class RdmDevice : BaseDevice
             currentParam.PdlSize = parameterInformation.PdlSize;
         }
 
-        public void ParameterValueReceived(string pid, byte[] value)
+        [SuppressMessage("ReSharper.DPA", "DPA0005: Database issues")]
+        public async void ParameterValueReceived(string pid, byte[] value)
         {
             if (_parameters.ContainsKey(pid))
             {
@@ -1395,10 +753,12 @@ public class RdmDevice : BaseDevice
                     currentParam.Value = intValue;
                 }
 
-                using (var db = _db.CreateDbContext(null))
+                var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+                using (var scope = scopeFactory.CreateScope())
                 {
-                    var device = db.Devices.First(f => f.deviceId == Id);
-                    var list = db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
+                    _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                    var device = _db.Devices.First(f => f.deviceId == Id);
+                    var list = _db.DeviceParams.Where(w => w.DeviceId == device.Id).ToList();
                     if (!list.Any(a => a.ParamId == pid))
                     {
                         var param = new DeviceParam()
@@ -1407,7 +767,7 @@ public class RdmDevice : BaseDevice
                             ParamId = pid
                         };
                         param.ParamValue = currentParam.Value.ToString();
-                        db.DeviceParams.Add(param);
+                        _db.DeviceParams.Add(param);
                     }
                     else
                     {
@@ -1419,15 +779,15 @@ public class RdmDevice : BaseDevice
                             param.ParamValue = currentParam.Value.ToString();
                             param.LastPoll = DateTime.Now;
                             param.ParamId = pid;
-                            db.DeviceParams.Add(param);
+                            _db.DeviceParams.Add(param);
                         }
                         else
                         {
                             param.LastPoll = DateTime.Now;
-                            db.Entry(param).Property(p => p.LastPoll).IsModified = true;
+                            _db.Entry(param).Property(p => p.LastPoll).IsModified = true;
                         }
                     }
-                    db.SaveChanges();
+                    await _db.SaveChangesAsync();
                 }
             }
         }

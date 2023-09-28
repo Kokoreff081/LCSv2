@@ -9,13 +9,16 @@ namespace LcsServer.DevicePollingService.SerializationModels;
 
 public class RdmDeviceDto : BaseObjectDto
     {
-        DesignTimeDbContextFactory _dbOperations;
+        DatabaseContext _dbOperations;
+
+        private IServiceProvider _serviceProvider;
         // For json deserialization
         public RdmDeviceDto() { }
 
-        public RdmDeviceDto(RdmDevice model, DesignTimeDbContextFactory databaseOperations = null)
+        public RdmDeviceDto(RdmDevice model, DatabaseContext databaseOperations = null, IServiceProvider serviceProvider = null)
         {
-            _dbOperations = _dbOperations;
+            _serviceProvider = serviceProvider;
+            _dbOperations = databaseOperations;
             List<SensorDto> sensorDtos = new List<SensorDto>();
             foreach (DevicePollingService.Models.Sensor modelSensor in model.Sensors)
             {
@@ -71,7 +74,7 @@ public class RdmDeviceDto : BaseObjectDto
 
             List<ParameterInformation> parameters = Parameters.Select(parameterInformationDto => parameterInformationDto.ToBaseObject() as ParameterInformation).ToList();
 
-            RdmDevice rdmDevice = new RdmDevice(null, UId, Address, DevicePort, ParentId, sensors, parameters, _dbOperations)
+            RdmDevice rdmDevice = new RdmDevice(null, UId, Address, DevicePort, ParentId, sensors, parameters, _dbOperations, _serviceProvider)
             {
                 //StatusCheckerTimerInterval = StatusCheckerTimerInterval,
                 SubDeviceId = SubDeviceId,

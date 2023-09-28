@@ -22,7 +22,7 @@ using DeviceFoundEventArgs = LcsServer.DevicePollingService.Models.DeviceFoundEv
 
 namespace LcsServer.DevicePollingService;
 
-public class Worker : IHostedService, IDisposable
+public class DevicePollService : IDisposable
 {
     private ArtNetSocket _artNetSocket;
     private IPAddress _localAdapter;
@@ -31,24 +31,38 @@ public class Worker : IHostedService, IDisposable
     private RdmDeviceBroker _rdmDeviceBroker;
     private readonly IStorageManager _storageManager;
     private readonly ISettingsService _settingsService;
-    private DesignTimeDbContextFactory _db;
+    private DatabaseContext _db;
     private IConfiguration Configuration;
     private Timer? _timer = null;
     private Timer? _commandTimer = null;
     private object locker = new object();
     private CancellationToken token;
     private readonly IBackgroundTaskQueue _taskQueue;
-
-    public Worker(IStorageManager storageManager, IConfiguration configuration, DesignTimeDbContextFactory databaseOperations,IBackgroundTaskQueue taskQueue)
+    private bool _isWorking = false;
+    private bool _isCommandStopped = false;
+    private IServiceProvider _serviceProvider;
+    public bool IsWorking
     {
+        get { return _isWorking;}
+        set { _isWorking = value; }
+    }
+
+    public bool IsCommandStopped
+    {
+        get { return _isCommandStopped; }
+        set { _isCommandStopped = value; }
+    }
+    public DevicePollService(IStorageManager storageManager, IConfiguration configuration, IBackgroundTaskQueue taskQueue, IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
         token = new CancellationToken();
-        _db = databaseOperations;
+        //_db = databaseOperations;
         //_db.SavedChanges += DbOnSavedChanges;
         //_db.ChangeTracker.DetectingEntityChanges
         var serManager = new JsonSerializationManagerRDM();
         var statChecker = new StatusChecker();
         _storageManager = storageManager;
-        _settingsService = new SettingsService(serManager, _db.CreateDbContext(null));
+        _settingsService = new SettingsService(serManager, _serviceProvider);
         _taskQueue = taskQueue;
         _taskQueue.NewCommandAdded += ProcessTaskQueueAsync;
         Configuration = configuration;
@@ -68,33 +82,21 @@ public class Worker : IHostedService, IDisposable
     }
     public event Action<TotalSentReceivedInfo> TotalSentReceivedInfo;
     public event Action AllTransactionsCompleted;
-        
-    public Task StartAsync(CancellationToken stoppingToken)
-    {
-        _timer = new Timer(DoWork, null, TimeSpan.Zero,
-            TimeSpan.FromMinutes(2));
-        using (var db = _db.CreateDbContext(null))
-        {
-            var scanning = db.Settings.First(f => f.Name == "DeviceScanning");
-            scanning.IsEnabled = true;
-            db.Update(scanning);
-            db.SaveChanges();
-        }
 
-        return Task.CompletedTask;
-    }
-
-    private async void DoWork(object? state)
+   private async void DoWork()
     {
-        await DiscoveryAll(DiscoveryType.DeviceDiscovery);//poll all devices
-        /*await Task.Delay(5000);
-        await DiscoveryAll(DiscoveryType.GatewayDiscovery);//poll only sensors*/
+        if(_storageManager.Devices.Count == 0)
+            await DiscoveryAll(DiscoveryType.DeviceDiscovery);//poll all devices
+        else
+            await DiscoveryAll(DiscoveryType.GatewayDiscovery);//poll only sensors
     }
 
     private async void RunCommand(Command cmd)
     {
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
             if (cmd.CommandType == 4)
             {
                 bool flag = bool.Parse(cmd.ParamNewValue);
@@ -103,27 +105,29 @@ public class Worker : IHostedService, IDisposable
                     string msg = "";
                     if (!flag)
                     {
-                        StopAsync(token);
+                        Stop();
+                        IsCommandStopped = true;
                         msg = $"Device polling was successfully stopped by user {cmd.UserLogin}";
                     }
                     else
                     {
-                        StartAsync(token);
+                        Start();
+                        IsCommandStopped = false;
                         msg = $"Device polling was successfully started by user {cmd.UserLogin}";
                     }
-                    db.Events.Add(new Event()
+                    _db.Events.Add(new Event()
                     {
                         level = "Info", Description = msg, dateTime = DateTime.Now
                     });
-                    await db.SaveChangesAsync();
+                    await _db.SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {
-                    db.Events.Add(new Event()
+                    _db.Events.Add(new Event()
                     {
                         level = "Error", Description = ex.Message, dateTime = DateTime.Now
                     });
-                    await db.SaveChangesAsync();
+                    await _db.SaveChangesAsync();
                 }
 
             }
@@ -141,19 +145,19 @@ public class Worker : IHostedService, IDisposable
                                     $"Dmx address of device {device.DisplayName} was successfully changed from {device.DmxAddress} to {cmd.ParamNewValue} by user {cmd.UserLogin}";
                                 device.ChangeDmxAddress(int.Parse(cmd.ParamNewValue));
                                 cmd.State = 1;
-                                db.Events.Add(new Event()
+                                _db.Events.Add(new Event()
                                 {
                                     level = "Info", Description = msg, dateTime = DateTime.Now
                                 });
-                                await db.SaveChangesAsync();
+                                await _db.SaveChangesAsync();
                             }
                             catch (Exception ex)
                             {
-                                db.Events.Add(new Event()
+                                _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
                                 });
-                                await db.SaveChangesAsync();
+                                await _db.SaveChangesAsync();
                             }
                             break;
                         case 1:
@@ -166,19 +170,18 @@ public class Worker : IHostedService, IDisposable
                                 {
                                     level = "Info", Description = msg, dateTime = DateTime.Now
                                 };
-                                Task.Delay(1500).ContinueWith(_ =>
-                                {
-                                    db.Events.Add(logEntry);
-                                    db.SaveChanges();
-                                });
+                                
+                                    _db.Events.Add(logEntry);
+                                    await _db.SaveChangesAsync();
+                                
                             }
                             catch (Exception ex)
                             {
-                                db.Events.Add(new Event()
+                                _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
                                 });
-                                await db.SaveChangesAsync();
+                                await _db.SaveChangesAsync();
                             }
                             break;
                         case 2:
@@ -191,19 +194,19 @@ public class Worker : IHostedService, IDisposable
                                 else
                                     msg = $"Identify of device {device.DisplayName} was successfully switch off by user {cmd.UserLogin}";
                                 device.IdentifyOnOff(flag);
-                                db.Events.Add(new Event()
+                                _db.Events.Add(new Event()
                                 {
                                     level = "Info", Description = msg, dateTime = DateTime.Now
                                 });
-                                await db.SaveChangesAsync();
+                                await _db.SaveChangesAsync();
                             }
                             catch (Exception ex)
                             {
-                                db.Events.Add(new Event()
+                                _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
                                 });
-                                await db.SaveChangesAsync();
+                                await _db.SaveChangesAsync();
                             }
                             break;
                         case 3:
@@ -236,20 +239,20 @@ public class Worker : IHostedService, IDisposable
                                     }
                                     msg = $"Param {changingParam.Description} of device {device.DisplayName} was successfully changed from {changingParam.Value.ToString()} to {cmd.ParamNewValue} by user {cmd.UserLogin}";
                                     await Task.Run(() =>changingParam.ChangeValueRequest(byteValue));
-                                    db.Events.Add(new Event()
+                                    _db.Events.Add(new Event()
                                     {
                                         level = "Info", Description = msg, dateTime = DateTime.Now
                                     });
-                                    await db.SaveChangesAsync();
+                                    await _db.SaveChangesAsync();
                                 }
                             }
                             catch (Exception ex)
                             {
-                                db.Events.Add(new Event()
+                                _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
                                 });
-                                await db.SaveChangesAsync();
+                                await _db.SaveChangesAsync();
                             }
                             break;
                     }
@@ -275,28 +278,47 @@ public class Worker : IHostedService, IDisposable
             catch (Exception ex)
             {
                 //_logger.LogError(ex, "Error occurred executing task work item.");
-                using (var db = _db.CreateDbContext(null))
-                {
-                    db.Events.Add(new Event() { level = "Error", dateTime = DateTime.Now, Description = ex.Message });
-                    await db.SaveChangesAsync();
-                }
+                /*using (var db = _db.CreateDbContext(null))
+                {*/
+                _db.Events.Add(new Event() { level = "Error", dateTime = DateTime.Now, Description = ex.Message });
+                    await _db.SaveChangesAsync();
+                //}
             }
         }
     }
-    public Task StopAsync(CancellationToken stoppingToken)
+
+    public async void Start()
     {
-        _timer?.Change(Timeout.Infinite, 0);
-        using (var db = _db.CreateDbContext(null))
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
         {
-            var scanning = db.Settings.First(f => f.Name == "DeviceScanning");
-            scanning.IsEnabled = false;
-            db.Update(scanning);
-            db.SaveChanges();
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var scanning = _db.Settings.First(f => f.Name == "DeviceScanning");
+            scanning.IsEnabled = true;
+            _db.Update(scanning);
+            await _db.SaveChangesAsync();
         }
 
-        return Task.CompletedTask;
+        IsWorking = true;
+        DoWork();
     }
 
+    public async void Stop()
+    {
+       
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
+        {
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            var scanning = _db.Settings.First(f => f.Name == "DeviceScanning");
+            scanning.IsEnabled = false;
+            _db.Update(scanning);
+            await _db.SaveChangesAsync();
+        }
+
+        IsWorking = false;
+        ReleaseSockets();
+    }
     public void Dispose()
     {
         _timer?.Dispose();
@@ -405,9 +427,11 @@ public class Worker : IHostedService, IDisposable
 
             List<BaseDevice> devices = new List<BaseDevice>();
             List<byte> outPortAddresses = new List<byte>();
-            using (var db = _db.CreateDbContext(null))
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
             {
-                var list = db.Devices.ToList();
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                var list = _db.Devices.ToList();
                 var idArtnet = string.Join(".", endPoint.Address.GetAddressBytes()) + $":{packet.Port}";
                 if (!list.Any(a => a.deviceId == idArtnet))
                 {
@@ -415,108 +439,115 @@ public class Worker : IHostedService, IDisposable
                     {
                         deviceId = idArtnet, Type = "ArtNetGateway", StatusId = (int)packet.Status, ParentId = ""
                     };
-                    db.Devices.Add(newDevice);
-                    db.SaveChanges();
+                    _db.Devices.Add(newDevice);
+                    await _db.SaveChangesAsync();
+                }
+
+
+                ArtNetGateway artNetGateway = new ArtNetGateway(endPoint.Address.GetAddressBytes(), packet.Port, _serviceProvider);
+                devices.Add(artNetGateway);
+
+                artNetGateway.EstaCode = packet.EstaCode;
+                artNetGateway.FirmwareVersion = packet.FirmwareVersion;
+                artNetGateway.GoodInput = packet.GoodInput;
+                artNetGateway.GoodOutput = packet.GoodOutput;
+                artNetGateway.LongName = packet.LongName;
+                artNetGateway.MacAddress = packet.MacAddress;
+                artNetGateway.NodeReport = packet.NodeReport;
+                artNetGateway.Oem = packet.Oem;
+                artNetGateway.Status = packet.Status;
+                artNetGateway.Status2 = packet.Status2;
+                artNetGateway.Style = packet.Style;
+                artNetGateway.SwMacro = packet.SwMacro;
+                artNetGateway.SwRemote = packet.SwRemote;
+                artNetGateway.SwVideo = packet.SwVideo;
+                artNetGateway.UbeaVersion = packet.UbeaVersion;
+                artNetGateway.Manufacturer = Acn.Helpers.ESTACodes.GetManufacturerByCode(packet.EstaCode);
+                ArtNetGatewayNode artNetGatewayNode =
+                    new ArtNetGatewayNode(endPoint.Address.GetAddressBytes(), packet.Port, packet.BindIndex)
+                    {
+                        PortCount = packet.PortCount,
+                        PortTypes = packet.PortTypes,
+                        ShortName = packet.ShortName,
+                        SwIn = packet.SwIn,
+                        SwOut = packet.SwOut,
+                        BindIpAddress = packet.BindIpAddress,
+                        Net = packet.Net,
+                        SubNet = packet.SubNet,
+                    };
+                devices.Add(artNetGatewayNode);
+
+                // This array defines the low byte of the Port-Address of
+                // the Output Gateway nodes that must respond to this
+                // packet.The high nibble is the Sub - Net switch.The
+                // low nibble corresponds to the Universe. This is
+                // combined with the 'Net' field above to form the 15
+                // bit address.
+                for (int n = 0; n < 4; n++)
+                {
+
+                    if (packet.PortTypes[n].HasFlag(PollReplyPortTypes.IsOutputPort))
+                    {
+                        byte swOut = packet.SwOut[n];
+
+                        outPortAddresses.Add(swOut);
+
+                        byte universe = (byte)(swOut & 0xF);
+
+                        var dbDevice = new Device()
+                        {
+                            deviceId = $"{artNetGatewayNode.Id}:{false}:{n + 1}",
+                            Type = "GatewayOutputUniverse",
+                            StatusId = (int)(OutputStatuses)packet.GoodOutput[n],
+                            ParentId = artNetGatewayNode.Id
+                        };
+                        /*using (var db = _db.CreateDbContext(null))
+                        {*/
+                        if (!_db.Devices.Any(a => a.deviceId == dbDevice.deviceId))
+                        {
+                            _db.Devices.Add(dbDevice);
+                            await _db.SaveChangesAsync();
+                        }
+                        //}
+
+                        GatewayUniverse gatewayUniverse = new GatewayOutputUniverse(artNetGatewayNode.Id,
+                            endPoint.Address, n + 1, artNetGatewayNode.GetPortAddress(universe), universe,
+                            (PortTypes)packet.PortTypes[n], (OutputStatuses)packet.GoodOutput[n], _serviceProvider);
+
+                        devices.Add(gatewayUniverse);
+                    }
+
+                    if (packet.PortTypes[n].HasFlag(PollReplyPortTypes.IsInputPort))
+                    {
+
+                        byte swIn = packet.SwIn[n];
+
+                        byte universe = (byte)(swIn & 0xF);
+                        var dbDevice = new Device()
+                        {
+                            deviceId = $"{artNetGatewayNode.Id}:{true}:{n + 1}",
+                            Type = "GatewayInputUniverse",
+                            StatusId = (int)(InputStatuses)packet.GoodInput[n],
+                            ParentId = artNetGatewayNode.Id
+                        };
+                        /*using (var db = _db.CreateDbContext(null))
+                        {*/
+                        if (!_db.Devices.Any(a => a.deviceId == dbDevice.deviceId))
+                        {
+                            _db.Devices.Add(dbDevice);
+                            await _db.SaveChangesAsync();
+                        }
+                        //}
+
+                        GatewayUniverse gatewayUniverse = new GatewayInputUniverse(artNetGatewayNode.Id,
+                            endPoint.Address, n + 1, artNetGatewayNode.GetPortAddress(universe), universe,
+                            (PortTypes)packet.PortTypes[n], (InputStatuses)packet.GoodInput[n], _serviceProvider);
+
+                        devices.Add(gatewayUniverse);
+                    }
                 }
             }
 
-            ArtNetGateway artNetGateway = new ArtNetGateway(endPoint.Address.GetAddressBytes(), packet.Port, _db.CreateDbContext(null));
-            devices.Add(artNetGateway);
-
-            artNetGateway.EstaCode = packet.EstaCode;
-            artNetGateway.FirmwareVersion = packet.FirmwareVersion;
-            artNetGateway.GoodInput = packet.GoodInput;
-            artNetGateway.GoodOutput = packet.GoodOutput;
-            artNetGateway.LongName = packet.LongName;
-            artNetGateway.MacAddress = packet.MacAddress;
-            artNetGateway.NodeReport = packet.NodeReport;
-            artNetGateway.Oem = packet.Oem;
-            artNetGateway.Status = packet.Status;
-            artNetGateway.Status2 = packet.Status2;
-            artNetGateway.Style = packet.Style;
-            artNetGateway.SwMacro = packet.SwMacro;
-            artNetGateway.SwRemote = packet.SwRemote;
-            artNetGateway.SwVideo = packet.SwVideo;
-            artNetGateway.UbeaVersion = packet.UbeaVersion;
-            artNetGateway.Manufacturer = Acn.Helpers.ESTACodes.GetManufacturerByCode(packet.EstaCode);
-            ArtNetGatewayNode artNetGatewayNode = new ArtNetGatewayNode(endPoint.Address.GetAddressBytes(), packet.Port, packet.BindIndex)
-            {
-                PortCount = packet.PortCount,
-                PortTypes = packet.PortTypes,
-                ShortName = packet.ShortName,
-                SwIn = packet.SwIn,
-                SwOut = packet.SwOut,
-                BindIpAddress = packet.BindIpAddress,
-                Net = packet.Net,
-                SubNet = packet.SubNet,
-            };
-            devices.Add(artNetGatewayNode);
-
-            // This array defines the low byte of the Port-Address of
-            // the Output Gateway nodes that must respond to this
-            // packet.The high nibble is the Sub - Net switch.The
-            // low nibble corresponds to the Universe. This is
-            // combined with the 'Net' field above to form the 15
-            // bit address.
-            for (int n = 0; n < 4; n++)
-            {
-
-                if (packet.PortTypes[n].HasFlag(PollReplyPortTypes.IsOutputPort))
-                {
-                    byte swOut = packet.SwOut[n];
-
-                    outPortAddresses.Add(swOut);
-
-                    byte universe = (byte)(swOut & 0xF);
-                    
-                    var dbDevice = new Device()
-                    {
-                        deviceId = $"{artNetGatewayNode.Id}:{false}:{n+1}",
-                        Type = "GatewayOutputUniverse",
-                        StatusId = (int)(OutputStatuses)packet.GoodOutput[n],
-                        ParentId = artNetGatewayNode.Id
-                    };
-                    using (var db = _db.CreateDbContext(null))
-                    {
-                        if (!db.Devices.Any(a => a.deviceId == dbDevice.deviceId))
-                        {
-                            db.Devices.Add(dbDevice);
-                            db.SaveChanges();
-                        }
-                    }
-
-                    GatewayUniverse gatewayUniverse = new GatewayOutputUniverse(artNetGatewayNode.Id, endPoint.Address, n + 1, artNetGatewayNode.GetPortAddress(universe), universe, (PortTypes)packet.PortTypes[n], (OutputStatuses)packet.GoodOutput[n], _db.CreateDbContext(null));
-                    
-                    devices.Add(gatewayUniverse);
-                }
-
-                if (packet.PortTypes[n].HasFlag(PollReplyPortTypes.IsInputPort))
-                {
-
-                    byte swIn = packet.SwIn[n];
-
-                    byte universe = (byte)(swIn & 0xF);
-                    var dbDevice = new Device()
-                    {
-                        deviceId = $"{artNetGatewayNode.Id}:{true}:{n+1}",
-                        Type = "GatewayInputUniverse",
-                        StatusId = (int)(InputStatuses)packet.GoodInput[n],
-                        ParentId = artNetGatewayNode.Id
-                    };
-                    using (var db = _db.CreateDbContext(null))
-                    {
-                        if (!db.Devices.Any(a => a.deviceId == dbDevice.deviceId))
-                        {
-                            db.Devices.Add(dbDevice);
-                            db.SaveChanges();
-                        }
-                    }
-
-                    GatewayUniverse gatewayUniverse = new GatewayInputUniverse(artNetGatewayNode.Id, endPoint.Address, n + 1, artNetGatewayNode.GetPortAddress(universe), universe, (PortTypes)packet.PortTypes[n], (InputStatuses)packet.GoodInput[n], _db.CreateDbContext(null));
-                    
-                    devices.Add(gatewayUniverse);
-                }
-            }
             //DevicesController.Devices = devices;
             Debug.WriteLine("ProcessPollReply");
 
@@ -558,13 +589,15 @@ public class Worker : IHostedService, IDisposable
         RdmEndPoint deviceAddress = new RdmEndPoint(deviceFoundArgs.Address, 0, deviceFoundArgs.Universe, deviceFoundArgs.Net);
 
         string parentId = $"{deviceFoundArgs.Address}:{ArtNetSocket.Port}:{deviceFoundArgs.BindIndex}:{false}:{deviceFoundArgs.DevicePort}";
+        var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+        using (var scope = scopeFactory.CreateScope())
+        {
+            _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+            RdmDevice rdmDevice = new RdmDevice(_rdmDeviceBroker, deviceFoundArgs.Id, deviceAddress,
+                deviceFoundArgs.DevicePort, parentId, _serviceProvider);
 
-        RdmDevice rdmDevice = new RdmDevice(_rdmDeviceBroker, deviceFoundArgs.Id, deviceAddress, deviceFoundArgs.DevicePort, parentId, _db);
+            _storageManager.AddDevices(new[] { rdmDevice });
 
-        _storageManager.AddDevices(new[] { rdmDevice });
-
-        /*if (_discoveryType == DiscoveryType.GatewayDiscovery) // Второй и последующие запросы: запрашиваем только Parameters и Sensors
-        {*/
             _rdmDeviceBroker.RequestParameters(rdmDevice.Address, rdmDevice.UId);
             await Task.Delay(1000);
             RdmDevice currentDevice = _storageManager.GetDeviceById(rdmDevice.Id) as RdmDevice;
@@ -573,9 +606,7 @@ public class Worker : IHostedService, IDisposable
 
             if (currentDevice.SensorCount != null && currentDevice.SensorCount > 0)
                 _rdmDeviceBroker.RequestSensors(currentDevice.Address, currentDevice.UId, (int)currentDevice.SensorCount);
-        /*}
-        else
-        {*/
+
             // Request deviceInfo
             _rdmDeviceBroker.RequestDeviceInfo(rdmDevice.Address, rdmDevice.UId);
             await Task.Delay(1000);
@@ -586,7 +617,7 @@ public class Worker : IHostedService, IDisposable
                 EndpointList.Get getPorts = new EndpointList.Get();
                 _rdmDeviceBroker.SendRdm(getPorts, rdmDevice.Address, rdmDevice.UId);
             }
-        //}
+        }
     }
 
     private void ProcessTodData(ArtTodDataPacket packet, IPEndPoint endPoint)

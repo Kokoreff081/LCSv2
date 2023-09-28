@@ -23,7 +23,7 @@ builder.Configuration
 builder.Host.UseWindowsService();
 builder.WebHost.UseKestrel();
 // Add services to the container.
-builder.Services.AddSingleton<DesignTimeDbContextFactory>();
+builder.Services.AddDbContext<DatabaseContext>(ServiceLifetime.Scoped);//AddSingleton<DesignTimeDbContextFactory>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -59,7 +59,8 @@ builder.Services.AddSingleton<IBackgroundTaskQueue>(_ =>
 
     return new DefaultBackgroundTaskQueue(queueCapacity);
 });
-builder.Services.AddHostedService<Worker>();
+builder.Services.AddSingleton<DevicePollService>();
+builder.Services.AddHostedService<BackgroundDevicePolling>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

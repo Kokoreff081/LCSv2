@@ -11,20 +11,21 @@ namespace LcsServer.DevicePollingService.Models;
     {
         private ConcurrentDictionary<string, BaseDevice> _devices;
         private readonly IStatusChecker _statusChecker;
-        public DesignTimeDbContextFactory _db { get; set; }
+        public DatabaseContext _db { get; set; }
         private object locker = new object();
         private const string RdmScan = "RdmDiscoveryForbidden";
-
+        private IServiceProvider _serviceProvider;
         public event Action<ActionTypes, BaseDevice[]> DeviceListUpdated;
 
         private Dictionary<string, BaseDevice> _snapshot;
 
-        public StorageManager(IStatusChecker statusChecker, DesignTimeDbContextFactory db)
+        public StorageManager(IStatusChecker statusChecker, IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
             _statusChecker = statusChecker;
             _devices = new ConcurrentDictionary<string, BaseDevice>();
             
-            _db = db;
+           // _db = db;
             
         }
         public ConcurrentDictionary<string, BaseDevice> Devices
@@ -36,25 +37,25 @@ namespace LcsServer.DevicePollingService.Models;
         public bool scanActive { 
             get { lock (locker) 
                 {
-                    using (var db = _db.CreateDbContext(null))
-                    {
-                        return db.Settings.Where(w => w.Name == RdmScan).First().IsEnabled; 
-                    }
+                    /*using (var db = _db.CreateDbContext(null))
+                    {*/
+                        return _db.Settings.Where(w => w.Name == RdmScan).First().IsEnabled; 
+                    //}
                 } 
             } 
             set {
-                using (var db = _db.CreateDbContext(null))
-                {
-                    var current = db.Settings.Where(w => w.Name == RdmScan).First();
+                /*using (var db = _db.CreateDbContext(null))
+                {*/
+                    var current = _db.Settings.Where(w => w.Name == RdmScan).First();
                     if (current.IsEnabled == value)
                         return;
                     else
                     {
                         current.IsEnabled = value;
-                        db.Update(current);
-                        db.SaveChanges();
+                        _db.Update(current);
+                        _db.SaveChanges();
                     }
-                }
+                //}
             } 
         }
         public BaseDevice GetDeviceById(string id)
@@ -99,30 +100,32 @@ namespace LcsServer.DevicePollingService.Models;
             }
             
         }
-        private void WriteDevicesToDb()
+        private async void WriteDevicesToDb()
         {
-            using (var db = _db.CreateDbContext(null))
+            var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
             {
+                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                 foreach (var device in Devices.Values)
                 {
-                    var list = db.Devices.ToList();
+                    var list = _db.Devices.ToList();
                     if (!list.Any(a => a.deviceId == device.Id))
                     {
-                        var status = db.DeviceStatuses.First(f => f.Status == (int)device.DeviceStatus);
+                        var status = _db.DeviceStatuses.First(f => f.Status == (int)device.DeviceStatus);
                         var newDevice = new Device()
                         {
                             deviceId = device.Id, Type = device.Type, StatusId = status.Id, ParentId = device.ParentId
                         };
-                        db.Devices.Add(newDevice);
-                        db.SaveChanges();
+                        _db.Devices.Add(newDevice);
+                        await _db.SaveChangesAsync();
                     }
                     else
                     {
-                        var existenDevice = db.Devices.First(f => f.deviceId == device.Id);
+                        var existenDevice = _db.Devices.First(f => f.deviceId == device.Id);
                         switch (existenDevice.Type)
                         {
                             case "RdmDevice":
-                                var param = db.DeviceParams.First(f =>
+                                var param = _db.DeviceParams.First(f =>
                                     f.ParamName == "LastSeen" && f.DeviceId == existenDevice.Id);
                                 param.ParamValue = DateTime.Now.ToString();
                                 param.LastPoll = DateTime.Now;
@@ -130,11 +133,11 @@ namespace LcsServer.DevicePollingService.Models;
                             case "GatewayOutputUniverse":
                             case "GatewayInputUniverse":
                                 existenDevice.StatusId =
-                                    db.DeviceStatuses.First(f => f.Status == (int)device.DeviceStatus).Id;
+                                    _db.DeviceStatuses.First(f => f.Status == (int)device.DeviceStatus).Id;
                                 break;
                         }
 
-                        db.SaveChanges();
+                        await _db.SaveChangesAsync();
                         
                     }
 
