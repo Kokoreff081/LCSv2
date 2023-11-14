@@ -1,0 +1,3738 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllFiles" xml:space="preserve">
+    <value>All files (*.*)</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>LightCAD</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="ClearTempFolder" xml:space="preserve">
+    <value>Clear temp folder</value>
+  </data>
+  <data name="CloseHydraLib" xml:space="preserve">
+    <value>Close Hydra library</value>
+  </data>
+  <data name="ColorStack" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="ComposeRenderData" xml:space="preserve">
+    <value>Compose render data</value>
+  </data>
+  <data name="CreateCamera" xml:space="preserve">
+    <value>Create camera</value>
+  </data>
+  <data name="CreateInstances" xml:space="preserve">
+    <value>Create instances</value>
+  </data>
+  <data name="CreateLight" xml:space="preserve">
+    <value>Create light</value>
+  </data>
+  <data name="CreateMaterial" xml:space="preserve">
+    <value>Create material</value>
+  </data>
+  <data name="CreateMeshes" xml:space="preserve">
+    <value>Create meshes</value>
+  </data>
+  <data name="CreateRender" xml:space="preserve">
+    <value>Create render</value>
+  </data>
+  <data name="CreateSkyLight" xml:space="preserve">
+    <value>Create sky light</value>
+  </data>
+  <data name="CreateSunLight" xml:space="preserve">
+    <value>Create sun light</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="UnableLoadFile" xml:space="preserve">
+    <value>Conldn't load file</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File name</value>
+  </data>
+  <data name="FillColor" xml:space="preserve">
+    <value>Fill color</value>
+  </data>
+  <data name="FillStyle" xml:space="preserve">
+    <value>Fill style</value>
+  </data>
+  <data name="FloatingAngle" xml:space="preserve">
+    <value>Floating angle</value>
+  </data>
+  <data name="Flushing" xml:space="preserve">
+    <value>Flushing</value>
+  </data>
+  <data name="ForceSaveDialog" xml:space="preserve">
+    <value>Project will be saved before rendering.</value>
+  </data>
+  <data name="FromFrame" xml:space="preserve">
+    <value>Clip from, s</value>
+  </data>
+  <data name="FullPower" xml:space="preserve">
+    <value>Full Power</value>
+  </data>
+  <data name="GB" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="GraphicsViewerFps" xml:space="preserve">
+    <value>Scene View Fps: {0}</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="InitHydraLib" xml:space="preserve">
+    <value>Initializing Hydra library</value>
+  </data>
+  <data name="InterpretUnitsAs" xml:space="preserve">
+    <value>Interpret units as</value>
+  </data>
+  <data name="KB" xml:space="preserve">
+    <value>KB</value>
+  </data>
+  <data name="LampCatalogue" xml:space="preserve">
+    <value>Lamp catalogue</value>
+  </data>
+  <data name="LampsNumber" xml:space="preserve">
+    <value>Lamps number</value>
+  </data>
+  <data name="LoadSceneData" xml:space="preserve">
+    <value>Load scene data</value>
+  </data>
+  <data name="LuminaireCatalogue" xml:space="preserve">
+    <value>Luminaire Catalogue</value>
+  </data>
+  <data name="Manufacturer" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="MaximalIntensity" xml:space="preserve">
+    <value>Maximal intensity, cd</value>
+  </data>
+  <data name="MB" xml:space="preserve">
+    <value>MB</value>
+  </data>
+  <data name="Menu_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="OpenHydraLib" xml:space="preserve">
+    <value>Opening Hydra library</value>
+  </data>
+  <data name="OpenPictureFile" xml:space="preserve">
+    <value>Open image</value>
+  </data>
+  <data name="PositionLocal" xml:space="preserve">
+    <value>Position local</value>
+  </data>
+  <data name="PrepareHydraLib" xml:space="preserve">
+    <value>Prepare Hydra library</value>
+  </data>
+  <data name="PrepareRenderThread" xml:space="preserve">
+    <value>Prepare render thread</value>
+  </data>
+  <data name="ProjectAlreadyExists" xml:space="preserve">
+    <value>Project with name "{0}" already exists. Override it?</value>
+  </data>
+  <data name="RandomAngle" xml:space="preserve">
+    <value>RandomAngle</value>
+  </data>
+  <data name="RandomColor" xml:space="preserve">
+    <value>Random color</value>
+  </data>
+  <data name="RoomRaster" xml:space="preserve">
+    <value>RASTER</value>
+  </data>
+  <data name="RenderFinished" xml:space="preserve">
+    <value>Render finished</value>
+  </data>
+  <data name="Rendering" xml:space="preserve">
+    <value>Rendering</value>
+  </data>
+  <data name="RenderStarting" xml:space="preserve">
+    <value>Render starting</value>
+  </data>
+  <data name="RenderStopped" xml:space="preserve">
+    <value>Render stopped</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Do you want to save changes to {0}?</value>
+  </data>
+  <data name="SaveRaster" xml:space="preserve">
+    <value>Do you want to save raster?</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Block_Tree" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="SetRenderDevice" xml:space="preserve">
+    <value>Set render device</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Size_m" xml:space="preserve">
+    <value>Size, m</value>
+  </data>
+  <data name="StartRenderPresentation" xml:space="preserve">
+    <value>Start render presentation</value>
+  </data>
+  <data name="StartRenderStaticImg" xml:space="preserve">
+    <value>Start render static image</value>
+  </data>
+  <data name="Stretch" xml:space="preserve">
+    <value>Stretch</value>
+  </data>
+  <data name="TestingLab" xml:space="preserve">
+    <value>Testing laboratory</value>
+  </data>
+  <data name="ToFrame" xml:space="preserve">
+    <value>Clip to, s</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="Menu_Update" xml:space="preserve">
+    <value>Updates...</value>
+  </data>
+  <data name="ApplicationEditionName" xml:space="preserve">
+    <value>Architectural lighting</value>
+  </data>
+  <data name="Window_AboutLightCad" xml:space="preserve">
+    <value>About LightCAD</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AmbientDirectionalLight" xml:space="preserve">
+    <value>Ambient and directional light</value>
+  </data>
+  <data name="Entity_Camera" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Entity_Cluster" xml:space="preserve">
+    <value>Cluster</value>
+  </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>Collapse all</value>
+  </data>
+  <data name="CoordinateReferenceSystem" xml:space="preserve">
+    <value>Reference coordinate system</value>
+  </data>
+  <data name="RestoreCurrentRoom" xml:space="preserve">
+    <value>Restore current room</value>
+  </data>
+  <data name="DefaultDiffuseModelColor" xml:space="preserve">
+    <value>Default Diffuse model Color</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="EnvironmentLight" xml:space="preserve">
+    <value>Environment light</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FileName1" xml:space="preserve">
+    <value>File name...</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="GraphicMode" xml:space="preserve">
+    <value>Graphic mode</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="HotKey" xml:space="preserve">
+    <value>Hot key</value>
+  </data>
+  <data name="Menu_HotKeys" xml:space="preserve">
+    <value>Hot keys...</value>
+  </data>
+  <data name="RoomIndustrial" xml:space="preserve">
+    <value>INDUSTRIAL</value>
+  </data>
+  <data name="LastModified" xml:space="preserve">
+    <value>Last modified</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="LoadDefSettings" xml:space="preserve">
+    <value>Load default settings</value>
+  </data>
+  <data name="ReferenceSystem_Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Window_AddLuminaire" xml:space="preserve">
+    <value>Add luminaire</value>
+  </data>
+  <data name="Magnification" xml:space="preserve">
+    <value>Magnification</value>
+  </data>
+  <data name="MakeScreenshot" xml:space="preserve">
+    <value>Capture screenshot</value>
+  </data>
+  <data name="MaxRecursiveLevel" xml:space="preserve">
+    <value>Max recursive level:</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Create new</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Window_OpenProject" xml:space="preserve">
+    <value>Open project</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Primary3DGridVisible" xml:space="preserve">
+    <value>Primary 3D grid visible</value>
+  </data>
+  <data name="RasterProp_Projection" xml:space="preserve">
+    <value>Projection</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Recent" xml:space="preserve">
+    <value>Recent</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="RefreshPeriodInMs" xml:space="preserve">
+    <value>Refresh period, in milliseconds:</value>
+  </data>
+  <data name="RasterProp_Regular" xml:space="preserve">
+    <value>Regular</value>
+  </data>
+  <data name="RenderTool" xml:space="preserve">
+    <value>Render tool</value>
+  </data>
+  <data name="RestartAppSettingsMsg" xml:space="preserve">
+    <value>The changes will take effect the next time the application is started.</value>
+  </data>
+  <data name="RestoreLayout" xml:space="preserve">
+    <value>Restore layout</value>
+  </data>
+  <data name="RoomSelector" xml:space="preserve">
+    <value>Room selector</value>
+  </data>
+  <data name="Rotate" xml:space="preserve">
+    <value>Rotate</value>
+  </data>
+  <data name="RouteManager" xml:space="preserve">
+    <value>Route manager</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save As...</value>
+  </data>
+  <data name="RoomScenario" xml:space="preserve">
+    <value>SCENARIO</value>
+  </data>
+  <data name="Block_Timeline" xml:space="preserve">
+    <value>Timeline</value>
+  </data>
+  <data name="Entity_ScenarioTask" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="SelectionFunction" xml:space="preserve">
+    <value>Selection function</value>
+  </data>
+  <data name="Entity_Sensor" xml:space="preserve">
+    <value>Sensor</value>
+  </data>
+  <data name="Window_AddSensor" xml:space="preserve">
+    <value>Add sensor</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="ShowAllPanels" xml:space="preserve">
+    <value>Show all panels</value>
+  </data>
+  <data name="ShowOrthogonal" xml:space="preserve">
+    <value>Show Orthogonal</value>
+  </data>
+  <data name="FillMode_Solid" xml:space="preserve">
+    <value>Solid</value>
+  </data>
+  <data name="FillMode_SolidAndWireframe" xml:space="preserve">
+    <value>Mixed</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Block_StartPage" xml:space="preserve">
+    <value>Start page</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Step</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="UndoRedo" xml:space="preserve">
+    <value>Undo/Redo</value>
+  </data>
+  <data name="Entity_Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="FillMode_Wireframe" xml:space="preserve">
+    <value>Wireframe</value>
+  </data>
+  <data name="PositionWorld" xml:space="preserve">
+    <value>World position</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Cmd_AddObject" xml:space="preserve">
+    <value>Add object "{0}"</value>
+  </data>
+  <data name="Cmd_AviEffectChanged" xml:space="preserve">
+    <value>Video effect "{0}" changed</value>
+  </data>
+  <data name="Cmd_RemoveObject" xml:space="preserve">
+    <value>Remove objects</value>
+  </data>
+  <data name="Cmd_ChangeCamera" xml:space="preserve">
+    <value>Change camera "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeClusterStep" xml:space="preserve">
+    <value>Change cluster's step</value>
+  </data>
+  <data name="Cmd_ChangeEffectDuration" xml:space="preserve">
+    <value>Change effect duration</value>
+  </data>
+  <data name="Cmd_ChangeFillEffect" xml:space="preserve">
+    <value>Fill effect "{0}" change</value>
+  </data>
+  <data name="Cmd_ChangeFlashEffect" xml:space="preserve">
+    <value>Flash  effect "{0}" change</value>
+  </data>
+  <data name="Cmd_ChangeGradientEffect" xml:space="preserve">
+    <value>Gradient  effect "{0}" change</value>
+  </data>
+  <data name="Cmd_ChangeTextureEffect" xml:space="preserve">
+    <value>Texture  effect "{0}" change</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="Cmd_TransformObjects" xml:space="preserve">
+    <value>Transform objects</value>
+  </data>
+  <data name="Settings_SceneLength" xml:space="preserve">
+    <value>Scene length, m</value>
+  </data>
+  <data name="Settings_SceneWidth" xml:space="preserve">
+    <value>Scene width, m</value>
+  </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Definition" xml:space="preserve">
+    <value>Definition</value>
+  </data>
+  <data name="Photometry" xml:space="preserve">
+    <value>Photometry</value>
+  </data>
+  <data name="Angle" xml:space="preserve">
+    <value>Angle</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Brightness</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Delay</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="Duration_s" xml:space="preserve">
+    <value>Duration, s.</value>
+  </data>
+  <data name="Extrusion" xml:space="preserve">
+    <value>Extrusion</value>
+  </data>
+  <data name="LuminaireDefinitionDate" xml:space="preserve">
+    <value>Test date</value>
+  </data>
+  <data name="LuminaireDefinitionLamp" xml:space="preserve">
+    <value>Lamp</value>
+  </data>
+  <data name="LuminaireDefinitionLuminaire" xml:space="preserve">
+    <value>Luminaire</value>
+  </data>
+  <data name="LuminaireDefinitionOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="LuminaireDefinitionStandard" xml:space="preserve">
+    <value>IES Standart</value>
+  </data>
+  <data name="LuminaireDefinitionTest" xml:space="preserve">
+    <value>Test number</value>
+  </data>
+  <data name="LuminaireLightFlux" xml:space="preserve">
+    <value>Luminous flux, lm</value>
+  </data>
+  <data name="Fade_percent" xml:space="preserve">
+    <value>Fade, %</value>
+  </data>
+  <data name="OrientationLocal" xml:space="preserve">
+    <value>Local orientation</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Repeat</value>
+  </data>
+  <data name="Rise_percent" xml:space="preserve">
+    <value>Rise, %</value>
+  </data>
+  <data name="Rotation" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="SignalType" xml:space="preserve">
+    <value>Signal type</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="Illuminable" xml:space="preserve">
+    <value>Illuminable</value>
+  </data>
+  <data name="ProjectNotLoad" xml:space="preserve">
+    <value>The project could not be loaded</value>
+  </data>
+  <data name="UndoActions" xml:space="preserve">
+    <value>Undo actions: </value>
+  </data>
+  <data name="RedoActions" xml:space="preserve">
+    <value>Redo actions: </value>
+  </data>
+  <data name="ProjectNotSave" xml:space="preserve">
+    <value>Failed to save project</value>
+  </data>
+  <data name="AutoSavePeriod" xml:space="preserve">
+    <value>Autosave period, min.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="NewUnsavedProjectMessage" xml:space="preserve">
+    <value>Open an unsaved file?</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="NoFindAnyCopyItems" xml:space="preserve">
+    <value>Some of the copied items have been deleted. Continue copying?</value>
+  </data>
+  <data name="NoFindCopyItems" xml:space="preserve">
+    <value>Copied items have been deleted</value>
+  </data>
+  <data name="Cmd_SelectionChanged" xml:space="preserve">
+    <value>Change selection</value>
+  </data>
+  <data name="Cmd_SelectionLevelChange" xml:space="preserve">
+    <value>Change selection level</value>
+  </data>
+  <data name="ExplorerTabHeader" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="RepositoryTabHeader" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="SettingsTabHeader" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="RoomScene" xml:space="preserve">
+    <value>SCENE</value>
+  </data>
+  <data name="Cmd_ChangeStoredSelection" xml:space="preserve">
+    <value>Change stored selection</value>
+  </data>
+  <data name="Floating" xml:space="preserve">
+    <value>Floating</value>
+  </data>
+  <data name="Stability" xml:space="preserve">
+    <value>Stability</value>
+  </data>
+  <data name="ColorMix" xml:space="preserve">
+    <value>Color mix</value>
+  </data>
+  <data name="Filling" xml:space="preserve">
+    <value>Filling</value>
+  </data>
+  <data name="Lifetime" xml:space="preserve">
+    <value>Life time</value>
+  </data>
+  <data name="Modulation" xml:space="preserve">
+    <value>Modulation</value>
+  </data>
+  <data name="Cmd_ChangedFlameEffect" xml:space="preserve">
+    <value>Flame  effect "{0}" change</value>
+  </data>
+  <data name="Cmd_ChangedStarsEffect" xml:space="preserve">
+    <value>Stars  effect "{0}" change</value>
+  </data>
+  <data name="ApplicationSettingsTab_Header" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="Cmd_AddLayer" xml:space="preserve">
+    <value>Add layer "{0}"</value>
+  </data>
+  <data name="Cmd_RemoveLayer" xml:space="preserve">
+    <value>Remove layer "{0}"</value>
+  </data>
+  <data name="Cmd_AddObjectsToLayer" xml:space="preserve">
+    <value>Add objects to the layer</value>
+  </data>
+  <data name="Cmd_RemoveObjectsFromLayer" xml:space="preserve">
+    <value>Remove objects from layer</value>
+  </data>
+  <data name="Block_Layers" xml:space="preserve">
+    <value>Layers</value>
+  </data>
+  <data name="ClusterOf" xml:space="preserve">
+    <value>{0}, {1} pcs {2}</value>
+  </data>
+  <data name="FlipHorizontal" xml:space="preserve">
+    <value>Flip horizontal</value>
+  </data>
+  <data name="FlipVertical" xml:space="preserve">
+    <value>Flip vertical</value>
+  </data>
+  <data name="Rotate180" xml:space="preserve">
+    <value>Rotate 180°</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Rotate left 90°</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Rotate right 90°</value>
+  </data>
+  <data name="Cmd_ChangeHorizontalFlipRaster" xml:space="preserve">
+    <value>Change raster's flip horizontal</value>
+  </data>
+  <data name="Cmd_RotateRaster" xml:space="preserve">
+    <value>Change raster's angle</value>
+  </data>
+  <data name="Cmd_ChangeVerticalFlipRaster" xml:space="preserve">
+    <value>Change raster's flip vertical</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please wait</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Saving...</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="CopyName" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="MeshesCount" xml:space="preserve">
+    <value>Meshes count</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>Hue</value>
+  </data>
+  <data name="Saturation" xml:space="preserve">
+    <value>Saturation</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="FacesCount" xml:space="preserve">
+    <value>Faces count</value>
+  </data>
+  <data name="TexturesCount" xml:space="preserve">
+    <value>Textures count</value>
+  </data>
+  <data name="NotInitialized3D" xml:space="preserve">
+    <value>3D view cannot be initialized</value>
+  </data>
+  <data name="ConverterSettings" xml:space="preserve">
+    <value>Converter settings</value>
+  </data>
+  <data name="PostConverterPresetTypes_ConvertToLeftHanded" xml:space="preserve">
+    <value>Convert to left handed</value>
+  </data>
+  <data name="DefaultModelAmbientColor" xml:space="preserve">
+    <value>Default model ambient color</value>
+  </data>
+  <data name="DefaultModelShininess" xml:space="preserve">
+    <value>Default model shininess</value>
+  </data>
+  <data name="DefaultModelSpecularColor" xml:space="preserve">
+    <value>Default model specular color</value>
+  </data>
+  <data name="DefaultNormal" xml:space="preserve">
+    <value>Default normal</value>
+  </data>
+  <data name="DefaultTextureCoordinate" xml:space="preserve">
+    <value>Default texture coordinate</value>
+  </data>
+  <data name="DefaultVertexColor" xml:space="preserve">
+    <value>Default vertex color</value>
+  </data>
+  <data name="NormalSmoothingAngel" xml:space="preserve">
+    <value>Normal smoothing angle</value>
+  </data>
+  <data name="PostConverterPreset" xml:space="preserve">
+    <value>Post converter preset</value>
+  </data>
+  <data name="PostConverterPresetTypes_TargetRealTimeFast" xml:space="preserve">
+    <value>Target real time fast</value>
+  </data>
+  <data name="PostConverterPresetTypes_TargetRealTimeMaximumQuality" xml:space="preserve">
+    <value>Target real time maximum quality</value>
+  </data>
+  <data name="PostConverterPresetTypes_TargetRealTimeQuality" xml:space="preserve">
+    <value>Target real time quality</value>
+  </data>
+  <data name="ViewPortType" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Cmd_AddScenarioTask" xml:space="preserve">
+    <value>Add task "{0}"</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="OpenAddSubject" xml:space="preserve">
+    <value>Add subject...</value>
+  </data>
+  <data name="OpenHelpWindow" xml:space="preserve">
+    <value>Help...</value>
+  </data>
+  <data name="OpenSettingsWindow" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="SetCameraDefaultPos" xml:space="preserve">
+    <value>Set camera default position.</value>
+  </data>
+  <data name="AutoSave" xml:space="preserve">
+    <value>Autosave...</value>
+  </data>
+  <data name="Cmd_ChangeClusterDimension" xml:space="preserve">
+    <value>Change cluster's dimension</value>
+  </data>
+  <data name="Backward" xml:space="preserve">
+    <value>Backward</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="ScaleDown" xml:space="preserve">
+    <value>Scale down</value>
+  </data>
+  <data name="ScaleUp" xml:space="preserve">
+    <value>Scale up</value>
+  </data>
+  <data name="SkipBackward" xml:space="preserve">
+    <value>Skip backward</value>
+  </data>
+  <data name="SkipForward" xml:space="preserve">
+    <value>Skip forward</value>
+  </data>
+  <data name="Amber" xml:space="preserve">
+    <value>Amber</value>
+  </data>
+  <data name="CCT" xml:space="preserve">
+    <value>Correlated color temperature</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="Cmd_ChangeIntersectionPoint" xml:space="preserve">
+    <value>Change intersection point to "{0}"</value>
+  </data>
+  <data name="Cmd_EnableDisableScenarios" xml:space="preserve">
+    <value>Change Enable/Disable scenarios</value>
+  </data>
+  <data name="GlassType" xml:space="preserve">
+    <value>Glass type</value>
+  </data>
+  <data name="LightForm" xml:space="preserve">
+    <value>Light source form</value>
+  </data>
+  <data name="LightType" xml:space="preserve">
+    <value>Light type</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="DirectView" xml:space="preserve">
+    <value>Direct view</value>
+  </data>
+  <data name="Frosted" xml:space="preserve">
+    <value>Frosted</value>
+  </data>
+  <data name="Linear" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="Matrix" xml:space="preserve">
+    <value>Matrix</value>
+  </data>
+  <data name="Matte" xml:space="preserve">
+    <value>Matte</value>
+  </data>
+  <data name="Point" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="SizeLWH" xml:space="preserve">
+    <value>Size(LWH), mm</value>
+  </data>
+  <data name="SoftLight" xml:space="preserve">
+    <value>Soft light</value>
+  </data>
+  <data name="Spotlight" xml:space="preserve">
+    <value>Spotlight</value>
+  </data>
+  <data name="Ellipsoid" xml:space="preserve">
+    <value>Ellipsoid</value>
+  </data>
+  <data name="EllipticDisk" xml:space="preserve">
+    <value>Elliptic disk</value>
+  </data>
+  <data name="HorizontalCylinder" xml:space="preserve">
+    <value>Horizontal cylinder</value>
+  </data>
+  <data name="OtherShape" xml:space="preserve">
+    <value>Other shape</value>
+  </data>
+  <data name="RectangularBox" xml:space="preserve">
+    <value>Rectangular box</value>
+  </data>
+  <data name="Sphere" xml:space="preserve">
+    <value>Sphere</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="VerticalCylinder" xml:space="preserve">
+    <value>Vertical cylinder</value>
+  </data>
+  <data name="Cmd_ChangeFlagUseParentRaster" xml:space="preserve">
+    <value>Change flag "Use parent raster"</value>
+  </data>
+  <data name="Cmd_ChangeRaster" xml:space="preserve">
+    <value>Change raster "{0}, {1}"</value>
+  </data>
+  <data name="Cmd_ChangeSelectedRaster" xml:space="preserve">
+    <value>Change raster from "{0}"</value>
+  </data>
+  <data name="UseParentRaster" xml:space="preserve">
+    <value>Use parent's raster</value>
+  </data>
+  <data name="EmptyRaster" xml:space="preserve">
+    <value>Select raster...</value>
+  </data>
+  <data name="Cmd_RemoveScenarioTask" xml:space="preserve">
+    <value>Remove task "{0}"</value>
+  </data>
+  <data name="AviFileDuration" xml:space="preserve">
+    <value>Video file duration, s</value>
+  </data>
+  <data name="Flux" xml:space="preserve">
+    <value>Flux</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Power</value>
+  </data>
+  <data name="Serie" xml:space="preserve">
+    <value>Serie</value>
+  </data>
+  <data name="Voltage" xml:space="preserve">
+    <value>Voltage</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="EffectType" xml:space="preserve">
+    <value>Effect type</value>
+  </data>
+  <data name="Block_PivotPointEditor" xml:space="preserve">
+    <value>Pivot editor</value>
+  </data>
+  <data name="Window_ScenarioList" xml:space="preserve">
+    <value>Scenario list</value>
+  </data>
+  <data name="Cmd_RemoveScenario" xml:space="preserve">
+    <value>Remove scenario "{0}"</value>
+  </data>
+  <data name="Cmd_AddScenario" xml:space="preserve">
+    <value>Add scenario "{0}"</value>
+  </data>
+  <data name="IncorrectScenarioName" xml:space="preserve">
+    <value>Incorrect scenario name</value>
+  </data>
+  <data name="NewScenario" xml:space="preserve">
+    <value>New scenario</value>
+  </data>
+  <data name="ScenarioAlreadyExists" xml:space="preserve">
+    <value>Scenario with the same name already exists</value>
+  </data>
+  <data name="BigSemiaxis" xml:space="preserve">
+    <value>Radius 1</value>
+  </data>
+  <data name="SmallSemiaxis" xml:space="preserve">
+    <value>Radius 2</value>
+  </data>
+  <data name="StartAngle" xml:space="preserve">
+    <value>Start angle</value>
+  </data>
+  <data name="SweepAngle" xml:space="preserve">
+    <value>Sweep angle</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="Cmd_ChangeAngle" xml:space="preserve">
+    <value>Change radial cluster's angle</value>
+  </data>
+  <data name="RadialClusterOf" xml:space="preserve">
+    <value>{0}, {1} pcs</value>
+  </data>
+  <data name="Cmd_ChangeRadialClusterSize" xml:space="preserve">
+    <value>Change radial cluster size</value>
+  </data>
+  <data name="CreateRadialCluster" xml:space="preserve">
+    <value>Create radial cluster</value>
+  </data>
+  <data name="ManualSet" xml:space="preserve">
+    <value>Manual set</value>
+  </data>
+  <data name="Settings_ObjectRotateStep" xml:space="preserve">
+    <value>Object rotate step, °</value>
+  </data>
+  <data name="UnsavedProjectMessage" xml:space="preserve">
+    <value>The project has autosave data! Do you want to restore it?</value>
+  </data>
+  <data name="Cmd_ChangeSequence" xml:space="preserve">
+    <value>Change sequence of "{0}"</value>
+  </data>
+  <data name="RoomEngineering" xml:space="preserve">
+    <value>CONTROL</value>
+  </data>
+  <data name="SaveProjectErrorDialog_LongFileName" xml:space="preserve">
+    <value>File name is too long</value>
+  </data>
+  <data name="SaveProjectErrorDialog_WrongSymbols" xml:space="preserve">
+    <value>File name contains unacceptable symbols</value>
+  </data>
+  <data name="LightAimingPoint" xml:space="preserve">
+    <value>Light aiming point</value>
+  </data>
+  <data name="AutoSize" xml:space="preserve">
+    <value>Auto size</value>
+  </data>
+  <data name="Cmd_ChangeUnitAutoSize" xml:space="preserve">
+    <value>Change autosize from "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeUnitDuration" xml:space="preserve">
+    <value>Change unit duration</value>
+  </data>
+  <data name="Desktop" xml:space="preserve">
+    <value>Desktop</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Music</value>
+  </data>
+  <data name="Pictures" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="Videos" xml:space="preserve">
+    <value>Videos</value>
+  </data>
+  <data name="AddCamera" xml:space="preserve">
+    <value>Add сamera</value>
+  </data>
+  <data name="Block_GraphicsViewer" xml:space="preserve">
+    <value>Scene View</value>
+  </data>
+  <data name="Window_AddObject" xml:space="preserve">
+    <value>Add object</value>
+  </data>
+  <data name="Enum_ObjectCategory_Buildings" xml:space="preserve">
+    <value>Buildings</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Inches" xml:space="preserve">
+    <value>Inches</value>
+  </data>
+  <data name="Enum_ObjectCategory_Interior" xml:space="preserve">
+    <value>Interiors</value>
+  </data>
+  <data name="Kilometers" xml:space="preserve">
+    <value>Kilometers</value>
+  </data>
+  <data name="Meters" xml:space="preserve">
+    <value>Meters</value>
+  </data>
+  <data name="Millimeters" xml:space="preserve">
+    <value>Millimeters</value>
+  </data>
+  <data name="Enum_ObjectCategory_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Enum_ObjectCategory_Technics" xml:space="preserve">
+    <value>Technics</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>All rights reserved</value>
+  </data>
+  <data name="Block_Engineering" xml:space="preserve">
+    <value>Addressing</value>
+  </data>
+  <data name="Block_Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Block_RasterEditor" xml:space="preserve">
+    <value>Raster</value>
+  </data>
+  <data name="Block_Rules" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="EffectFillingTypes_Fill" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="EffectFillingTypes_Flash" xml:space="preserve">
+    <value>Flash</value>
+  </data>
+  <data name="EffectFillingTypes_Gradient" xml:space="preserve">
+    <value>Gradient</value>
+  </data>
+  <data name="EffectMediaTypes_Avi" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="EffectMediaTypes_Texture" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="EffectSoundTypes_Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="EffectNatureTypes_Flame" xml:space="preserve">
+    <value>Flame</value>
+  </data>
+  <data name="EffectParticleTypes_Stars" xml:space="preserve">
+    <value>Stars</value>
+  </data>
+  <data name="EffectType_Filling" xml:space="preserve">
+    <value>Filling</value>
+  </data>
+  <data name="EffectType_Media" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="EffectType_Sound" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="EffectType_Nature" xml:space="preserve">
+    <value>Nature</value>
+  </data>
+  <data name="EffectType_Particle" xml:space="preserve">
+    <value>Particle</value>
+  </data>
+  <data name="Intensity" xml:space="preserve">
+    <value>Intensity</value>
+  </data>
+  <data name="OrientationParent" xml:space="preserve">
+    <value>Parent orientation</value>
+  </data>
+  <data name="OrientationWorld" xml:space="preserve">
+    <value>World orientation</value>
+  </data>
+  <data name="PositionParent" xml:space="preserve">
+    <value>Parent position</value>
+  </data>
+  <data name="Entity_Raster" xml:space="preserve">
+    <value>Raster</value>
+  </data>
+  <data name="ReferenceSystem_Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="ReferenceSystem_World" xml:space="preserve">
+    <value>World</value>
+  </data>
+  <data name="Entity_Scenario" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
+  <data name="FillStyles_Circle" xml:space="preserve">
+    <value>Circle</value>
+  </data>
+  <data name="FillStyles_Fan" xml:space="preserve">
+    <value>Fan</value>
+  </data>
+  <data name="FillStyles_OneSide" xml:space="preserve">
+    <value>One side</value>
+  </data>
+  <data name="FillStyles_Rect" xml:space="preserve">
+    <value>Rect</value>
+  </data>
+  <data name="FillStyles_Rhombus" xml:space="preserve">
+    <value>Rhombus</value>
+  </data>
+  <data name="FillStyles_TwoSides" xml:space="preserve">
+    <value>Two sides</value>
+  </data>
+  <data name="InOutDirection_Inside" xml:space="preserve">
+    <value>Inside</value>
+  </data>
+  <data name="InOutDirection_OutSide" xml:space="preserve">
+    <value>Outside</value>
+  </data>
+  <data name="InOutDirection_Random" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="Mixing" xml:space="preserve">
+    <value>Mixing</value>
+  </data>
+  <data name="Mixing_Darken" xml:space="preserve">
+    <value>Darken</value>
+  </data>
+  <data name="Mixing_Dissolve" xml:space="preserve">
+    <value>Dissolve</value>
+  </data>
+  <data name="Mixing_Lighten" xml:space="preserve">
+    <value>Lighten</value>
+  </data>
+  <data name="Mixing_Multiply" xml:space="preserve">
+    <value>Multiply</value>
+  </data>
+  <data name="Mixing_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Rotation_Clockwise" xml:space="preserve">
+    <value>Clockwise</value>
+  </data>
+  <data name="Rotation_CounterClockwise" xml:space="preserve">
+    <value>Counter clockwise</value>
+  </data>
+  <data name="Rotation_Random" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="TransitionType_Fading" xml:space="preserve">
+    <value>Fading</value>
+  </data>
+  <data name="TransitionType_Mixing" xml:space="preserve">
+    <value>Mixing</value>
+  </data>
+  <data name="Entity_Track" xml:space="preserve">
+    <value>Track</value>
+  </data>
+  <data name="Entity_Transition" xml:space="preserve">
+    <value>Overlay</value>
+  </data>
+  <data name="Entity_Layer" xml:space="preserve">
+    <value>Layer</value>
+  </data>
+  <data name="Entity_Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="Entity_StoredSelection" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>New project</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="Entity_Lamp" xml:space="preserve">
+    <value>Lamp</value>
+  </data>
+  <data name="Entity_Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="Entity_Scene" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="Entity_SceneEntity" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="Window_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="CullMode_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="CullMode_Front" xml:space="preserve">
+    <value>Front</value>
+  </data>
+  <data name="CullMode_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="LightingRenderType_Full" xml:space="preserve">
+    <value>Full</value>
+  </data>
+  <data name="LightingRenderType_Simple" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="Window_HotKeys" xml:space="preserve">
+    <value>Hot Keys</value>
+  </data>
+  <data name="Tab_Rendering" xml:space="preserve">
+    <value>Rendering</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="Menu_ScenarioList" xml:space="preserve">
+    <value>Scenario list</value>
+  </data>
+  <data name="Window_RoomSelector" xml:space="preserve">
+    <value>Select room</value>
+  </data>
+  <data name="Window_SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
+  <data name="ChangeAngle" xml:space="preserve">
+    <value>Change radial cluster's angle</value>
+  </data>
+  <data name="Cmd_AddRemoveObjects" xml:space="preserve">
+    <value>Add and remove objects</value>
+  </data>
+  <data name="Cmd_ChangeIlluminable" xml:space="preserve">
+    <value>Change flag illuminable from "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeLampBrightness" xml:space="preserve">
+    <value>Change brightness</value>
+  </data>
+  <data name="Cmd_ChangeLockObjects" xml:space="preserve">
+    <value>Change lock objects</value>
+  </data>
+  <data name="Cmd_ChangeObjectsVisibility" xml:space="preserve">
+    <value>Change objects  visibility</value>
+  </data>
+  <data name="Cmd_ChangeParallelCollection" xml:space="preserve">
+    <value>Change parallel collection of "{0}"</value>
+  </data>
+  <data name="Cmd_Rename" xml:space="preserve">
+    <value>Change name to "{0}"</value>
+  </data>
+  <data name="RestoreAllRooms" xml:space="preserve">
+    <value>Restore all rooms</value>
+  </data>
+  <data name="Cmd_ChangeManipulationType" xml:space="preserve">
+    <value>Change manipulation type</value>
+  </data>
+  <data name="SendReport" xml:space="preserve">
+    <value>Send report</value>
+  </data>
+  <data name="DbInstanceCreationFailed" xml:space="preserve">
+    <value>DataBase instance couldn't run</value>
+  </data>
+  <data name="SqlServer2014NotInstalled" xml:space="preserve">
+    <value>MS SQLLocalDB 2014 is not installed on your PC. Please install MS SQLLocalDB 2014 in order to proceed.</value>
+  </data>
+  <data name="CameraFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="CameraTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="OpenProject" xml:space="preserve">
+    <value>Open project...</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="Window_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="Menu_ResetSettings" xml:space="preserve">
+    <value>Reset settings</value>
+  </data>
+  <data name="Info_ResetAllSettings" xml:space="preserve">
+    <value>Are you sure you want to reset all settings?</value>
+  </data>
+  <data name="Window_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="RoomPlayer" xml:space="preserve">
+    <value>PLAYER</value>
+  </data>
+  <data name="Scenarios" xml:space="preserve">
+    <value>Scenarios</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
+  <data name="EnvironmentLight_ChangeName" xml:space="preserve">
+    <value>{0} (changed)</value>
+  </data>
+  <data name="EffectFillingTypes_Static" xml:space="preserve">
+    <value>Static color</value>
+  </data>
+  <data name="Cmd_ChangeStaticEffect" xml:space="preserve">
+    <value>Static effect "{0}" change</value>
+  </data>
+  <data name="Cmd_ChangeTransitEffect" xml:space="preserve">
+    <value>Transition effect "{0}" change</value>
+  </data>
+  <data name="EffectFillingTypes_Transition" xml:space="preserve">
+    <value>Transition</value>
+  </data>
+  <data name="BetaVersion" xml:space="preserve">
+    <value>Beta</value>
+  </data>
+  <data name="VersionLabel" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="AzimuthAngle" xml:space="preserve">
+    <value>Azimuth angle</value>
+  </data>
+  <data name="PolarAngle" xml:space="preserve">
+    <value>Polar angle {0}</value>
+  </data>
+  <data name="ZoneOrientation" xml:space="preserve">
+    <value>Zone orientation</value>
+  </data>
+  <data name="ZoneSize" xml:space="preserve">
+    <value>Zone size</value>
+  </data>
+  <data name="SensorZoneVisibility_Always" xml:space="preserve">
+    <value>Always</value>
+  </data>
+  <data name="SensorZoneVisibility_MouseMove" xml:space="preserve">
+    <value>On mouse move</value>
+  </data>
+  <data name="SensorZoneVisibility_Never" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="SensorZoneVisibility" xml:space="preserve">
+    <value>Sensors zone visibility</value>
+  </data>
+  <data name="IsLoop" xml:space="preserve">
+    <value>Is loop</value>
+  </data>
+  <data name="Entity_LampGroup" xml:space="preserve">
+    <value>Lamp group</value>
+  </data>
+  <data name="Cmd_ChangeLampGroup" xml:space="preserve">
+    <value>Change lamp group "{0}"</value>
+  </data>
+  <data name="EmptyLampGroup" xml:space="preserve">
+    <value>Select lamp group...</value>
+  </data>
+  <data name="EmptySensor" xml:space="preserve">
+    <value>Select sensor...</value>
+  </data>
+  <data name="Cmd_ChangeSelectedLampGroup" xml:space="preserve">
+    <value>Change lamp group from "{0}"</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="Cmd_ChangeDynamicRule" xml:space="preserve">
+    <value>Change dynamic rule "{0}"</value>
+  </data>
+  <data name="LevelPercent" xml:space="preserve">
+    <value>Level, %</value>
+  </data>
+  <data name="Time_s" xml:space="preserve">
+    <value>Time, s</value>
+  </data>
+  <data name="WeekDays_EveryDay" xml:space="preserve">
+    <value>Every day</value>
+  </data>
+  <data name="WeekDays_Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="WeekDays_Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="WeekDays_Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="WeekDays_Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="WeekDays_Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="WeekDays_Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="WeekDays_Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="WeekDays_WeekendDays" xml:space="preserve">
+    <value>Weekend days</value>
+  </data>
+  <data name="WeekDays_WorkDays" xml:space="preserve">
+    <value>Work days</value>
+  </data>
+  <data name="Cmd_ChangeStaticRule" xml:space="preserve">
+    <value>Change static rule "{0}"</value>
+  </data>
+  <data name="WeekDays" xml:space="preserve">
+    <value>Week days</value>
+  </data>
+  <data name="Tab_Dynamic" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="Tab_Static" xml:space="preserve">
+    <value>Static</value>
+  </data>
+  <data name="LevelOff" xml:space="preserve">
+    <value>○ Level</value>
+  </data>
+  <data name="LevelOn" xml:space="preserve">
+    <value>| Level</value>
+  </data>
+  <data name="TimeSecOff" xml:space="preserve">
+    <value>○ Time, s</value>
+  </data>
+  <data name="TimeSecOn" xml:space="preserve">
+    <value>| Time, s</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="Entity_RulesOrder" xml:space="preserve">
+    <value>Rules order</value>
+  </data>
+  <data name="Cmd_ChangeRulesOrder" xml:space="preserve">
+    <value>Change rules order</value>
+  </data>
+  <data name="ShutdownDelay" xml:space="preserve">
+    <value>○ Delay</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="RunRulesSystem" xml:space="preserve">
+    <value>Run the rules system</value>
+  </data>
+  <data name="StopRulesSystem" xml:space="preserve">
+    <value>Stop the rules system</value>
+  </data>
+  <data name="Entity_Rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="RulesSettings_DefaultBrightnessTime" xml:space="preserve">
+    <value>Brightness time, s (default)</value>
+  </data>
+  <data name="EmergencySignal" xml:space="preserve">
+    <value>Emergency signal</value>
+  </data>
+  <data name="Cmd_ChangeEmergencyRule" xml:space="preserve">
+    <value>Change emergency rule "{0}"</value>
+  </data>
+  <data name="Tab_Emergency" xml:space="preserve">
+    <value>Emergency</value>
+  </data>
+  <data name="WorkMode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="WorkMode_Real" xml:space="preserve">
+    <value>Real</value>
+  </data>
+  <data name="WorkMode_Virtual" xml:space="preserve">
+    <value>Virtual</value>
+  </data>
+  <data name="Cmd_ChangeLightSensorLevel" xml:space="preserve">
+    <value>Change sensor's brightness level</value>
+  </data>
+  <data name="Entity_LightSensor" xml:space="preserve">
+    <value>Light sensor</value>
+  </data>
+  <data name="Entity_MotionSensor" xml:space="preserve">
+    <value>Motion sensor</value>
+  </data>
+  <data name="LevelLx" xml:space="preserve">
+    <value>Level, lx</value>
+  </data>
+  <data name="WithoutSensor" xml:space="preserve">
+    <value>Without sensor</value>
+  </data>
+  <data name="Lx" xml:space="preserve">
+    <value>lx</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="LevelPercentOff" xml:space="preserve">
+    <value>○ Level, %</value>
+  </data>
+  <data name="LevelPercentOn" xml:space="preserve">
+    <value>| Level, %</value>
+  </data>
+  <data name="EmptyPath" xml:space="preserve">
+    <value>Select path...</value>
+  </data>
+  <data name="Path_Accelerate" xml:space="preserve">
+    <value>Accelerate, m/s²</value>
+  </data>
+  <data name="Path_Speed" xml:space="preserve">
+    <value>Movement speed, m/s</value>
+  </data>
+  <data name="PersonTypes_Car" xml:space="preserve">
+    <value>Loader</value>
+  </data>
+  <data name="PersonTypes_Human" xml:space="preserve">
+    <value>Human</value>
+  </data>
+  <data name="ShowPaths" xml:space="preserve">
+    <value>Show paths</value>
+  </data>
+  <data name="TurnOnEmergencyMode" xml:space="preserve">
+    <value>Turn on emergency mode</value>
+  </data>
+  <data name="TurnOffEmergencyMode" xml:space="preserve">
+    <value>Turn off emergency mode</value>
+  </data>
+  <data name="Addressation" xml:space="preserve">
+    <value>Addressation</value>
+  </data>
+  <data name="CountOfContacts" xml:space="preserve">
+    <value>Count of contacs</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Device type</value>
+  </data>
+  <data name="DmxUniverses" xml:space="preserve">
+    <value>Dmx universes</value>
+  </data>
+  <data name="GetAddressation" xml:space="preserve">
+    <value>Get addressation</value>
+  </data>
+  <data name="IpAddress" xml:space="preserve">
+    <value>IP-Address</value>
+  </data>
+  <data name="LampsCount" xml:space="preserve">
+    <value>Lamps count</value>
+  </data>
+  <data name="LenghtRow" xml:space="preserve">
+    <value>Length row</value>
+  </data>
+  <data name="ModBus" xml:space="preserve">
+    <value>ModBus</value>
+  </data>
+  <data name="NumberOfLamps" xml:space="preserve">
+    <value>Number of lamps</value>
+  </data>
+  <data name="ParentGroup" xml:space="preserve">
+    <value>Parent group</value>
+  </data>
+  <data name="ShowIdInsteadOfTheAddress" xml:space="preserve">
+    <value>Show id instead of the address</value>
+  </data>
+  <data name="StartPosition" xml:space="preserve">
+    <value>Start position</value>
+  </data>
+  <data name="TypeAddressation" xml:space="preserve">
+    <value>Type addressation</value>
+  </data>
+  <data name="Entity_Universe" xml:space="preserve">
+    <value>Universe</value>
+  </data>
+  <data name="Cmd_ChangePathPoints" xml:space="preserve">
+    <value>Change points of path "{0}"</value>
+  </data>
+  <data name="RenderTool_MenuLabel" xml:space="preserve">
+    <value>Render tool...</value>
+  </data>
+  <data name="AddressationRoom" xml:space="preserve">
+    <value>Addressing</value>
+  </data>
+  <data name="AddEntityDialog_Title" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddEntityDialog_EquipmentTab_Header" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_Header" xml:space="preserve">
+    <value>Objects</value>
+  </data>
+  <data name="AddEntityDialog_SensorTab_Header" xml:space="preserve">
+    <value>Sensor</value>
+  </data>
+  <data name="EmptyDcoCollection" xml:space="preserve">
+    <value>Please, add DCO.</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Expand all</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Freeze" xml:space="preserve">
+    <value>Freeze</value>
+  </data>
+  <data name="UnFreeze" xml:space="preserve">
+    <value>Unfreeze</value>
+  </data>
+  <data name="FilterMenu_DisplayAll" xml:space="preserve">
+    <value>Display all</value>
+  </data>
+  <data name="FilterMenu_Frozen" xml:space="preserve">
+    <value>Frozen</value>
+  </data>
+  <data name="FilterMenu_Hidden" xml:space="preserve">
+    <value>Hidden</value>
+  </data>
+  <data name="FilterMenu_HideAll" xml:space="preserve">
+    <value>Hide all</value>
+  </data>
+  <data name="FilterMenu_InvertDisplay" xml:space="preserve">
+    <value>Invert display</value>
+  </data>
+  <data name="Visibility" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Developing_Title" xml:space="preserve">
+    <value>Developing</value>
+  </data>
+  <data name="GroupOrUniverse" xml:space="preserve">
+    <value>Show Groups or Universes</value>
+  </data>
+  <data name="ContextMenu_Clone" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="ContextMenu_Collapse" xml:space="preserve">
+    <value>Collapse</value>
+  </data>
+  <data name="ContextMenu_CollapseAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ContextMenu_CollapseChildren" xml:space="preserve">
+    <value>Children</value>
+  </data>
+  <data name="ContextMenu_CollapseToParent" xml:space="preserve">
+    <value>Collapse to parent</value>
+  </data>
+  <data name="ContextMenu_AddTo" xml:space="preserve">
+    <value>Add to</value>
+  </data>
+  <data name="ContextMenu_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ContextMenu_Freeze" xml:space="preserve">
+    <value>Freeze</value>
+  </data>
+  <data name="ContextMenu_FreezeAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ContextMenu_FreezeSelected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="ContextMenu_FreezeUnselected" xml:space="preserve">
+    <value>Unselected</value>
+  </data>
+  <data name="ContextMenu_Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="ContextMenu_HideAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ContextMenu_HideSelected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="ContextMenu_HideUnselected" xml:space="preserve">
+    <value>Unselected</value>
+  </data>
+  <data name="ContextMenu_Isolate" xml:space="preserve">
+    <value>Isolate</value>
+  </data>
+  <data name="ContextMenu_Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="ContextMenu_Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="ContextMenu_ShowAll" xml:space="preserve">
+    <value>Show all</value>
+  </data>
+  <data name="ContextMenu_Similar" xml:space="preserve">
+    <value>Similar</value>
+  </data>
+  <data name="ContextMenu_StoredSelection" xml:space="preserve">
+    <value>Stored selection</value>
+  </data>
+  <data name="ContextMenu_UnfreezeAll" xml:space="preserve">
+    <value>Unfreeze all</value>
+  </data>
+  <data name="ContextMenu_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="CloneName" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="ContextMenu_DeleteStorageSelection" xml:space="preserve">
+    <value>Delete storage selection</value>
+  </data>
+  <data name="Cmd_ChangeObjectsFixed" xml:space="preserve">
+    <value>Change opened geometry</value>
+  </data>
+  <data name="ContextMenu_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ContextMenu_Geometry" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="ContextMenu_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="ContextMenu_GroupLamp" xml:space="preserve">
+    <value>Group lamp</value>
+  </data>
+  <data name="ContextMenu_Layer" xml:space="preserve">
+    <value>Layer</value>
+  </data>
+  <data name="ContextMenu_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="ContextMenu_DeleteLampsGroup" xml:space="preserve">
+    <value>Delete lamps group</value>
+  </data>
+  <data name="SelectMode_Part" xml:space="preserve">
+    <value>Part</value>
+  </data>
+  <data name="SelectMode_Visible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="SelectMode_Whole" xml:space="preserve">
+    <value>Whole</value>
+  </data>
+  <data name="AddressingOptions" xml:space="preserve">
+    <value>Addressing options</value>
+  </data>
+  <data name="AddressMap" xml:space="preserve">
+    <value>Address map</value>
+  </data>
+  <data name="Entity_Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Entity_AddressGroups" xml:space="preserve">
+    <value>Address groups</value>
+  </data>
+  <data name="Cmd_ChangeObjectsIsolate" xml:space="preserve">
+    <value>Change objects isolate</value>
+  </data>
+  <data name="Effect" xml:space="preserve">
+    <value>Effect</value>
+  </data>
+  <data name="Entity_DCO" xml:space="preserve">
+    <value>DCO</value>
+  </data>
+  <data name="Entity_AddressGroup" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Cmd_ChangeReferenceSystem" xml:space="preserve">
+    <value>Change reference system</value>
+  </data>
+  <data name="EnviromentPresets" xml:space="preserve">
+    <value>Environment presets</value>
+  </data>
+  <data name="AttachToSurface" xml:space="preserve">
+    <value>Attach to surface</value>
+  </data>
+  <data name="ContextMenu_Replace" xml:space="preserve">
+    <value>Replace to...</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="ContextMenu_CreateLumSurface" xml:space="preserve">
+    <value>Create luminance surface</value>
+  </data>
+  <data name="MaximizeRestoreActiveViewport" xml:space="preserve">
+    <value>Maximize/restore active viewport</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="ActiveViewportViewBack" xml:space="preserve">
+    <value>Active viewport back view</value>
+  </data>
+  <data name="ActiveViewportViewBottom" xml:space="preserve">
+    <value>Active viewport bottom view</value>
+  </data>
+  <data name="ActiveViewportViewFree" xml:space="preserve">
+    <value>Active viewport free view</value>
+  </data>
+  <data name="ActiveViewportViewFront" xml:space="preserve">
+    <value>Active viewport front view</value>
+  </data>
+  <data name="ActiveViewportViewLeft" xml:space="preserve">
+    <value>Active viewport left view</value>
+  </data>
+  <data name="ActiveViewportViewRight" xml:space="preserve">
+    <value>Active viewport right view</value>
+  </data>
+  <data name="ActiveViewportViewTop" xml:space="preserve">
+    <value>Active viewport top view</value>
+  </data>
+  <data name="Block_DCO" xml:space="preserve">
+    <value>DCO</value>
+  </data>
+  <data name="PivotPointEditor" xml:space="preserve">
+    <value>Pivot editor</value>
+  </data>
+  <data name="Attach" xml:space="preserve">
+    <value>Attach</value>
+  </data>
+  <data name="DirectionDetour" xml:space="preserve">
+    <value>Direction of detour</value>
+  </data>
+  <data name="Engineering" xml:space="preserve">
+    <value>Engineering</value>
+  </data>
+  <data name="Centimeters" xml:space="preserve">
+    <value>Centimeters</value>
+  </data>
+  <data name="Feet" xml:space="preserve">
+    <value>Feet</value>
+  </data>
+  <data name="SelectionLevel" xml:space="preserve">
+    <value>Selection level</value>
+  </data>
+  <data name="RulesSettings_StepBrightnessForLightSensor" xml:space="preserve">
+    <value>Lamp brightness step (default)</value>
+  </data>
+  <data name="Presentation" xml:space="preserve">
+    <value>Presentation</value>
+  </data>
+  <data name="Window_CreateDCO" xml:space="preserve">
+    <value>Create DCO</value>
+  </data>
+  <data name="Window_OpenFileDialog" xml:space="preserve">
+    <value>Open file</value>
+  </data>
+  <data name="Window_RenderToolLauncherDialog" xml:space="preserve">
+    <value>Rendering settings</value>
+  </data>
+  <data name="SplashScreenMessage_Initializing" xml:space="preserve">
+    <value>Initializing...</value>
+  </data>
+  <data name="SplashScreenMessage_OpenMainWindow" xml:space="preserve">
+    <value>Creating main window...</value>
+  </data>
+  <data name="SplashScreenMessage_Start" xml:space="preserve">
+    <value>Starting...</value>
+  </data>
+  <data name="SplashScreen_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="AddEntityDialog_EquipmentTab_EnvironmentSettingsHeader" xml:space="preserve">
+    <value>Environment settings</value>
+  </data>
+  <data name="AddEntityDialog_EquipmentTab_RepositoryHeader" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_EnvironmentSettingsHeader" xml:space="preserve">
+    <value>Environment settings</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_RepositoryHeader" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_SettingsHeader" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AddEntityDialog_SensorTab_RepositoryHeader" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="AddEntityDialog_SensorTab_SettingsHeader" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Menu_AppSettings" xml:space="preserve">
+    <value>Application settings...</value>
+  </data>
+  <data name="Menu_ProjectSettings" xml:space="preserve">
+    <value>Project settings...</value>
+  </data>
+  <data name="AddLayer" xml:space="preserve">
+    <value>Add layer</value>
+  </data>
+  <data name="AddToLayer" xml:space="preserve">
+    <value>Add to active layer</value>
+  </data>
+  <data name="MakeLayerActive" xml:space="preserve">
+    <value>Make layer active</value>
+  </data>
+  <data name="Cmd_ChangeActiveLayer" xml:space="preserve">
+    <value>Change active layer</value>
+  </data>
+  <data name="ContextMenu_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="ContextMenu_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="ContextMenu_MakeActive" xml:space="preserve">
+    <value>Make active</value>
+  </data>
+  <data name="ContextMenu_MergeLayers" xml:space="preserve">
+    <value>Merge layers</value>
+  </data>
+  <data name="ContextMenu_RemoveEmpty" xml:space="preserve">
+    <value>Remove empty</value>
+  </data>
+  <data name="Cmd_MergeLayers" xml:space="preserve">
+    <value>Merge layers</value>
+  </data>
+  <data name="BackgroundTasks_AutoSaveTaskName" xml:space="preserve">
+    <value>Autosave</value>
+  </data>
+  <data name="BackgroundTasks_BakingTaskName" xml:space="preserve">
+    <value>Baking light</value>
+  </data>
+  <data name="Panels" xml:space="preserve">
+    <value>Panels</value>
+  </data>
+  <data name="CreatingLumSurface" xml:space="preserve">
+    <value>Creating luminance surface...</value>
+  </data>
+  <data name="Enum_ObjectCategory_Infrastructure" xml:space="preserve">
+    <value>Infrastructure</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>View settings</value>
+  </data>
+  <data name="PostConverterPresetTypes_None" xml:space="preserve">
+    <value>No pre-processing</value>
+  </data>
+  <data name="InDown" xml:space="preserve">
+    <value>In down</value>
+  </data>
+  <data name="InLeft" xml:space="preserve">
+    <value>To the left</value>
+  </data>
+  <data name="InOrder" xml:space="preserve">
+    <value>In order</value>
+  </data>
+  <data name="InRight" xml:space="preserve">
+    <value>To the right</value>
+  </data>
+  <data name="InUp" xml:space="preserve">
+    <value>In up</value>
+  </data>
+  <data name="LeftDown" xml:space="preserve">
+    <value>Left down</value>
+  </data>
+  <data name="LeftUp" xml:space="preserve">
+    <value>Left up</value>
+  </data>
+  <data name="RightDown" xml:space="preserve">
+    <value>Right down</value>
+  </data>
+  <data name="RightUp" xml:space="preserve">
+    <value>Right up</value>
+  </data>
+  <data name="Snake" xml:space="preserve">
+    <value>Snake</value>
+  </data>
+  <data name="Addressing" xml:space="preserve">
+    <value>Addressing</value>
+  </data>
+  <data name="AddressMapChangeAddress" xml:space="preserve">
+    <value>Сhange of address on the address map</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="FlipNormals" xml:space="preserve">
+    <value>Flip normals</value>
+  </data>
+  <data name="DefaultProjectFolderPath" xml:space="preserve">
+    <value>Default project folder path</value>
+  </data>
+  <data name="SelectFolderPath" xml:space="preserve">
+    <value>Select folder</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="DuplicateFileName" xml:space="preserve">
+    <value>Duplicate file name</value>
+  </data>
+  <data name="DuplicateFileNameDescription" xml:space="preserve">
+    <value>File with the same name is already exist in the project</value>
+  </data>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value>A file with the same name already exists.</value>
+  </data>
+  <data name="IncorectFileName" xml:space="preserve">
+    <value>Incorect file name</value>
+  </data>
+  <data name="FileCopyProcess" xml:space="preserve">
+    <value>Copy file...</value>
+  </data>
+  <data name="LightZoneVisibility" xml:space="preserve">
+    <value>Light zone visibility</value>
+  </data>
+  <data name="LightZoneVisibility_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="LightZoneVisibility_Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="LightZoneVisibility_Selected" xml:space="preserve">
+    <value>On selected</value>
+  </data>
+  <data name="MediaFeaurePackException" xml:space="preserve">
+    <value>Cannot read .avi file. This may happen, because you don't have Windows Media Feature Pack installed. Video effect is not available.</value>
+  </data>
+  <data name="ApplicationType" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="ColorScheme" xml:space="preserve">
+    <value>Color scheme</value>
+  </data>
+  <data name="ContinuousRows" xml:space="preserve">
+    <value>Continuous rows</value>
+  </data>
+  <data name="Control" xml:space="preserve">
+    <value>Control</value>
+  </data>
+  <data name="Dot" xml:space="preserve">
+    <value>Dot</value>
+  </data>
+  <data name="EmissionType" xml:space="preserve">
+    <value>Emission type</value>
+  </data>
+  <data name="Ground" xml:space="preserve">
+    <value>Ground</value>
+  </data>
+  <data name="Halogen" xml:space="preserve">
+    <value>Halogen</value>
+  </data>
+  <data name="Incandescent" xml:space="preserve">
+    <value>Incandescent</value>
+  </data>
+  <data name="Indoor" xml:space="preserve">
+    <value>Indoor</value>
+  </data>
+  <data name="Ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="LampType" xml:space="preserve">
+    <value>Lamp type</value>
+  </data>
+  <data name="Led" xml:space="preserve">
+    <value>LED</value>
+  </data>
+  <data name="LightSurface" xml:space="preserve">
+    <value>Light surface</value>
+  </data>
+  <data name="Line" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="Luminescent" xml:space="preserve">
+    <value>Luminescent</value>
+  </data>
+  <data name="Mercury" xml:space="preserve">
+    <value>Mercury</value>
+  </data>
+  <data name="MetalHalide" xml:space="preserve">
+    <value>Metal-halide</value>
+  </data>
+  <data name="MountingType" xml:space="preserve">
+    <value>Mounting type</value>
+  </data>
+  <data name="Oled" xml:space="preserve">
+    <value>OLED</value>
+  </data>
+  <data name="Outdoor" xml:space="preserve">
+    <value>Outdoor</value>
+  </data>
+  <data name="Pendant" xml:space="preserve">
+    <value>Pendant</value>
+  </data>
+  <data name="Projector" xml:space="preserve">
+    <value>Projector</value>
+  </data>
+  <data name="Recessed" xml:space="preserve">
+    <value>Recessed</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Round</value>
+  </data>
+  <data name="Shape" xml:space="preserve">
+    <value>Shape</value>
+  </data>
+  <data name="Sodium" xml:space="preserve">
+    <value>Sodium</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>Special</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Square</value>
+  </data>
+  <data name="SurfaceMounted" xml:space="preserve">
+    <value>Surface mounted</value>
+  </data>
+  <data name="Tube" xml:space="preserve">
+    <value>Tube</value>
+  </data>
+  <data name="Analog1_10v" xml:space="preserve">
+    <value>Analog 1-10v</value>
+  </data>
+  <data name="DALI" xml:space="preserve">
+    <value>DALI</value>
+  </data>
+  <data name="DMX" xml:space="preserve">
+    <value>DMX</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="PartNumber" xml:space="preserve">
+    <value>Part number</value>
+  </data>
+  <data name="PixelCount" xml:space="preserve">
+    <value>Pixel count</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>Pixels</value>
+  </data>
+  <data name="PLC" xml:space="preserve">
+    <value>PLC</value>
+  </data>
+  <data name="PWM" xml:space="preserve">
+    <value>PWM</value>
+  </data>
+  <data name="RDM" xml:space="preserve">
+    <value>RDM</value>
+  </data>
+  <data name="Series" xml:space="preserve">
+    <value>Series</value>
+  </data>
+  <data name="Wireless" xml:space="preserve">
+    <value>Wireless</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="Antialiasing" xml:space="preserve">
+    <value>Antialiasing</value>
+  </data>
+  <data name="ConnectionEstablished" xml:space="preserve">
+    <value>Connection established</value>
+  </data>
+  <data name="CreateAddressProject" xml:space="preserve">
+    <value>You must create address entities before sending the project to the server.</value>
+  </data>
+  <data name="DeviceTopology" xml:space="preserve">
+    <value>Device topology obtained</value>
+  </data>
+  <data name="ProjectSend" xml:space="preserve">
+    <value>Project successfully sent to server</value>
+  </data>
+  <data name="SendError" xml:space="preserve">
+    <value>An error occurred while trying to transfer data.</value>
+  </data>
+  <data name="ServerLock" xml:space="preserve">
+    <value>You must wait for a response from the server</value>
+  </data>
+  <data name="ServerNotAvailable" xml:space="preserve">
+    <value>Sorry but server is not available</value>
+  </data>
+  <data name="RenderToolCannotBeStarted_Message" xml:space="preserve">
+    <value>Render tool cannot be started</value>
+  </data>
+  <data name="RenderToolCannotBeStarted_Title" xml:space="preserve">
+    <value>Render tool </value>
+  </data>
+  <data name="HardwareError" xml:space="preserve">
+    <value>Your videoadapter does not support DirectX11</value>
+  </data>
+  <data name="TransformationCenter" xml:space="preserve">
+    <value>Transformation center</value>
+  </data>
+  <data name="Block_ProjectReport" xml:space="preserve">
+    <value>Project report</value>
+  </data>
+  <data name="Block_ReportStructure" xml:space="preserve">
+    <value>Report structure</value>
+  </data>
+  <data name="RoomDocumentation" xml:space="preserve">
+    <value>DOCUMENTATION</value>
+  </data>
+  <data name="ReportError" xml:space="preserve">
+    <value>Report error...</value>
+  </data>
+  <data name="ErrorReportDialog_Explanation" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ErrorReportDialog_Title" xml:space="preserve">
+    <value>Report error</value>
+  </data>
+  <data name="ErrorReport_CancelButton_Title" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ErrorReport_SendButton_Title" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="CreateCamera_Message" xml:space="preserve">
+    <value>There is no camera object in the project. Please, create one.</value>
+  </data>
+  <data name="ErrorReportDialog_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="ErrorReportDialog_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CreateCartesianCluster" xml:space="preserve">
+    <value>Create cartesian cluster</value>
+  </data>
+  <data name="Cmd_AddEffect" xml:space="preserve">
+    <value>Add effect</value>
+  </data>
+  <data name="Cmd_AddTrack" xml:space="preserve">
+    <value>Add track "{0}"</value>
+  </data>
+  <data name="Cmd_AddUnit" xml:space="preserve">
+    <value>Add unit "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeEffectType" xml:space="preserve">
+    <value>Change effect type</value>
+  </data>
+  <data name="Cmd_ConvertClusterToGroup" xml:space="preserve">
+    <value>Convert to group</value>
+  </data>
+  <data name="Cmd_UnGroup" xml:space="preserve">
+    <value>Ungroup</value>
+  </data>
+  <data name="Cmd_Group" xml:space="preserve">
+    <value>Create group</value>
+  </data>
+  <data name="Enum_ObjectCategory_Vegetation" xml:space="preserve">
+    <value>Vegetation</value>
+  </data>
+  <data name="AddressGroups" xml:space="preserve">
+    <value>Root</value>
+  </data>
+  <data name="Block_RasterTree" xml:space="preserve">
+    <value>Rasters</value>
+  </data>
+  <data name="ProjectSettings" xml:space="preserve">
+    <value>Project settings</value>
+  </data>
+  <data name="ApplicationPreferences" xml:space="preserve">
+    <value>Application preferences</value>
+  </data>
+  <data name="Menu_Configuration" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Window_Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="Menu_ProjectInfo" xml:space="preserve">
+    <value>Project info...</value>
+  </data>
+  <data name="Window_ProjectInfo" xml:space="preserve">
+    <value>Project info</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AssembledBy" xml:space="preserve">
+    <value>Assembled by</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="ObjectAddress" xml:space="preserve">
+    <value>Object address</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Project name</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="Datasheets" xml:space="preserve">
+    <value>Datasheets</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Specification" xml:space="preserve">
+    <value>Specification</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Visualization" xml:space="preserve">
+    <value>Visualization</value>
+  </data>
+  <data name="AzimuthAngel" xml:space="preserve">
+    <value>Azimuth angel</value>
+  </data>
+  <data name="ChangeStoredSelection" xml:space="preserve">
+    <value>Change stored selection</value>
+  </data>
+  <data name="ChangeParent" xml:space="preserve">
+    <value>Change parent for "{0}"</value>
+  </data>
+  <data name="ChangeEffectDuration" xml:space="preserve">
+    <value>Change effect duration</value>
+  </data>
+  <data name="AnimationToggleButton_Label" xml:space="preserve">
+    <value>Animation</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Render tool (BETA)</value>
+  </data>
+  <data name="ApplicationWillBeMinimizedToTray_Message" xml:space="preserve">
+    <value>Application will be minimized to tray</value>
+  </data>
+  <data name="CameraIsNotSelected_Message" xml:space="preserve">
+    <value>Camera is not selected</value>
+  </data>
+  <data name="ConsoleMenuItem_Label" xml:space="preserve">
+    <value>Console</value>
+  </data>
+  <data name="CoreIsNotInitializedError_Message" xml:space="preserve">
+    <value>RenderToolCore is not initialized</value>
+  </data>
+  <data name="DiffTraceDepth_Label" xml:space="preserve">
+    <value>Diff. trace depth</value>
+  </data>
+  <data name="ExitMenuItem_Label" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="FileMenuItem_Label" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="HydraExeNotExists_Message" xml:space="preserve">
+    <value>Hydra.exe is not found. Render tool will be closed.</value>
+  </data>
+  <data name="ImageHeight_Label" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="ImageToggleButton_Label" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="ImageWidth_Label" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="InfoDefaultTitle" xml:space="preserve">
+    <value>Render tool</value>
+  </data>
+  <data name="LightSourceIntensityСoefficient_Label" xml:space="preserve">
+    <value>Light source intensity coefficient</value>
+  </data>
+  <data name="LightSourcesSettings_Header" xml:space="preserve">
+    <value>Light sources settings</value>
+  </data>
+  <data name="LoadProjectError_Message" xml:space="preserve">
+    <value>Cannot load project</value>
+  </data>
+  <data name="LoadProject_Title" xml:space="preserve">
+    <value>Load project</value>
+  </data>
+  <data name="NotifyIconExit_Label" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="NotifyIconHideWindow_Label" xml:space="preserve">
+    <value>Hide window</value>
+  </data>
+  <data name="NotifyIconShowWindow_Label" xml:space="preserve">
+    <value>Show window</value>
+  </data>
+  <data name="OutputDirectory_Label" xml:space="preserve">
+    <value>Output directory</value>
+  </data>
+  <data name="ProjectExpander_Header" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="ProjectFile_Label" xml:space="preserve">
+    <value>Project file</value>
+  </data>
+  <data name="ProjectFolder_Label" xml:space="preserve">
+    <value>Project folder</value>
+  </data>
+  <data name="ProjectTabHeader" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="PropertiesTabHeader" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="RaysPerPixel_Label" xml:space="preserve">
+    <value>Rays per pixel</value>
+  </data>
+  <data name="RenderAnimationCheckBox_Label" xml:space="preserve">
+    <value>Render animation</value>
+  </data>
+  <data name="RenderButton_Label" xml:space="preserve">
+    <value>Render</value>
+  </data>
+  <data name="RenderingProgressGroup_Header" xml:space="preserve">
+    <value>Rendering progress</value>
+  </data>
+  <data name="RenderingPropertiesExpander_Header" xml:space="preserve">
+    <value>Rendering properties</value>
+  </data>
+  <data name="RenderToolSettings_Title" xml:space="preserve">
+    <value>Render tool settings</value>
+  </data>
+  <data name="SaveButton_Label" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ScenarioIsNotSelected_Message" xml:space="preserve">
+    <value>Scenario is not selected</value>
+  </data>
+  <data name="SettingName_WorkingDirectory" xml:space="preserve">
+    <value>Working directory</value>
+  </data>
+  <data name="SettingsMenuItem_Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsTabHeader1" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SkipButton_Label" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="SkyColor_Label" xml:space="preserve">
+    <value>Sky color</value>
+  </data>
+  <data name="SkyIntensityСoefficient_Label" xml:space="preserve">
+    <value>Sky intensity сoefficient</value>
+  </data>
+  <data name="StopRenderingButton_Label" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="SunColor_Label" xml:space="preserve">
+    <value>Sun color</value>
+  </data>
+  <data name="SunIntensityСoefficient_Label" xml:space="preserve">
+    <value>Sun intensity сoefficient</value>
+  </data>
+  <data name="ToolsMenuItem_Label" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="TraceDepth_Label" xml:space="preserve">
+    <value>Trace depth</value>
+  </data>
+  <data name="WorkingDirectoryIsEmptyError_Message" xml:space="preserve">
+    <value>Working directory path is empty</value>
+  </data>
+  <data name="FakeColors" xml:space="preserve">
+    <value>False colors</value>
+  </data>
+  <data name="Luminosity" xml:space="preserve">
+    <value>Luminosity</value>
+  </data>
+  <data name="Settings_ObjectTranslateStep" xml:space="preserve">
+    <value>Object translate step, m</value>
+  </data>
+  <data name="ReportVisualization1" xml:space="preserve">
+    <value>1 image</value>
+  </data>
+  <data name="ReportVisualization2" xml:space="preserve">
+    <value>2 images</value>
+  </data>
+  <data name="ReportVisualization3" xml:space="preserve">
+    <value>3 images</value>
+  </data>
+  <data name="Image1" xml:space="preserve">
+    <value>Image 1</value>
+  </data>
+  <data name="Image2" xml:space="preserve">
+    <value>Image 2</value>
+  </data>
+  <data name="Image3" xml:space="preserve">
+    <value>Image 3</value>
+  </data>
+  <data name="AddPage" xml:space="preserve">
+    <value>Add page</value>
+  </data>
+  <data name="ChangeOrder" xml:space="preserve">
+    <value>Change order</value>
+  </data>
+  <data name="VisualizationPage" xml:space="preserve">
+    <value>Visualization page</value>
+  </data>
+  <data name="Caption" xml:space="preserve">
+    <value>Caption</value>
+  </data>
+  <data name="PathtracingRendering" xml:space="preserve">
+    <value>Pathtracing rendering</value>
+  </data>
+  <data name="RealtimeRendering" xml:space="preserve">
+    <value>Realtime rendering</value>
+  </data>
+  <data name="Transformation" xml:space="preserve">
+    <value>Transformation</value>
+  </data>
+  <data name="RenderToolParamName_DiffuseTraceDepth" xml:space="preserve">
+    <value>Diffuse trace depth</value>
+  </data>
+  <data name="RenderToolParamName_RaysPerPixel" xml:space="preserve">
+    <value>Rays per pixel</value>
+  </data>
+  <data name="RenderToolParamName_Resolution" xml:space="preserve">
+    <value>Resolution</value>
+  </data>
+  <data name="RenderToolParamName_TraceDepth" xml:space="preserve">
+    <value>Trace depth</value>
+  </data>
+  <data name="ScreenshotCapturedMessage" xml:space="preserve">
+    <value>Screen captured and saved to project folder.</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Open folder</value>
+  </data>
+  <data name="ScreenshotCaptureError" xml:space="preserve">
+    <value>Error occured. Screen was not captured.</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Create report</value>
+  </data>
+  <data name="ExportToPDF" xml:space="preserve">
+    <value>Export report to PDF</value>
+  </data>
+  <data name="FitPage" xml:space="preserve">
+    <value>Fit page</value>
+  </data>
+  <data name="FitWidth" xml:space="preserve">
+    <value>Fit width</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Next page</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
+  <data name="PrintReport" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="ShowThumbnail" xml:space="preserve">
+    <value>Show thumbnail</value>
+  </data>
+  <data name="Zoom100" xml:space="preserve">
+    <value>Zoom 100%</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="PageProperties" xml:space="preserve">
+    <value>Page properties</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="ContextMenu_Cluster" xml:space="preserve">
+    <value>Cluster</value>
+  </data>
+  <data name="ContextMenu_Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="BoundingBox" xml:space="preserve">
+    <value>Bounding box</value>
+  </data>
+  <data name="Outlining" xml:space="preserve">
+    <value>Outlining</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="DocumentationTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Ies" xml:space="preserve">
+    <value>IES</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="RenderingState_CreateLibrary" xml:space="preserve">
+    <value>Creating library ...</value>
+  </data>
+  <data name="RenderingState_StartRendering" xml:space="preserve">
+    <value>Start rendering ...</value>
+  </data>
+  <data name="RenderingState_Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="SwitchOffLight" xml:space="preserve">
+    <value>Switch off light</value>
+  </data>
+  <data name="SwitchOnLight" xml:space="preserve">
+    <value>Light on</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ClearColors" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Luminaries" xml:space="preserve">
+    <value>Luminaries</value>
+  </data>
+  <data name="Cmd_ChangeLuminariesColor" xml:space="preserve">
+    <value>Change luminaries color</value>
+  </data>
+  <data name="LuminariesCount" xml:space="preserve">
+    <value>Luminaries count</value>
+  </data>
+  <data name="SelectedItemsCount" xml:space="preserve">
+    <value>Selected items count</value>
+  </data>
+  <data name="CartesianCluster" xml:space="preserve">
+    <value>Cartesian cluster</value>
+  </data>
+  <data name="CreateCluster" xml:space="preserve">
+    <value>Create cluster</value>
+  </data>
+  <data name="RadialCluster" xml:space="preserve">
+    <value>Radial cluster</value>
+  </data>
+  <data name="Plane_Axis" xml:space="preserve">
+    <value>Axis</value>
+  </data>
+  <data name="ColorUnsupportMessage" xml:space="preserve">
+    <value>Not all selected luminaries support selected color</value>
+  </data>
+  <data name="Window_Update" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>ChangeLog :</value>
+  </data>
+  <data name="ActualVersion" xml:space="preserve">
+    <value>Actual Version</value>
+  </data>
+  <data name="InstallOfFileComplete" xml:space="preserve">
+    <value>of file complete</value>
+  </data>
+  <data name="InstallProcessedTotal" xml:space="preserve">
+    <value>processed total</value>
+  </data>
+  <data name="InstallCancelled" xml:space="preserve">
+    <value>Install Cancelled</value>
+  </data>
+  <data name="InstallDownloading" xml:space="preserve">
+    <value>Downloading: </value>
+  </data>
+  <data name="InstallStartDownloadingProgress" xml:space="preserve">
+    <value>File download progress</value>
+  </data>
+  <data name="InstallStartTotalProgress" xml:space="preserve">
+    <value>Total progress</value>
+  </data>
+  <data name="InstallError" xml:space="preserve">
+    <value>Update error</value>
+  </data>
+  <data name="RenderTool_Stop" xml:space="preserve">
+    <value>Do you want to stop rendering ?</value>
+  </data>
+  <data name="Dimming" xml:space="preserve">
+    <value>Dimming</value>
+  </data>
+  <data name="InstallServerError" xml:space="preserve">
+    <value>Error connecting to update server</value>
+  </data>
+  <data name="InstallActual" xml:space="preserve">
+    <value>You have the latest version</value>
+  </data>
+  <data name="InstallUpdateAvailable" xml:space="preserve">
+    <value>LightCAD update available</value>
+  </data>
+  <data name="RenderingState_Denoising" xml:space="preserve">
+    <value>Denoising</value>
+  </data>
+  <data name="Ruler" xml:space="preserve">
+    <value>Tape</value>
+  </data>
+  <data name="Menu_ExportToSfx" xml:space="preserve">
+    <value>Package project</value>
+  </data>
+  <data name="Sfx_Caption" xml:space="preserve">
+    <value>Package project</value>
+  </data>
+  <data name="Sfx_Copying" xml:space="preserve">
+    <value>Copying files</value>
+  </data>
+  <data name="Sfx_Ziping" xml:space="preserve">
+    <value>Zipping files</value>
+  </data>
+  <data name="Sfx_Cancelled" xml:space="preserve">
+    <value>Export Cancelled</value>
+  </data>
+  <data name="Sfx_Projecterror" xml:space="preserve">
+    <value>Project file not found!</value>
+  </data>
+  <data name="StartExportToSfx" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Entity_AddressDevice" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="Entity_AddressDevicePort" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Entity_AddressRoot" xml:space="preserve">
+    <value>Root</value>
+  </data>
+  <data name="Cmd_AddAddressDevice" xml:space="preserve">
+    <value>Add device</value>
+  </data>
+  <data name="Cmd_AddAddressDevicePort" xml:space="preserve">
+    <value>Add port</value>
+  </data>
+  <data name="Cmd_AddAddressGroup" xml:space="preserve">
+    <value>Add group</value>
+  </data>
+  <data name="DevicesCount" xml:space="preserve">
+    <value>Devices count</value>
+  </data>
+  <data name="Protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="ArtNet" xml:space="preserve">
+    <value>ArtNet</value>
+  </data>
+  <data name="InputInterface" xml:space="preserve">
+    <value>Input interface</value>
+  </data>
+  <data name="Udp" xml:space="preserve">
+    <value>UDP</value>
+  </data>
+  <data name="Usb" xml:space="preserve">
+    <value>USB</value>
+  </data>
+  <data name="Dmx1024" xml:space="preserve">
+    <value>1024</value>
+  </data>
+  <data name="Dmx2048" xml:space="preserve">
+    <value>2048</value>
+  </data>
+  <data name="Dmx4096" xml:space="preserve">
+    <value>4096</value>
+  </data>
+  <data name="Dmx512" xml:space="preserve">
+    <value>512</value>
+  </data>
+  <data name="GameMode" xml:space="preserve">
+    <value>Game mode</value>
+  </data>
+  <data name="Navigation" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="Cmd_ChangeLuminous" xml:space="preserve">
+    <value>Change luminous</value>
+  </data>
+  <data name="Entity_AddressUniverse" xml:space="preserve">
+    <value>Universe</value>
+  </data>
+  <data name="Block_Universes" xml:space="preserve">
+    <value>Universes</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftToRight" xml:space="preserve">
+    <value>From left to right</value>
+  </data>
+  <data name="MaxRowsCountPerUniverse" xml:space="preserve">
+    <value>Max rows count per universe</value>
+  </data>
+  <data name="StartDmxAddress" xml:space="preserve">
+    <value>Start DMX</value>
+  </data>
+  <data name="EndDmxAddress" xml:space="preserve">
+    <value>Last DMX</value>
+  </data>
+  <data name="AutoAddressingLuminaries" xml:space="preserve">
+    <value>Autoaddressing</value>
+  </data>
+  <data name="Cmd_AddUniverse" xml:space="preserve">
+    <value>Add universe</value>
+  </data>
+  <data name="Cmd_RemoveAddressLamp" xml:space="preserve">
+    <value>Remove lamp address</value>
+  </data>
+  <data name="Entity_DeviceGroup" xml:space="preserve">
+    <value>Device_group</value>
+  </data>
+  <data name="Entity_UniverseGroup" xml:space="preserve">
+    <value>Universe_group</value>
+  </data>
+  <data name="Cmd_AddDeviceGroup" xml:space="preserve">
+    <value>Add device group</value>
+  </data>
+  <data name="Cmd_AddUniverseGroup" xml:space="preserve">
+    <value>Add universe group</value>
+  </data>
+  <data name="DmxSize" xml:space="preserve">
+    <value>Dmx size</value>
+  </data>
+  <data name="UId" xml:space="preserve">
+    <value>UId</value>
+  </data>
+  <data name="Block_Devices" xml:space="preserve">
+    <value>Devices</value>
+  </data>
+  <data name="Cmd_RemoveDeviceObjects" xml:space="preserve">
+    <value>Remove device objects</value>
+  </data>
+  <data name="Cmd_RemoveUniverseObjects" xml:space="preserve">
+    <value>Remove universe objects</value>
+  </data>
+  <data name="Cmd_SetUniverseToPort" xml:space="preserve">
+    <value>Set universe to port</value>
+  </data>
+  <data name="PortsCount" xml:space="preserve">
+    <value>Ports count</value>
+  </data>
+  <data name="Window_AddUniverse" xml:space="preserve">
+    <value>Add universe</value>
+  </data>
+  <data name="RenderVideo" xml:space="preserve">
+    <value>Render video ...</value>
+  </data>
+  <data name="RenderVideoView_EndTickLabel" xml:space="preserve">
+    <value>End at</value>
+  </data>
+  <data name="RenderVideoView_ScenarioLabel" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
+  <data name="RenderVideoView_StartTickLabel" xml:space="preserve">
+    <value>Start at</value>
+  </data>
+  <data name="VideoMaker_VideoFps" xml:space="preserve">
+    <value>Fps</value>
+  </data>
+  <data name="VideoMaker_VideoHeight" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="VideoMaker_VideoWidth" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="VideoMaker_VideoFilePath" xml:space="preserve">
+    <value>File path</value>
+  </data>
+  <data name="VideoMaker_VideoResolution" xml:space="preserve">
+    <value>Resolution</value>
+  </data>
+  <data name="MakeVideo" xml:space="preserve">
+    <value>Record video</value>
+  </data>
+  <data name="FilterMenu_ShowAddressedLuminaries" xml:space="preserve">
+    <value>Show addressed lamps</value>
+  </data>
+  <data name="Cmd_ChangeMaterial" xml:space="preserve">
+    <value>Change material</value>
+  </data>
+  <data name="Ambient" xml:space="preserve">
+    <value>Ambient</value>
+  </data>
+  <data name="Diffuse" xml:space="preserve">
+    <value>Diffuse</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Material</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="SetMaterial" xml:space="preserve">
+    <value>Set material</value>
+  </data>
+  <data name="Specular" xml:space="preserve">
+    <value>Specular</value>
+  </data>
+  <data name="Glossiness" xml:space="preserve">
+    <value>Glossiness</value>
+  </data>
+  <data name="OpenFolder_Label" xml:space="preserve">
+    <value>Open folder</value>
+  </data>
+  <data name="TheFileWillBeOverwritten" xml:space="preserve">
+    <value>The file will be overwritten</value>
+  </data>
+  <data name="VideoMakerTitle" xml:space="preserve">
+    <value>Video rendering</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Normalize" xml:space="preserve">
+    <value>Normalize</value>
+  </data>
+  <data name="Pivot" xml:space="preserve">
+    <value>Pivot point</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetPivot" xml:space="preserve">
+    <value>Reset to initial</value>
+  </data>
+  <data name="SignalLevel" xml:space="preserve">
+    <value>Signal level</value>
+  </data>
+  <data name="SendCommandsToDevices" xml:space="preserve">
+    <value>Send commands to devices</value>
+  </data>
+  <data name="MixedColor" xml:space="preserve">
+    <value>Mixed color</value>
+  </data>
+  <data name="RefreshAddressMap" xml:space="preserve">
+    <value>Refresh address map</value>
+  </data>
+  <data name="ClearAll" xml:space="preserve">
+    <value>Clear all?</value>
+  </data>
+  <data name="Reversed" xml:space="preserve">
+    <value>Reversed</value>
+  </data>
+  <data name="Cmd_ChangeReverse" xml:space="preserve">
+    <value>Reverse pixels</value>
+  </data>
+  <data name="ILCSUsbExistsMessage" xml:space="preserve">
+    <value>An ILCS device with the same USB instance already exist</value>
+  </data>
+  <data name="Cmd_ChangeDmxSize" xml:space="preserve">
+    <value>Change DMX size</value>
+  </data>
+  <data name="Cmd_SetUsbInstance" xml:space="preserve">
+    <value>Set USB instance number</value>
+  </data>
+  <data name="Constrain" xml:space="preserve">
+    <value>Constrain</value>
+  </data>
+  <data name="NoCameras" xml:space="preserve">
+    <value>No cameras</value>
+  </data>
+  <data name="SelectCamera" xml:space="preserve">
+    <value>Select camera</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Select date...</value>
+  </data>
+  <data name="Scheduler" xml:space="preserve">
+    <value>Scheduler</value>
+  </data>
+  <data name="AddTaskToScheduler" xml:space="preserve">
+    <value>Add task to scheduler</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="Cmd_RemoveScheduledTasks" xml:space="preserve">
+    <value>Remove scheduled tasks</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next:</value>
+  </data>
+  <data name="NowPlaying" xml:space="preserve">
+    <value>Now playing:</value>
+  </data>
+  <data name="Cmd_ChangeScheduleDayType" xml:space="preserve">
+    <value>Change day</value>
+  </data>
+  <data name="Cmd_ChangeScheduleScenario" xml:space="preserve">
+    <value>Change scenario</value>
+  </data>
+  <data name="Cmd_ChangeScheduleDateTime" xml:space="preserve">
+    <value>Change date and time</value>
+  </data>
+  <data name="Cmd_ChangeScheduleIsLooped" xml:space="preserve">
+    <value>On/off repeat </value>
+  </data>
+  <data name="AddressCells" xml:space="preserve">
+    <value>Address cells</value>
+  </data>
+  <data name="BeginFromZero" xml:space="preserve">
+    <value>Begin from 0</value>
+  </data>
+  <data name="CastShadows" xml:space="preserve">
+    <value>Cast shadows</value>
+  </data>
+  <data name="ChangeLampMaxInfluence" xml:space="preserve">
+    <value>Change luminaries influence sphere radius</value>
+  </data>
+  <data name="InfluenceSphereRadius" xml:space="preserve">
+    <value>Influence radius</value>
+  </data>
+  <data name="OnOffCastShadows" xml:space="preserve">
+    <value>On/Off cast shadows</value>
+  </data>
+  <data name="Calculation" xml:space="preserve">
+    <value>Calculation</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="WorldSides_East" xml:space="preserve">
+    <value>East</value>
+  </data>
+  <data name="WorldSides_North" xml:space="preserve">
+    <value>North</value>
+  </data>
+  <data name="WorldSides_Northeast" xml:space="preserve">
+    <value>Northeast</value>
+  </data>
+  <data name="WorldSides_Northwest" xml:space="preserve">
+    <value>Northwest</value>
+  </data>
+  <data name="WorldSides_South" xml:space="preserve">
+    <value>South</value>
+  </data>
+  <data name="WorldSides_Southeast" xml:space="preserve">
+    <value>Southeast</value>
+  </data>
+  <data name="WorldSides_Southwest" xml:space="preserve">
+    <value>Southwest</value>
+  </data>
+  <data name="WorldSides_West" xml:space="preserve">
+    <value>West</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select file...</value>
+  </data>
+  <data name="OpenDestinationFolder" xml:space="preserve">
+    <value>Open the destination folder after completion</value>
+  </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>Add task</value>
+  </data>
+  <data name="ImportTaskList" xml:space="preserve">
+    <value>Import tasks...</value>
+  </data>
+  <data name="NewTaskList" xml:space="preserve">
+    <value>New task list...</value>
+  </data>
+  <data name="OpenTaskList" xml:space="preserve">
+    <value>Open task list...</value>
+  </data>
+  <data name="RemoveTask" xml:space="preserve">
+    <value>Remove task</value>
+  </data>
+  <data name="FileName2" xml:space="preserve">
+    <value>File name:</value>
+  </data>
+  <data name="SystemTime" xml:space="preserve">
+    <value>System time:</value>
+  </data>
+  <data name="SelectionBoundingBox" xml:space="preserve">
+    <value>Selection: Bounding box</value>
+  </data>
+  <data name="SelectionOutlining" xml:space="preserve">
+    <value>Selection: Outlining</value>
+  </data>
+  <data name="CreateVideo" xml:space="preserve">
+    <value>Create video</value>
+  </data>
+  <data name="CreateLuminary" xml:space="preserve">
+    <value>Create luminaire</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="Rotate45" xml:space="preserve">
+    <value>Rotate 45</value>
+  </data>
+  <data name="AddEntityDialog_UserEquipmentTab_RepositoryHeader" xml:space="preserve">
+    <value>User library</value>
+  </data>
+  <data name="RemoveConfirmation" xml:space="preserve">
+    <value>Remove selected item? The operation cannot be canceled.</value>
+  </data>
+  <data name="DeleteFileConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete the file? The operation cannot be canceled.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>File not found.</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="ShowThisWindow" xml:space="preserve">
+    <value>Show this window at startup</value>
+  </data>
+  <data name="Menu_ControlsGuide" xml:space="preserve">
+    <value>Controls guide</value>
+  </data>
+  <data name="ManualLink" xml:space="preserve">
+    <value>https://lightcad.com/downloads/lightcad-1.2-manual-english.pdf</value>
+  </data>
+  <data name="OnlineManual" xml:space="preserve">
+    <value>Online manual</value>
+  </data>
+  <data name="ViewChangelog" xml:space="preserve">
+    <value>View changelog v.{0}</value>
+  </data>
+  <data name="YouTubeTutorials" xml:space="preserve">
+    <value>YouTube tutorials</value>
+  </data>
+  <data name="Continuous" xml:space="preserve">
+    <value>Continuous</value>
+  </data>
+  <data name="IntegerRowsInUniverse" xml:space="preserve">
+    <value>Integer number of rows in universe</value>
+  </data>
+  <data name="LimitedRowsInUniverse" xml:space="preserve">
+    <value>Limited rows in universe</value>
+  </data>
+  <data name="DeviceId" xml:space="preserve">
+    <value>Device ID</value>
+  </data>
+  <data name="DevicePort" xml:space="preserve">
+    <value>Device port</value>
+  </data>
+  <data name="PortName" xml:space="preserve">
+    <value>Port name</value>
+  </data>
+  <data name="RemoteControl" xml:space="preserve">
+    <value>Remote control</value>
+  </data>
+  <data name="Mirroring" xml:space="preserve">
+    <value>Mirroring</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="SendCommandsToLuminaries" xml:space="preserve">
+    <value>Send commands to luminaries</value>
+  </data>
+  <data name="DemoIsOver" xml:space="preserve">
+    <value>Demo mode is over</value>
+  </data>
+  <data name="LicenseChanged" xml:space="preserve">
+    <value>License key changed. Restart the application to update new key.</value>
+  </data>
+  <data name="Off1" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On1" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="LicensedDmxCount" xml:space="preserve">
+    <value>Licensed dmx universes:</value>
+  </data>
+  <data name="3DModel" xml:space="preserve">
+    <value>3D model</value>
+  </data>
+  <data name="BypassOrder" xml:space="preserve">
+    <value>Bypass order</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Range</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="RunOnWindowsStartup" xml:space="preserve">
+    <value>Run LightCAD after Windows startup</value>
+  </data>
+  <data name="ProjectPathOnStartup" xml:space="preserve">
+    <value>Load project after LightCAD startup</value>
+  </data>
+  <data name="RunSchedulerOnStartup" xml:space="preserve">
+    <value>Run scheduler after LightCAD startup</value>
+  </data>
+  <data name="StartupTimeout" xml:space="preserve">
+    <value>Startup with timeout (sec)</value>
+  </data>
+  <data name="UniverseExistError" xml:space="preserve">
+    <value>A universe with the same UId already exists</value>
+  </data>
+  <data name="SelectColor" xml:space="preserve">
+    <value>Select color...</value>
+  </data>
+  <data name="StartTasks" xml:space="preserve">
+    <value>Start tasks</value>
+  </data>
+  <data name="StopTasks" xml:space="preserve">
+    <value>Stop tasks</value>
+  </data>
+  <data name="LicenseExceeded" xml:space="preserve">
+    <value>Number of licensed address channels exceeded</value>
+  </data>
+  <data name="DemoStarted" xml:space="preserve">
+    <value>Demo mode</value>
+  </data>
+  <data name="SaveBeforePackage" xml:space="preserve">
+    <value>Do you want to save the project before packaging it?. Only saved data can be packed.</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ExportLampsMessage" xml:space="preserve">
+    <value>Luminaires can only be exported to an empty folder</value>
+  </data>
+  <data name="LuminaireCatalog" xml:space="preserve">
+    <value>Luminaire catalog</value>
+  </data>
+  <data name="Mixing_LastReceived" xml:space="preserve">
+    <value>Last received</value>
+  </data>
+  <data name="Adaptive" xml:space="preserve">
+    <value>Adaptive</value>
+  </data>
+  <data name="Always" xml:space="preserve">
+    <value>Always</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="ShowLuminariesHousing" xml:space="preserve">
+    <value>Show luminaries housing</value>
+  </data>
+  <data name="HighlightLampFirstPixel" xml:space="preserve">
+    <value>Highlight the first pixel luminaries</value>
+  </data>
+  <data name="DmxFps" xml:space="preserve">
+    <value>Frames per second (DMX)</value>
+  </data>
+  <data name="Cmd_ChangeFadeTimeDuration" xml:space="preserve">
+    <value>Change effect fade duration</value>
+  </data>
+  <data name="Cmd_ChangeRiseTimeDuration" xml:space="preserve">
+    <value>Change effect rise duration</value>
+  </data>
+  <data name="Fade_sec" xml:space="preserve">
+    <value>Fade, s.</value>
+  </data>
+  <data name="Rise_sec" xml:space="preserve">
+    <value>Rise, s.</value>
+  </data>
+  <data name="Cmd_ChangeCycleEffectPeriod" xml:space="preserve">
+    <value>Change period</value>
+  </data>
+  <data name="Cmd_ChangeCyclicFadeTimeDuration" xml:space="preserve">
+    <value>Change cycle fade time</value>
+  </data>
+  <data name="Cmd_ChangeCyclicRiseTimeDuration" xml:space="preserve">
+    <value>Change cycle rise time</value>
+  </data>
+  <data name="CycleFadeTime" xml:space="preserve">
+    <value>Cycle fade time, s.</value>
+  </data>
+  <data name="CycleRiseTime" xml:space="preserve">
+    <value>Cycle rise time, s.</value>
+  </data>
+  <data name="FitToRaster" xml:space="preserve">
+    <value>Zoom to selection</value>
+  </data>
+  <data name="MonitorUsbPorts" xml:space="preserve">
+    <value>Monitor usb</value>
+  </data>
+  <data name="UseFrameSync" xml:space="preserve">
+    <value>Use frame sync on devices</value>
+  </data>
+  <data name="StartStopScenarioItem" xml:space="preserve">
+    <value>Start/Stop scenario item</value>
+  </data>
+  <data name="ControlSettings" xml:space="preserve">
+    <value>Hardware settings</value>
+  </data>
+  <data name="StreamingOptions" xml:space="preserve">
+    <value>Streaming options</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="Cmd_ChangeScenarioItemIsEnabled" xml:space="preserve">
+    <value>Change "Enabled" state of scenario item</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="DiscreteInputs" xml:space="preserve">
+    <value>Discrete Inputs</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="ModbusUnitID" xml:space="preserve">
+    <value>Modbus UnitID</value>
+  </data>
+  <data name="RadioGroup" xml:space="preserve">
+    <value>Radio Group</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="ModbusPollingRate" xml:space="preserve">
+    <value>Modbus polling rate</value>
+  </data>
+  <data name="IesParseException" xml:space="preserve">
+    <value>.ies file parse exception</value>
+  </data>
+  <data name="BlurFactor" xml:space="preserve">
+    <value>Blur</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period, s</value>
+  </data>
+  <data name="RevertEven" xml:space="preserve">
+    <value>Revers even period</value>
+  </data>
+  <data name="AddFromLib" xml:space="preserve">
+    <value>Add from library</value>
+  </data>
+  <data name="ContextMenu_ExpandSelected" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="Logging" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="LoggingError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="LoggingOff" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="LoggingTrace" xml:space="preserve">
+    <value>Trace</value>
+  </data>
+  <data name="StartPageRecentBrowse" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="RecentProjects" xml:space="preserve">
+    <value>Recent Projects:</value>
+  </data>
+  <data name="LightcadSiteSP" xml:space="preserve">
+    <value>LightCAD website</value>
+  </data>
+  <data name="YoutubeLinkSP" xml:space="preserve">
+    <value>Youtube channel</value>
+  </data>
+  <data name="TelegramChannelSP" xml:space="preserve">
+    <value>Telegram channel</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="Menu_Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="ImportDialog_Select" xml:space="preserve">
+    <value>Select new</value>
+  </data>
+  <data name="CameraViewType" xml:space="preserve">
+    <value>View type</value>
+  </data>
+  <data name="CameraViewType_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="CameraViewType_Bottom" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="CameraViewType_Free" xml:space="preserve">
+    <value>Perspective</value>
+  </data>
+  <data name="CameraViewType_Front" xml:space="preserve">
+    <value>Front</value>
+  </data>
+  <data name="CameraViewType_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="CameraViewType_Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="CameraViewType_Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="FillMode" xml:space="preserve">
+    <value>Fill mode</value>
+  </data>
+  <data name="Menu_OpenWithDots" xml:space="preserve">
+    <value>Open...</value>
+  </data>
+  <data name="FileDialog_project_filter" xml:space="preserve">
+    <value>LightCAD project (*.lcdz)|*.lcdz</value>
+  </data>
+  <data name="RasterChanges_Delete" xml:space="preserve">
+    <value>Delete projections</value>
+  </data>
+  <data name="RasterChanges_Flip" xml:space="preserve">
+    <value>Flipping projections</value>
+  </data>
+  <data name="RasterChanges_Move" xml:space="preserve">
+    <value>Move projections</value>
+  </data>
+  <data name="RasterChanges_Paste" xml:space="preserve">
+    <value>Paste projections</value>
+  </data>
+  <data name="RasterChanges_Rotate" xml:space="preserve">
+    <value>Rotate projections</value>
+  </data>
+  <data name="ApplicationSettings_IdleMode" xml:space="preserve">
+    <value>Turn off Rendering when idle</value>
+  </data>
+  <data name="ObjectCoordinates" xml:space="preserve">
+    <value>Object coordinates</value>
+  </data>
+  <data name="CoordNotValid" xml:space="preserve">
+    <value>The coordinates are not correct</value>
+  </data>
+  <data name="OpenLocation" xml:space="preserve">
+    <value>Open location</value>
+  </data>
+  <data name="Sunrize" xml:space="preserve">
+    <value>Sunrize</value>
+  </data>
+  <data name="Sunset" xml:space="preserve">
+    <value>Sunset</value>
+  </data>
+  <data name="min" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="RestService" xml:space="preserve">
+    <value>REST Service</value>
+  </data>
+  <data name="DuplicatedLampsInRasterFound" xml:space="preserve">
+    <value>Unable to paste projections. Lamp duplication detected.</value>
+  </data>
+  <data name="ConfirmDeleteRasterProjection" xml:space="preserve">
+    <value>Are you sure to delete selected lamps?</value>
+  </data>
+  <data name="ContextMenu_DeleteAllRecentProjects" xml:space="preserve">
+    <value>Clear recent projects list</value>
+  </data>
+  <data name="ClearAllRecentProjects" xml:space="preserve">
+    <value>Clear list of recent projects?</value>
+  </data>
+  <data name="SchedulerSelectedDates" xml:space="preserve">
+    <value>Selected dates</value>
+  </data>
+  <data name="RasterLampFilter" xml:space="preserve">
+    <value>Current raster lamps</value>
+  </data>
+  <data name="RasterLampFilterCaption" xml:space="preserve">
+    <value>Raster not selected for filtering</value>
+  </data>
+  <data name="RasterLampFilterMessage" xml:space="preserve">
+    <value>No rasters selected, please select raster!</value>
+  </data>
+  <data name="FileDialog_video_filter" xml:space="preserve">
+    <value>Video files | *.avi;*.mp4;*.mov</value>
+  </data>
+  <data name="FileDialog_image_filter" xml:space="preserve">
+    <value>Images | *.jpg;*.png;*.bmp</value>
+  </data>
+  <data name="FileDialog_image_filter_opacity" xml:space="preserve">
+    <value>Images | *.jpg;*.png;*.bmp;*.tga;*.gif;*.tif;*.tiff</value>
+  </data>
+  <data name="FileDialog_image_filter_skybox" xml:space="preserve">
+    <value>Images | *.png</value>
+  </data>
+  <data name="FileDialog_image_filter_visualisation" xml:space="preserve">
+    <value>Images | *.jpg;*.png</value>
+  </data>
+  <data name="RecalculateLight" xml:space="preserve">
+    <value>Recalculate light</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="EffectType_Modbus" xml:space="preserve">
+    <value>Modbus</value>
+  </data>
+  <data name="EffectModbusTypes_Fill" xml:space="preserve">
+    <value>ModbusFill</value>
+  </data>
+  <data name="Cmd_ChangeModbusSettings" xml:space="preserve">
+    <value>Change modbus effect settings</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="PollInterval" xml:space="preserve">
+    <value>Poll interval, ms</value>
+  </data>
+  <data name="UnitId" xml:space="preserve">
+    <value>UnitId</value>
+  </data>
+  <data name="Units" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="EffectModbusTypes_Transition" xml:space="preserve">
+    <value>ModbusTransition</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>Level1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>Level2</value>
+  </data>
+</root>

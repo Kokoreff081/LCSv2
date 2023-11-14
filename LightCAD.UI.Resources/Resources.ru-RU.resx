@@ -1,0 +1,3720 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllFiles" xml:space="preserve">
+    <value>Все файлы (*.*)</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>LightCAD</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="ClearTempFolder" xml:space="preserve">
+    <value>Очистить временную папку</value>
+  </data>
+  <data name="CloseHydraLib" xml:space="preserve">
+    <value>Закрыть библиотеку Hydra</value>
+  </data>
+  <data name="ColorStack" xml:space="preserve">
+    <value>Цвета</value>
+  </data>
+  <data name="ComposeRenderData" xml:space="preserve">
+    <value>Compose render data</value>
+  </data>
+  <data name="CreateCamera" xml:space="preserve">
+    <value>Создать камеру</value>
+  </data>
+  <data name="CreateInstances" xml:space="preserve">
+    <value>Create instances</value>
+  </data>
+  <data name="CreateLight" xml:space="preserve">
+    <value>Создать свет</value>
+  </data>
+  <data name="CreateMaterial" xml:space="preserve">
+    <value>Создание материалов</value>
+  </data>
+  <data name="CreateMeshes" xml:space="preserve">
+    <value>Создание мешей</value>
+  </data>
+  <data name="CreateRender" xml:space="preserve">
+    <value>Создание визуализации</value>
+  </data>
+  <data name="CreateSkyLight" xml:space="preserve">
+    <value>Создание неба</value>
+  </data>
+  <data name="CreateSunLight" xml:space="preserve">
+    <value>Создать солнечный свет</value>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>Деактивировать</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="UnableLoadFile" xml:space="preserve">
+    <value>Conldn't load file</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="FillColor" xml:space="preserve">
+    <value>Цвет заливки</value>
+  </data>
+  <data name="FillStyle" xml:space="preserve">
+    <value>Стиль заливки</value>
+  </data>
+  <data name="FloatingAngle" xml:space="preserve">
+    <value>Плавающий угол</value>
+  </data>
+  <data name="Flushing" xml:space="preserve">
+    <value>Flushing</value>
+  </data>
+  <data name="ForceSaveDialog" xml:space="preserve">
+    <value>Проект будет сохранен перед запуском рендерера</value>
+  </data>
+  <data name="FromFrame" xml:space="preserve">
+    <value>Обрезать с, сек</value>
+  </data>
+  <data name="FullPower" xml:space="preserve">
+    <value>Полная мощность</value>
+  </data>
+  <data name="GB" xml:space="preserve">
+    <value>ГБ</value>
+  </data>
+  <data name="GraphicsViewerFps" xml:space="preserve">
+    <value>Вид сцены Fps: {0}</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Высота</value>
+  </data>
+  <data name="InitHydraLib" xml:space="preserve">
+    <value>Initializing Hydra library</value>
+  </data>
+  <data name="InterpretUnitsAs" xml:space="preserve">
+    <value>Интерпретировать как</value>
+  </data>
+  <data name="KB" xml:space="preserve">
+    <value>КБ</value>
+  </data>
+  <data name="LampCatalogue" xml:space="preserve">
+    <value>ИС по каталогу</value>
+  </data>
+  <data name="LampsNumber" xml:space="preserve">
+    <value>Кол-во ИС</value>
+  </data>
+  <data name="LoadSceneData" xml:space="preserve">
+    <value>Загрузить данные сцены</value>
+  </data>
+  <data name="LuminaireCatalogue" xml:space="preserve">
+    <value>ОП по каталогу</value>
+  </data>
+  <data name="Manufacturer" xml:space="preserve">
+    <value>Производитель</value>
+  </data>
+  <data name="MaximalIntensity" xml:space="preserve">
+    <value>Макс сила света, кд</value>
+  </data>
+  <data name="MB" xml:space="preserve">
+    <value>МБ</value>
+  </data>
+  <data name="Menu_Open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="OpenHydraLib" xml:space="preserve">
+    <value>Открытие библиотеки Hydra</value>
+  </data>
+  <data name="OpenPictureFile" xml:space="preserve">
+    <value>Открыть файл изображения</value>
+  </data>
+  <data name="PositionLocal" xml:space="preserve">
+    <value>Локальная позиция</value>
+  </data>
+  <data name="PrepareHydraLib" xml:space="preserve">
+    <value>Prepare Hydra library</value>
+  </data>
+  <data name="PrepareRenderThread" xml:space="preserve">
+    <value>Prepare render thread</value>
+  </data>
+  <data name="ProjectAlreadyExists" xml:space="preserve">
+    <value>Проект с именем "{0}" уже существует. Перезаписать?</value>
+  </data>
+  <data name="RandomAngle" xml:space="preserve">
+    <value>Произвольный угол</value>
+  </data>
+  <data name="RandomColor" xml:space="preserve">
+    <value>Произвольный цвет</value>
+  </data>
+  <data name="RoomRaster" xml:space="preserve">
+    <value>РАСТР</value>
+  </data>
+  <data name="RenderFinished" xml:space="preserve">
+    <value>Rendering finished</value>
+  </data>
+  <data name="Rendering" xml:space="preserve">
+    <value>Визуализация</value>
+  </data>
+  <data name="RenderStarting" xml:space="preserve">
+    <value>Render starting</value>
+  </data>
+  <data name="RenderStopped" xml:space="preserve">
+    <value>Render stopped</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Вы хотите сохранить изменения в {0}?</value>
+  </data>
+  <data name="SaveRaster" xml:space="preserve">
+    <value>Вы хотите сохранить растр?</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="Block_Tree" xml:space="preserve">
+    <value>Сцена</value>
+  </data>
+  <data name="SetRenderDevice" xml:space="preserve">
+    <value>Set render device</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="Size_m" xml:space="preserve">
+    <value>Размер, м</value>
+  </data>
+  <data name="StartRenderPresentation" xml:space="preserve">
+    <value>Start render presentation</value>
+  </data>
+  <data name="StartRenderStaticImg" xml:space="preserve">
+    <value>Start render static image</value>
+  </data>
+  <data name="Stretch" xml:space="preserve">
+    <value>Растянуть</value>
+  </data>
+  <data name="TestingLab" xml:space="preserve">
+    <value>Тестовая лаборатория</value>
+  </data>
+  <data name="ToFrame" xml:space="preserve">
+    <value>Обрезать по, сек</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>О программе...</value>
+  </data>
+  <data name="ApplicationEditionName" xml:space="preserve">
+    <value>Архитектурное освещение</value>
+  </data>
+  <data name="Window_AboutLightCad" xml:space="preserve">
+    <value>О LightCAD</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AmbientDirectionalLight" xml:space="preserve">
+    <value>Включить/выключить окружающий свет</value>
+  </data>
+  <data name="Entity_Camera" xml:space="preserve">
+    <value>Камера</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Entity_Cluster" xml:space="preserve">
+    <value>Кластер</value>
+  </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>Свернуть все</value>
+  </data>
+  <data name="CoordinateReferenceSystem" xml:space="preserve">
+    <value>Опорная система координат</value>
+  </data>
+  <data name="RestoreCurrentRoom" xml:space="preserve">
+    <value>Восстановить текущую комнату</value>
+  </data>
+  <data name="DefaultDiffuseModelColor" xml:space="preserve">
+    <value>Диффузный цвет модели по-умолчанию</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>Размер кластера</value>
+  </data>
+  <data name="EnvironmentLight" xml:space="preserve">
+    <value>Окружающее освещение</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="FileName1" xml:space="preserve">
+    <value>Имя файла...</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Финиш</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="HotKey" xml:space="preserve">
+    <value>Горячие клавиши</value>
+  </data>
+  <data name="Menu_HotKeys" xml:space="preserve">
+    <value>Горячие клавиши...</value>
+  </data>
+  <data name="RoomIndustrial" xml:space="preserve">
+    <value>ПРОМЫШЛЕННЫЙ</value>
+  </data>
+  <data name="LastModified" xml:space="preserve">
+    <value>Последнее изменение</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Включить/выключить светильники</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="LoadDefSettings" xml:space="preserve">
+    <value>Сброс настроек</value>
+  </data>
+  <data name="ReferenceSystem_Local" xml:space="preserve">
+    <value>Локальная</value>
+  </data>
+  <data name="Window_AddLuminaire" xml:space="preserve">
+    <value>Добавление светильника</value>
+  </data>
+  <data name="Magnification" xml:space="preserve">
+    <value>Приближение</value>
+  </data>
+  <data name="MakeScreenshot" xml:space="preserve">
+    <value>Сделать скриншот</value>
+  </data>
+  <data name="MaxRecursiveLevel" xml:space="preserve">
+    <value>Max recursive level:</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Модель</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Переместить</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Создать новый</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Window_OpenProject" xml:space="preserve">
+    <value>Открыть проект</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Опции</value>
+  </data>
+  <data name="Primary3DGridVisible" xml:space="preserve">
+    <value>Скрыть сетку</value>
+  </data>
+  <data name="RasterProp_Projection" xml:space="preserve">
+    <value>Проекция</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Свойства</value>
+  </data>
+  <data name="Recent" xml:space="preserve">
+    <value>Недавние</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="RefreshPeriodInMs" xml:space="preserve">
+    <value>Период обновления, в миллисекундах:</value>
+  </data>
+  <data name="RasterProp_Regular" xml:space="preserve">
+    <value>Регулярная структура</value>
+  </data>
+  <data name="RenderTool" xml:space="preserve">
+    <value>Приложение рендеринга</value>
+  </data>
+  <data name="RestartAppSettingsMsg" xml:space="preserve">
+    <value>Изменения вступят в силу при следующем старте приложения.</value>
+  </data>
+  <data name="RestoreLayout" xml:space="preserve">
+    <value>Восстановить расположение панелей</value>
+  </data>
+  <data name="RoomSelector" xml:space="preserve">
+    <value>Выбор комнаты</value>
+  </data>
+  <data name="Rotate" xml:space="preserve">
+    <value>Повернуть</value>
+  </data>
+  <data name="RouteManager" xml:space="preserve">
+    <value>Route manager</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Сохранить как...</value>
+  </data>
+  <data name="RoomScenario" xml:space="preserve">
+    <value>СЦЕНАРИЙ</value>
+  </data>
+  <data name="Block_Timeline" xml:space="preserve">
+    <value>Таймлайн</value>
+  </data>
+  <data name="Entity_ScenarioTask" xml:space="preserve">
+    <value>Задача</value>
+  </data>
+  <data name="SelectionFunction" xml:space="preserve">
+    <value>Функции для выбора</value>
+  </data>
+  <data name="Entity_Sensor" xml:space="preserve">
+    <value>Датчик</value>
+  </data>
+  <data name="Window_AddSensor" xml:space="preserve">
+    <value>Добавление датчика</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Настройки...</value>
+  </data>
+  <data name="ShowAllPanels" xml:space="preserve">
+    <value>Показать все панели</value>
+  </data>
+  <data name="ShowOrthogonal" xml:space="preserve">
+    <value>Показывать ортогональ</value>
+  </data>
+  <data name="FillMode_Solid" xml:space="preserve">
+    <value>Сплошной</value>
+  </data>
+  <data name="FillMode_SolidAndWireframe" xml:space="preserve">
+    <value>Смешанный</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Старт</value>
+  </data>
+  <data name="Block_StartPage" xml:space="preserve">
+    <value>Начальная страница</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Шаг кластера</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="UndoRedo" xml:space="preserve">
+    <value>Отменить/Повторить</value>
+  </data>
+  <data name="Entity_Unit" xml:space="preserve">
+    <value>Блок</value>
+  </data>
+  <data name="FillMode_Wireframe" xml:space="preserve">
+    <value>Каркасный</value>
+  </data>
+  <data name="PositionWorld" xml:space="preserve">
+    <value>Мировая позиция</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Общие</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Cmd_AddObject" xml:space="preserve">
+    <value>Добавление объекта "{0}"</value>
+  </data>
+  <data name="Cmd_AviEffectChanged" xml:space="preserve">
+    <value>Изменение видео эффекта "{0}"</value>
+  </data>
+  <data name="Cmd_RemoveObject" xml:space="preserve">
+    <value>Удаление объектов</value>
+  </data>
+  <data name="Cmd_ChangeCamera" xml:space="preserve">
+    <value>Изменение камеры "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeClusterStep" xml:space="preserve">
+    <value>Изменение шага кластера</value>
+  </data>
+  <data name="ChangeEffectDuration" xml:space="preserve">
+    <value>Измениние длительности эффекта</value>
+  </data>
+  <data name="Cmd_ChangeFillEffect" xml:space="preserve">
+    <value>Изменение заполняющего эффекта "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeFlashEffect" xml:space="preserve">
+    <value>Изменение эффекта "Вспышка" "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeGradientEffect" xml:space="preserve">
+    <value>Изменение градиентного эффекта "{0}"</value>
+  </data>
+  <data name="ChangeParent" xml:space="preserve">
+    <value>Изменение родительского объекта у "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeRaster" xml:space="preserve">
+    <value>Изменение растра "{0}, {1}"</value>
+  </data>
+  <data name="Cmd_ChangeTextureEffect" xml:space="preserve">
+    <value>Изменение текстурного эффекта "{0}"</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="Cmd_TransformObjects" xml:space="preserve">
+    <value>Трансформация объектов</value>
+  </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>Ориентацию</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Позиция</value>
+  </data>
+  <data name="Definition" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Photometry" xml:space="preserve">
+    <value>Фотометрия</value>
+  </data>
+  <data name="Angle" xml:space="preserve">
+    <value>Угол</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Яркость</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Задержка</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>Направление</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Продолжительность</value>
+  </data>
+  <data name="Duration_s" xml:space="preserve">
+    <value>Продолжительность, сек.</value>
+  </data>
+  <data name="Extrusion" xml:space="preserve">
+    <value>Экструзия</value>
+  </data>
+  <data name="LuminaireDefinitionDate" xml:space="preserve">
+    <value>Дата теста</value>
+  </data>
+  <data name="LuminaireDefinitionLamp" xml:space="preserve">
+    <value>Описание ИС</value>
+  </data>
+  <data name="LuminaireDefinitionLuminaire" xml:space="preserve">
+    <value>Описание ОП</value>
+  </data>
+  <data name="LuminaireDefinitionOther" xml:space="preserve">
+    <value>Прочее</value>
+  </data>
+  <data name="LuminaireDefinitionStandard" xml:space="preserve">
+    <value>IES стандарт</value>
+  </data>
+  <data name="LuminaireDefinitionTest" xml:space="preserve">
+    <value>Номер теста</value>
+  </data>
+  <data name="LuminaireLightFlux" xml:space="preserve">
+    <value>Световой поток, лм</value>
+  </data>
+  <data name="Fade_percent" xml:space="preserve">
+    <value>Затухание, %</value>
+  </data>
+  <data name="OrientationLocal" xml:space="preserve">
+    <value>Локальная ориентация</value>
+  </data>
+  <data name="Repeat" xml:space="preserve">
+    <value>Повтор</value>
+  </data>
+  <data name="Rise_percent" xml:space="preserve">
+    <value>Разгорание, %</value>
+  </data>
+  <data name="Rotation" xml:space="preserve">
+    <value>Поворот</value>
+  </data>
+  <data name="SignalType" xml:space="preserve">
+    <value>Тип сигнала</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Скорость</value>
+  </data>
+  <data name="Illuminable" xml:space="preserve">
+    <value>Освещаемый</value>
+  </data>
+  <data name="ProjectNotLoad" xml:space="preserve">
+    <value>Ошибка загрузки проекта</value>
+  </data>
+  <data name="UndoActions" xml:space="preserve">
+    <value>Отменить действий: </value>
+  </data>
+  <data name="RedoActions" xml:space="preserve">
+    <value>Повторить действий: </value>
+  </data>
+  <data name="ProjectNotSave" xml:space="preserve">
+    <value>Не удалось сохранить проект</value>
+  </data>
+  <data name="AutoSavePeriod" xml:space="preserve">
+    <value>Период автосохранения, мин.</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="NewUnsavedProjectMessage" xml:space="preserve">
+    <value>Открыть несохраненный файл?</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Предпросмотр</value>
+  </data>
+  <data name="NoFindAnyCopyItems" xml:space="preserve">
+    <value>Некоторые из скопированных элементов были удалены. Продолжить копирование?</value>
+  </data>
+  <data name="NoFindCopyItems" xml:space="preserve">
+    <value>Скопированные элементы были удалены</value>
+  </data>
+  <data name="Cmd_SelectionChanged" xml:space="preserve">
+    <value>Изменение выбора объектов</value>
+  </data>
+  <data name="Cmd_SelectionLevelChange" xml:space="preserve">
+    <value>Изменение уровня выбора кластер\инстанс</value>
+  </data>
+  <data name="ExplorerTabHeader" xml:space="preserve">
+    <value>Обзор</value>
+  </data>
+  <data name="RepositoryTabHeader" xml:space="preserve">
+    <value>Библиотека</value>
+  </data>
+  <data name="SettingsTabHeader" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="RoomScene" xml:space="preserve">
+    <value>СЦЕНА</value>
+  </data>
+  <data name="ChangeStoredSelection" xml:space="preserve">
+    <value>Изменение сохраненного выбора</value>
+  </data>
+  <data name="Floating" xml:space="preserve">
+    <value>Плавающая</value>
+  </data>
+  <data name="Stability" xml:space="preserve">
+    <value>Стабильность</value>
+  </data>
+  <data name="ColorMix" xml:space="preserve">
+    <value>Перелив</value>
+  </data>
+  <data name="Filling" xml:space="preserve">
+    <value>Заполнение, %</value>
+  </data>
+  <data name="Lifetime" xml:space="preserve">
+    <value>Время жизни</value>
+  </data>
+  <data name="Modulation" xml:space="preserve">
+    <value>Модуляция</value>
+  </data>
+  <data name="Cmd_ChangedFlameEffect" xml:space="preserve">
+    <value>Изменение эффекта "Пламя" "{0}"</value>
+  </data>
+  <data name="Cmd_ChangedStarsEffect" xml:space="preserve">
+    <value>Изменение звездного эффекта "{0}"</value>
+  </data>
+  <data name="ApplicationSettingsTab_Header" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="Cmd_AddLayer" xml:space="preserve">
+    <value>Добавление слоя "{0}"</value>
+  </data>
+  <data name="Cmd_RemoveLayer" xml:space="preserve">
+    <value>Удаление слоя "{0}"</value>
+  </data>
+  <data name="Cmd_AddObjectsToLayer" xml:space="preserve">
+    <value>Добавление объектов в слой</value>
+  </data>
+  <data name="Cmd_RemoveObjectsFromLayer" xml:space="preserve">
+    <value>Удаление объектов из слоя</value>
+  </data>
+  <data name="Block_Layers" xml:space="preserve">
+    <value>Слои</value>
+  </data>
+  <data name="ClusterOf" xml:space="preserve">
+    <value>{0}, {1} шт. {2}</value>
+  </data>
+  <data name="FlipHorizontal" xml:space="preserve">
+    <value>Отразить по горизонтали</value>
+  </data>
+  <data name="FlipVertical" xml:space="preserve">
+    <value>Отразить по вертикали</value>
+  </data>
+  <data name="Rotate180" xml:space="preserve">
+    <value>Повернуть на 180°</value>
+  </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Повернуть влево на 90°</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Повернуть вправо на 90°</value>
+  </data>
+  <data name="Cmd_ChangeHorizontalFlipRaster" xml:space="preserve">
+    <value>Изменение горизонтальное отражения растра</value>
+  </data>
+  <data name="Cmd_RotateRaster" xml:space="preserve">
+    <value>Изменение угла растра</value>
+  </data>
+  <data name="Cmd_ChangeVerticalFlipRaster" xml:space="preserve">
+    <value>Изменение вертикального отражения растра</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Пожалуйста подождите</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Сохранение...</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="CopyName" xml:space="preserve">
+    <value>Копия</value>
+  </data>
+  <data name="MeshesCount" xml:space="preserve">
+    <value>Сеток</value>
+  </data>
+  <data name="Hue" xml:space="preserve">
+    <value>Оттенок</value>
+  </data>
+  <data name="Saturation" xml:space="preserve">
+    <value>Насыщенность</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Синий</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Зеленый</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Красный</value>
+  </data>
+  <data name="FacesCount" xml:space="preserve">
+    <value>Граней</value>
+  </data>
+  <data name="TexturesCount" xml:space="preserve">
+    <value>Текстур</value>
+  </data>
+  <data name="NotInitialized3D" xml:space="preserve">
+    <value>3D объект не может быть создан</value>
+  </data>
+  <data name="ConverterSettings" xml:space="preserve">
+    <value>Настройки конвертера</value>
+  </data>
+  <data name="PostConverterPresetTypes_ConvertToLeftHanded" xml:space="preserve">
+    <value>По часовой стрелке</value>
+  </data>
+  <data name="DefaultModelAmbientColor" xml:space="preserve">
+    <value>Рассеянный цвет модели по-умолчанию</value>
+  </data>
+  <data name="DefaultModelShininess" xml:space="preserve">
+    <value>Default model Shininess</value>
+  </data>
+  <data name="DefaultModelSpecularColor" xml:space="preserve">
+    <value>Отражающий цвет по-умолчанию</value>
+  </data>
+  <data name="DefaultNormal" xml:space="preserve">
+    <value>Нормаль по-умолчанию</value>
+  </data>
+  <data name="DefaultTextureCoordinate" xml:space="preserve">
+    <value>Координаты текстуры по-умолчанию</value>
+  </data>
+  <data name="DefaultVertexColor" xml:space="preserve">
+    <value>Цвет вершин по-умолчанию</value>
+  </data>
+  <data name="NormalSmoothingAngel" xml:space="preserve">
+    <value>Угол сглаживания</value>
+  </data>
+  <data name="PostConverterPreset" xml:space="preserve">
+    <value>Способ конвертирования</value>
+  </data>
+  <data name="PostConverterPresetTypes_TargetRealTimeFast" xml:space="preserve">
+    <value>По быстроте</value>
+  </data>
+  <data name="PostConverterPresetTypes_TargetRealTimeMaximumQuality" xml:space="preserve">
+    <value>По максимальному значеню качества</value>
+  </data>
+  <data name="PostConverterPresetTypes_TargetRealTimeQuality" xml:space="preserve">
+    <value>По качеству</value>
+  </data>
+  <data name="ViewPortType" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="Cmd_AddScenarioTask" xml:space="preserve">
+    <value>Добавление задачи "{0}"</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="OpenAddSubject" xml:space="preserve">
+    <value>Добавить объект...</value>
+  </data>
+  <data name="OpenHelpWindow" xml:space="preserve">
+    <value>Справка...</value>
+  </data>
+  <data name="OpenSettingsWindow" xml:space="preserve">
+    <value>Настройки...</value>
+  </data>
+  <data name="SetCameraDefaultPos" xml:space="preserve">
+    <value>Установить камеру в позицию по-умолчанию</value>
+  </data>
+  <data name="AutoSave" xml:space="preserve">
+    <value>Автосохранение...</value>
+  </data>
+  <data name="Cmd_ChangeClusterDimension" xml:space="preserve">
+    <value>Изменение размера кластера</value>
+  </data>
+  <data name="Backward" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Вперед</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Приостановить</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>Воспроизведение</value>
+  </data>
+  <data name="ScaleDown" xml:space="preserve">
+    <value>Отдалить</value>
+  </data>
+  <data name="ScaleUp" xml:space="preserve">
+    <value>Приблизить</value>
+  </data>
+  <data name="SkipBackward" xml:space="preserve">
+    <value>В начало</value>
+  </data>
+  <data name="SkipForward" xml:space="preserve">
+    <value>В конец</value>
+  </data>
+  <data name="Amber" xml:space="preserve">
+    <value>Янтарь</value>
+  </data>
+  <data name="CCT" xml:space="preserve">
+    <value>Цветовая температура</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>Белый</value>
+  </data>
+  <data name="Cmd_ChangeIntersectionPoint" xml:space="preserve">
+    <value>Изменение старта перехода "{0}"</value>
+  </data>
+  <data name="Cmd_EnableDisableScenarios" xml:space="preserve">
+    <value>Изменение списка доступных сценариев</value>
+  </data>
+  <data name="GlassType" xml:space="preserve">
+    <value>Тип рассеивателя</value>
+  </data>
+  <data name="LightForm" xml:space="preserve">
+    <value>Форма излучающей поверхности</value>
+  </data>
+  <data name="LightType" xml:space="preserve">
+    <value>Тип светильника</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Прозрачный</value>
+  </data>
+  <data name="DirectView" xml:space="preserve">
+    <value>Поверхность</value>
+  </data>
+  <data name="Frosted" xml:space="preserve">
+    <value>Колотый лёд</value>
+  </data>
+  <data name="Linear" xml:space="preserve">
+    <value>Линенйный</value>
+  </data>
+  <data name="Matrix" xml:space="preserve">
+    <value>Матричный, прямоугольный</value>
+  </data>
+  <data name="Matte" xml:space="preserve">
+    <value>Матовый</value>
+  </data>
+  <data name="Point" xml:space="preserve">
+    <value>Точка</value>
+  </data>
+  <data name="SizeLWH" xml:space="preserve">
+    <value>Размер(ДШВ), мм</value>
+  </data>
+  <data name="SoftLight" xml:space="preserve">
+    <value>Смешанного типа</value>
+  </data>
+  <data name="Spotlight" xml:space="preserve">
+    <value>Прожектор</value>
+  </data>
+  <data name="Ellipsoid" xml:space="preserve">
+    <value>Эллипсоид</value>
+  </data>
+  <data name="EllipticDisk" xml:space="preserve">
+    <value>Эллиптический диск</value>
+  </data>
+  <data name="HorizontalCylinder" xml:space="preserve">
+    <value>Горизонтальный цилиндр</value>
+  </data>
+  <data name="OtherShape" xml:space="preserve">
+    <value>Другая форма</value>
+  </data>
+  <data name="RectangularBox" xml:space="preserve">
+    <value>Прямоугольная коробка</value>
+  </data>
+  <data name="Sphere" xml:space="preserve">
+    <value>Сфера</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Неизвестный</value>
+  </data>
+  <data name="VerticalCylinder" xml:space="preserve">
+    <value>Вертикальный цилиндр</value>
+  </data>
+  <data name="Cmd_ChangeFlagUseParentRaster" xml:space="preserve">
+    <value>Изменение флага "Использовать родительский растр"</value>
+  </data>
+  <data name="UseParentRaster" xml:space="preserve">
+    <value>Использовать родительский растр</value>
+  </data>
+  <data name="EmptyRaster" xml:space="preserve">
+    <value>Выбрать растр...</value>
+  </data>
+  <data name="Cmd_RemoveScenarioTask" xml:space="preserve">
+    <value>Удаление задачи "{0}"</value>
+  </data>
+  <data name="AviFileDuration" xml:space="preserve">
+    <value>Длительность, с</value>
+  </data>
+  <data name="Flux" xml:space="preserve">
+    <value>Поток</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Мощность</value>
+  </data>
+  <data name="Serie" xml:space="preserve">
+    <value>Серия</value>
+  </data>
+  <data name="Voltage" xml:space="preserve">
+    <value>Напряжение</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Вес</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Вырезать</value>
+  </data>
+  <data name="EffectType" xml:space="preserve">
+    <value>Тип эффекта</value>
+  </data>
+  <data name="Block_PivotPointEditor" xml:space="preserve">
+    <value>Опорные точки</value>
+  </data>
+  <data name="Menu_ScenarioList" xml:space="preserve">
+    <value>Список сценариев...</value>
+  </data>
+  <data name="Cmd_RemoveScenario" xml:space="preserve">
+    <value>Удаление сценария "{0}"</value>
+  </data>
+  <data name="Cmd_AddScenario" xml:space="preserve">
+    <value>Добавление сценария "{0}"</value>
+  </data>
+  <data name="IncorrectScenarioName" xml:space="preserve">
+    <value>Недопустимое имя сценария</value>
+  </data>
+  <data name="NewScenario" xml:space="preserve">
+    <value>Новый сценарий</value>
+  </data>
+  <data name="ScenarioAlreadyExists" xml:space="preserve">
+    <value>Сценарий с тем же именем уже существует</value>
+  </data>
+  <data name="BigSemiaxis" xml:space="preserve">
+    <value>Радиус 1</value>
+  </data>
+  <data name="SmallSemiaxis" xml:space="preserve">
+    <value>Радиус 2</value>
+  </data>
+  <data name="StartAngle" xml:space="preserve">
+    <value>Start angle</value>
+  </data>
+  <data name="SweepAngle" xml:space="preserve">
+    <value>Угол дуги</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Кол-во</value>
+  </data>
+  <data name="Cmd_ChangeAngle" xml:space="preserve">
+    <value>Изменение угла радиального кластера</value>
+  </data>
+  <data name="RadialClusterOf" xml:space="preserve">
+    <value>{0}, {1} эл-ов</value>
+  </data>
+  <data name="Cmd_ChangeRadialClusterSize" xml:space="preserve">
+    <value>Изменение размера радиального кластера</value>
+  </data>
+  <data name="CreateRadialCluster" xml:space="preserve">
+    <value>Создать радиальный кластер</value>
+  </data>
+  <data name="ManualSet" xml:space="preserve">
+    <value>Ручная установка</value>
+  </data>
+  <data name="UnsavedProjectMessage" xml:space="preserve">
+    <value>У проекта есть данные автосохранения! Хотите ли вы восстановить их?</value>
+  </data>
+  <data name="Settings_ObjectRotateStep" xml:space="preserve">
+    <value>Шаг поворота объекта, °</value>
+  </data>
+  <data name="Cmd_ChangeSequence" xml:space="preserve">
+    <value>Изменение последовательности "{0}"</value>
+  </data>
+  <data name="RoomEngineering" xml:space="preserve">
+    <value>УПРАВЛЕНИЕ</value>
+  </data>
+  <data name="SaveProjectErrorDialog_LongFileName" xml:space="preserve">
+    <value>Имя файла превышает допустимую длинну</value>
+  </data>
+  <data name="SaveProjectErrorDialog_WrongSymbols" xml:space="preserve">
+    <value>Имя файла содержит недопустимые символы</value>
+  </data>
+  <data name="LightAimingPoint" xml:space="preserve">
+    <value>Точка нацеливания светильников</value>
+  </data>
+  <data name="AutoSize" xml:space="preserve">
+    <value>Авто размер</value>
+  </data>
+  <data name="Cmd_ChangeUnitAutoSize" xml:space="preserve">
+    <value>Изменен флаг "Авторазмер" у "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeUnitDuration" xml:space="preserve">
+    <value>Изменение длительности блока</value>
+  </data>
+  <data name="Desktop" xml:space="preserve">
+    <value>Рабочий стол</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>Музыка</value>
+  </data>
+  <data name="Pictures" xml:space="preserve">
+    <value>Картинки</value>
+  </data>
+  <data name="Videos" xml:space="preserve">
+    <value>Видео</value>
+  </data>
+  <data name="AddCamera" xml:space="preserve">
+    <value>Добавить камеру</value>
+  </data>
+  <data name="Block_GraphicsViewer" xml:space="preserve">
+    <value>Вид сцены</value>
+  </data>
+  <data name="Window_AddObject" xml:space="preserve">
+    <value>Добавление объекта</value>
+  </data>
+  <data name="Enum_ObjectCategory_Buildings" xml:space="preserve">
+    <value>Здания</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="Inches" xml:space="preserve">
+    <value>Дюймы</value>
+  </data>
+  <data name="Enum_ObjectCategory_Interior" xml:space="preserve">
+    <value>Интерьеры</value>
+  </data>
+  <data name="Kilometers" xml:space="preserve">
+    <value>Километры</value>
+  </data>
+  <data name="Meters" xml:space="preserve">
+    <value>Метры</value>
+  </data>
+  <data name="Millimeters" xml:space="preserve">
+    <value>Миллиметры</value>
+  </data>
+  <data name="Enum_ObjectCategory_Other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="Enum_ObjectCategory_Technics" xml:space="preserve">
+    <value>Техника</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>Все права защищены</value>
+  </data>
+  <data name="Block_Engineering" xml:space="preserve">
+    <value>Адресация</value>
+  </data>
+  <data name="Block_Properties" xml:space="preserve">
+    <value>Свойства</value>
+  </data>
+  <data name="Block_RasterEditor" xml:space="preserve">
+    <value>Растр</value>
+  </data>
+  <data name="Block_Rules" xml:space="preserve">
+    <value>Правила</value>
+  </data>
+  <data name="EffectFillingTypes_Fill" xml:space="preserve">
+    <value>Заполнение</value>
+  </data>
+  <data name="EffectFillingTypes_Flash" xml:space="preserve">
+    <value>Вспышка</value>
+  </data>
+  <data name="EffectFillingTypes_Gradient" xml:space="preserve">
+    <value>Градиент</value>
+  </data>
+  <data name="EffectMediaTypes_Avi" xml:space="preserve">
+    <value>Видео</value>
+  </data>
+  <data name="EffectMediaTypes_Texture" xml:space="preserve">
+    <value>Текстура</value>
+  </data>
+  <data name="EffectNatureTypes_Flame" xml:space="preserve">
+    <value>Пламя</value>
+  </data>
+  <data name="EffectParticleTypes_Stars" xml:space="preserve">
+    <value>Звёзды</value>
+  </data>
+  <data name="EffectType_Filling" xml:space="preserve">
+    <value>Заполняющие</value>
+  </data>
+  <data name="EffectType_Media" xml:space="preserve">
+    <value>Медиа</value>
+  </data>
+  <data name="EffectType_Nature" xml:space="preserve">
+    <value>Природные</value>
+  </data>
+  <data name="EffectType_Particle" xml:space="preserve">
+    <value>Частицы</value>
+  </data>
+  <data name="Intensity" xml:space="preserve">
+    <value>Сила света</value>
+  </data>
+  <data name="OrientationParent" xml:space="preserve">
+    <value>Родительская ориентация</value>
+  </data>
+  <data name="OrientationWorld" xml:space="preserve">
+    <value>Мировая ориентация</value>
+  </data>
+  <data name="PositionParent" xml:space="preserve">
+    <value>Родительская позиция</value>
+  </data>
+  <data name="Entity_Raster" xml:space="preserve">
+    <value>Растр</value>
+  </data>
+  <data name="ReferenceSystem_Parent" xml:space="preserve">
+    <value>Родительская</value>
+  </data>
+  <data name="ReferenceSystem_World" xml:space="preserve">
+    <value>Мировая</value>
+  </data>
+  <data name="Entity_Scenario" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="FillStyles_Circle" xml:space="preserve">
+    <value>Кругом</value>
+  </data>
+  <data name="FillStyles_Fan" xml:space="preserve">
+    <value>Веером</value>
+  </data>
+  <data name="FillStyles_OneSide" xml:space="preserve">
+    <value>С одной стороны</value>
+  </data>
+  <data name="FillStyles_Rect" xml:space="preserve">
+    <value>Квадратом</value>
+  </data>
+  <data name="FillStyles_Rhombus" xml:space="preserve">
+    <value>Ромбом</value>
+  </data>
+  <data name="FillStyles_TwoSides" xml:space="preserve">
+    <value>С двух сторон</value>
+  </data>
+  <data name="InOutDirection_Inside" xml:space="preserve">
+    <value>В центр</value>
+  </data>
+  <data name="InOutDirection_OutSide" xml:space="preserve">
+    <value>Из центра</value>
+  </data>
+  <data name="InOutDirection_Random" xml:space="preserve">
+    <value>Случайно</value>
+  </data>
+  <data name="Mixing" xml:space="preserve">
+    <value>Смешивание</value>
+  </data>
+  <data name="Mixing_Darken" xml:space="preserve">
+    <value>Затемнение</value>
+  </data>
+  <data name="Mixing_Dissolve" xml:space="preserve">
+    <value>Растворение</value>
+  </data>
+  <data name="Mixing_Lighten" xml:space="preserve">
+    <value>Осветление</value>
+  </data>
+  <data name="Mixing_Multiply" xml:space="preserve">
+    <value>Многообразие</value>
+  </data>
+  <data name="Mixing_Normal" xml:space="preserve">
+    <value>Обычное</value>
+  </data>
+  <data name="Rotation_Clockwise" xml:space="preserve">
+    <value>По часовой стрелке</value>
+  </data>
+  <data name="Rotation_CounterClockwise" xml:space="preserve">
+    <value>Против часовой стрелки</value>
+  </data>
+  <data name="Rotation_Random" xml:space="preserve">
+    <value>Случайно</value>
+  </data>
+  <data name="TransitionType_Fading" xml:space="preserve">
+    <value>Затухание</value>
+  </data>
+  <data name="TransitionType_Mixing" xml:space="preserve">
+    <value>Смешивание</value>
+  </data>
+  <data name="Entity_Track" xml:space="preserve">
+    <value>Трек</value>
+  </data>
+  <data name="Entity_Transition" xml:space="preserve">
+    <value>Пересечение</value>
+  </data>
+  <data name="Entity_Layer" xml:space="preserve">
+    <value>Слой</value>
+  </data>
+  <data name="Entity_Path" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="Entity_StoredSelection" xml:space="preserve">
+    <value>Выбор</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>Новый проект</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>с</value>
+  </data>
+  <data name="Entity_Lamp" xml:space="preserve">
+    <value>Светильник</value>
+  </data>
+  <data name="Entity_Person" xml:space="preserve">
+    <value>Персонаж</value>
+  </data>
+  <data name="Entity_Scene" xml:space="preserve">
+    <value>Сцена</value>
+  </data>
+  <data name="Entity_SceneEntity" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="Window_Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="CullMode_Back" xml:space="preserve">
+    <value>Задний</value>
+  </data>
+  <data name="CullMode_Front" xml:space="preserve">
+    <value>Передний</value>
+  </data>
+  <data name="CullMode_None" xml:space="preserve">
+    <value>Никакой</value>
+  </data>
+  <data name="LightingRenderType_Full" xml:space="preserve">
+    <value>Полный</value>
+  </data>
+  <data name="LightingRenderType_Simple" xml:space="preserve">
+    <value>Простой</value>
+  </data>
+  <data name="Window_HotKeys" xml:space="preserve">
+    <value>Горячие клавиши</value>
+  </data>
+  <data name="Tab_Rendering" xml:space="preserve">
+    <value>Визуализация</value>
+  </data>
+  <data name="Activate" xml:space="preserve">
+    <value>Активировать</value>
+  </data>
+  <data name="ChangeAngle" xml:space="preserve">
+    <value>Изменить угол радиального кластера</value>
+  </data>
+  <data name="Cmd_AddRemoveObjects" xml:space="preserve">
+    <value>Добавление и удаление объектов</value>
+  </data>
+  <data name="Cmd_ChangeIlluminable" xml:space="preserve">
+    <value>Изменение флага "Освещаемый" у "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeLampBrightness" xml:space="preserve">
+    <value>Изменение яркости светильника</value>
+  </data>
+  <data name="Cmd_ChangeLockObjects" xml:space="preserve">
+    <value>Изменение блокировки объектов</value>
+  </data>
+  <data name="Cmd_ChangeObjectsVisibility" xml:space="preserve">
+    <value>Изменение видимости объектов</value>
+  </data>
+  <data name="Cmd_ChangeParallelCollection" xml:space="preserve">
+    <value>Изменение параллельной коллекции "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeSelectedRaster" xml:space="preserve">
+    <value>Изменение растра у "{0}"</value>
+  </data>
+  <data name="Cmd_Rename" xml:space="preserve">
+    <value>Изменение имени на "{0}"</value>
+  </data>
+  <data name="Window_RoomSelector" xml:space="preserve">
+    <value>Выбор комнаты</value>
+  </data>
+  <data name="Window_SaveAs" xml:space="preserve">
+    <value>Сохранить как</value>
+  </data>
+  <data name="Window_ScenarioList" xml:space="preserve">
+    <value>Список сценариев</value>
+  </data>
+  <data name="RestoreAllRooms" xml:space="preserve">
+    <value>Восстановить все комнаты</value>
+  </data>
+  <data name="Cmd_ChangeManipulationType" xml:space="preserve">
+    <value>Изменение типа манипуляции</value>
+  </data>
+  <data name="SendReport" xml:space="preserve">
+    <value>Отправить отчет</value>
+  </data>
+  <data name="DbInstanceCreationFailed" xml:space="preserve">
+    <value>Не удалось запустить инстанс базы данных</value>
+  </data>
+  <data name="SqlServer2014NotInstalled" xml:space="preserve">
+    <value>MS SQLLocalDB 2014 не установлен на Вашем компьютере. Пожалуйста установите MS SQLLocalDB 2014.</value>
+  </data>
+  <data name="Settings_SceneLength" xml:space="preserve">
+    <value>Длина сцены, м</value>
+  </data>
+  <data name="Settings_SceneWidth" xml:space="preserve">
+    <value>Ширина сцены, м</value>
+  </data>
+  <data name="CameraFrom" xml:space="preserve">
+    <value>Откуда</value>
+  </data>
+  <data name="CameraTo" xml:space="preserve">
+    <value>Куда</value>
+  </data>
+  <data name="OpenProject" xml:space="preserve">
+    <value>Открыть проект...</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск...</value>
+  </data>
+  <data name="Window_Rename" xml:space="preserve">
+    <value>Переименование</value>
+  </data>
+  <data name="Menu_ResetSettings" xml:space="preserve">
+    <value>Сброс настроек</value>
+  </data>
+  <data name="Info_ResetAllSettings" xml:space="preserve">
+    <value>Вы действительно хотите сбросить все настройки?</value>
+  </data>
+  <data name="Window_Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="RoomPlayer" xml:space="preserve">
+    <value>ПРОИГРЫВАТЕЛЬ</value>
+  </data>
+  <data name="Scenarios" xml:space="preserve">
+    <value>Сценарии</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Проигрыватель</value>
+  </data>
+  <data name="EnvironmentLight_ChangeName" xml:space="preserve">
+    <value>{0} (измененный)</value>
+  </data>
+  <data name="EffectFillingTypes_Static" xml:space="preserve">
+    <value>Статический цвет</value>
+  </data>
+  <data name="Cmd_ChangeStaticEffect" xml:space="preserve">
+    <value>Изменение статического эффекта "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeTransitEffect" xml:space="preserve">
+    <value>Изменение эффекта "Переход" "{0}"</value>
+  </data>
+  <data name="EffectFillingTypes_Transition" xml:space="preserve">
+    <value>Переход</value>
+  </data>
+  <data name="BetaVersion" xml:space="preserve">
+    <value>Бета</value>
+  </data>
+  <data name="VersionLabel" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="AzimuthAngel" xml:space="preserve">
+    <value>Азимутальный угол</value>
+  </data>
+  <data name="PolarAngle" xml:space="preserve">
+    <value>Полярный угол {0}</value>
+  </data>
+  <data name="ZoneOrientation" xml:space="preserve">
+    <value>Ориентация зоны влияния</value>
+  </data>
+  <data name="ZoneSize" xml:space="preserve">
+    <value>Размер зоны влияния</value>
+  </data>
+  <data name="AzimuthAngle" xml:space="preserve">
+    <value>Азимутальный угол</value>
+  </data>
+  <data name="SensorZoneVisibility_Always" xml:space="preserve">
+    <value>Всегда</value>
+  </data>
+  <data name="SensorZoneVisibility_MouseMove" xml:space="preserve">
+    <value>По наведению мыши</value>
+  </data>
+  <data name="SensorZoneVisibility_Never" xml:space="preserve">
+    <value>Никогда</value>
+  </data>
+  <data name="SensorZoneVisibility" xml:space="preserve">
+    <value>Видимость зон датчиков движения</value>
+  </data>
+  <data name="IsLoop" xml:space="preserve">
+    <value>Закольцевать</value>
+  </data>
+  <data name="Entity_LampGroup" xml:space="preserve">
+    <value>Группа ламп</value>
+  </data>
+  <data name="Cmd_ChangeLampGroup" xml:space="preserve">
+    <value>Изменение группы ламп "{0}"</value>
+  </data>
+  <data name="EmptyLampGroup" xml:space="preserve">
+    <value>Выбрать группу ламп...</value>
+  </data>
+  <data name="EmptySensor" xml:space="preserve">
+    <value>Выбрать датчик...</value>
+  </data>
+  <data name="Cmd_ChangeSelectedLampGroup" xml:space="preserve">
+    <value>Изменение группы ламп у "{0}"</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Выключение</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Включение</value>
+  </data>
+  <data name="Cmd_ChangeDynamicRule" xml:space="preserve">
+    <value>Изменение динамического правила "{0}"</value>
+  </data>
+  <data name="LevelPercent" xml:space="preserve">
+    <value>Уровень, %</value>
+  </data>
+  <data name="Time_s" xml:space="preserve">
+    <value>Время, сек</value>
+  </data>
+  <data name="WeekDays_EveryDay" xml:space="preserve">
+    <value>Ежедневно</value>
+  </data>
+  <data name="WeekDays_Friday" xml:space="preserve">
+    <value>Пятница</value>
+  </data>
+  <data name="WeekDays_Monday" xml:space="preserve">
+    <value>Понедельник</value>
+  </data>
+  <data name="WeekDays_Saturday" xml:space="preserve">
+    <value>Суббота</value>
+  </data>
+  <data name="WeekDays_Sunday" xml:space="preserve">
+    <value>Воскресенье</value>
+  </data>
+  <data name="WeekDays_Thursday" xml:space="preserve">
+    <value>Четверг</value>
+  </data>
+  <data name="WeekDays_Tuesday" xml:space="preserve">
+    <value>Вторник</value>
+  </data>
+  <data name="WeekDays_Wednesday" xml:space="preserve">
+    <value>Среда</value>
+  </data>
+  <data name="WeekDays_WeekendDays" xml:space="preserve">
+    <value>Выходные дни</value>
+  </data>
+  <data name="WeekDays_WorkDays" xml:space="preserve">
+    <value>Рабочие дни</value>
+  </data>
+  <data name="Cmd_ChangeStaticRule" xml:space="preserve">
+    <value>Измаенение статического правила "{0}"</value>
+  </data>
+  <data name="WeekDays" xml:space="preserve">
+    <value>Дни недели</value>
+  </data>
+  <data name="Tab_Dynamic" xml:space="preserve">
+    <value>Динамические</value>
+  </data>
+  <data name="Tab_Static" xml:space="preserve">
+    <value>Статические</value>
+  </data>
+  <data name="LevelOff" xml:space="preserve">
+    <value>○ Уровень</value>
+  </data>
+  <data name="LevelOn" xml:space="preserve">
+    <value>| Уровень</value>
+  </data>
+  <data name="TimeSecOff" xml:space="preserve">
+    <value>○ Время, сек</value>
+  </data>
+  <data name="TimeSecOn" xml:space="preserve">
+    <value>| Время, сек</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Вниз</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Вверх</value>
+  </data>
+  <data name="Entity_RulesOrder" xml:space="preserve">
+    <value>Порядок правил</value>
+  </data>
+  <data name="Cmd_ChangeRulesOrder" xml:space="preserve">
+    <value>Изменение порядка правил</value>
+  </data>
+  <data name="ShutdownDelay" xml:space="preserve">
+    <value>○ Задержка</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Стоп</value>
+  </data>
+  <data name="RunRulesSystem" xml:space="preserve">
+    <value>Запустить систему правил</value>
+  </data>
+  <data name="StopRulesSystem" xml:space="preserve">
+    <value>Остановить систему правил</value>
+  </data>
+  <data name="Entity_Rule" xml:space="preserve">
+    <value>Правило</value>
+  </data>
+  <data name="RulesSettings_DefaultBrightnessTime" xml:space="preserve">
+    <value>Изменение яркости, сек (по умолчанию)</value>
+  </data>
+  <data name="EmergencySignal" xml:space="preserve">
+    <value>Аварийный сигнал</value>
+  </data>
+  <data name="Cmd_ChangeEmergencyRule" xml:space="preserve">
+    <value>Изменение аварийного правила "{0}"</value>
+  </data>
+  <data name="Tab_Emergency" xml:space="preserve">
+    <value>Аварийные</value>
+  </data>
+  <data name="WorkMode" xml:space="preserve">
+    <value>Режим</value>
+  </data>
+  <data name="WorkMode_Real" xml:space="preserve">
+    <value>Реальный</value>
+  </data>
+  <data name="WorkMode_Virtual" xml:space="preserve">
+    <value>Виртуальный</value>
+  </data>
+  <data name="Cmd_ChangeLightSensorLevel" xml:space="preserve">
+    <value>Изменение уровня яркости у датчика</value>
+  </data>
+  <data name="Entity_LightSensor" xml:space="preserve">
+    <value>Датчик освещенности</value>
+  </data>
+  <data name="Entity_MotionSensor" xml:space="preserve">
+    <value>Датчик движения</value>
+  </data>
+  <data name="LevelLx" xml:space="preserve">
+    <value>Уровень, лк</value>
+  </data>
+  <data name="WithoutSensor" xml:space="preserve">
+    <value>Без датчика</value>
+  </data>
+  <data name="Lx" xml:space="preserve">
+    <value>лк</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="LevelPercentOff" xml:space="preserve">
+    <value>○ Уровень, %</value>
+  </data>
+  <data name="LevelPercentOn" xml:space="preserve">
+    <value>| Уровень, %</value>
+  </data>
+  <data name="EmptyPath" xml:space="preserve">
+    <value>Выбрать путь...</value>
+  </data>
+  <data name="Path_Accelerate" xml:space="preserve">
+    <value>Ускорение, м/с²</value>
+  </data>
+  <data name="Path_Speed" xml:space="preserve">
+    <value>Скорость перемещения, , м/с</value>
+  </data>
+  <data name="PersonTypes_Car" xml:space="preserve">
+    <value>Погрузчик</value>
+  </data>
+  <data name="PersonTypes_Human" xml:space="preserve">
+    <value>Человек</value>
+  </data>
+  <data name="ShowPaths" xml:space="preserve">
+    <value>Показать пути</value>
+  </data>
+  <data name="TurnOnEmergencyMode" xml:space="preserve">
+    <value>Включить аварийный режим</value>
+  </data>
+  <data name="TurnOffEmergencyMode" xml:space="preserve">
+    <value>Выключить аварийный режим</value>
+  </data>
+  <data name="Addressation" xml:space="preserve">
+    <value>Адресация</value>
+  </data>
+  <data name="CountOfContacts" xml:space="preserve">
+    <value>Количество контактов</value>
+  </data>
+  <data name="DeviceType" xml:space="preserve">
+    <value>Тип устройства</value>
+  </data>
+  <data name="DmxUniverses" xml:space="preserve">
+    <value>Dmx вселенные</value>
+  </data>
+  <data name="GetAddressation" xml:space="preserve">
+    <value>Адресовать</value>
+  </data>
+  <data name="IpAddress" xml:space="preserve">
+    <value>IP адрес</value>
+  </data>
+  <data name="LampsCount" xml:space="preserve">
+    <value>Количество источников</value>
+  </data>
+  <data name="LenghtRow" xml:space="preserve">
+    <value>Длина строки</value>
+  </data>
+  <data name="ModBus" xml:space="preserve">
+    <value>Mod Bus</value>
+  </data>
+  <data name="NumberOfLamps" xml:space="preserve">
+    <value>Количество источников</value>
+  </data>
+  <data name="ParentGroup" xml:space="preserve">
+    <value>Родительская группа</value>
+  </data>
+  <data name="ShowIdInsteadOfTheAddress" xml:space="preserve">
+    <value>Показать id вместо адреса</value>
+  </data>
+  <data name="StartPosition" xml:space="preserve">
+    <value>Начальная позиция</value>
+  </data>
+  <data name="TypeAddressation" xml:space="preserve">
+    <value>Тип адресации</value>
+  </data>
+  <data name="Entity_Universe" xml:space="preserve">
+    <value>DMX пространство</value>
+  </data>
+  <data name="Cmd_ChangePathPoints" xml:space="preserve">
+    <value>Изменение точек пути "{0}"</value>
+  </data>
+  <data name="RenderTool_MenuLabel" xml:space="preserve">
+    <value>Приложение рендеринга...</value>
+  </data>
+  <data name="AddressationRoom" xml:space="preserve">
+    <value>Адресация</value>
+  </data>
+  <data name="AddEntityDialog_Title" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddEntityDialog_EquipmentTab_Header" xml:space="preserve">
+    <value>Оборудование</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_Header" xml:space="preserve">
+    <value>Объекты</value>
+  </data>
+  <data name="AddEntityDialog_SensorTab_Header" xml:space="preserve">
+    <value>Сенсоры</value>
+  </data>
+  <data name="EmptyDcoCollection" xml:space="preserve">
+    <value>Пожалуйста, добавьте УСО.</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Развернуть все</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="Freeze" xml:space="preserve">
+    <value>Заморозить</value>
+  </data>
+  <data name="UnFreeze" xml:space="preserve">
+    <value>Разморозить</value>
+  </data>
+  <data name="FilterMenu_DisplayAll" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="FilterMenu_Frozen" xml:space="preserve">
+    <value>Замороженные</value>
+  </data>
+  <data name="FilterMenu_Hidden" xml:space="preserve">
+    <value>Скрытые</value>
+  </data>
+  <data name="FilterMenu_HideAll" xml:space="preserve">
+    <value>Снять все</value>
+  </data>
+  <data name="FilterMenu_InvertDisplay" xml:space="preserve">
+    <value>Инвертировать выбор</value>
+  </data>
+  <data name="Visibility" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="Developing_Title" xml:space="preserve">
+    <value>Разработка</value>
+  </data>
+  <data name="GroupOrUniverse" xml:space="preserve">
+    <value>Отобразить группы или DMX пространства</value>
+  </data>
+  <data name="ContextMenu_Clone" xml:space="preserve">
+    <value>Клонировать</value>
+  </data>
+  <data name="ContextMenu_Collapse" xml:space="preserve">
+    <value>Свернуть</value>
+  </data>
+  <data name="ContextMenu_CollapseAll" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="ContextMenu_CollapseChildren" xml:space="preserve">
+    <value>Детей</value>
+  </data>
+  <data name="ContextMenu_CollapseToParent" xml:space="preserve">
+    <value>Свернуть до родителя</value>
+  </data>
+  <data name="ContextMenu_AddTo" xml:space="preserve">
+    <value>Добавить в</value>
+  </data>
+  <data name="ContextMenu_Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="ContextMenu_Freeze" xml:space="preserve">
+    <value>Заморозить</value>
+  </data>
+  <data name="ContextMenu_FreezeAll" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="ContextMenu_FreezeSelected" xml:space="preserve">
+    <value>Выбранные</value>
+  </data>
+  <data name="ContextMenu_FreezeUnselected" xml:space="preserve">
+    <value>Не выбранные</value>
+  </data>
+  <data name="ContextMenu_Hide" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="ContextMenu_HideAll" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="ContextMenu_HideSelected" xml:space="preserve">
+    <value>Выбранные</value>
+  </data>
+  <data name="ContextMenu_HideUnselected" xml:space="preserve">
+    <value>Не выбранные</value>
+  </data>
+  <data name="ContextMenu_Isolate" xml:space="preserve">
+    <value>Изолировать</value>
+  </data>
+  <data name="ContextMenu_Parent" xml:space="preserve">
+    <value>Родитель</value>
+  </data>
+  <data name="ContextMenu_Select" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="ContextMenu_ShowAll" xml:space="preserve">
+    <value>Показать все</value>
+  </data>
+  <data name="ContextMenu_Similar" xml:space="preserve">
+    <value>Схожие</value>
+  </data>
+  <data name="ContextMenu_StoredSelection" xml:space="preserve">
+    <value>Сохраненый выбор</value>
+  </data>
+  <data name="ContextMenu_UnfreezeAll" xml:space="preserve">
+    <value>Разморозить все</value>
+  </data>
+  <data name="ContextMenu_Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="CloneName" xml:space="preserve">
+    <value>Клон</value>
+  </data>
+  <data name="ContextMenu_DeleteStorageSelection" xml:space="preserve">
+    <value>Удалить сохраненный выбор</value>
+  </data>
+  <data name="Cmd_ChangeObjectsFixed" xml:space="preserve">
+    <value>Изменение открытия геометрии</value>
+  </data>
+  <data name="ContextMenu_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="ContextMenu_Geometry" xml:space="preserve">
+    <value>Геометрия</value>
+  </data>
+  <data name="ContextMenu_Open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="ContextMenu_GroupLamp" xml:space="preserve">
+    <value>Группа ламп</value>
+  </data>
+  <data name="ContextMenu_Layer" xml:space="preserve">
+    <value>Слой</value>
+  </data>
+  <data name="ContextMenu_New" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="ContextMenu_DeleteLampsGroup" xml:space="preserve">
+    <value>Удалить группу ламп</value>
+  </data>
+  <data name="SelectMode_Part" xml:space="preserve">
+    <value>Часть</value>
+  </data>
+  <data name="SelectMode_Visible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="SelectMode_Whole" xml:space="preserve">
+    <value>Целое</value>
+  </data>
+  <data name="AddressingOptions" xml:space="preserve">
+    <value>Опции адресации</value>
+  </data>
+  <data name="AddressMap" xml:space="preserve">
+    <value>Адресная карта</value>
+  </data>
+  <data name="Entity_Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Entity_AddressGroups" xml:space="preserve">
+    <value>Адресованные группы</value>
+  </data>
+  <data name="Cmd_ChangeObjectsIsolate" xml:space="preserve">
+    <value>Изменение изоляции объектов</value>
+  </data>
+  <data name="Effect" xml:space="preserve">
+    <value>Эффект</value>
+  </data>
+  <data name="Entity_DCO" xml:space="preserve">
+    <value>УСО</value>
+  </data>
+  <data name="Entity_AddressGroup" xml:space="preserve">
+    <value>Адресная группа</value>
+  </data>
+  <data name="Cmd_ChangeReferenceSystem" xml:space="preserve">
+    <value>Изменение системы координат</value>
+  </data>
+  <data name="EnviromentPresets" xml:space="preserve">
+    <value>Окружение</value>
+  </data>
+  <data name="AttachToSurface" xml:space="preserve">
+    <value>Прикрепить к поверхности</value>
+  </data>
+  <data name="ContextMenu_Replace" xml:space="preserve">
+    <value>Заменить на...</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Заменить</value>
+  </data>
+  <data name="ContextMenu_CreateLumSurface" xml:space="preserve">
+    <value>Создать излучающую поверхность</value>
+  </data>
+  <data name="MaximizeRestoreActiveViewport" xml:space="preserve">
+    <value>Максимизировать/восстановить активный вьюпорт</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Помощь</value>
+  </data>
+  <data name="ActiveViewportViewBack" xml:space="preserve">
+    <value>Вид сзади в активном вьюпорте</value>
+  </data>
+  <data name="ActiveViewportViewBottom" xml:space="preserve">
+    <value>Вид снизу в активном вьюпорте</value>
+  </data>
+  <data name="ActiveViewportViewFree" xml:space="preserve">
+    <value>Свободная камера/вид в активном вьюпорте</value>
+  </data>
+  <data name="ActiveViewportViewFront" xml:space="preserve">
+    <value>Вид спереди в активном вьюпорте</value>
+  </data>
+  <data name="ActiveViewportViewLeft" xml:space="preserve">
+    <value>Вид слева в активном вьюпорте</value>
+  </data>
+  <data name="ActiveViewportViewRight" xml:space="preserve">
+    <value>Вид справа в активном вьюпорте</value>
+  </data>
+  <data name="ActiveViewportViewTop" xml:space="preserve">
+    <value>Вид сверху в активном вьюпорте</value>
+  </data>
+  <data name="Block_DCO" xml:space="preserve">
+    <value>УСО</value>
+  </data>
+  <data name="PivotPointEditor" xml:space="preserve">
+    <value>Опорные точки</value>
+  </data>
+  <data name="Attach" xml:space="preserve">
+    <value>Прикрепить</value>
+  </data>
+  <data name="DirectionDetour" xml:space="preserve">
+    <value>Направление обхода</value>
+  </data>
+  <data name="Engineering" xml:space="preserve">
+    <value>Инженерные</value>
+  </data>
+  <data name="Centimeters" xml:space="preserve">
+    <value>Сантиметры</value>
+  </data>
+  <data name="Feet" xml:space="preserve">
+    <value>Футы</value>
+  </data>
+  <data name="GraphicMode" xml:space="preserve">
+    <value>Графические режимы</value>
+  </data>
+  <data name="SelectionLevel" xml:space="preserve">
+    <value>Кластер \ инстанс</value>
+  </data>
+  <data name="RulesSettings_StepBrightnessForLightSensor" xml:space="preserve">
+    <value>Шаг изменения яркости ламп (по умолчанию)</value>
+  </data>
+  <data name="Presentation" xml:space="preserve">
+    <value>Презентация</value>
+  </data>
+  <data name="Window_CreateDCO" xml:space="preserve">
+    <value>Создание УСО</value>
+  </data>
+  <data name="Window_OpenFileDialog" xml:space="preserve">
+    <value>Открытие файла</value>
+  </data>
+  <data name="Window_RenderToolLauncherDialog" xml:space="preserve">
+    <value>Настройки рендеринга</value>
+  </data>
+  <data name="SplashScreenMessage_Initializing" xml:space="preserve">
+    <value>Инициализация...</value>
+  </data>
+  <data name="SplashScreenMessage_OpenMainWindow" xml:space="preserve">
+    <value>Создание главного окна...</value>
+  </data>
+  <data name="SplashScreenMessage_Start" xml:space="preserve">
+    <value>Старт...</value>
+  </data>
+  <data name="SplashScreen_Version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="AddEntityDialog_EquipmentTab_EnvironmentSettingsHeader" xml:space="preserve">
+    <value>Настройки окружения</value>
+  </data>
+  <data name="AddEntityDialog_EquipmentTab_RepositoryHeader" xml:space="preserve">
+    <value>Библиотека</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_EnvironmentSettingsHeader" xml:space="preserve">
+    <value>Настройки окружения</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_RepositoryHeader" xml:space="preserve">
+    <value>Библиотека</value>
+  </data>
+  <data name="AddEntityDialog_ObjectsTab_SettingsHeader" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="AddEntityDialog_SensorTab_RepositoryHeader" xml:space="preserve">
+    <value>Библиотека</value>
+  </data>
+  <data name="AddEntityDialog_SensorTab_SettingsHeader" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Menu_AppSettings" xml:space="preserve">
+    <value>Настройки приложения...</value>
+  </data>
+  <data name="Menu_ProjectSettings" xml:space="preserve">
+    <value>Настройки проекта...</value>
+  </data>
+  <data name="AddLayer" xml:space="preserve">
+    <value>Добавить слой</value>
+  </data>
+  <data name="AddToLayer" xml:space="preserve">
+    <value>Добавить в активный слой</value>
+  </data>
+  <data name="MakeLayerActive" xml:space="preserve">
+    <value>Сделать слой активным</value>
+  </data>
+  <data name="Cmd_ChangeActiveLayer" xml:space="preserve">
+    <value>Изменение активного слоя</value>
+  </data>
+  <data name="ContextMenu_Active" xml:space="preserve">
+    <value>Активный</value>
+  </data>
+  <data name="ContextMenu_Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="ContextMenu_MakeActive" xml:space="preserve">
+    <value>Сделать активным</value>
+  </data>
+  <data name="ContextMenu_MergeLayers" xml:space="preserve">
+    <value>Объединить слои</value>
+  </data>
+  <data name="ContextMenu_RemoveEmpty" xml:space="preserve">
+    <value>Удалить пустые слои</value>
+  </data>
+  <data name="Cmd_MergeLayers" xml:space="preserve">
+    <value>Объединение слоев</value>
+  </data>
+  <data name="Panels" xml:space="preserve">
+    <value>Панели</value>
+  </data>
+  <data name="CreatingLumSurface" xml:space="preserve">
+    <value>Создание излучающей поверхности...</value>
+  </data>
+  <data name="Enum_ObjectCategory_Infrastructure" xml:space="preserve">
+    <value>Инфраструктура</value>
+  </data>
+  <data name="ViewSettings" xml:space="preserve">
+    <value>Настройки вида</value>
+  </data>
+  <data name="PostConverterPresetTypes_None" xml:space="preserve">
+    <value>Нет пре-процессинга</value>
+  </data>
+  <data name="InDown" xml:space="preserve">
+    <value>Вниз</value>
+  </data>
+  <data name="InLeft" xml:space="preserve">
+    <value>Влево</value>
+  </data>
+  <data name="InOrder" xml:space="preserve">
+    <value>По порядку</value>
+  </data>
+  <data name="InRight" xml:space="preserve">
+    <value>Вправо</value>
+  </data>
+  <data name="InUp" xml:space="preserve">
+    <value>Вверх</value>
+  </data>
+  <data name="LeftDown" xml:space="preserve">
+    <value>Левый нижний</value>
+  </data>
+  <data name="LeftUp" xml:space="preserve">
+    <value>Левый верхний</value>
+  </data>
+  <data name="RightDown" xml:space="preserve">
+    <value>Правый нижний</value>
+  </data>
+  <data name="RightUp" xml:space="preserve">
+    <value>Правый верхний</value>
+  </data>
+  <data name="Snake" xml:space="preserve">
+    <value>Змейкой</value>
+  </data>
+  <data name="Addressing" xml:space="preserve">
+    <value>Адресация</value>
+  </data>
+  <data name="AddressMapChangeAddress" xml:space="preserve">
+    <value>Изменение адреса элемента на адресной карте</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Удаление</value>
+  </data>
+  <data name="DefaultProjectFolderPath" xml:space="preserve">
+    <value>Путь к папке проектов по умолчанию</value>
+  </data>
+  <data name="SelectFolderPath" xml:space="preserve">
+    <value>Выбрать папку</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="DuplicateFileName" xml:space="preserve">
+    <value>Совпадение имени файла</value>
+  </data>
+  <data name="DuplicateFileNameDescription" xml:space="preserve">
+    <value>Файл с таким именим уже загружен в проект</value>
+  </data>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value>Файл с таким именем уже существует.</value>
+  </data>
+  <data name="IncorectFileName" xml:space="preserve">
+    <value>Недопустимое имя файла</value>
+  </data>
+  <data name="FileCopyProcess" xml:space="preserve">
+    <value>Копирование файла...</value>
+  </data>
+  <data name="LightZoneVisibility" xml:space="preserve">
+    <value>Видимость светового тела</value>
+  </data>
+  <data name="LightZoneVisibility_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="LightZoneVisibility_Hide" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="LightZoneVisibility_Selected" xml:space="preserve">
+    <value>При выделении светильника</value>
+  </data>
+  <data name="MediaFeaurePackException" xml:space="preserve">
+    <value>Не удалось прочитать .avi файл. Возможно у вас не установлен Windows Media Feature Pack. Эффект Видео не доступен.</value>
+  </data>
+  <data name="FlipNormals" xml:space="preserve">
+    <value>Перевернуть нормали</value>
+  </data>
+  <data name="ApplicationType" xml:space="preserve">
+    <value>Применение</value>
+  </data>
+  <data name="ColorScheme" xml:space="preserve">
+    <value>Цветовая схема</value>
+  </data>
+  <data name="ContinuousRows" xml:space="preserve">
+    <value>Световые полосы</value>
+  </data>
+  <data name="Control" xml:space="preserve">
+    <value>Управление</value>
+  </data>
+  <data name="Dot" xml:space="preserve">
+    <value>Точка</value>
+  </data>
+  <data name="EmissionType" xml:space="preserve">
+    <value>Тип излучения</value>
+  </data>
+  <data name="Ground" xml:space="preserve">
+    <value>Грунтовый</value>
+  </data>
+  <data name="Halogen" xml:space="preserve">
+    <value>Галогеновый</value>
+  </data>
+  <data name="Incandescent" xml:space="preserve">
+    <value>Накаливания</value>
+  </data>
+  <data name="Indoor" xml:space="preserve">
+    <value>Внутренее</value>
+  </data>
+  <data name="Ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="LampType" xml:space="preserve">
+    <value>Тип лампы</value>
+  </data>
+  <data name="Led" xml:space="preserve">
+    <value>Светодиодная</value>
+  </data>
+  <data name="LightSurface" xml:space="preserve">
+    <value>Тип излучающей поверхности</value>
+  </data>
+  <data name="Line" xml:space="preserve">
+    <value>Линия</value>
+  </data>
+  <data name="Luminescent" xml:space="preserve">
+    <value>Люминесцентный</value>
+  </data>
+  <data name="Mercury" xml:space="preserve">
+    <value>Ртутная</value>
+  </data>
+  <data name="MetalHalide" xml:space="preserve">
+    <value>МГЛ</value>
+  </data>
+  <data name="MountingType" xml:space="preserve">
+    <value>Тип установки</value>
+  </data>
+  <data name="Oled" xml:space="preserve">
+    <value>OLED</value>
+  </data>
+  <data name="Outdoor" xml:space="preserve">
+    <value>Наружное</value>
+  </data>
+  <data name="Pendant" xml:space="preserve">
+    <value>Подвесной</value>
+  </data>
+  <data name="Projector" xml:space="preserve">
+    <value>Проектор</value>
+  </data>
+  <data name="Recessed" xml:space="preserve">
+    <value>Встраиваемый</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Круг</value>
+  </data>
+  <data name="Shape" xml:space="preserve">
+    <value>Форма</value>
+  </data>
+  <data name="Sodium" xml:space="preserve">
+    <value>Натриевая</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>Особая</value>
+  </data>
+  <data name="Square" xml:space="preserve">
+    <value>Квадрат</value>
+  </data>
+  <data name="SurfaceMounted" xml:space="preserve">
+    <value>Накладной</value>
+  </data>
+  <data name="Tube" xml:space="preserve">
+    <value>Трубка</value>
+  </data>
+  <data name="Analog1_10v" xml:space="preserve">
+    <value>Аналоговое 1-10в</value>
+  </data>
+  <data name="DALI" xml:space="preserve">
+    <value>DALI</value>
+  </data>
+  <data name="DMX" xml:space="preserve">
+    <value>DMX</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="PartNumber" xml:space="preserve">
+    <value>Артикул</value>
+  </data>
+  <data name="PixelCount" xml:space="preserve">
+    <value>Кол-во пикселей</value>
+  </data>
+  <data name="Pixels" xml:space="preserve">
+    <value>Пикселей</value>
+  </data>
+  <data name="PLC" xml:space="preserve">
+    <value>По цепи питания</value>
+  </data>
+  <data name="PWM" xml:space="preserve">
+    <value>Шим</value>
+  </data>
+  <data name="RDM" xml:space="preserve">
+    <value>RDM</value>
+  </data>
+  <data name="Series" xml:space="preserve">
+    <value>Серия</value>
+  </data>
+  <data name="Wireless" xml:space="preserve">
+    <value>Беспроводное</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="Antialiasing" xml:space="preserve">
+    <value>Сглаживание</value>
+  </data>
+  <data name="ConnectionEstablished" xml:space="preserve">
+    <value>Соединение установлено</value>
+  </data>
+  <data name="CreateAddressProject" xml:space="preserve">
+    <value>Необходимо создать адресные сущности прежде чем отправлять проект на сервер.</value>
+  </data>
+  <data name="DeviceTopology" xml:space="preserve">
+    <value>Топология устройств получена</value>
+  </data>
+  <data name="ProjectSend" xml:space="preserve">
+    <value>Проект успешно отправлен на сервер</value>
+  </data>
+  <data name="SendError" xml:space="preserve">
+    <value>При попытке передачи данных произошла ошибка</value>
+  </data>
+  <data name="ServerLock" xml:space="preserve">
+    <value>Необходимо дождаться ответа от сервера</value>
+  </data>
+  <data name="ServerNotAvailable" xml:space="preserve">
+    <value>Извините но сервер не доступен</value>
+  </data>
+  <data name="RenderToolCannotBeStarted_Message" xml:space="preserve">
+    <value>Рендерер не может быть запущен</value>
+  </data>
+  <data name="RenderToolCannotBeStarted_Title" xml:space="preserve">
+    <value>Рендерер</value>
+  </data>
+  <data name="HardwareError" xml:space="preserve">
+    <value>Ваша видеокарта не поддерживает DirectX11</value>
+  </data>
+  <data name="TransformationCenter" xml:space="preserve">
+    <value>Центр трансформации</value>
+  </data>
+  <data name="Block_ProjectReport" xml:space="preserve">
+    <value>Отчет по проекту</value>
+  </data>
+  <data name="Block_ReportStructure" xml:space="preserve">
+    <value>Содержание отчета</value>
+  </data>
+  <data name="RoomDocumentation" xml:space="preserve">
+    <value>ДОКУМЕНТАЦИЯ</value>
+  </data>
+  <data name="ReportError" xml:space="preserve">
+    <value>Сообщить об ошибке...</value>
+  </data>
+  <data name="ErrorReportDialog_Explanation" xml:space="preserve">
+    <value>Описание проблемы</value>
+  </data>
+  <data name="ErrorReportDialog_Title" xml:space="preserve">
+    <value>Сообщить об ошибке</value>
+  </data>
+  <data name="ErrorReport_CancelButton_Title" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ErrorReport_SendButton_Title" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="CreateCamera_Message" xml:space="preserve">
+    <value>В проекте нет ни одного объекта камеры. Для рендеринга необходим хотя бы один такой объект.</value>
+  </data>
+  <data name="ErrorReportDialog_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="ErrorReportDialog_Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="CreateCartesianCluster" xml:space="preserve">
+    <value>Создать кластер</value>
+  </data>
+  <data name="Cmd_AddEffect" xml:space="preserve">
+    <value>Добавление эффекта</value>
+  </data>
+  <data name="Cmd_AddTrack" xml:space="preserve">
+    <value>Добавление трека "{0}"</value>
+  </data>
+  <data name="Cmd_AddUnit" xml:space="preserve">
+    <value>Добавление блока "{0}"</value>
+  </data>
+  <data name="Cmd_ChangeEffectDuration" xml:space="preserve">
+    <value>Изменение продолжительности эффекта</value>
+  </data>
+  <data name="Cmd_ChangeEffectType" xml:space="preserve">
+    <value>Изменение типа эффекта</value>
+  </data>
+  <data name="Cmd_ConvertClusterToGroup" xml:space="preserve">
+    <value>Преобразовать в группу</value>
+  </data>
+  <data name="Cmd_UnGroup" xml:space="preserve">
+    <value>Разгруппировать</value>
+  </data>
+  <data name="Cmd_Group" xml:space="preserve">
+    <value>Создать группу</value>
+  </data>
+  <data name="Enum_ObjectCategory_Vegetation" xml:space="preserve">
+    <value>Растительность</value>
+  </data>
+  <data name="AddressGroups" xml:space="preserve">
+    <value>Корень</value>
+  </data>
+  <data name="BackgroundTasks_AutoSaveTaskName" xml:space="preserve">
+    <value>Автосохранение</value>
+  </data>
+  <data name="BackgroundTasks_BakingTaskName" xml:space="preserve">
+    <value>Запекание света</value>
+  </data>
+  <data name="Block_RasterTree" xml:space="preserve">
+    <value>Растры</value>
+  </data>
+  <data name="ProjectSettings" xml:space="preserve">
+    <value>Настройки проекта</value>
+  </data>
+  <data name="ApplicationPreferences" xml:space="preserve">
+    <value>Настройки приложения</value>
+  </data>
+  <data name="Menu_Configuration" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Window_Configuration" xml:space="preserve">
+    <value>Конфигурация</value>
+  </data>
+  <data name="Menu_ProjectInfo" xml:space="preserve">
+    <value>Информация о проекте...</value>
+  </data>
+  <data name="Window_ProjectInfo" xml:space="preserve">
+    <value>Информация о проекте</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="AssembledBy" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Компания</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Заказчик</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="ObjectAddress" xml:space="preserve">
+    <value>Адрес объекта</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="ProjectName" xml:space="preserve">
+    <value>Имя проекта</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="Contents" xml:space="preserve">
+    <value>Оглавление</value>
+  </data>
+  <data name="Datasheets" xml:space="preserve">
+    <value>Спецификации светильников</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Отчёт</value>
+  </data>
+  <data name="Specification" xml:space="preserve">
+    <value>Перечень светильников</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="Visualization" xml:space="preserve">
+    <value>Визуализация</value>
+  </data>
+  <data name="Cmd_ChangeStoredSelection" xml:space="preserve">
+    <value>Изменение сохраненного выбора</value>
+  </data>
+  <data name="AnimationToggleButton_Label" xml:space="preserve">
+    <value>Анимация</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Рендерер (BETA)</value>
+  </data>
+  <data name="ApplicationWillBeMinimizedToTray_Message" xml:space="preserve">
+    <value>Окно будет свернуто в трей</value>
+  </data>
+  <data name="CameraIsNotSelected_Message" xml:space="preserve">
+    <value>Не выбрана камера</value>
+  </data>
+  <data name="ConsoleMenuItem_Label" xml:space="preserve">
+    <value>Консоль</value>
+  </data>
+  <data name="CoreIsNotInitializedError_Message" xml:space="preserve">
+    <value>Рендерер не инициализирован</value>
+  </data>
+  <data name="DiffTraceDepth_Label" xml:space="preserve">
+    <value>Diff. trace depth?</value>
+  </data>
+  <data name="ExitMenuItem_Label" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="FileMenuItem_Label" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="HydraExeNotExists_Message" xml:space="preserve">
+    <value>Hydra.exe не найден. Render tool будет закрыт.</value>
+  </data>
+  <data name="ImageHeight_Label" xml:space="preserve">
+    <value>Высота</value>
+  </data>
+  <data name="ImageToggleButton_Label" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
+  <data name="ImageWidth_Label" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="InfoDefaultTitle" xml:space="preserve">
+    <value>Рендерер</value>
+  </data>
+  <data name="LightSourceIntensityСoefficient_Label" xml:space="preserve">
+    <value>Коэффициент интенсивности </value>
+  </data>
+  <data name="LightSourcesSettings_Header" xml:space="preserve">
+    <value>Настройки источников света</value>
+  </data>
+  <data name="LoadProjectError_Message" xml:space="preserve">
+    <value>Невозможно загрузить проект</value>
+  </data>
+  <data name="LoadProject_Title" xml:space="preserve">
+    <value>Загрузка проекта</value>
+  </data>
+  <data name="NotifyIconExit_Label" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="NotifyIconHideWindow_Label" xml:space="preserve">
+    <value>Скрыть окно</value>
+  </data>
+  <data name="NotifyIconShowWindow_Label" xml:space="preserve">
+    <value>Показать окно</value>
+  </data>
+  <data name="OutputDirectory_Label" xml:space="preserve">
+    <value>Выходная директория</value>
+  </data>
+  <data name="ProjectExpander_Header" xml:space="preserve">
+    <value>Проект</value>
+  </data>
+  <data name="ProjectFile_Label" xml:space="preserve">
+    <value>Файл проекта</value>
+  </data>
+  <data name="ProjectFolder_Label" xml:space="preserve">
+    <value>Папка проекта</value>
+  </data>
+  <data name="ProjectTabHeader" xml:space="preserve">
+    <value>Проект</value>
+  </data>
+  <data name="PropertiesTabHeader" xml:space="preserve">
+    <value>Свойства</value>
+  </data>
+  <data name="RaysPerPixel_Label" xml:space="preserve">
+    <value>Лучей на пиксель</value>
+  </data>
+  <data name="RenderAnimationCheckBox_Label" xml:space="preserve">
+    <value>Отрисовывать анимацию</value>
+  </data>
+  <data name="RenderButton_Label" xml:space="preserve">
+    <value>Отрисовать</value>
+  </data>
+  <data name="RenderingProgressGroup_Header" xml:space="preserve">
+    <value>Прогресс рендеринга</value>
+  </data>
+  <data name="RenderingPropertiesExpander_Header" xml:space="preserve">
+    <value>Настройки рендеринга</value>
+  </data>
+  <data name="RenderToolSettings_Title" xml:space="preserve">
+    <value>Настройки рендерера</value>
+  </data>
+  <data name="SaveButton_Label" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ScenarioIsNotSelected_Message" xml:space="preserve">
+    <value>Не выбран сценарий</value>
+  </data>
+  <data name="SettingName_WorkingDirectory" xml:space="preserve">
+    <value>Рабочая директория</value>
+  </data>
+  <data name="SettingsMenuItem_Label" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SettingsTabHeader1" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SkipButton_Label" xml:space="preserve">
+    <value>Пропустить</value>
+  </data>
+  <data name="SkyColor_Label" xml:space="preserve">
+    <value>Цвет неба</value>
+  </data>
+  <data name="SkyIntensityСoefficient_Label" xml:space="preserve">
+    <value>Коэффициент интенсивности неба</value>
+  </data>
+  <data name="StopRenderingButton_Label" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="SunColor_Label" xml:space="preserve">
+    <value>Цвет солнца</value>
+  </data>
+  <data name="SunIntensityСoefficient_Label" xml:space="preserve">
+    <value>Коэффициент интенсивности солнца</value>
+  </data>
+  <data name="ToolsMenuItem_Label" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="TraceDepth_Label" xml:space="preserve">
+    <value>Глубина отражений</value>
+  </data>
+  <data name="WorkingDirectoryIsEmptyError_Message" xml:space="preserve">
+    <value>Значение "Рабочая директория" пуста.</value>
+  </data>
+  <data name="FakeColors" xml:space="preserve">
+    <value>Фиктивные цвета</value>
+  </data>
+  <data name="Luminosity" xml:space="preserve">
+    <value>Освещённость</value>
+  </data>
+  <data name="Settings_ObjectTranslateStep" xml:space="preserve">
+    <value>Шаг перемещения объекта, м</value>
+  </data>
+  <data name="ReportVisualization1" xml:space="preserve">
+    <value>1 изображение</value>
+  </data>
+  <data name="ReportVisualization2" xml:space="preserve">
+    <value>2 изображения</value>
+  </data>
+  <data name="ReportVisualization3" xml:space="preserve">
+    <value>3 изображения</value>
+  </data>
+  <data name="Image1" xml:space="preserve">
+    <value>Изображение 1</value>
+  </data>
+  <data name="Image2" xml:space="preserve">
+    <value>Изображение 2</value>
+  </data>
+  <data name="Image3" xml:space="preserve">
+    <value>Изображение 3</value>
+  </data>
+  <data name="PathtracingRendering" xml:space="preserve">
+    <value>Физически корректный рендеринг</value>
+  </data>
+  <data name="RealtimeRendering" xml:space="preserve">
+    <value>Рендеринг в реальном времени</value>
+  </data>
+  <data name="Transformation" xml:space="preserve">
+    <value>Трансформация</value>
+  </data>
+  <data name="RenderToolParamName_DiffuseTraceDepth" xml:space="preserve">
+    <value>Диффузная глубина</value>
+  </data>
+  <data name="RenderToolParamName_RaysPerPixel" xml:space="preserve">
+    <value>Лучей на пиксель</value>
+  </data>
+  <data name="RenderToolParamName_Resolution" xml:space="preserve">
+    <value>Разрешение</value>
+  </data>
+  <data name="RenderToolParamName_TraceDepth" xml:space="preserve">
+    <value>Глубина трассировки</value>
+  </data>
+  <data name="AddPage" xml:space="preserve">
+    <value>Добавить страницу</value>
+  </data>
+  <data name="ChangeOrder" xml:space="preserve">
+    <value>Изменение очерёдности</value>
+  </data>
+  <data name="VisualizationPage" xml:space="preserve">
+    <value>Страница с изображениями</value>
+  </data>
+  <data name="Caption" xml:space="preserve">
+    <value>Подпись</value>
+  </data>
+  <data name="ScreenshotCapturedMessage" xml:space="preserve">
+    <value>Снимок экрана сохранен в папку проекта</value>
+  </data>
+  <data name="OpenFolder" xml:space="preserve">
+    <value>Открыть папку</value>
+  </data>
+  <data name="ScreenshotCaptureError" xml:space="preserve">
+    <value>Ошибка. Не удалось сделать снимок экрана.</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Создать отчёт</value>
+  </data>
+  <data name="ExportToPDF" xml:space="preserve">
+    <value>Экспорт в PDF</value>
+  </data>
+  <data name="FitPage" xml:space="preserve">
+    <value>По размеру страницы</value>
+  </data>
+  <data name="FitWidth" xml:space="preserve">
+    <value>По ширине</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Следующая страница</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Предыдущая страница</value>
+  </data>
+  <data name="PrintReport" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="ShowThumbnail" xml:space="preserve">
+    <value>Показать содержание</value>
+  </data>
+  <data name="Zoom100" xml:space="preserve">
+    <value>Размер 100%</value>
+  </data>
+  <data name="ZoomIn" xml:space="preserve">
+    <value>Увеличить</value>
+  </data>
+  <data name="ZoomOut" xml:space="preserve">
+    <value>Уменьшить</value>
+  </data>
+  <data name="PageProperties" xml:space="preserve">
+    <value>Свойства страницы</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Раздел</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Шаблон</value>
+  </data>
+  <data name="ContextMenu_Cluster" xml:space="preserve">
+    <value>Кластер</value>
+  </data>
+  <data name="ContextMenu_Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="BoundingBox" xml:space="preserve">
+    <value>Ограничивающая рамка</value>
+  </data>
+  <data name="Outlining" xml:space="preserve">
+    <value>Контурная обводка</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Выбор</value>
+  </data>
+  <data name="DocumentationTitle" xml:space="preserve">
+    <value>Титульная страница</value>
+  </data>
+  <data name="Ies" xml:space="preserve">
+    <value>КСС</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
+  <data name="RenderingState_CreateLibrary" xml:space="preserve">
+    <value>Создание библиотеки ...</value>
+  </data>
+  <data name="RenderingState_Finished" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="SwitchOffLight" xml:space="preserve">
+    <value>Выключить свет</value>
+  </data>
+  <data name="SwitchOnLight" xml:space="preserve">
+    <value>Свет включён</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Цвет</value>
+  </data>
+  <data name="ClearColors" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Luminaries" xml:space="preserve">
+    <value>Светильники</value>
+  </data>
+  <data name="Cmd_ChangeLuminariesColor" xml:space="preserve">
+    <value>Изменение цвета светильников</value>
+  </data>
+  <data name="LuminariesCount" xml:space="preserve">
+    <value>Светильников</value>
+  </data>
+  <data name="SelectedItemsCount" xml:space="preserve">
+    <value>Выделенно элементов</value>
+  </data>
+  <data name="CartesianCluster" xml:space="preserve">
+    <value>Прямоугольный кластер</value>
+  </data>
+  <data name="CreateCluster" xml:space="preserve">
+    <value>Создать кластер</value>
+  </data>
+  <data name="RadialCluster" xml:space="preserve">
+    <value>Радиальный кластер</value>
+  </data>
+  <data name="Plane_Axis" xml:space="preserve">
+    <value>Плоскость</value>
+  </data>
+  <data name="ColorUnsupportMessage" xml:space="preserve">
+    <value>Не все выделенные светильники поддерживают выбранный цвет</value>
+  </data>
+  <data name="RenderTool_Stop" xml:space="preserve">
+    <value>Вы хотите остановить рендеринг ?</value>
+  </data>
+  <data name="RenderingState_StartRendering" xml:space="preserve">
+    <value>Запуск рендеринга ...</value>
+  </data>
+  <data name="Dimming" xml:space="preserve">
+    <value>Диммирование</value>
+  </data>
+  <data name="Menu_Update" xml:space="preserve">
+    <value>Обновления...</value>
+  </data>
+  <data name="Window_Update" xml:space="preserve">
+    <value>Обновления</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Список изменений :</value>
+  </data>
+  <data name="ActualVersion" xml:space="preserve">
+    <value>Актуальная версия</value>
+  </data>
+  <data name="InstallOfFileComplete" xml:space="preserve">
+    <value>файла загружено</value>
+  </data>
+  <data name="InstallProcessedTotal" xml:space="preserve">
+    <value>обработано всего</value>
+  </data>
+  <data name="InstallCancelled" xml:space="preserve">
+    <value>Установка отменена</value>
+  </data>
+  <data name="InstallDownloading" xml:space="preserve">
+    <value>Загрузка: </value>
+  </data>
+  <data name="InstallStartDownloadingProgress" xml:space="preserve">
+    <value>Прогресс загрузки файлов</value>
+  </data>
+  <data name="InstallStartTotalProgress" xml:space="preserve">
+    <value>Общий прогресс</value>
+  </data>
+  <data name="InstallError" xml:space="preserve">
+    <value>Ошибка при обновлении</value>
+  </data>
+  <data name="InstallActual" xml:space="preserve">
+    <value>У вас актуальная версия</value>
+  </data>
+  <data name="InstallServerError" xml:space="preserve">
+    <value>Ошибка соединения с сервером обновления</value>
+  </data>
+  <data name="InstallUpdateAvailable" xml:space="preserve">
+    <value>Доступно обновление LightCAD</value>
+  </data>
+  <data name="RenderingState_Denoising" xml:space="preserve">
+    <value>Шумоподавление</value>
+  </data>
+  <data name="Ruler" xml:space="preserve">
+    <value>Линейка</value>
+  </data>
+  <data name="Menu_ExportToSfx" xml:space="preserve">
+    <value>Упаковать проект</value>
+  </data>
+  <data name="Sfx_Caption" xml:space="preserve">
+    <value>Упаковать проект</value>
+  </data>
+  <data name="Sfx_Copying" xml:space="preserve">
+    <value>Копирование файлов</value>
+  </data>
+  <data name="Sfx_Ziping" xml:space="preserve">
+    <value>Сжатие файлов</value>
+  </data>
+  <data name="Sfx_Cancelled" xml:space="preserve">
+    <value>Экспорт отменён</value>
+  </data>
+  <data name="Sfx_Projecterror" xml:space="preserve">
+    <value>Не найден файл проекта!</value>
+  </data>
+  <data name="StartExportToSfx" xml:space="preserve">
+    <value>Пуск</value>
+  </data>
+  <data name="Entity_AddressDevice" xml:space="preserve">
+    <value>Устройство</value>
+  </data>
+  <data name="Entity_AddressDevicePort" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="Entity_AddressRoot" xml:space="preserve">
+    <value>Корень</value>
+  </data>
+  <data name="Cmd_AddAddressDevice" xml:space="preserve">
+    <value>Добавить устройство</value>
+  </data>
+  <data name="Cmd_AddAddressDevicePort" xml:space="preserve">
+    <value>Добавить порт</value>
+  </data>
+  <data name="Cmd_AddAddressGroup" xml:space="preserve">
+    <value>Добавить группу</value>
+  </data>
+  <data name="DevicesCount" xml:space="preserve">
+    <value>Кол-во устройств</value>
+  </data>
+  <data name="Protocol" xml:space="preserve">
+    <value>Протокол</value>
+  </data>
+  <data name="ArtNet" xml:space="preserve">
+    <value>ArtNet</value>
+  </data>
+  <data name="InputInterface" xml:space="preserve">
+    <value>Интерфейс ввода</value>
+  </data>
+  <data name="Udp" xml:space="preserve">
+    <value>UDP</value>
+  </data>
+  <data name="Usb" xml:space="preserve">
+    <value>USB</value>
+  </data>
+  <data name="Dmx1024" xml:space="preserve">
+    <value>1024</value>
+  </data>
+  <data name="Dmx2048" xml:space="preserve">
+    <value>2048</value>
+  </data>
+  <data name="Dmx4096" xml:space="preserve">
+    <value>4096</value>
+  </data>
+  <data name="Dmx512" xml:space="preserve">
+    <value>512</value>
+  </data>
+  <data name="GameMode" xml:space="preserve">
+    <value>Игровой режим</value>
+  </data>
+  <data name="Navigation" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="Cmd_ChangeLuminous" xml:space="preserve">
+    <value>Изменение светового потока</value>
+  </data>
+  <data name="Entity_AddressUniverse" xml:space="preserve">
+    <value>Пространство</value>
+  </data>
+  <data name="Block_Universes" xml:space="preserve">
+    <value>Пространства</value>
+  </data>
+  <data name="LeftToRight" xml:space="preserve">
+    <value>Слева направо</value>
+  </data>
+  <data name="MaxRowsCountPerUniverse" xml:space="preserve">
+    <value>Максимальное кол-во рядов в пространстве</value>
+  </data>
+  <data name="StartDmxAddress" xml:space="preserve">
+    <value>Первый DMX</value>
+  </data>
+  <data name="EndDmxAddress" xml:space="preserve">
+    <value>Последний DMX</value>
+  </data>
+  <data name="AutoAddressingLuminaries" xml:space="preserve">
+    <value>Автоадресация</value>
+  </data>
+  <data name="Cmd_AddUniverse" xml:space="preserve">
+    <value>Добавление пространства</value>
+  </data>
+  <data name="Cmd_RemoveAddressLamp" xml:space="preserve">
+    <value>Удалить адрес светильника</value>
+  </data>
+  <data name="Entity_DeviceGroup" xml:space="preserve">
+    <value>Группа_устройств</value>
+  </data>
+  <data name="Entity_UniverseGroup" xml:space="preserve">
+    <value>Группа_пространств</value>
+  </data>
+  <data name="Cmd_AddDeviceGroup" xml:space="preserve">
+    <value>Добавить группу для устройств</value>
+  </data>
+  <data name="Cmd_AddUniverseGroup" xml:space="preserve">
+    <value>Добавить группу для пространств</value>
+  </data>
+  <data name="DmxSize" xml:space="preserve">
+    <value>Размер Dmx</value>
+  </data>
+  <data name="UId" xml:space="preserve">
+    <value>Идентификатор</value>
+  </data>
+  <data name="Block_Devices" xml:space="preserve">
+    <value>Устройства</value>
+  </data>
+  <data name="Cmd_RemoveDeviceObjects" xml:space="preserve">
+    <value>Удалить объеуты устройств</value>
+  </data>
+  <data name="Cmd_RemoveUniverseObjects" xml:space="preserve">
+    <value>Удалить объекты пространства</value>
+  </data>
+  <data name="Cmd_SetUniverseToPort" xml:space="preserve">
+    <value>Установить пространство для порта</value>
+  </data>
+  <data name="PortsCount" xml:space="preserve">
+    <value>Кол-во портов</value>
+  </data>
+  <data name="Window_AddUniverse" xml:space="preserve">
+    <value>Добавить пространство</value>
+  </data>
+  <data name="RenderVideo" xml:space="preserve">
+    <value>Рендер видео ...</value>
+  </data>
+  <data name="RenderVideoView_EndTickLabel" xml:space="preserve">
+    <value>Время окончания</value>
+  </data>
+  <data name="RenderVideoView_ScenarioLabel" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="RenderVideoView_StartTickLabel" xml:space="preserve">
+    <value>Время начала</value>
+  </data>
+  <data name="VideoMaker_VideoFps" xml:space="preserve">
+    <value>Кадров в секунду</value>
+  </data>
+  <data name="VideoMaker_VideoHeight" xml:space="preserve">
+    <value>Высота</value>
+  </data>
+  <data name="VideoMaker_VideoWidth" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="VideoMaker_VideoFilePath" xml:space="preserve">
+    <value>Путь к файлу</value>
+  </data>
+  <data name="VideoMaker_VideoResolution" xml:space="preserve">
+    <value>Разрешение</value>
+  </data>
+  <data name="MakeVideo" xml:space="preserve">
+    <value>Создать видео</value>
+  </data>
+  <data name="FilterMenu_ShowAddressedLuminaries" xml:space="preserve">
+    <value>Показать адресованные светильники</value>
+  </data>
+  <data name="Cmd_ChangeMaterial" xml:space="preserve">
+    <value>Изменить материал</value>
+  </data>
+  <data name="Ambient" xml:space="preserve">
+    <value>Окружающее освещение</value>
+  </data>
+  <data name="Diffuse" xml:space="preserve">
+    <value>Дифузная</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Материал</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Прозрачность</value>
+  </data>
+  <data name="SetMaterial" xml:space="preserve">
+    <value>Установить материал</value>
+  </data>
+  <data name="Specular" xml:space="preserve">
+    <value>Спекулярная</value>
+  </data>
+  <data name="Glossiness" xml:space="preserve">
+    <value>Глянцевость</value>
+  </data>
+  <data name="OpenFolder_Label" xml:space="preserve">
+    <value>Открыть папку</value>
+  </data>
+  <data name="TheFileWillBeOverwritten" xml:space="preserve">
+    <value>Файл будет перезаписан</value>
+  </data>
+  <data name="VideoMakerTitle" xml:space="preserve">
+    <value>Рендеринг видео</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="Normalize" xml:space="preserve">
+    <value>Нормировать</value>
+  </data>
+  <data name="Pivot" xml:space="preserve">
+    <value>Точка привязки</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="ResetPivot" xml:space="preserve">
+    <value>Сбросить к исходной точке</value>
+  </data>
+  <data name="SignalLevel" xml:space="preserve">
+    <value>Уровень сигнала</value>
+  </data>
+  <data name="SendCommandsToDevices" xml:space="preserve">
+    <value>Отправлять команды на устройства</value>
+  </data>
+  <data name="MixedColor" xml:space="preserve">
+    <value>Суммарный цвет</value>
+  </data>
+  <data name="RefreshAddressMap" xml:space="preserve">
+    <value>Обновить адресную карту</value>
+  </data>
+  <data name="ClearAll" xml:space="preserve">
+    <value>Очистить всё?</value>
+  </data>
+  <data name="Reversed" xml:space="preserve">
+    <value>Перевёрнутый</value>
+  </data>
+  <data name="Cmd_ChangeReverse" xml:space="preserve">
+    <value>Поменять точку начала светильника</value>
+  </data>
+  <data name="ILCSUsbExistsMessage" xml:space="preserve">
+    <value>Устройство ILCS с тем же USB портом уже существует</value>
+  </data>
+  <data name="Cmd_ChangeDmxSize" xml:space="preserve">
+    <value>Изменение размера DMX пространства</value>
+  </data>
+  <data name="Cmd_SetUsbInstance" xml:space="preserve">
+    <value>Установка USB порта</value>
+  </data>
+  <data name="Constrain" xml:space="preserve">
+    <value>Ограничить</value>
+  </data>
+  <data name="NoCameras" xml:space="preserve">
+    <value>Нет камер</value>
+  </data>
+  <data name="SelectCamera" xml:space="preserve">
+    <value>Выберите камеру</value>
+  </data>
+  <data name="Insert" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Выделен</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Выберите дату...</value>
+  </data>
+  <data name="Scheduler" xml:space="preserve">
+    <value>Планировщик</value>
+  </data>
+  <data name="AddTaskToScheduler" xml:space="preserve">
+    <value>Добавить задание в планировщик</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Календарь</value>
+  </data>
+  <data name="Cmd_RemoveScheduledTasks" xml:space="preserve">
+    <value>Удалить запланированные задания</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Следующая:</value>
+  </data>
+  <data name="NowPlaying" xml:space="preserve">
+    <value>Воспроизводится:</value>
+  </data>
+  <data name="Cmd_ChangeScheduleDayType" xml:space="preserve">
+    <value>Изменить день</value>
+  </data>
+  <data name="Cmd_ChangeScheduleScenario" xml:space="preserve">
+    <value>Изменить сценарий</value>
+  </data>
+  <data name="Cmd_ChangeScheduleDateTime" xml:space="preserve">
+    <value>Изменить дату и время</value>
+  </data>
+  <data name="Cmd_ChangeScheduleIsLooped" xml:space="preserve">
+    <value>Вкл/выкл. повтор</value>
+  </data>
+  <data name="AddressCells" xml:space="preserve">
+    <value>Адресные ячейки</value>
+  </data>
+  <data name="BeginFromZero" xml:space="preserve">
+    <value>Начинать с 0</value>
+  </data>
+  <data name="CastShadows" xml:space="preserve">
+    <value>Отбрасывает тени</value>
+  </data>
+  <data name="ChangeLampMaxInfluence" xml:space="preserve">
+    <value>Изменение радиуса сферы влияния</value>
+  </data>
+  <data name="InfluenceSphereRadius" xml:space="preserve">
+    <value>Радиус влияния</value>
+  </data>
+  <data name="OnOffCastShadows" xml:space="preserve">
+    <value>Вкл/выкл отбрасывания тени</value>
+  </data>
+  <data name="Calculation" xml:space="preserve">
+    <value>Расчёт</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="WorldSides_East" xml:space="preserve">
+    <value>Восток</value>
+  </data>
+  <data name="WorldSides_North" xml:space="preserve">
+    <value>Север</value>
+  </data>
+  <data name="WorldSides_Northeast" xml:space="preserve">
+    <value>Северо-Восток</value>
+  </data>
+  <data name="WorldSides_Northwest" xml:space="preserve">
+    <value>Северо-Запад</value>
+  </data>
+  <data name="WorldSides_South" xml:space="preserve">
+    <value>Юг</value>
+  </data>
+  <data name="WorldSides_Southeast" xml:space="preserve">
+    <value>Юго-Восток</value>
+  </data>
+  <data name="WorldSides_Southwest" xml:space="preserve">
+    <value>Юго-Запад</value>
+  </data>
+  <data name="WorldSides_West" xml:space="preserve">
+    <value>Запад</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Выберите файл...</value>
+  </data>
+  <data name="OpenDestinationFolder" xml:space="preserve">
+    <value>Открыть папку назначения после завершения</value>
+  </data>
+  <data name="AddTask" xml:space="preserve">
+    <value>Добавить задачу</value>
+  </data>
+  <data name="ImportTaskList" xml:space="preserve">
+    <value>Импорт задач...</value>
+  </data>
+  <data name="NewTaskList" xml:space="preserve">
+    <value>Новый список задач...</value>
+  </data>
+  <data name="OpenTaskList" xml:space="preserve">
+    <value>Открыть список задач...</value>
+  </data>
+  <data name="RemoveTask" xml:space="preserve">
+    <value>Удалить задачу</value>
+  </data>
+  <data name="FileName2" xml:space="preserve">
+    <value>Имя файла:</value>
+  </data>
+  <data name="SystemTime" xml:space="preserve">
+    <value>Системное время:</value>
+  </data>
+  <data name="SelectionBoundingBox" xml:space="preserve">
+    <value>Выбор: Ограничивающая рамка</value>
+  </data>
+  <data name="SelectionOutlining" xml:space="preserve">
+    <value>Выбор: Контурная обводка</value>
+  </data>
+  <data name="CreateVideo" xml:space="preserve">
+    <value>Создать видео</value>
+  </data>
+  <data name="CreateLuminary" xml:space="preserve">
+    <value>Создание светильника</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Длина</value>
+  </data>
+  <data name="Rotate45" xml:space="preserve">
+    <value>Повернуть на 45</value>
+  </data>
+  <data name="DeleteFileConfirmation" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить файл? Операция не может быть отменена.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>Файл не найден.</value>
+  </data>
+  <data name="AddEntityDialog_UserEquipmentTab_RepositoryHeader" xml:space="preserve">
+    <value>Пользовательская библиотека</value>
+  </data>
+  <data name="RemoveConfirmation" xml:space="preserve">
+    <value>Удалить выбранный элемент? Операция не может быть отменена.</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Расстояние</value>
+  </data>
+  <data name="ShowThisWindow" xml:space="preserve">
+    <value>Показывать окно при запуске</value>
+  </data>
+  <data name="Menu_ControlsGuide" xml:space="preserve">
+    <value>Руководство по управлению</value>
+  </data>
+  <data name="ManualLink" xml:space="preserve">
+    <value>https://lightcad.com/downloads/lightcad-1.2-manual-russian.pdf</value>
+  </data>
+  <data name="OnlineManual" xml:space="preserve">
+    <value>Руководство пользователя</value>
+  </data>
+  <data name="ViewChangelog" xml:space="preserve">
+    <value>Журнал изменений v.{0}</value>
+  </data>
+  <data name="YouTubeTutorials" xml:space="preserve">
+    <value>Посмотреть уроки на YouTube</value>
+  </data>
+  <data name="Continuous" xml:space="preserve">
+    <value>Непрерывная</value>
+  </data>
+  <data name="IntegerRowsInUniverse" xml:space="preserve">
+    <value>Целое кол-во строк в прост-ве</value>
+  </data>
+  <data name="LimitedRowsInUniverse" xml:space="preserve">
+    <value>Ограниченное кол-во строк в прост-ве</value>
+  </data>
+  <data name="DeviceId" xml:space="preserve">
+    <value>ID устройства</value>
+  </data>
+  <data name="DevicePort" xml:space="preserve">
+    <value>Порт устройства</value>
+  </data>
+  <data name="PortName" xml:space="preserve">
+    <value>Имя порта</value>
+  </data>
+  <data name="RemoteControl" xml:space="preserve">
+    <value>Пульт управления</value>
+  </data>
+  <data name="Mirroring" xml:space="preserve">
+    <value>Зеркальное отбражение</value>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>Лицензия</value>
+  </data>
+  <data name="SendCommandsToLuminaries" xml:space="preserve">
+    <value>Отправка сигнала светильникам</value>
+  </data>
+  <data name="DemoIsOver" xml:space="preserve">
+    <value>Демо режим завершён</value>
+  </data>
+  <data name="LicenseChanged" xml:space="preserve">
+    <value>Лицензионый ключ изменён. Перезапустите приложение, чтобы обновить ключ.</value>
+  </data>
+  <data name="Off1" xml:space="preserve">
+    <value>Выкл.</value>
+  </data>
+  <data name="On1" xml:space="preserve">
+    <value>Вкл.</value>
+  </data>
+  <data name="LicensedDmxCount" xml:space="preserve">
+    <value>Лицензированно dmx пространств:</value>
+  </data>
+  <data name="3DModel" xml:space="preserve">
+    <value>3D модель</value>
+  </data>
+  <data name="BypassOrder" xml:space="preserve">
+    <value>Порядок обхода</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>Диапазон</value>
+  </data>
+  <data name="Startup" xml:space="preserve">
+    <value>Запуск</value>
+  </data>
+  <data name="RunOnWindowsStartup" xml:space="preserve">
+    <value>Запустить LightCAD после загрузки Windows</value>
+  </data>
+  <data name="ProjectPathOnStartup" xml:space="preserve">
+    <value>Загрузить проект после запуска LightCAD</value>
+  </data>
+  <data name="RunSchedulerOnStartup" xml:space="preserve">
+    <value>Запустить планировщик после запуска LightCAD</value>
+  </data>
+  <data name="StartupTimeout" xml:space="preserve">
+    <value>Запуск с тайм-айтом (сек.)</value>
+  </data>
+  <data name="UniverseExistError" xml:space="preserve">
+    <value>Пространство с таким же идентификатором уже существует</value>
+  </data>
+  <data name="SelectColor" xml:space="preserve">
+    <value>Выберите цвет...</value>
+  </data>
+  <data name="StartTasks" xml:space="preserve">
+    <value>Запустить задачи</value>
+  </data>
+  <data name="StopTasks" xml:space="preserve">
+    <value>Остановить задачи</value>
+  </data>
+  <data name="LicenseExceeded" xml:space="preserve">
+    <value>Превышено количество лицензированных адресных каналов</value>
+  </data>
+  <data name="DemoStarted" xml:space="preserve">
+    <value>Демо режим</value>
+  </data>
+  <data name="SaveBeforePackage" xml:space="preserve">
+    <value>Cохранить проект перед его упаковкой? Упаковать можно только сохраненные данные.</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="ExportLampsMessage" xml:space="preserve">
+    <value>Экспорт светильников возможен только в пустую папку</value>
+  </data>
+  <data name="LuminaireCatalog" xml:space="preserve">
+    <value>Каталог светильников</value>
+  </data>
+  <data name="Mixing_LastReceived" xml:space="preserve">
+    <value>Последнее полученное</value>
+  </data>
+  <data name="Adaptive" xml:space="preserve">
+    <value>Адаптивно</value>
+  </data>
+  <data name="Always" xml:space="preserve">
+    <value>Всегда</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Никогда</value>
+  </data>
+  <data name="HighlightLampFirstPixel" xml:space="preserve">
+    <value>Выделить светильникам первый пиксель</value>
+  </data>
+  <data name="DmxFps" xml:space="preserve">
+    <value>Кадровая частота (DMX)</value>
+  </data>
+  <data name="Fade_sec" xml:space="preserve">
+    <value>Затухание, с.</value>
+  </data>
+  <data name="Rise_sec" xml:space="preserve">
+    <value>Разгорание, с.</value>
+  </data>
+  <data name="Cmd_ChangeCycleEffectPeriod" xml:space="preserve">
+    <value>Изменить период эффекта</value>
+  </data>
+  <data name="Cmd_ChangeCyclicFadeTimeDuration" xml:space="preserve">
+    <value>Изменить затухание цикла</value>
+  </data>
+  <data name="Cmd_ChangeCyclicRiseTimeDuration" xml:space="preserve">
+    <value>Изменить возгорание цикла</value>
+  </data>
+  <data name="CycleFadeTime" xml:space="preserve">
+    <value>Затухание цикла, с.</value>
+  </data>
+  <data name="CycleRiseTime" xml:space="preserve">
+    <value>Возгорание цикла, с.</value>
+  </data>
+  <data name="FitToRaster" xml:space="preserve">
+    <value>Приблизить выделенное</value>
+  </data>
+  <data name="StartStopScenarioItem" xml:space="preserve">
+    <value>Старт/Стоп элемент сценария</value>
+  </data>
+  <data name="MonitorUsbPorts" xml:space="preserve">
+    <value>Monitor if usb devices are plugged in</value>
+  </data>
+  <data name="UseFrameSync" xml:space="preserve">
+    <value>Использовать кадровую синхронизацию на устройствах</value>
+  </data>
+  <data name="ControlSettings" xml:space="preserve">
+    <value>Настройки оборудования</value>
+  </data>
+  <data name="StreamingOptions" xml:space="preserve">
+    <value>Параметры потоковой передачи</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Включен</value>
+  </data>
+  <data name="Cmd_ChangeScenarioItemIsEnabled" xml:space="preserve">
+    <value>Изменить сотояние "Включен" элемента сценария</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="DiscreteInputs" xml:space="preserve">
+    <value>Дискретные входы</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="ModbusUnitID" xml:space="preserve">
+    <value>ID модуля Modbus</value>
+  </data>
+  <data name="RadioGroup" xml:space="preserve">
+    <value>Радиогруппа</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Не в сети</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>В сети</value>
+  </data>
+  <data name="ModbusPollingRate" xml:space="preserve">
+    <value>Частота опроса modbus</value>
+  </data>
+  <data name="IesParseException" xml:space="preserve">
+    <value>Ошибка при чтении файла .ies</value>
+  </data>
+  <data name="BlurFactor" xml:space="preserve">
+    <value>Размытие</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Период, с</value>
+  </data>
+  <data name="RevertEven" xml:space="preserve">
+    <value>Инверсия в четных периодах</value>
+  </data>
+  <data name="AddFromLib" xml:space="preserve">
+    <value>Добавить из библиотеки</value>
+  </data>
+  <data name="ContextMenu_ExpandSelected" xml:space="preserve">
+    <value>Развернуть</value>
+  </data>
+  <data name="Logging" xml:space="preserve">
+    <value>Журналирование</value>
+  </data>
+  <data name="LoggingError" xml:space="preserve">
+    <value>Ошибки</value>
+  </data>
+  <data name="LoggingOff" xml:space="preserve">
+    <value>Выключено</value>
+  </data>
+  <data name="LoggingTrace" xml:space="preserve">
+    <value>Подробно</value>
+  </data>
+  <data name="StartPageRecentBrowse" xml:space="preserve">
+    <value>Выбрать...</value>
+  </data>
+  <data name="RecentProjects" xml:space="preserve">
+    <value>Проекты:</value>
+  </data>
+  <data name="LightcadSiteSP" xml:space="preserve">
+    <value>Сайт LightCAD</value>
+  </data>
+  <data name="YoutubeLinkSP" xml:space="preserve">
+    <value>Канал Youtube</value>
+  </data>
+  <data name="TelegramChannelSP" xml:space="preserve">
+    <value>Telegram канал</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Сцена</value>
+  </data>
+  <data name="Menu_Links" xml:space="preserve">
+    <value>Ссылки</value>
+  </data>
+  <data name="ImportDialog_Select" xml:space="preserve">
+    <value>Выбрать новый</value>
+  </data>
+  <data name="CameraViewType" xml:space="preserve">
+    <value>Вид камеры</value>
+  </data>
+  <data name="CameraViewType_Back" xml:space="preserve">
+    <value>Сзади</value>
+  </data>
+  <data name="CameraViewType_Bottom" xml:space="preserve">
+    <value>Снизу</value>
+  </data>
+  <data name="CameraViewType_Free" xml:space="preserve">
+    <value>Перспективный</value>
+  </data>
+  <data name="CameraViewType_Front" xml:space="preserve">
+    <value>Спереди</value>
+  </data>
+  <data name="CameraViewType_Left" xml:space="preserve">
+    <value>Слева</value>
+  </data>
+  <data name="CameraViewType_Right" xml:space="preserve">
+    <value>Справа</value>
+  </data>
+  <data name="CameraViewType_Top" xml:space="preserve">
+    <value>Сверху</value>
+  </data>
+  <data name="FillMode" xml:space="preserve">
+    <value>Режим заливки</value>
+  </data>
+  <data name="Menu_OpenWithDots" xml:space="preserve">
+    <value>Открыть...</value>
+  </data>
+  <data name="FileDialog_project_filter" xml:space="preserve">
+    <value>Проект LightCAD(*.lcdz)|*.lcdz</value>
+  </data>
+  <data name="RasterChanges_Delete" xml:space="preserve">
+    <value>Удаление проекций</value>
+  </data>
+  <data name="RasterChanges_Flip" xml:space="preserve">
+    <value>Отзеркаливание проекций</value>
+  </data>
+  <data name="RasterChanges_Move" xml:space="preserve">
+    <value>Перемещение проекций</value>
+  </data>
+  <data name="RasterChanges_Paste" xml:space="preserve">
+    <value>Вставка проекций</value>
+  </data>
+  <data name="RasterChanges_Rotate" xml:space="preserve">
+    <value>Вращение проекций</value>
+  </data>
+  <data name="ApplicationSettings_IdleMode" xml:space="preserve">
+    <value>Выключать рендеринг при простое</value>
+  </data>
+  <data name="ObjectCoordinates" xml:space="preserve">
+    <value>Координаты объекта</value>
+  </data>
+  <data name="CoordNotValid" xml:space="preserve">
+    <value>Координаты не верны</value>
+  </data>
+  <data name="OpenLocation" xml:space="preserve">
+    <value>Открыть местоположение</value>
+  </data>
+  <data name="Sunrize" xml:space="preserve">
+    <value>Восход</value>
+  </data>
+  <data name="min" xml:space="preserve">
+    <value>мин</value>
+  </data>
+  <data name="Sunset" xml:space="preserve">
+    <value>Закат</value>
+  </data>
+  <data name="RestService" xml:space="preserve">
+    <value>REST Service</value>
+  </data>
+  <data name="DuplicatedLampsInRasterFound" xml:space="preserve">
+    <value>Найдены повторяющиеся светильники. Вставка невозможна.</value>
+  </data>
+  <data name="ConfirmDeleteRasterProjection" xml:space="preserve">
+    <value>Вы уверены что хотите удалить выбранные светильники?</value>
+  </data>
+  <data name="ContextMenu_DeleteAllRecentProjects" xml:space="preserve">
+    <value>Очистить список недавних проектов</value>
+  </data>
+  <data name="ClearAllRecentProjects" xml:space="preserve">
+    <value>Очистить список недавних проектов?</value>
+  </data>
+  <data name="SchedulerSelectedDates" xml:space="preserve">
+    <value>Выбранные дни</value>
+  </data>
+  <data name="RasterLampFilter" xml:space="preserve">
+    <value>Лампы в выбранном растре</value>
+  </data>
+  <data name="RasterLampFilterCaption" xml:space="preserve">
+    <value>Не выбран растр для фильтрации</value>
+  </data>
+  <data name="RasterLampFilterMessage" xml:space="preserve">
+    <value>Не выбрано ни одного растра, пожалуйста, выберите растр!</value>
+  </data>
+  <data name="FileDialog_video_filter" xml:space="preserve">
+    <value>Видеофайлы | *.avi;*.mp4;*.mov</value>
+  </data>
+  <data name="FileDialog_image_filter" xml:space="preserve">
+    <value>Изображения | *.jpg;*.png;*.bmp</value>
+  </data>
+  <data name="FileDialog_image_filter_opacity" xml:space="preserve">
+    <value>Изображения | *.jpg;*.png;*.bmp;*.tga;*.gif;*.tif;*.tiff</value>
+  </data>
+  <data name="FileDialog_image_filter_skybox" xml:space="preserve">
+    <value>Изображения | *.png</value>
+  </data>
+  <data name="FileDialog_image_filter_visualisation" xml:space="preserve">
+    <value>Изображения | *.jpg;*.png</value>
+  </data>
+  <data name="RecalculateLight" xml:space="preserve">
+    <value>Пересчитать освещение</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Всего</value>
+  </data>
+  <data name="EffectType_Sound" xml:space="preserve">
+    <value>Звук</value>
+  </data>
+  <data name="EffectModbusTypes_Fill" xml:space="preserve">
+    <value>Заполнение (Modbus)</value>
+  </data>
+  <data name="Cmd_ChangeModbusSettings" xml:space="preserve">
+    <value>Изменить настройки Modbus для эффекта</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Максимум</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистр</value>
+  </data>
+  <data name="PollInterval" xml:space="preserve">
+    <value>Интервал опроса, мс</value>
+  </data>
+  <data name="UnitId" xml:space="preserve">
+    <value>UnitId</value>
+  </data>
+  <data name="Units" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="EffectModbusTypes_Transition" xml:space="preserve">
+    <value>Переход (Modbus)</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>Порог1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>Порог2</value>
+  </data>
+</root>

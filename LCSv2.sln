@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LcsServer", "LcsServer\LcsS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Acn", "Acn\Acn.csproj", "{388D59DD-AAE9-41E5-90B3-CA7541BFFC4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightCAD.UI.Strings", "LightCAD.UI.Resources\LightCAD.UI.Strings.csproj", "{43CA7B45-01EE-479D-96E3-1C35E496A8B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{388D59DD-AAE9-41E5-90B3-CA7541BFFC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{388D59DD-AAE9-41E5-90B3-CA7541BFFC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{388D59DD-AAE9-41E5-90B3-CA7541BFFC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CA7B45-01EE-479D-96E3-1C35E496A8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CA7B45-01EE-479D-96E3-1C35E496A8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CA7B45-01EE-479D-96E3-1C35E496A8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CA7B45-01EE-479D-96E3-1C35E496A8B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

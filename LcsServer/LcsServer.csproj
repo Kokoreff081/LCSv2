@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4" />
+    <PackageReference Include="Emgu.CV" Version="4.8.1.5350" />
+    <PackageReference Include="Emgu.CV.Bitmap" Version="4.8.1.5350" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -20,12 +21,21 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.1" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLog" Version="5.2.5" />
+    <PackageReference Include="NModbus" Version="3.0.81" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Acn\Acn.csproj" />
+    <ProjectReference Include="..\LightCAD.UI.Resources\LightCAD.UI.Strings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="VersionControl\AddressingObjects\ModbusDiscreteInput\" />
+    <Folder Include="VersionControl\SchedulerObjects\" />
   </ItemGroup>
 
 </Project>

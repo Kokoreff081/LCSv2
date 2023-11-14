@@ -1,6 +1,10 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Acn.ArtNet.Packets;
 using Acn.Rdm;
 using Acn.Rdm.Packets.Product;
@@ -18,6 +22,9 @@ using LcsServer.Models.DeviceModels;
 using LcsServer.Models.RequestModels;
 using LightControlServiceV._2.DevicePollingService.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WebInterface.Controllers;
 

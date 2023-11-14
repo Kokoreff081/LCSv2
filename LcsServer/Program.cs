@@ -1,11 +1,19 @@
+using System;
 using LcsServer.CommandLayer;
 using LcsServer.Controllers;
 using LcsServer.DatabaseLayer;
 using LcsServer.DevicePollingService;
 using LcsServer.DevicePollingService.Interfaces;
 using LcsServer.DevicePollingService.Models;
+using LcsServer.Models.LCProjectModels.Managers;
+using LCSVersionControl;
 using LightControlServiceV._2.DevicePollingService.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 
 var webApplicationOptions = new WebApplicationOptions()
@@ -60,6 +68,10 @@ builder.Services.AddSingleton<IBackgroundTaskQueue>(_ =>
     return new DefaultBackgroundTaskQueue(queueCapacity);
 });
 builder.Services.AddSingleton<DevicePollService>();
+//builder.Services.AddSingleton<BaseVC>();
+builder.Services.AddSingleton<JsonSerializationManager>();
+builder.Services.AddSingleton<VersionControlManager>();
+builder.Services.AddSingleton<RasterManager>();
 builder.Services.AddHostedService<BackgroundDevicePolling>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

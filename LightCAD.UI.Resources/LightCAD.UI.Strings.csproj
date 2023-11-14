@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Platforms>AnyCPU</Platforms>
+    <LangVersion>10</LangVersion>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Resources.ru-RU.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources.ru-RU1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Update="Resources.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ru-RU1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworkSDKToolsDirectory Condition=" '$(PlatformTarget)' == 'x64'">$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
+  </PropertyGroup>
+</Project>

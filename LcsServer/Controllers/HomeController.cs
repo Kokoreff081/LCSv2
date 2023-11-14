@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using LcsServer.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace LcsServer.Controllers;
 
