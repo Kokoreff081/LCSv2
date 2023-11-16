@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using LcsServer.Models.LCProjectModels.GlobalBase;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
 using LcsServer.Models.LCProjectModels.Models.Rasters;
-using LCSVersionControl.Interfaces;
 using NLog;
 
 namespace LcsServer.Models.LCProjectModels.Models.ScenarioObjects.Effects;

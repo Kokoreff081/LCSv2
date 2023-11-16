@@ -1,6 +1,6 @@
 ﻿using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 using LCSVersionControl.Converters;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using Newtonsoft.Json;
 
 namespace LCSVersionControl.ScenarioObjects.Task;

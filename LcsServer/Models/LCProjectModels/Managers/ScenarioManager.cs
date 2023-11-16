@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LcsServer.Models.LCProjectModels.GlobalBase;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
 using LcsServer.Models.LCProjectModels.Models.Rasters;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects.Effects;
 using LCSVersionControl;
-using LCSVersionControl.Interfaces;
 using NLog;
 
 namespace LcsServer.Models.LCProjectModels.Managers;
@@ -200,8 +200,7 @@ public class ScenarioManager : BaseLCObjectsManager
         /// <param name="rasters">Список растров</param>
         /// <param name="isNewProjectFormat"></param>
         /// <returns>Список объектов в сценарии</returns>
-        public void LoadScenarios(string projectPath, IEnumerable<string> enabledScenarios, List<Raster> rasters,
-            bool isNewProjectFormat)
+        public void LoadScenarios(string projectPath, List<Raster> rasters)
         {
             _oldIdNewRaster = rasters.ToDictionary(x => x.Id, x => x);
 

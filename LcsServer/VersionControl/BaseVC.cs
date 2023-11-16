@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 
 namespace LCSVersionControl;
 

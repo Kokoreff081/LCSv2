@@ -1,5 +1,5 @@
 ﻿using LCSVersionControl.Converters;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using Newtonsoft.Json;
 
 namespace LCSVersionControl.ScenarioObjects.Scenario;
@@ -14,7 +14,7 @@ public class ScenarioV3 : BaseVC
     public int RasterId { get; set; }
     public long RiseTime { get; set; }
     public long FadeTime { get; set; }
-    public bool IsEnabled { get; set; } = true;
+    public bool IsEnabled{ get; set; } = true;
     public float DimmingLevel { get; set; } = 1.0f;
 
     public override ISaveLoad ToConcreteObject()

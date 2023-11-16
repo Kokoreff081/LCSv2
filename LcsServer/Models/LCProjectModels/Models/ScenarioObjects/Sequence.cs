@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using LcsServer.Models.LCProjectModels.GlobalBase;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
 using LcsServer.Models.LCProjectModels.GlobalBase.Utils;
-using LCSVersionControl.Interfaces;
 
 namespace LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 

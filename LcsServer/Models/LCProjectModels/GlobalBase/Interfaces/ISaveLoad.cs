@@ -1,4 +1,4 @@
-﻿namespace LCSVersionControl.Interfaces;
+﻿namespace LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 
 public interface ISaveLoad
 {

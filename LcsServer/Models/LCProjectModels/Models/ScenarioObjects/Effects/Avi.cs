@@ -2,8 +2,8 @@
 using System.Runtime.InteropServices;
 using Emgu.CV;
 using LcsServer.Models.LCProjectModels.GlobalBase;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
-using LCSVersionControl.Interfaces;
 using NLog;
 
 namespace LcsServer.Models.LCProjectModels.Models.ScenarioObjects.Effects;

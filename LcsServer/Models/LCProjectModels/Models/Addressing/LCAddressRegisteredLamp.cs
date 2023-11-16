@@ -1,5 +1,6 @@
 ﻿using LcsServer.Models.LCProjectModels.GlobalBase;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
+
 
 namespace LcsServer.Models.LCProjectModels.Models.Addressing;
 

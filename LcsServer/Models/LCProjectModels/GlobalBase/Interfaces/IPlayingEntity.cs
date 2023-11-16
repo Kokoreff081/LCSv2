@@ -1,6 +1,6 @@
 ﻿using LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
 
-namespace LCSVersionControl.Interfaces;
+namespace LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 
 public interface IPlayingEntity 
 {

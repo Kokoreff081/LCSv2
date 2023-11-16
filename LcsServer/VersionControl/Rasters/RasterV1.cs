@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using LcsServer.Models.LCProjectModels.Models.Rasters;
 using LCSVersionControl.Converters;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using Newtonsoft.Json;
 
 namespace LCSVersionControl.Rasters;

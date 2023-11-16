@@ -1,5 +1,6 @@
-﻿using LCSVersionControl;
-using LCSVersionControl.Interfaces;
+﻿using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
+using LCSVersionControl;
+
 
 namespace LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
 

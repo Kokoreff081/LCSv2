@@ -1,6 +1,6 @@
-﻿using LcsServer.Models.LCProjectModels.Models.Addressing;
+﻿using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
+using LcsServer.Models.LCProjectModels.Models.Addressing;
 using LCSVersionControl.Converters;
-using LCSVersionControl.Interfaces;
 using Newtonsoft.Json;
 
 namespace LCSVersionControl.AddressingObjects.ArtNetDevice;

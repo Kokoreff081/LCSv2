@@ -2,7 +2,7 @@
 using LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 
-namespace LCSVersionControl.Interfaces;
+namespace LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 
 public interface ISequence<T> where T : LCObject
 {

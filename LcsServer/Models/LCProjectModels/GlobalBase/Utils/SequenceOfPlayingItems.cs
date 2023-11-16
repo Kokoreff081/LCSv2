@@ -1,5 +1,5 @@
-﻿using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
-using LCSVersionControl.Interfaces;
+﻿using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
+using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 
 namespace LcsServer.Models.LCProjectModels.GlobalBase.Utils;
 

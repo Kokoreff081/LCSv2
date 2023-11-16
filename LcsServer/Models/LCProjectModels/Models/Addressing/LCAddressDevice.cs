@@ -1,7 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using LcsServer.Models.LCProjectModels.GlobalBase;
 using LcsServer.Models.LCProjectModels.GlobalBase.Addressing.Enums;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
+
 
 namespace LcsServer.Models.LCProjectModels.Models.Addressing;
 

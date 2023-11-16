@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LightCAD.UI.Strings;
 
 namespace LcsServer.Models.LCProjectModels.Models.Addressing;

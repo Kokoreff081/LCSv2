@@ -1,6 +1,6 @@
 ﻿using LcsServer.Models.LCProjectModels.GlobalBase;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase.Scenarios;
-using LCSVersionControl.Interfaces;
 using LightCAD.UI.Strings;
 
 namespace LcsServer.Models.LCProjectModels.Models.ScenarioObjects;

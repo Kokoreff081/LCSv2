@@ -14,7 +14,7 @@ public abstract class BaseLCObjectsManager
         {
             _lcObjects = new Dictionary<int, LCObject>();
         }
-
+        
         public int GetNewCurrentId()
         {
             return Interlocked.Increment(ref _currentId);

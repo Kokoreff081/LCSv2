@@ -1,7 +1,7 @@
 ﻿using LcsServer.Models.LCProjectModels.GlobalBase.Addressing.Enums;
 using LcsServer.Models.LCProjectModels.Models.Addressing;
 using LCSVersionControl.Converters;
-using LCSVersionControl.Interfaces;
+using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using Newtonsoft.Json;
 
 namespace LCSVersionControl.AddressingObjects.DevicePort;
