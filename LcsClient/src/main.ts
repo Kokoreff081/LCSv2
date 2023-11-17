@@ -15,6 +15,9 @@ import './index.scss';
 import {faEnvelope, faLock, faUpload} from '@fortawesome/free-solid-svg-icons';
 
 library.add(faEnvelope, faLock, faUpload);
+import "primevue/resources/themes/bootstrap4-light-blue/theme.css"; //theme
+import "primevue/resources/primevue.min.css"; //core CSS
+
 
 const options: PluginOptions = {
     timeout: 3000,

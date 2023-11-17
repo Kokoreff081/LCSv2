@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'lccontrol2';
+  src:  url('public/assets/fonts/lccontrol2.eot?2rce5u');
+  src:  url('public/assets/fonts/lccontrol2.eot?2rce5u#iefix') format('embedded-opentype'),
+  url('public/assets/fonts/lccontrol2.ttf?2rce5u') format('truetype'),
+  url('public/assets/fonts/lccontrol2.woff?2rce5u') format('woff'),
+  url('public/assets/fonts/lccontrol2.svg?2rce5u#lccontrol2') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'lccontrol2' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-loop:before {
+  content: "\e909";
+}
+.icon-arrow_forward:before {
+  content: "\e90a";
+}
+.icon-pause_circle_filled:before {
+  content: "\e900";
+}
+.icon-play_circle_filled:before {
+  content: "\e902";
+}
+.icon-stop:before {
+  content: "\e905";
+}
+.icon-skip_next:before {
+  content: "\e903";
+}
+.icon-skip_previous:before {
+  content: "\e904";
+}
+.icon-lightbulb:before {
+  content: "\1f4a1";
+}
+.icon-add_circle:before {
+  content: "\e906";
+}
+.icon-save:before {
+  content: "\e90b";
+}
+.icon-folder:before {
+  content: "\e907";
+}
+.icon-delete:before {
+  content: "\e908";
+}
+.icon-lightbulb_outline:before {
+  content: "\e901";
+}
+.icon-account_tree:before {
+  content: "\e90d";
+}
+.icon-table_rows:before {
+  content: "\e90c";
+}
+/************************************REAL USINGS**********************************/
+.status_legend{
+  display:inline-block;
+  margin-left:10px;
+  margin-top:7px;
+  color:black;
+}
+.status_legend > span{
+  margin-left:8px;
+}
+.icon-lamp-normal:before {
+  content: "\1f4a1";
+  color: #fbe600;
+}
+
+.icon-lamp-new:before {
+  content: "\1f4a1";
+  color: #00FF00;
+}
+
+.icon-lamp-loading:before {
+  content: "\1f4a1";
+  color: #3cc5e7;
+}
+
+.icon-lamp-warning:before {
+  content: "\1f4a1";
+  color: #FC9F0C
+}
+
+.icon-lamp-lost:before {
+  content: "\1f4a1";
+  color: #FF0000;
+}
+
+.icon-table_rows-switch:before {
+  content: "\e90c";
+  color: #3cc5e7;
+  font-size: 22px;
+}
+.icon-account_tree-switch:before {
+  content: "\e90d";
+  color: #3cc5e7;
+  font-size: 22px;
+}

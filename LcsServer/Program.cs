@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using LcsServer.CommandLayer;
 using LcsServer.Controllers;
 using LcsServer.DatabaseLayer;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var webApplicationOptions = new WebApplicationOptions()
 {
@@ -78,7 +80,20 @@ builder.Services.AddHostedService<BackgroundDevicePolling>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Lcs Server API",
+        Description = "Description of LcsServer Controllers methods",
+
+    });
+
+    // using System.Reflection;
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(

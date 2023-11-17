@@ -26,8 +26,9 @@
   <div class="row">
     <div :key="polling" class="col-12">
       <div v-if="treeView">
-        <tree-table :value="devices.ToTreeTable" class=""
-                    selectionMode="single" :expandedKeys="expandedKeys" :filters="filters" filterMode="lenient" @nodeSelect="onNodeSelect" :scrollable="true" scrollHeight="75vh">
+        <tree-table :value="ToTreeTable" selectionMode="single" :expandedKeys="expandedKeys"
+                    :filters="filtersDT" filterMode="lenient" @nodeSelect="onNodeSelect" :scrollable="true"
+                    scrollHeight="75vh">
           <template #header>
             <div style="display:flex;">
               <div class="text-left" style="margin-right:42%;">
@@ -37,12 +38,12 @@
               <div class="text-right" style="margin-left:42%;">
                 <div class="p-input-icon-left">
                   <i class="pi pi-search"></i>
-                  <InputText v-model="filters['global']" placeholder="Global Search" size="50" />
+                  <InputText v-model="filtersDT['global'].value" placeholder="Global Search" size="50" />
                 </div>
               </div>
             </div>
           </template>
-          <column field="name" header="" :expander="true" sortable="true" headerClass="text-center" bodyClass="text-center">
+          <column field="slotProps.node.data.name" header="" :expander="true" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t('labels.deviceName')}}</span>
             </template>
@@ -86,8 +87,8 @@
                               </column>-->
         </tree-table>
       </div>
-      <div v-else>
-        <DataTable :value="devices.OnlyRdmDevice" :paginator="true" :rows="10" :rowsPerPageOptions="[10,20,50]" v-model:filters="filtersDT"
+      <div v-if="!treeView">
+        <DataTable :value="onlyRdmDevices" :paginator="true" :rows="10" :rowsPerPageOptions="[10,20,50]" v-model:filters="filtersDT"
                    :globalFilterFields="columns" selectionMode="single" @rowSelect="onNodeSelect" :scrollable="true" scrollHeight="75vh">
           <template #header>
             <div style="display:flex;">
@@ -98,7 +99,7 @@
               <div class="text-right" style="margin-left:42%;">
                 <div class="p-input-icon-left">
                   <i class="pi pi-search"></i>
-                  <InputText v-model="filters['global']" placeholder="Global Search" size="50" />
+                  <InputText v-model="filtersDT['global'].value" placeholder="Global Search" size="50" />
                 </div>
               </div>
             </div>

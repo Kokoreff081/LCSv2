@@ -18,7 +18,10 @@ public class ConfigurationController : Controller
         Configuration = config;
         _db = context;
     }
-
+    /// <summary>
+    /// Get base config variables
+    /// </summary>
+    /// <returns></returns>
     [Authorize]
     public JsonResult Index()
     {

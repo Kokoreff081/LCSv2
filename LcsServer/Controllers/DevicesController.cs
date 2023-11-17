@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Acn.ArtNet.Packets;
 using Acn.Rdm;
 using Acn.Rdm.Packets.Product;
 using Acn.Rdm.Packets.Sensors;
-using Acn.Sockets;
 using LcsServer.CommandLayer;
 using LcsServer.DatabaseLayer;
 using LcsServer.DevicePollingService.Enums;
 using LcsServer.DevicePollingService.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using Newtonsoft;
 using Newtonsoft.Json;
 using LcsServer.Models.DeviceModels;
 using LcsServer.Models.RequestModels;
@@ -244,7 +240,13 @@ public class DevicesController : Controller
 
         
     }
+    /// <summary>
+    /// Get all devices from database. Needs tocken and user need to have role 'admin' or 'user'
+    /// </summary>
+    /// <returns></returns>
     [Authorize(Roles = "admin, user")]
+    [HttpGet]
+    [Route("/[controller]/[action]")]
     public string Index()
     {
         var rdmDisabled = Configuration.GetValue<bool>("RdmDiscoveryForbiddenGlobal");
@@ -330,8 +332,12 @@ public class DevicesController : Controller
         result.Add(firstLevel);
         return result;
     }
-    
+    /// <summary>
+    /// Start or stop devicePollingService. This request can be sended from client app only if user has role 'admin'
+    /// </summary>
+    /// <param name="s3">bool action is a property of RequestModel StartStopScheduler, true - start, false - stop</param>
     [HttpPost]
+    [Route("/[controller]/[action]")]
     [Authorize(Roles = "admin")]
     public  void StartStopDiscovery([FromBody] StartStopScheduler s3)
     {
@@ -342,8 +348,14 @@ public class DevicesController : Controller
         };
         _taskQueue.QueueBackgroundWorkItemAsync(cmd);
     }
-
+/// <summary>
+/// Command to change DMX-address for selected RDM device. This request can be sended from client app only if user has role 'admin'
+/// </summary>
+/// <param name="nda">id field of NewDmxAddress reauest model - id of selected RDM device</param>
+/// <param name="nda">newDmxAddress field of NewDmxAddress reauest model - new value of DMX-address</param>
+/// <returns></returns>
     [HttpPost]
+    [Route("/[controller]/[action]")]
     [Authorize(Roles = "admin")]
     public async Task<string> ChangeDmxAddress([FromBody] NewDmxAddress nda)
     {
@@ -376,7 +388,14 @@ public class DevicesController : Controller
 
         return Index();
     }
+/// <summary>
+/// Command to change label for selected RDM device. This request can be sended from client app only if user has role 'admin'
+/// </summary>
+/// <param name="crl">id field of ChangeRdmLabel reauest model - id of selected RDM device</param>
+/// <param name="crl">newLabel field of ChangeRdmLabel reauest model - new value of Label</param>
+/// <returns></returns>
     [HttpPost]
+    [Route("/[controller]/[action]")]
     [Authorize(Roles = "admin")]
     public async Task<string> ChangeLabel([FromBody] ChangeRdmLabel crl)
     {
@@ -409,7 +428,14 @@ public class DevicesController : Controller
 
         return Index();
     }
+/// <summary>
+/// Command to detect selected RDM device in real. This request can be sended from client app only if user has role 'admin'
+/// </summary>
+/// <param name="lamp">id field of LampHighlight reauest model - id of selected RDM device</param>
+
+/// <returns></returns>
     [HttpPost]
+    [Route("/[controller]/[action]")]
     [Authorize(Roles = "admin")]
     public async Task<string> LampIdentity([FromBody]LampHighlight lamp)
     {
@@ -444,7 +470,13 @@ public class DevicesController : Controller
 
         return Index();
     }
+/// <summary>
+/// Change any param from not static (i.e. not Manufacturer or Name)
+/// </summary>
+/// <param name="cp">id - id of selected device, parameterId - id of parameter which value will be changed, newValue - new value of param</param>
+/// <returns></returns>
     [HttpPost]
+    [Route("/[controller]/[action]")]
     [Authorize(Roles = "admin")]
     public async Task<string> ChangeParameter([FromBody] ParamToChange cp)
     {
