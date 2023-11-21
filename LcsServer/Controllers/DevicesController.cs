@@ -180,6 +180,7 @@ public class DevicesController : Controller
 
                     rdmDev.Manufacturer = deviceParams.First(f => f.ParamName == "Manufacturer").ParamValue;
                     rdmDev.Model = deviceParams.First(f => f.ParamName == "Model").ParamValue;
+                    rdmDev.DeviceName = deviceParams.First(f => f.ParamName == "Model").ParamValue;
                     rdmDev.PowerCycles = int.Parse(deviceParams.First(f => f.ParamName == "PowerCycles").ParamValue);
                     rdmDev.ProductCategory =
                         (ProductCategories)int.Parse(deviceParams.First(f => f.ParamName == "ProductCategory")
@@ -189,7 +190,7 @@ public class DevicesController : Controller
                     rdmDev.SensorCount = byte.Parse(deviceParams.First(f => f.ParamName == "SensorCount").ParamValue);
                     if (rdmDev.SensorCount > 0)
                     {
-                        var sensorsInDb = _db.Sensors.Where(w => w.deviceId == rdmDev.Id).OrderByDescending(o=>o.LastPoll).ToList();
+                        var sensorsInDb = _db.Sensors.Where(w => w.deviceId == rdmDev.Id).OrderByDescending(o=>o.LastPoll).ToList().DistinctBy(d=>d.SensorId).ToList();
                         var lst = new List<Sensor>();
                         foreach (var _dbSensor in sensorsInDb)
                         {
@@ -260,7 +261,7 @@ public class DevicesController : Controller
         var settings = new JsonSerializerSettings();
         settings.Converters.Add(new IPEndPointConverter());
         settings.Converters.Add(new IPAddressConverter());
-        settings.Formatting = Formatting.Indented;
+        //settings.Formatting = Formatting.Indented;
         var result = JsonConvert.SerializeObject(toWeb,settings);
         
         return result;
@@ -274,13 +275,13 @@ public class DevicesController : Controller
             key = "0",
             data = new ColumnsToWebDevices()
             {
-                name = artNet.LongName,
-                label = "",
-                deviceStatus = (DeviceStatuses)artNet.StatusId,
-                dmxAddress = null,
+                DeviceName = artNet.LongName,
+                Label = "",
+                DeviceStatus = (DeviceStatuses)artNet.StatusId,
+                DmxAddress = null,
                 DmxFootprint = null,
                 //IsInProject = artNet.IsInProject,
-                softwareVersionIdLabel = "",
+                SoftwareVersionIdLabel = "",
                 Id = artNet.Id,
                 Type = artNet.Type
 
@@ -300,12 +301,12 @@ public class DevicesController : Controller
                 {
                     key = "0-" + i.ToString() + "-" + counter.ToString(),
                     data = new ColumnsToWebDevices() { 
-                        name = rdm.DisplayName,
-                        label = rdm.Label,
-                        deviceStatus = rdm.deviceStatus,
-                        dmxAddress = rdm.DmxAddress,
+                        DeviceName = rdm.DisplayName,
+                        Label = rdm.Label,
+                        DeviceStatus = rdm.deviceStatus,
+                        DmxAddress = rdm.DmxAddress,
                         DmxFootprint = rdm.DmxFootprint,
-                        softwareVersionIdLabel = rdm.SoftwareVersionIdLabel,
+                        SoftwareVersionIdLabel = rdm.SoftwareVersionIdLabel,
                         Id = rdm.Id,
                         Type = rdm.Type
                     }
@@ -317,12 +318,12 @@ public class DevicesController : Controller
                 key = "0-" + i.ToString(),
                 data = new ColumnsToWebDevices()
                 {
-                    name = name,
-                    label = "",
-                    deviceStatus = item.deviceStatus,
-                    dmxAddress = null,
+                    DeviceName = name,
+                    Label = "",
+                    DeviceStatus = item.deviceStatus,
+                    DmxAddress = null,
                     DmxFootprint = null,
-                    softwareVersionIdLabel = "",
+                    SoftwareVersionIdLabel = "",
                     Id = item.Id,
                     Type = item.Type
                 },
@@ -338,15 +339,15 @@ public class DevicesController : Controller
     /// <param name="s3">bool action is a property of RequestModel StartStopScheduler, true - start, false - stop</param>
     [HttpPost]
     [Route("/[controller]/[action]")]
-    [Authorize(Roles = "admin")]
-    public  void StartStopDiscovery([FromBody] StartStopScheduler s3)
+    [Authorize]
+    public async void StartStopDiscovery([FromBody] StartStopScheduler s3)
     {
         var cmd = new Command()
         {
             CommandType = (int)CommandTypes.StartStopDiscovering, State = 0, DeviceId = "", ParamNewValue = s3.action.ToString(),
             ParamId = -1, UserLogin = User.Identity.Name
         };
-        _taskQueue.QueueBackgroundWorkItemAsync(cmd);
+        await _taskQueue.QueueBackgroundWorkItemAsync(cmd);
     }
 /// <summary>
 /// Command to change DMX-address for selected RDM device. This request can be sended from client app only if user has role 'admin'
@@ -509,5 +510,39 @@ public class DevicesController : Controller
         }
 
         return Index();
+    }
+
+    [HttpPost]
+    public async void ReloadDeviceData([FromBody] DeviceReloadData lamp)
+    {
+        /*var scheduler = await _factory.GetScheduler();
+        await scheduler.PauseAll();
+
+        if (lamp.id != null)
+        {
+            int counter = 0;
+            var rdmDevice = _storageManager.GetDeviceById(lamp.id) as RdmDevice;
+            if (rdmDevice != null)
+            {
+                do
+                {
+                    counter++;
+                    await Task.Run(() => rdmDevice.UpdateAll());
+                    await Task.Delay(2000);
+                    if(rdmDevice.Model!= null)
+                    {
+                        rdmDevice.LastSeen = DateTime.Now;
+                        await _lcHub.DeviceDataReloading(rdmDevice);
+                        break;
+                    }
+                } while (counter < 6);
+            }
+            else
+            {
+                await _lcHub.DeviceDataReloadingError(new DeviceDataReloadError() { Error="No device found, id was null."});
+            }
+        }
+                
+        await scheduler.ResumeAll();*/
     }
 }

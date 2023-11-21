@@ -105,9 +105,9 @@ namespace LcsServer.DevicePollingService.Models;
             var scopeFactory = _serviceProvider.GetService<IServiceScopeFactory>();
             using (var scope = scopeFactory.CreateScope())
             {
-                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                 foreach (var device in Devices.Values)
                 {
+                    _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                     var list = _db.Devices.ToList();
                     if (!list.Any(a => a.deviceId == device.Id))
                     {
@@ -121,6 +121,7 @@ namespace LcsServer.DevicePollingService.Models;
                     }
                     else
                     {
+                        //_db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                         var existenDevice = _db.Devices.First(f => f.deviceId == device.Id);
                         switch (existenDevice.Type)
                         {

@@ -167,7 +167,7 @@
             <tr v-if="device.SensorCount > 0">
                 <td class="td_label">{{$t("labels.deviceSensors")}}</td>
                 <td style="float:right;">
-                    <sensors :sensors="sensorsArr"></sensors>
+                    <sensors :sensors="device.Sensors"></sensors>
                 </td>
             </tr>
             <tr>

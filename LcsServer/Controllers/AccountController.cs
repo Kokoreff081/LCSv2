@@ -57,7 +57,7 @@ namespace LcsServer.Controllers
                 var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
                 var response = new
                 {
-                    access_token = encodedJwt,
+                    access_token = "Bearer " + encodedJwt,
 
                 };
                 return JsonConvert.SerializeObject(response);

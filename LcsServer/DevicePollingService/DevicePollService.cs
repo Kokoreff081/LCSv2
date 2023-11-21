@@ -123,6 +123,7 @@ public class DevicePollService : IDisposable
                 }
                 catch (Exception ex)
                 {
+                    _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                     _db.Events.Add(new Event()
                     {
                         level = "Error", Description = ex.Message, dateTime = DateTime.Now
@@ -145,6 +146,7 @@ public class DevicePollService : IDisposable
                                     $"Dmx address of device {device.DisplayName} was successfully changed from {device.DmxAddress} to {cmd.ParamNewValue} by user {cmd.UserLogin}";
                                 device.ChangeDmxAddress(int.Parse(cmd.ParamNewValue));
                                 cmd.State = 1;
+                                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                                 _db.Events.Add(new Event()
                                 {
                                     level = "Info", Description = msg, dateTime = DateTime.Now
@@ -153,6 +155,7 @@ public class DevicePollService : IDisposable
                             }
                             catch (Exception ex)
                             {
+                                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                                 _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
@@ -170,13 +173,13 @@ public class DevicePollService : IDisposable
                                 {
                                     level = "Info", Description = msg, dateTime = DateTime.Now
                                 };
-                                
-                                    _db.Events.Add(logEntry);
-                                    await _db.SaveChangesAsync();
-                                
+                                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+                                _db.Events.Add(logEntry);
+                                await _db.SaveChangesAsync();
                             }
                             catch (Exception ex)
                             {
+                                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                                 _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
@@ -194,6 +197,7 @@ public class DevicePollService : IDisposable
                                 else
                                     msg = $"Identify of device {device.DisplayName} was successfully switch off by user {cmd.UserLogin}";
                                 device.IdentifyOnOff(flag);
+                                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                                 _db.Events.Add(new Event()
                                 {
                                     level = "Info", Description = msg, dateTime = DateTime.Now
@@ -202,6 +206,7 @@ public class DevicePollService : IDisposable
                             }
                             catch (Exception ex)
                             {
+                                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                                 _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
@@ -239,6 +244,7 @@ public class DevicePollService : IDisposable
                                     }
                                     msg = $"Param {changingParam.Description} of device {device.DisplayName} was successfully changed from {changingParam.Value.ToString()} to {cmd.ParamNewValue} by user {cmd.UserLogin}";
                                     await Task.Run(() =>changingParam.ChangeValueRequest(byteValue));
+                                    _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                                     _db.Events.Add(new Event()
                                     {
                                         level = "Info", Description = msg, dateTime = DateTime.Now
@@ -248,6 +254,7 @@ public class DevicePollService : IDisposable
                             }
                             catch (Exception ex)
                             {
+                                _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                                 _db.Events.Add(new Event()
                                 {
                                     level = "Error", Description = ex.Message, dateTime = DateTime.Now
@@ -503,6 +510,7 @@ public class DevicePollService : IDisposable
                         };
                         /*using (var db = _db.CreateDbContext(null))
                         {*/
+                        _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                         if (!_db.Devices.Any(a => a.deviceId == dbDevice.deviceId))
                         {
                             _db.Devices.Add(dbDevice);
@@ -532,6 +540,7 @@ public class DevicePollService : IDisposable
                         };
                         /*using (var db = _db.CreateDbContext(null))
                         {*/
+                        _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
                         if (!_db.Devices.Any(a => a.deviceId == dbDevice.deviceId))
                         {
                             _db.Devices.Add(dbDevice);

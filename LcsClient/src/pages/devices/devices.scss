@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: 'lccontrol2';
   src:  url('public/assets/fonts/lccontrol2.eot?2rce5u');
@@ -123,4 +124,268 @@
   content: "\e90d";
   color: #3cc5e7;
   font-size: 22px;
+}
+.discoveryOn {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  min-width: 220px;
+  height: 80px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 25px;
+}
+.discoveryOff {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  min-width: 220px;
+  height: 80px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radiusa: 25px;
+}
+.p-treetable .p-paginator-top {
+  border-width: 1px 0 0 0;
+  border-radius: 0;
+}
+
+.p-treetable .p-paginator-bottom {
+  border-width: 1px 0 0 0;
+  border-radius: 0;
+}
+
+.p-treetable .p-treetable-header {
+  background: #efefef;
+  color: #212529;
+  border: solid #dee2e6;
+  border-width: 1px 0 0 0;
+  padding: 1rem 1rem;
+  font-weight: 600;
+}
+
+.p-treetable .p-treetable-footer {
+  background: #efefef;
+  color: #212529;
+  border: 1px solid #dee2e6;
+  border-width: 1px 0 1px 0;
+  padding: 1rem 1rem;
+  font-weight: 600;
+}
+
+.p-treetable .p-treetable-thead > tr > th {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #dee2e6;
+  border-width: 1px 0 2px 0;
+  font-weight: 600;
+  color: #212529;
+  background: #ffffff;
+  transition: box-shadow 0.15s;
+}
+
+.p-treetable .p-treetable-tfoot > tr > td {
+  text-align: left;
+  padding: 1rem 1rem;
+  border: 1px solid #dee2e6;
+  border-width: 1px 0 1px 0;
+  font-weight: 600;
+  color: #212529;
+  background: #ffffff;
+}
+
+.p-treetable .p-sortable-column {
+  outline-color: rgba(38, 143, 255, 0.5);
+}
+
+.p-treetable .p-sortable-column .p-sortable-column-icon {
+  color: #6c757d;
+  margin-left: 0.5rem;
+}
+
+.p-treetable .p-sortable-column .p-sortable-column-badge {
+  border-radius: 50%;
+  height: 1.143rem;
+  min-width: 1.143rem;
+  line-height: 1.143rem;
+  color: #ffffff;
+  background: #007bff;
+  margin-left: 0.5rem;
+}
+
+.p-treetable .p-sortable-column:not(.p-highlight):hover {
+  background: #e9ecef;
+  color: #212529;
+}
+
+.p-treetable .p-sortable-column:not(.p-highlight):hover .p-sortable-column-icon {
+  color: #6c757d;
+}
+
+.p-treetable .p-sortable-column.p-highlight {
+  background: #ffffff;
+  color: #007bff;
+}
+
+.p-treetable .p-sortable-column.p-highlight .p-sortable-column-icon {
+  color: #007bff;
+}
+
+.p-treetable .p-treetable-tbody > tr {
+  background: #ffffff;
+  color: #212529;
+  transition: box-shadow 0.15s;
+}
+
+.p-treetable .p-treetable-tbody > tr > td {
+  text-align: left;
+  border: 1px solid #dee2e6;
+  border-width: 1px 0 0 0;
+  padding: 1rem 1rem;
+}
+
+.p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler {
+  width: 2rem;
+  height: 2rem;
+  color: #6c757d;
+  border: 0 none;
+  background: transparent;
+  border-radius: 50%;
+  transition: box-shadow 0.15s;
+  margin-right: 0.5rem;
+}
+
+.p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler:enabled:hover {
+  color: #495057;
+  border-color: transparent;
+  background: transparent;
+}
+
+.p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler + .p-checkbox {
+  margin-right: 0.5rem;
+}
+
+.p-treetable .p-treetable-tbody > tr > td .p-treetable-toggler + .p-checkbox .p-indeterminate .p-checkbox-icon {
+  color: #212529;
+}
+
+.p-treetable .p-treetable-tbody > tr:focus {
+  outline: 0.15rem solid rgba(38, 143, 255, 0.5);
+  outline-offset: -0.15rem;
+}
+
+.p-treetable .p-treetable-tbody > tr.p-highlight {
+  background: #007bff;
+  color: #ffffff;
+}
+
+.p-treetable .p-treetable-tbody > tr.p-highlight .p-treetable-toggler {
+  color: #ffffff;
+}
+
+.p-treetable .p-treetable-tbody > tr.p-highlight .p-treetable-toggler:hover {
+  color: #ffffff;
+}
+
+.p-treetable.p-treetable-hoverable-rows .p-treetable-tbody > tr:not(.p-highlight):hover {
+  background: #e9ecef;
+  color: #212529;
+}
+
+.p-treetable.p-treetable-hoverable-rows .p-treetable-tbody > tr:not(.p-highlight):hover .p-treetable-toggler {
+  color: #212529;
+}
+
+.p-treetable .p-column-resizer-helper {
+  background: #007bff;
+}
+
+.p-treetable .p-treetable-scrollable-header,
+.p-treetable .p-treetable-scrollable-footer {
+  background: #efefef;
+}
+
+.p-treetable .p-treetable-loading-icon {
+  font-size: 2rem;
+}
+
+.p-treetable .p-treetable-loading-icon.p-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.p-treetable.p-treetable-gridlines .p-datatable-header {
+  border-width: 1px 1px 0 1px;
+}
+
+.p-treetable.p-treetable-gridlines .p-treetable-footer {
+  border-width: 0 1px 1px 1px;
+}
+
+.p-treetable.p-treetable-gridlines .p-treetable-top {
+  border-width: 0 1px 0 1px;
+}
+
+.p-treetable.p-treetable-gridlines .p-treetable-bottom {
+  border-width: 0 1px 1px 1px;
+}
+
+.p-treetable.p-treetable-gridlines .p-treetable-thead > tr > th {
+  border-width: 1px;
+}
+
+.p-treetable.p-treetable-gridlines .p-treetable-tbody > tr > td {
+  border-width: 1px;
+}
+
+.p-treetable.p-treetable-gridlines .p-treetable-tfoot > tr > td {
+  border-width: 1px;
+}
+
+.p-treetable.p-treetable-sm .p-treetable-header {
+  padding: 0.875rem 0.875rem;
+}
+
+.p-treetable.p-treetable-sm .p-treetable-thead > tr > th {
+  padding: 0.5rem 0.5rem;
+}
+
+.p-treetable.p-treetable-sm .p-treetable-tbody > tr > td {
+  padding: 0.5rem 0.5rem;
+}
+
+.p-treetable.p-treetable-sm .p-treetable-tfoot > tr > td {
+  padding: 0.5rem 0.5rem;
+}
+
+.p-treetable.p-treetable-sm .p-treetable-footer {
+  padding: 0.5rem 0.5rem;
+}
+
+.p-treetable.p-treetable-lg .p-treetable-header {
+  padding: 1.25rem 1.25rem;
+}
+
+.p-treetable.p-treetable-lg .p-treetable-thead > tr > th {
+  padding: 1.25rem 1.25rem;
+}
+
+.p-treetable.p-treetable-lg .p-treetable-tbody > tr > td {
+  padding: 1.25rem 1.25rem;
+}
+
+.p-treetable.p-treetable-lg .p-treetable-tfoot > tr > td {
+  padding: 1.25rem 1.25rem;
+}
+
+.p-treetable.p-treetable-lg .p-treetable-footer {
+  padding: 1.25rem 1.25rem;
 }

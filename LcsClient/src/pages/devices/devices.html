@@ -14,7 +14,7 @@
           <div class="status_legend" v-else><span class="discoveryOff">{{ $t("labels.deviceScanFlagfalse") }}</span></div>
           <div class="status_legend">
                           <span>
-                              <Button icon="pi pi-check" @click="stopDiscovery" class="btn btn-success">
+                              <Button icon="pi pi-check" @click="startStopDiscovery" :class="discovering ? 'btn btn-success' : 'btn btn-danger'">
                                   <i class="fa fa-check" aria-hidden="true"></i> &nbsp; {{$t('labels.deviceStartStopScanButton')}}
                               </Button>
                           </span>
@@ -24,79 +24,71 @@
     </div>
   </div>
   <div class="row">
-    <div :key="polling" class="col-12">
+    <div :key="polling" class="col-11">
       <div v-if="treeView">
-        <tree-table :value="ToTreeTable" selectionMode="single" :expandedKeys="expandedKeys"
-                    :filters="filtersDT" filterMode="lenient" @nodeSelect="onNodeSelect" :scrollable="true"
-                    scrollHeight="75vh">
+        <Tree-table :value="toTreeTable" selectionMode="single" :expandedKeys="expandedKeys"
+                    :filters="filters" @nodeSelect="onNodeSelect" :scrollable="true"
+                    scrollHeight="70vh">
           <template #header>
             <div style="display:flex;">
               <div class="text-left" style="margin-right:42%;">
                 <span class="icon icon-table_rows-switch" @click="toggleViewToTable"></span>
                 <span class="icon icon-account_tree-switch" @click="toggleViewToTree"></span>
               </div>
-              <div class="text-right" style="margin-left:42%;">
+              <div class="text-right" style="margin-left:39%;">
                 <div class="p-input-icon-left">
                   <i class="pi pi-search"></i>
-                  <InputText v-model="filtersDT['global'].value" placeholder="Global Search" size="50" />
+                  <InputText v-model="filters['global']" placeholder="Global Search" size="50" />
                 </div>
               </div>
             </div>
           </template>
-          <column field="slotProps.node.data.name" header="" :expander="true" sortable="true" headerClass="text-center" bodyClass="text-center">
+          <Column field="DeviceName" header="" :expander="true" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t('labels.deviceName')}}</span>
             </template>
-          </column>
-          <column field="label" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="Label" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t('labels.deviceLabel')}}</span>
             </template>
-          </column>
-          <column field="deviceStatus" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="DeviceStatus" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t('labels.deviceStatus')}}</span>
             </template>
             <template #body="slotProps">
-              <span :class="iconStatusSelector(slotProps.node.data.deviceStatus)"></span>
+              <span :class="iconStatusSelector(slotProps.node.data.DeviceStatus)"></span>
             </template>
-          </column>
-          <column field="dmxAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="DmxAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t('labels.deviceDmxStartAddress')}}</span>
             </template>
-          </column>
-          <column field="softwareVersionIdLabel" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="SoftwareVersionIdLabel" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t('labels.deviceFirmwareVersion')}}</span>
             </template>
-          </column>
-          <column field="DmxFootprint" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="DmxFootprint" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t('labels.deviceFootprint')}}</span>
             </template>
-          </column>
-          <!--                    <column field="IsInProject" header="" headerClass="text-center" bodyClass="text-center">
-                                  <template #header>
-                                      <span>{{$t('labels.isInProject')}}</span>
-                                  </template>
-                                  <template #body="slotProps">
-                                      <span v-if="slotProps.node.data.IsInProject" class="pi pi-check"></span>
-                                      <span v-else class="pi pi-times"></span>
-                                  </template>
-                              </column>-->
-        </tree-table>
+          </Column>
+        </Tree-table>
       </div>
       <div v-if="!treeView">
-        <DataTable :value="onlyRdmDevices" :paginator="true" :rows="10" :rowsPerPageOptions="[10,20,50]" v-model:filters="filtersDT"
-                   :globalFilterFields="columns" selectionMode="single" @rowSelect="onNodeSelect" :scrollable="true" scrollHeight="75vh">
+        <DataTable :value="onlyRdmDevices" :paginator="true" :rows="10" :rowsPerPageOptions="[10,20,50]" :filters="filtersDT"
+                   :globalFilterFields="columns" selectionMode="single" :scrollable="true" scrollHeight="75vh"
+                   ><!--@rowSelect="onNodeSelect"-->
           <template #header>
             <div style="display:flex;">
               <div class="text-left" style="margin-right:42%;">
                 <span class="icon icon-table_rows-switch" @click="toggleViewToTable"></span>
                 <span class="icon icon-account_tree-switch" @click="toggleViewToTree"></span>
               </div>
-              <div class="text-right" style="margin-left:42%;">
+              <div class="text-right" style="margin-left:39%;">
                 <div class="p-input-icon-left">
                   <i class="pi pi-search"></i>
                   <InputText v-model="filtersDT['global'].value" placeholder="Global Search" size="50" />
@@ -104,41 +96,41 @@
               </div>
             </div>
           </template>
-          <column field="DeviceName" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          <Column field="DeviceName" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t("labels.deviceName")}}</span>
             </template>
-          </column>
-          <column field="Label" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="Label" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t("labels.deviceLabel")}}</span>
             </template>
-          </column>
-          <column field="DmxAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="DmxAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t("labels.deviceDmxStartAddress")}}</span>
             </template>
-          </column>
-          <column field="SoftwareVersionIdLabel" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="SoftwareVersionIdLabel" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t("labels.deviceFirmwareVersion")}}</span>
             </template>
-          </column>
-          <column field="DmxFootprint" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="DmxFootprint" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t("labels.deviceFootprint")}}</span>
             </template>
-          </column>
-          <column field="IpAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="IpAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t("labels.deviceIpAddress")}}</span>
             </template>
-          </column>
-          <column field="ParentPort" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          </Column>
+          <Column field="ParentPort" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
             <template #header>
               <span>{{$t("labels.devicePortAddress")}}</span>
             </template>
-          </column>
+          </Column>
         </DataTable>
       </div>
     </div>

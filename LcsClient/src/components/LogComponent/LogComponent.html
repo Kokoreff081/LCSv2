@@ -16,7 +16,7 @@
 </div>
 <div class="row">
   <div class="col-xl-12">
-    <dataTable :value="tableData" :paginator="true" :rows="15" :rowsPerPageOptions="[15,30,60]" v-model:filters="filters"
+    <dataTable :value="tableData" paginator :rows="15" :rowsPerPageOptions="[5,15,30,60]" v-model:filters="filters"
                :globalFilterFields="columns" :scrollable="true" scrollHeight="70vh">
       <template #header>
         <div class="flex justify-content-end">

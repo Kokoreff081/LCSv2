@@ -24,7 +24,7 @@ public class LogsController : Controller
         using (var scope = scopeFactory.CreateScope())
         {
             _db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-            var logs = _db.Events.ToList();
+            var logs = _db.Events.OrderByDescending(o=>o.dateTime).ToList();
             return new JsonResult(logs);
         }
     }

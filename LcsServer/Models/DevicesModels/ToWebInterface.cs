@@ -22,11 +22,11 @@ public class NewToWebDevices
 
 public class ColumnsToWebDevices
 {
-    public string name { get; set; }
-    public string label { get; set; }
-    public DeviceStatuses deviceStatus { get; set; }
-    public int? dmxAddress { get; set; }
-    public string softwareVersionIdLabel { get; set; }
+    public string DeviceName { get; set; }
+    public string Label { get; set; }
+    public DeviceStatuses DeviceStatus { get; set; }
+    public int? DmxAddress { get; set; }
+    public string SoftwareVersionIdLabel { get; set; }
     public int? DmxFootprint { get; set; }
     //public bool IsInProject { get; set; }
     public string Id { get; set; }
