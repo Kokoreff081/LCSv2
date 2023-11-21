@@ -109,7 +109,7 @@ export default class Devices extends Vue {
             case 'ArtNetGateway':
                 let selected = this.onlyArtnetDevices.find((item) => item.Id === node.data.Id);
                 this.selectedDevice = selected;
-                this.selectedDevice.devName = selected.DeviceName;
+                this.selectedDevice.devName = node.data.DeviceName;
                 break;
             case 'GatewayUniverse':
                 console.log(node.data.Id);

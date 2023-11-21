@@ -139,8 +139,7 @@
       <template #header>
         <span>{{$t("labels.deviceInfoHeader")}} : {{this.selectedDevice.devName}}</span>
       </template>
-      <device-info :device="selectedDevice" @paramsChanged="onParamsChanged" @higlitedLamp="onHiglightedLamp"
-                   @dmxAddressChanged="onDmxChange" @labelChanged="onLabelChanged" @deviceDataReloaded="onDeviceDataReloaded"></device-info>
+      <device-info :device="selectedDevice"></device-info>
       <template #footer>
         <PrimButton label="Close" icon="pi pi-times" @click="closeDeviceInfo" class="p-button-text" />
       </template>
