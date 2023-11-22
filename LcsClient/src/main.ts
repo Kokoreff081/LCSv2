@@ -4,7 +4,7 @@ import router from './router';
 import store from './store';
 import {i18n} from './translation';
 import PrimeVue from 'primevue/config';
-
+import VueKonva from 'vue-konva';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
@@ -46,4 +46,5 @@ createApp(App)
     .use(i18n as any)
     .use(ProfabricComponents as any)
     .use(PrimeVue)
+    .use(VueKonva)
     .mount('#app');

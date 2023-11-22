@@ -14,6 +14,7 @@ import SubMenu from '@/pages/main-menu/sub-menu/sub-menu.vue';
 import Blank from '@/pages/blank/blank.vue';
 import {getAuthStatus, GoogleProvider} from '@/utils/oidc-providers';
 import Devices from "@/pages/devices/devices.vue";
+import Scenarios from "@/pages/Scenarios/scenarios.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -41,16 +42,24 @@ const routes: Array<RouteRecordRaw> = [
                 }
             },
             {
-                path: 'sub-menu-1',
-                name: 'Sub Menu 1',
+                path: 'scheduler',
+                name: 'Scheduler',
                 component: SubMenu,
                 meta: {
                     requiresAuth: true
                 }
             },
             {
-                path: 'sub-menu-2',
-                name: 'Sub Menu 2',
+                path: 'scenarios',
+                name: 'Scenarios',
+                component: Scenarios,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: 'addressing',
+                name: 'Addressing',
                 component: Blank,
                 meta: {
                     requiresAuth: true

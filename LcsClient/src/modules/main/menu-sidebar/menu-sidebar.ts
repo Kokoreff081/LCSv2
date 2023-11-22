@@ -30,25 +30,31 @@ export const MENU = [
         name: i18n.global.t('labels.dashboard'),
         path: '/'
     },
-    {
+/*    {
         name: i18n.global.t('labels.blank'),
         path: '/blank'
-    },
+    },*/
     {
         name: i18n.global.t('labels.devices'),
         path: '/devicelist'
     },
     {
-        name: i18n.global.t('labels.mainMenu'),
+        name: i18n.global.t('labels.project'),
         children: [
             {
-                name: i18n.global.t('labels.subMenu'),
-                path: '/sub-menu-1'
+                name: i18n.global.t('labels.projectProjectScheduler'),
+                path: '/scheduler'
             },
 
             {
-                name: i18n.global.t('labels.blank'),
-                path: '/sub-menu-2'
+                name: i18n.global.t('labels.projectProjectScenPlayer'),
+                path: '/scenarios'
+            }
+            ,
+
+            {
+                name: i18n.global.t('labels.projectProjectDevices'),
+                path: '/adressing'
             }
         ]
     }

@@ -160,9 +160,9 @@
         "schedulerAddTask": "Add task to scheduler",
         "schedulerEditTask": "Edit scheduler task",
         "projectInfoHeader": "Project Information",
-        "projectProjectDevices": "Devices in project",
+        "projectProjectDevices": "Device addressing",
         "projectProjectScheduler": "Project scheduler",
-        "projectProjectScenPlayer": "Scenario player",
+        "projectProjectScenPlayer": "Scenarios and rasters",
         "rendererFitToRasters": "Set default scale"
     },
     "messages": {

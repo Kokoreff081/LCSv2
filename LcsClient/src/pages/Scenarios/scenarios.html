@@ -1,0 +1,68 @@
+﻿<div class="container-fluid" style="margin-left: 25px;">
+  <h3 style="margin-top:20px;">{{$t("labels.projectProjectScenPlayer")}}</h3>
+  <div class="row">
+    <div class="col-xl-1 text-center">
+      <myselect :options="groups" v-model="selected" @change="onItemSelected" optionLabel="name" optionValue="id" :editable="false" :virtualScrollerOptions="{ itemSize: 38 }" panel-style="{'min-width':'350px'}">
+        <template #value="slotProps">
+          <div class="p-dropdown-code">
+            <span v-if="slotProps.value">{{ slotProps.value.name }}</span>
+            <span v-else>
+                            {{ slotProps.placeholder }}
+                        </span>
+          </div>
+        </template>
+      </myselect>
+    </div>
+    <div class="col-xl-3 text-center">
+      <Button class="btn btn-info" @click="startStopAnimation">
+        {{$t('labels.rendererStartStopAnim')}}
+      </Button>
+    </div>
+    <div class="col-xl-1 text-center">
+      <myselect :options="scenarios" v-model="selectedScenario" @change="onScenarioSelect" optionLabel="ScenarioName" optionValue="ScenarioId" :editable="false" :virtualScrollerOptions="{ itemSize: 38 }" panel-style="{'min-width':'350px'}">
+        <template #value="slotProps">
+          <div class="p-dropdown-code">
+            <span v-if="slotProps.value">{{ slotProps.value.ScenarioName }}</span>
+            <span v-else>
+                            {{ slotProps.placeholder }}
+                        </span>
+          </div>
+        </template>
+      </myselect>
+    </div>
+    <div class="col-xl-2 text-center">
+      <!--<span class="icon" :class="playActiveSelector()" @click="playScenario(playScen)"></span>
+  <span class="icon" :class="pauseActiveSelector()" @click="pauseScenario(playScen)"></span>
+  <span class="icon" :class="stopActiveSelector()" @click="stopScenario(playScen)"></span>-->
+      <i class="icon" :class="playActiveSelector()" @click="playScenario(playScen)"></i>
+      <i class="icon" :class="pauseActiveSelector()" @click="pauseScenario(playScen)"></i>
+      <i class="icon" :class="stopActiveSelector()" @click="stopScenario(playScen)"></i>
+    </div>
+    <div class="col-xl-3 text-center">
+      <vue3-slider v-model="sliderVal"
+                   :height="10" :handleScale="1.5"
+                   :min="sliderMinVal"
+                   :max="sliderMaxVal"
+                   :alwaysShowHandle="true"
+                   :tooltip="tooltipShow"
+                   :alwaysShowTooltip="tooltipShow"
+                   :tooltipText="'%v'"
+                   tooltipColor="#fff" tooltipTextColor="#000"
+                   :flipTooltip="true"
+                   @drag-end="onSliderValChanged" />
+    </div>
+    <div class="col-xl-2 text-center">
+      <Button class="btn btn-primary" @click="setDefScale">
+        <i class="fa fa-refresh"></i> &nbsp;
+        {{$t('labels.rendererFitToRasters')}}
+      </Button>
+    </div>
+  </div>
+  <div class="row" style="margin-top:50px;">
+    <div class="col-12">
+      <div class="canvasRenderer">
+        <div id="canvas"></div>
+      </div>
+    </div>
+  </div>
+</div>

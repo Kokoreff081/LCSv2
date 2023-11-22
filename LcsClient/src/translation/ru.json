@@ -151,9 +151,9 @@
     "schedulerAddTask": "Добавить задачу в планировщик",
     "schedulerEditTask": "Редактирование задачи планировщика",
     "projectInfoHeader": "Информация о проекте",
-    "projectProjectDevices": "Устройства в проекте",
+    "projectProjectDevices": "Адресация устройств",
     "projectProjectScheduler": "Планировщик",
-    "projectProjectScenPlayer": "Проигрывание сценариев",
+    "projectProjectScenPlayer": "Сценарии и растры",
     "rendererFitToRasters":"Сбросить масштаб"
   },
   "messages": {
