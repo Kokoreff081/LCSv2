@@ -30,6 +30,7 @@ export default class Scenarios extends Vue {
     startStopAnim:boolean = true;
     scenarioTicks:number =  0;
     selectedScenario: any =  null;
+    selectedScen: number = null;
     playScen:any = null;
     isPlaying:boolean = false;
     playScenarioId:number =  -1;
@@ -120,7 +121,7 @@ export default class Scenarios extends Vue {
                 x: xPosGroup,
                 width: raster.DimensionX * 30,
                 heigth: raster.DimensionY * 30,
-                name: raster.name,
+                name: raster.Name,
                 id: 'Group_' + raster.Id,
                 visible: true,
                 stroke: 'yellow',
@@ -366,15 +367,16 @@ export default class Scenarios extends Vue {
     }
 
     onScenarioSelect() {
-        let findedScen = this.scenarios.find(f => f.scenarioId == this.selectedScenario);
+        console.log(this.selectedScenario);
+        let findedScen = this.scenarios.find(f => f.ScenarioId == this.selectedScenario);
         this.selectedScenario = findedScen;
         console.log(findedScen);
         this.playScen = {
-            scenarioId: findedScen.scenarioId,
-            scenarioName: findedScen.scenarioName,
-            isPlaying: findedScen.isPlaying,
-            scenarioTime: findedScen.scenarioTime,
-            totalTicks: findedScen.totalTicks,
+            scenarioId: findedScen.ScenarioId,
+            scenarioName: findedScen.ScenarioName,
+            isPlaying: findedScen.IsPlaying,
+            scenarioTime: findedScen.ScenarioTime,
+            totalTicks: findedScen.TotalTicks,
         };
         console.log(this.playScen);
         this.sliderMaxVal = this.playScen.totalTicks;
