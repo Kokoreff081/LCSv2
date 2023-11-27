@@ -31,6 +31,7 @@ public static class FileManager
         public const string SceneNodeFileName = "SceneEntity.lcn";
         private const string RasterFileName = "Rasters.lcr";
         private const string AddressingFileName = "Addressing.lca";
+        public const string SchedulerFileNameNew = "lc.schedule";
         private const string InputPlayingEntityLinkFileName = "Links.lca";
         private const string RegisteredAddressingFileName = "RegisteredMap.lca";
         private const string DocumentationFileName = "Documentation.lct";
