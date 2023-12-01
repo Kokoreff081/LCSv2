@@ -368,7 +368,7 @@ public class DevicePollService : IDisposable
             _rdmSocket.AllTransactionsCompleted += RdmReliableSocketNew_AllTransactionsCompleted;
         }
 
-        var paramSettings = _settingsService.GetSettings(SettingsTypes.Parameters) as ParametersSettings;
+        var paramSettings = _settingsService.GetSettings(DevicePollSettingsTypes.Parameters) as ParametersSettings;
 
         _rdmDeviceBroker = new RdmDeviceBroker(_rdmSocket, _storageManager, paramSettings);
         _rdmDeviceBroker.NewRdmDeviceFound += OnNewRdmDeviceFound;

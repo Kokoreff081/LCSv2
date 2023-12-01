@@ -16,13 +16,15 @@ public class ProjectController : Controller
     private RasterManager _rasterManager;
     private AddressingManager _addressingManager;
     private ScenarioManager _scenarioManager;
+    private ScheduleManager _scheduleManager;
     private readonly IConfiguration Configuration;
-    public ProjectController(IConfiguration _configuration, RasterManager rastMan, AddressingManager addressingManager, ScenarioManager scenarioManager)
+    public ProjectController(IConfiguration _configuration, RasterManager rastMan, AddressingManager addressingManager, ScenarioManager scenarioManager, ScheduleManager scheduleManager)
     {
         Configuration = _configuration;
         _rasterManager = rastMan;
         _addressingManager = addressingManager;
         _scenarioManager = scenarioManager;
+        _scheduleManager = scheduleManager;
         string projectFolder = Path.Combine(Configuration.GetValue<string>("LightCadProjectsFolder"),
             Configuration.GetValue<string>("DefaultProjectFolder"));
         if(!_rasterManager.GetPrimitives<Raster>().Any())

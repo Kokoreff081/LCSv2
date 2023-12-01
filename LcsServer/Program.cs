@@ -76,6 +76,7 @@ builder.Services.AddSingleton<VersionControlManager>();
 builder.Services.AddSingleton<RasterManager>();
 builder.Services.AddSingleton<AddressingManager>();
 builder.Services.AddSingleton<ScenarioManager>();
+builder.Services.AddSingleton<ScheduleManager>();
 builder.Services.AddHostedService<BackgroundDevicePolling>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

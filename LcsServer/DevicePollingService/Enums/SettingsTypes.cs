@@ -1,6 +1,6 @@
 namespace LcsServer.DevicePollingService.Enums;
 
-public enum SettingsTypes
+public enum DevicePollSettingsTypes
 {
     Application,
     Parameters,

@@ -1,7 +1,8 @@
-﻿using LcsServer.DevicePollingService.Interfaces;
+﻿using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase;
-using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase.Scheduler;
+using LcsServer.Models.LCProjectModels.GlobalBase.Settings;
+using LcsServer.Models.LCProjectModels.Models.Project;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 using LcsServer.Models.LCProjectModels.Models.Scheduler;
 using LCSVersionControl;
@@ -15,8 +16,8 @@ public class ScheduleManager : BaseLCObjectsManager
 
     private readonly VersionControlManager _versionControlManagerEx;
     private readonly ScenarioManager _scenarioManager;
-    private readonly ISettingsService _settingsService;
-
+    private readonly LCProjectModels.GlobalBase.Interfaces.ISettingsService _settingsService;
+    private Project _project;
     public ScheduleManager(VersionControlManager versionControlManagerEx, ScenarioManager scenarioManager,
         ISettingsService settingsService)
     {
@@ -98,7 +99,7 @@ public class ScheduleManager : BaseLCObjectsManager
         if (_project == null)
             return string.Empty;
 
-        return string.IsNullOrEmpty(_project.Path) ? _project.TempPath : _project.Path;
+        return /*string.IsNullOrEmpty(_project.Path) ? _project.TempPath :*/ _project.Path;
     }
 
     public void ChangeSchedulerFile(string fileName)
@@ -108,7 +109,7 @@ public class ScheduleManager : BaseLCObjectsManager
 
         RemoveAllObjects();
 
-        if (_settingsService.GetSettings(SettingsType.Scheduler) is SchedulerSettings schedulerSettings)
+        if (_settingsService.GetSettings(LCProjectModels.GlobalBase.Settings.SettingsType.Scheduler) is SchedulerSettings schedulerSettings)
         {
             schedulerSettings.SchedulerFile.Value = fileName;
         }
@@ -119,7 +120,7 @@ public class ScheduleManager : BaseLCObjectsManager
         if (!File.Exists(schedulerFile))
             Save(projectPath); // Создает новый файл планировщика (пустой)
 
-        Load(projectPath, _project);
+        //Load(projectPath, _project);
 
         ScheduleFileChanged?.Invoke();
     }
@@ -334,25 +335,4 @@ public class ScheduleManager : BaseLCObjectsManager
         }
     }
 
-}
-public enum SettingsType: byte
-{
-    Application,
-    Engineering,
-    LightSettings,
-    LightSettingsViewerOnly,
-    //RenderingSettings_Application,
-    RenderingSettings_Project,
-    Project,
-    Converter,
-    ViewPortSettings,
-    RenderTool,
-    ReportSettings,
-    GameModeSettings,
-    VideoMaker,
-    Hardware,
-    Scheduler,
-    //RemoteButtons,
-    Modbus,
-    REST,
 }

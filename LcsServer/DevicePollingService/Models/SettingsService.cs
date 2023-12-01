@@ -7,7 +7,7 @@ namespace LcsServer.DevicePollingService.Models;
 
 public class SettingsService : ISettingsService
 {
-    private readonly Dictionary<SettingsTypes, BaseSettings> _settings;
+    private readonly Dictionary<DevicePollSettingsTypes, BaseSettings> _settings;
 
     private DatabaseContext _db;
     private readonly ISerializationManagerRDM _serializationManager;
@@ -17,31 +17,31 @@ public class SettingsService : ISettingsService
     {
         _serializationManager = serializationManager;
         _serviceProvider = serviceProvider;
-        _settings = new Dictionary<SettingsTypes, BaseSettings>();
+        _settings = new Dictionary<DevicePollSettingsTypes, BaseSettings>();
     }
 
-    public BaseSettings GetSettings(SettingsTypes type)
+    public BaseSettings GetSettings(DevicePollSettingsTypes type)
     {
         return _settings.ContainsKey(type) ? _settings[type] : new ParametersSettings();
     }
 
-    public bool IsRegistered(SettingsTypes type)
+    public bool IsRegistered(DevicePollSettingsTypes type)
     {
         return _settings.ContainsKey(type);
     }
 
-    public void Register(SettingsTypes type, BaseSettings setting)
+    public void Register(DevicePollSettingsTypes type, BaseSettings setting)
     {
         _settings[type] = setting;
     }
 
-    public void Save(SettingsTypes type)
+    public void Save(DevicePollSettingsTypes type)
     {
         byte[] settingsData = _serializationManager.Serialize(_settings[type]);
         FileManager.WriteAllBytes(GetSettingsFileName(type), settingsData);
     }
 
-    public void Load(SettingsTypes type)
+    public void Load(DevicePollSettingsTypes type)
     {
         try
         {
@@ -71,7 +71,7 @@ public class SettingsService : ISettingsService
         }
     }
 
-    private string GetSettingsFileName(SettingsTypes settingsType)
+    private string GetSettingsFileName(DevicePollSettingsTypes settingsType)
     {
         return Path.Combine(FileManager.ApplicationDataFolderPath, settingsType + ".json");
     }

@@ -2,7 +2,7 @@
 
 namespace LcsServer.Models.LCProjectModels.GlobalBase.Scheduler;
 
-public class SchedulerSettings : BaseSetting
+public class SchedulerSettings : BaseSettings
 {
     public const string Name = nameof(SchedulerSettings);
 

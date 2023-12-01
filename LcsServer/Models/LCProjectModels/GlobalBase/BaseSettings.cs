@@ -4,13 +4,13 @@ using LcsServer.Models.LCProjectModels.GlobalBase.Settings;
 
 namespace LcsServer.Models.LCProjectModels.GlobalBase;
 
-public abstract class BaseSetting : IDisposable
+public abstract class BaseSettings : IDisposable
 {
     protected const string RootName = "Root";
 
     public event EventHandler SettingChanged;
     
-    protected BaseSetting()
+    protected BaseSettings()
     {
         Location = SettingsLocation.Application;
         List = new List<UniParam>();
