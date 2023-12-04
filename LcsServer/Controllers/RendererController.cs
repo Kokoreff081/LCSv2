@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace LcsServer.Controllers;
 
-public class RendererController
+public class RendererController: Controller
 {
     private RasterManager _rasterManager;
     private ScenarioManager _scenarioManager;

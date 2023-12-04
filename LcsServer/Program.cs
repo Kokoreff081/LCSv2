@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SettingsService = LcsServer.Models.LCProjectModels.GlobalBase.Settings.SettingsService;
 
 var webApplicationOptions = new WebApplicationOptions()
 {
@@ -72,6 +73,8 @@ builder.Services.AddSingleton<IBackgroundTaskQueue>(_ =>
 builder.Services.AddSingleton<DevicePollService>();
 //builder.Services.AddSingleton<BaseVC>();
 builder.Services.AddSingleton<JsonSerializationManager>();
+builder.Services
+    .AddSingleton<LcsServer.Models.LCProjectModels.GlobalBase.Interfaces.ISettingsService, SettingsService>();
 builder.Services.AddSingleton<VersionControlManager>();
 builder.Services.AddSingleton<RasterManager>();
 builder.Services.AddSingleton<AddressingManager>();

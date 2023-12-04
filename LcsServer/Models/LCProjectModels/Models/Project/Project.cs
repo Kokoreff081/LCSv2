@@ -3,7 +3,8 @@ using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 
 namespace LcsServer.Models.LCProjectModels.Models.Project;
 
-public class Project : LCObject, ISaveLoad
+public class 
+    Project : LCObject, ISaveLoad
 {
     public Project()
     {
