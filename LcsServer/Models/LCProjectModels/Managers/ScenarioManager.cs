@@ -200,32 +200,32 @@ public class ScenarioManager : BaseLCObjectsManager
         /// <param name="rasters">Список растров</param>
         /// <param name="isNewProjectFormat"></param>
         /// <returns>Список объектов в сценарии</returns>
-        public void LoadScenarios(string projectPath, List<Raster> rasters)
+        public void LoadScenarios(string scenariosPath, List<Raster> rasters)
         {
             _oldIdNewRaster = rasters.ToDictionary(x => x.Id, x => x);
 
             var scenarioItems = new List<LCObject>();
 
-            if (!string.IsNullOrEmpty(projectPath))
+            if (!string.IsNullOrEmpty(scenariosPath))
             {
-                string scenariosPath = FileManager.GetScenariosFolderPath(projectPath);
+                /*string scenariosPath = FileManager.GetScenariosFolderPath(projectPath);
                 FileManager.CreateIfNotExist(scenariosPath);
 
                 IEnumerable<string> lcsFiles = Directory.GetFiles(scenariosPath).Where(s =>
                     ".lcs".Equals(Path.GetExtension(s), StringComparison.InvariantCultureIgnoreCase));
 
                 foreach (string lcsFile in lcsFiles)
-                {
-                    var vcItems = _versionControlManagerEx.LoadAndConvertFromVC(lcsFile, true);
-                    string scenarioName = Path.GetFileNameWithoutExtension(lcsFile);
+                {*/
+                    var vcItems = _versionControlManagerEx.LoadAndConvertFromVC(scenariosPath, false);
+                    //string scenarioName = Path.GetFileNameWithoutExtension(scenariosPath);
 
-                    RestoreScenario(vcItems, projectPath, scenarioName);
+                    RestoreScenario(vcItems, scenariosPath);//, scenarioName);
 
                     IEnumerable<LCObject> deserializedItems = vcItems.Cast<LCObject>();
 
 
                     scenarioItems.AddRange(deserializedItems);
-                }
+                //}
             }
 
             if (!scenarioItems.OfType<Scenario>().Any())
@@ -278,7 +278,7 @@ public class ScenarioManager : BaseLCObjectsManager
             }
         }
 
-        private void RestoreScenario(List<ISaveLoad> scenarioItems, string projectFolderPath, string scenarioName)
+        private void RestoreScenario(List<ISaveLoad> scenarioItems, string projectFolderPath)//, string scenarioName)
         {
             for (int i = 0; i < scenarioItems.Count; i++)
             {
@@ -359,7 +359,7 @@ public class ScenarioManager : BaseLCObjectsManager
                 }
             }
 
-            scenario.Name = scenarioName;
+            //scenario.Name = scenarioName;
         }
 
         private void RestoreRaster(PlayingEntityWithRaster obj)

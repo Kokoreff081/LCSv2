@@ -530,16 +530,16 @@ public class AddressingManager : BaseLCObjectsManager, IAddressingManager
     /// <param name="lamps">Список светильников в проекте, для восстановления объектов адресации</param>
     /// <param name="isNewFormat">Новый формат проекта</param>
     /// <returns>Список объектов адресации</returns>
-    public void Load(string projectPath, /*List<LCLamp> lamps,*/ bool isNewFormat)
+    public void Load(string addressingFileName, /*List<LCLamp> lamps,*/ bool isNewFormat)
     {
-        FileManager.CreateIfNotExist(FileManager.GetAddressingFolderPath(projectPath));
-        string addressingFileName = FileManager.GetAddressingFilePath(projectPath);
+        /*FileManager.CreateIfNotExist(FileManager.GetAddressingFolderPath(projectPath));
+        string addressingFileName = FileManager.GetAddressingFilePath(projectPath);*/
 
         if (!File.Exists(addressingFileName)) return;
 
-        var addressingObjects = _versionControlManagerEx.LoadAndConvertFromVC(addressingFileName, true);
+        var addressingObjects = _versionControlManagerEx.LoadAndConvertFromVC(addressingFileName, false);
 
-        RestoreAddressingObjects(projectPath, ref addressingObjects);//, lamps);
+        RestoreAddressingObjects(addressingFileName, ref addressingObjects);//, lamps);
 
         AddObjects(addressingObjects.Cast<LCObject>().ToArray());
     }

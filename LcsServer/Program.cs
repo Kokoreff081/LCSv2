@@ -7,6 +7,7 @@ using LcsServer.DevicePollingService;
 using LcsServer.DevicePollingService.Interfaces;
 using LcsServer.DevicePollingService.Models;
 using LcsServer.Models.LCProjectModels.Managers;
+using LcsServer.Models.LCProjectModels.Models.Project;
 using LCSVersionControl;
 using LightControlServiceV._2.DevicePollingService.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -80,6 +81,7 @@ builder.Services.AddSingleton<RasterManager>();
 builder.Services.AddSingleton<AddressingManager>();
 builder.Services.AddSingleton<ScenarioManager>();
 builder.Services.AddSingleton<ScheduleManager>();
+builder.Services.AddSingleton<ProjectChanger>();
 builder.Services.AddHostedService<BackgroundDevicePolling>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

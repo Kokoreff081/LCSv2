@@ -223,14 +223,14 @@ public class ScheduleManager : BaseLCObjectsManager
     /// <param name="projectPath">Путь до папки проекта</param>
     /// <param name="project">Проект</param>
     /// <returns>Список объектов планировщика</returns>
-    public void Load(string projectPath)
+    /*public void Load(string schedulerFile)
     {
         
         
-        ConvertLCTT();
-        ConvertLcsked();
+        /*ConvertLCTT();
+        ConvertLcsked();#1#
 
-        string schedulerFile = FileManager.GetSchedulerFilePath(projectPath);//GetSchedulerFilePath(projectPath);
+        //string schedulerFile = FileManager.GetSchedulerFilePath(projectPath);//GetSchedulerFilePath(projectPath);
 
         if (!File.Exists(schedulerFile))
         {
@@ -238,9 +238,9 @@ public class ScheduleManager : BaseLCObjectsManager
         }
 
         Load(schedulerFile);
-    }
+    }*/
 
-    private void Load(string schedulerFile, bool generateNewId = false)
+    public void Load(string schedulerFile, bool generateNewId = false)
     {
         //List<ISaveLoad> schedulerObjects = _versionControlManagerEx.LoadAndConvertFromVC(schedulerFile, Path.GetExtension(schedulerFile).EndsWith("lctt"));
         List<ISaveLoad> schedulerObjects = _versionControlManagerEx.LoadAndConvertFromVC(schedulerFile, false);

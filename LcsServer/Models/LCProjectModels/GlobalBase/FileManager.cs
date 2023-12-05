@@ -41,6 +41,9 @@ public static class FileManager
         public const string ZippedProjectFileExtension = ".lcdz";
         public const string SchedulerFileExtension = ".lcsked";
         public const string ScenariosFileExtension = ".lcs";
+        public const string ProjectLCSFileName = "LCSProject";
+        public const string ProjectLCSFilenameExtension = ".lcdw";
+        public const string LCSProjectFolderName = "ProjectToLcs";
         
         public const string IesFileExtension = ".ies";
 
@@ -303,7 +306,15 @@ public static class FileManager
         {
             return Path.Combine(projectFolderPath, ResourcesFolderName, SchedulerFolderName);
         }
-
+        /// <summary>
+        /// Возвращает путь к папке где лежит проект для LCS
+        /// </summary>
+        /// <param name="projectFolderPath"></param>
+        /// <returns></returns>
+        public static string GetLCSProjectFolderPath(string projectFolderPath)
+        {
+            return Path.Combine(projectFolderPath, ResourcesFolderName, LCSProjectFolderName);
+        }
         /// <summary>
         /// Возвращает путь к файлу планировщика
         /// </summary>

@@ -70,17 +70,17 @@ public class RasterManager : BaseLCObjectsManager
         /// <param name="projectPath">Путь до папки проекта</param>
         /// <param name="isNewFormat">Новый формат проекта</param>
         /// <returns>Список растров</returns>
-        public void Load(string projectPath, bool isNewFormat)
+        public void Load(string rasterFileName, bool isNewFormat)
         {
-            FileManager.CreateIfNotExist(FileManager.GetRastersFolderPath(projectPath));
-            string rasterFileName = FileManager.GetRastersFilePath(projectPath);
+            //FileManager.CreateIfNotExist(FileManager.GetRastersFolderPath(projectPath));
+            //string rasterFileName = FileManager.GetRastersFilePath(projectPath);
 
-            var rasterItems = _versionControlManagerEx.LoadAndConvertFromVC(rasterFileName, true);
+            var rasterItems = _versionControlManagerEx.LoadAndConvertFromVC(rasterFileName, false);
 
             for (var i = 0; i < rasterItems.Count; i++)
             {
                 var saveLoadObject = rasterItems[i];
-                saveLoadObject.Load(rasterItems, i, projectPath);
+                saveLoadObject.Load(rasterItems, i, rasterFileName);
             }
 
             List<LCObject> rasters = rasterItems.Cast<LCObject>().ToList();

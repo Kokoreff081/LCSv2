@@ -1,5 +1,6 @@
 ﻿using LcsServer.Models.LCProjectModels.GlobalBase;
 using LcsServer.Models.LCProjectModels.GlobalBase.Addressing.Enums;
+using LcsServer.Models.ProjectModels;
 using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 
 
