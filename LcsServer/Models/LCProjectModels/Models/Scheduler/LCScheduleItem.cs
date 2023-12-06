@@ -328,7 +328,7 @@ public class LCScheduleItem : LCScheduleObject, ISaveLoad, IEquatable<LCSchedule
         ScenarioNameForRestore = Scenario?.Name;
     }
 
-    public void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+    public void Load(List<ISaveLoad> primitives, int indexInPrimitives)
     {
 
     }

@@ -63,7 +63,7 @@ public class LCModbusAddressDevice : LCAddressObject, ISaveLoad
     {
     }
 
-    public void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+    public void Load(List<ISaveLoad> primitives, int indexInPrimitives)
     {
             
     }

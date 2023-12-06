@@ -210,7 +210,7 @@ public abstract class Effect : PlayingEntity, ISaveLoad, IClone
         /// <param name="primitives">Все объекты проекта</param>
         /// <param name="indexInPrimitives">Индекс объекта в списке всех примитивов. Для ускоренного поиска родителя</param>
         /// <param name="projectFolderPath">Путь к папке проекта</param>
-        public virtual void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+        public virtual void Load(List<ISaveLoad> primitives, int indexInPrimitives)
         {
             LoadParent(primitives.OfType<LCObject>());
         }

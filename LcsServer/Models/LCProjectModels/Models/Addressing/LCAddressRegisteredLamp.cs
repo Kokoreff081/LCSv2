@@ -19,7 +19,7 @@ public class LCAddressRegisteredLamp : ISaveLoad
     {
     }
 
-    public void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+    public void Load(List<ISaveLoad> primitives, int indexInPrimitives)
     {
     }
 }

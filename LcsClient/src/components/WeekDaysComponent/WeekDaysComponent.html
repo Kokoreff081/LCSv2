@@ -1,0 +1,14 @@
+﻿<div v-if="mode === 'add'">
+  <Calendar :showTime="true" v-model="time" :timeOnly="true"></Calendar>
+  <ul>
+    <li v-for="(item, index) in weekDays">
+      <div class="scheduler_scenario_buttons">
+        <label style="margin-right:10px;">{{item.Name}}</label><input type="checkbox" v-model="item.isChecked" @change="checkboxChanged(item)" />
+      </div>
+    </li>
+  </ul>
+
+</div>
+<div v-else>
+  <span>{{taskWeekDay}}</span>
+</div>

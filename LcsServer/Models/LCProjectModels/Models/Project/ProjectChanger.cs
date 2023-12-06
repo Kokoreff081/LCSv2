@@ -19,7 +19,7 @@ public class ProjectChanger
     private readonly ScenarioManager _scenarioManager;
     private readonly ScheduleManager _scheduleManager;
     private readonly List<ScenarioNameId> scenarioNamesIds;
-   // private readonly List<ScheduleItemFront> scheduleFrontItems;
+    private readonly List<ScheduleFront> scheduleFrontItems;
     private readonly List<LCLampsFront> lcLampsFront;
     private readonly AddressingManager _addressingManager;
     public ProjectToWeb CurrentProject;
@@ -37,8 +37,8 @@ public class ProjectChanger
         _scheduleManager = scheduleManager;
         _addressingManager = addressingManager;
         scenarioNamesIds = new List<ScenarioNameId>();
-        /*scheduleFrontItems = new List<ScheduleItemFront>();
-        schedulerFilesFront = new List<SchedulerFilesFront>();*/
+        scheduleFrontItems = new List<ScheduleFront>();
+        /*schedulerFilesFront = new List<SchedulerFilesFront>();*/
         lcLampsFront = new List<LCLampsFront>();
         CurrentProject = new ProjectToWeb();
         
@@ -61,6 +61,7 @@ public class ProjectChanger
         foreach (var file in files)
         {
             var fileInfo = new FileInfo(file);
+            CurrentProject.Versions.Add(fileInfo.FullName);
             var stringTmpDateTime = tmpFile.Name.Split('_')[1].Split('.')[0];
             var stringDateTime = fileInfo.Name.Split('_')[1].Split('.')[0];
             var tmpDateAndTime = DateTime.ParseExact(stringTmpDateTime, "yyyy-MM-dd-HHmmss", CultureInfo.InvariantCulture);
@@ -71,6 +72,7 @@ public class ProjectChanger
 
         var baseFolder = Path.Combine(AppContext.BaseDirectory, "LcsProject");
         var currentFolder = Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name));
+        CurrentProject.Path = currentFolder;
         if(!Directory.Exists(currentFolder))
             ZipFile.ExtractToDirectory(tmpFile.FullName, Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name)));
 
@@ -264,7 +266,24 @@ public class ProjectChanger
             }
         }*/
         CurrentProject.LCLamps = lcLampsFront;
-        
-        
+
+        var scheduleGroups = _scheduleManager.GetScheduleGroups(true, CurrentProject).ToList();
+        foreach (var scGroup in scheduleGroups)
+        {
+            scheduleFrontItems.Add(new ScheduleFront()
+            {
+                Id = scGroup.Id,
+                Name = scGroup.Name,
+                Description = scGroup.Description,
+                Index = scGroup.Index,
+                DimmingLevel = scGroup.DimmingLevel,
+                IsCurrent = scGroup.IsCurrent,
+                IsAutoStart = scGroup.IsAutoStart,
+                Schedules = scGroup.Schedules,
+                PlayingSchedule = scGroup.Schedules.Any(a=>a.IsCurrent) ? scGroup.Schedules.First(f=>f.IsCurrent) : scGroup.Schedules[0],
+                SelectedSchedule = scGroup.Schedules.Any(a=>a.IsSelected) ? scGroup.Schedules.First(f=>f.IsSelected) : scGroup.Schedules[0],
+            });
+        }
+        CurrentProject.Scheduler = scheduleFrontItems;
     }
 }

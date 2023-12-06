@@ -10,7 +10,7 @@ public class ProjectToWeb
     {
         Rasters = new List<WebRaster>();
         RasterProjections = new List<WebRasterProjection>();
-        
+        Versions = new List<string>();
     }
     public string Name { get; set; }
 
@@ -25,4 +25,6 @@ public class ProjectToWeb
     public List<LCLampFront> OnlyProjectLamps { get; set; }
     public List<NewToWebDevices> ToTreeTable { get; set; }
     public DateTime LastModified { get; set; }
+    public string Path { get; set; }
+    public List<string> Versions { get; set; }
 }

@@ -15,6 +15,7 @@ import Blank from '@/pages/blank/blank.vue';
 import {getAuthStatus, GoogleProvider} from '@/utils/oidc-providers';
 import Devices from "@/pages/devices/devices.vue";
 import Scenarios from "@/pages/Scenarios/scenarios.vue";
+import Scheduler from "@/pages/scheduler/scheduler.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -44,7 +45,7 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path: 'scheduler',
                 name: 'Scheduler',
-                component: SubMenu,
+                component: Scheduler,
                 meta: {
                     requiresAuth: true
                 }

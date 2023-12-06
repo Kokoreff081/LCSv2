@@ -85,7 +85,7 @@ namespace LcsServer.Models.LCProjectModels.Models.Addressing;
         {
         }
 
-        public void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+        public void Load(List<ISaveLoad> primitives, int indexInPrimitives)
         {
             Universe = primitives.OfType<LCAddressUniverse>().FirstOrDefault(x => x.Id == _saveUniverseId);
         }

@@ -78,10 +78,10 @@ public abstract class BaseMediaEffect : Effect
             }
         }
 
-        public override void Load(List<ISaveLoad> primitives, int indexOfPrimitives, string projectFolderPath)
+        public override void Load(List<ISaveLoad> primitives, int indexOfPrimitives)
         {
-            base.Load(primitives, indexOfPrimitives, projectFolderPath);
-            ResourcesPath = FileManager.GetScenariosFolderPath(projectFolderPath);
+            base.Load(primitives, indexOfPrimitives);
+            //ResourcesPath = FileManager.GetScenariosFolderPath(projectFolderPath);
             OnFileNameChanged();
         }
         

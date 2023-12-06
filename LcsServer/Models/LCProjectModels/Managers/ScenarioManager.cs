@@ -283,7 +283,7 @@ public class ScenarioManager : BaseLCObjectsManager
             for (int i = 0; i < scenarioItems.Count; i++)
             {
                 ISaveLoad saveLoadObj = scenarioItems[i];
-                saveLoadObj.Load(scenarioItems, i, projectFolderPath);
+                saveLoadObj.Load(scenarioItems, i);
             }
 
             List<PlayingEntity> playingItems = scenarioItems.OfType<PlayingEntity>().ToList();

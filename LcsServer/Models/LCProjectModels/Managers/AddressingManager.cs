@@ -553,7 +553,7 @@ public class AddressingManager : BaseLCObjectsManager, IAddressingManager
             var addressingObject = addressingObjects[i];
             if (addressingObject != null)
             {
-                addressingObject.Load(addressingObjects, i, projectPath);
+                addressingObject.Load(addressingObjects, i);
                 /*if (addressingObject is LCAddressLamp addressLamp)
                 {
                     LCLamp lamp = lamps.FirstOrDefault(x => x.Id == addressLamp.LampId);

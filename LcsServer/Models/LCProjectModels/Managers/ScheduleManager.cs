@@ -5,6 +5,7 @@ using LcsServer.Models.LCProjectModels.GlobalBase.Settings;
 using LcsServer.Models.LCProjectModels.Models.Project;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 using LcsServer.Models.LCProjectModels.Models.Scheduler;
+using LcsServer.Models.ProjectModels;
 using LCSVersionControl;
 
 namespace LcsServer.Models.LCProjectModels.Managers;
@@ -17,7 +18,7 @@ public class ScheduleManager : BaseLCObjectsManager
     private readonly VersionControlManager _versionControlManagerEx;
     private readonly ScenarioManager _scenarioManager;
     private readonly LCProjectModels.GlobalBase.Interfaces.ISettingsService _settingsService;
-    private Project _project;
+    public ProjectChanger _pChanger;
     public ScheduleManager(VersionControlManager versionControlManagerEx, ScenarioManager scenarioManager,
         ISettingsService settingsService)
     {
@@ -30,9 +31,9 @@ public class ScheduleManager : BaseLCObjectsManager
     public List<LCScheduleItem> GetSortedScheduleItems()
     {
         List<LCScheduleItem> scheduleItems = GetPrimitives<LCScheduleItem>().ToList();
-        if (_project != null)
+        if (_pChanger.CurrentProject != null)
         {
-            (double latitude, double longitude) coord = _project.ProjectInfo.GetCoordinates();
+            (double latitude, double longitude) coord = _pChanger.CurrentProject.ProjectInfo.GetCoordinates();
             foreach (LCScheduleItem scheduleItem in scheduleItems)
             {
                 scheduleItem.UpdateTime(coord.latitude, coord.longitude);
@@ -48,12 +49,12 @@ public class ScheduleManager : BaseLCObjectsManager
     }
 
 
-    public List<LCScheduleGroup> GetScheduleGroups(bool updateTime)
+    public List<LCScheduleGroup> GetScheduleGroups(bool updateTime, ProjectToWeb CurrentProject)
     {
         List<LCScheduleGroup> scheduleGroups = GetPrimitives<LCScheduleGroup>().ToList();
-        if (updateTime && _project != null)
+        if (updateTime && CurrentProject != null)
         {
-            (double latitude, double longitude) = _project.ProjectInfo.GetCoordinates();
+            (double latitude, double longitude) = CurrentProject.ProjectInfo.GetCoordinates();
             foreach (var lcGroup in scheduleGroups)
             {
                 var scheduleItems = lcGroup.Schedules.SelectMany(s => s.ScheduleItems).ToList();
@@ -85,24 +86,24 @@ public class ScheduleManager : BaseLCObjectsManager
         ObjectsUpdated?.Invoke(this, new UpdateObjectsEventArgs(null, InformAction.RemoveAll));
     }
 
-    public string GetCurrentFilePath()
+    /*public string GetCurrentFilePath()
     {
         string projectPath = GetProjectPath();
         if (string.IsNullOrEmpty(projectPath))
             return string.Empty;
 
         return GetSchedulerFilePath(projectPath);
-    }
+    }*/
 
-    public string GetProjectPath()
+    /*public string GetProjectPath()
     {
-        if (_project == null)
+        if (_pChanger.CurrentProject == null)
             return string.Empty;
 
-        return /*string.IsNullOrEmpty(_project.Path) ? _project.TempPath :*/ _project.Path;
-    }
+        return /*string.IsNullOrEmpty(_project.Path) ? _project.TempPath :#1# _pChanger.CurrentProject.Path;
+    }*/
 
-    public void ChangeSchedulerFile(string fileName)
+    /*public void ChangeSchedulerFile(string fileName)
     {
         string projectPath = GetProjectPath();
         Save(projectPath); // Сохраняет текущий файл планировщика
@@ -123,87 +124,20 @@ public class ScheduleManager : BaseLCObjectsManager
         //Load(projectPath, _project);
 
         ScheduleFileChanged?.Invoke();
-    }
+    }*/
 
-    public void AddScheduleItems(string fileName)
+    /*public void AddScheduleItems(string fileName)
     {
-        string schedulerFolderPath = FileManager.GetScheduleFolderPath(GetProjectPath());
-        FileManager.CreateIfNotExist(schedulerFolderPath);
+        //string schedulerFolderPath = FileManager.GetScheduleFolderPath(GetProjectPath());
+        //FileManager.CreateIfNotExist(schedulerFolderPath);
 
         string schedulerFile = Path.Combine(schedulerFolderPath, fileName);
 
         Load(schedulerFile, true);
 
         ScheduleFileChanged?.Invoke();
-    }
-    /// <summary>
-    /// Аналог ConvertLCTT но для файлов с расширением .lcsked
-    /// </summary>
-    private void ConvertLcsked() {
-        var projectPath = GetProjectPath();
-        if (File.Exists(FileManager.GetSchedulerFilePath(projectPath)))
-        {
-            return;
-        }
-        var scheduleFiles = FileManager.GetFilesByExtensions(FileManager.GetScheduleFolderPath(projectPath), FileManager.SchedulerFileExtension).ToList();
-        string schedulerFolderPath = FileManager.GetScheduleFolderPath(projectPath);
-        var scheduleSettings = (SchedulerSettings)_settingsService.GetSettings(SettingsType.Scheduler);
-        int counter = 1;
-        var defaultGroup = new LCScheduleGroup(counter, counter, "default", 100, 0, true);
-        defaultGroup.Description = "Default schedule group";
-        counter++;
-        foreach(string scheduleFile in scheduleFiles)
-        {
-            var index = scheduleFiles.IndexOf(scheduleFile);
-            bool flag = scheduleSettings.SchedulerFile.Value.Equals(scheduleFile, StringComparison.InvariantCultureIgnoreCase);
-            string name = Path.GetFileNameWithoutExtension(scheduleFile);
-            var lcSchedule = new LCSchedule(counter,defaultGroup.ParentId,name, index, flag);
-            counter++;
-            List<ISaveLoad> schedulerObjects = _versionControlManagerEx.LoadAndConvertFromVC(scheduleFile, false);
-            lcSchedule.ScheduleItems = schedulerObjects.OfType<LCScheduleItem>().ToList();
-            defaultGroup.Schedules.Add(lcSchedule);
-        }
-        string schedulerFile = Path.Combine(schedulerFolderPath, FileManager.SchedulerFileNameNew);
-        RestoreScheduleItems(new List<LCScheduleGroup>() { defaultGroup });
-        AddObjects(new List<LCScheduleGroup>() { defaultGroup }.Cast<LCObject>().ToArray());
-        _versionControlManagerEx.ConvertToVCAndSave(GetPrimitives<LCObject>().OfType<ISaveLoad>(), projectPath, schedulerFile, false);
-        ClearLcObjectsList();
-    }
-
-    /// <summary>
-    /// Конвертирует lctt файлы в lcschedule
-    /// лютый костыль изза того что файл перезаписывается при кажлом чихе
-    /// </summary>
-    /// <param name="fileName"></param>
-    private void ConvertLCTT()
-    {
-        if (FileManager.GetFilesByExtensions(FileManager.GetScheduleFolderPath(GetProjectPath()),
-                FileManager.SchedulerFileExtension).Any())
-        {
-            return;
-        }
-        
-        var projectPath = GetProjectPath();
-        var scheduleFiles = FileManager.GetFilesByExtensions(FileManager.GetScheduleFolderPath(projectPath), ".lctt");
-
-        string schedulerFolderPath = FileManager.GetScheduleFolderPath(projectPath);
-
-        foreach (string scheduleFile in scheduleFiles)
-        {
-            List<ISaveLoad> schedulerObjects = _versionControlManagerEx.LoadAndConvertFromVC(scheduleFile, true);
-            RestoreScheduleItems(schedulerObjects.OfType<LCScheduleGroup>().ToList());
-            AddObjects(schedulerObjects.Cast<LCObject>().ToArray());
-            string schedulerFile = Path.Combine(schedulerFolderPath, $"{Path.GetFileNameWithoutExtension(scheduleFile)}{FileManager.SchedulerFileExtension}");
-            _versionControlManagerEx.ConvertToVCAndSave(GetPrimitives<LCObject>().OfType<ISaveLoad>(), projectPath, schedulerFile, false);
-            ClearLcObjectsList();
-        }
-    }
-    public void NewSaveMethod(string projectPath, string projectName, bool autoSave)
-    {
-        var schedulerFileName = FileManager.GetSchedulerFilePath(projectPath);
-        FileManager.CreateIfNotExist(Path.GetDirectoryName(schedulerFileName));
-        _versionControlManagerEx.ConvertToVCAndSave(GetPrimitives<LCObject>().OfType<ISaveLoad>(), projectPath, schedulerFileName, false);
-    }
+    }*/
+    
 
     public void Save(string projectPath)
     {
@@ -246,14 +180,14 @@ public class ScheduleManager : BaseLCObjectsManager
         List<ISaveLoad> schedulerObjects = _versionControlManagerEx.LoadAndConvertFromVC(schedulerFile, false);
         foreach(var item in schedulerObjects)
         {
-            item.Load(GetPrimitives<LCScheduleObject>().OfType<ISaveLoad>().ToList(), 0, GetProjectPath());
+            item.Load(GetPrimitives<LCScheduleObject>().OfType<ISaveLoad>().ToList(), 0);
         }
         RestoreScheduleItems(schedulerObjects.OfType<LCScheduleGroup>().ToList(), generateNewId);
 
         AddObjects(schedulerObjects.Cast<LCObject>().ToArray());
     }
 
-    private void LoadScheduleFileList()
+    /*private void LoadScheduleFileList()
     {
         SchedulerSettings schedulerSettings = (SchedulerSettings)_settingsService.GetSettings(SettingsType.Scheduler);
         List<string> scheduleFilesList = schedulerSettings.ScheduleFiles.Value;
@@ -280,7 +214,7 @@ public class ScheduleManager : BaseLCObjectsManager
         {
             schedulerSettings.SchedulerFile.Value = scheduleFilesList.FirstOrDefault();
         }
-    }
+    }*/
 
     private string GetSchedulerFilePath(string projectPath)
     {

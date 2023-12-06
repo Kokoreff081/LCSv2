@@ -62,7 +62,7 @@ public class LCScheduleGroup : LCScheduleObject, ISaveLoad
     {
         DescriptionChanged?.Invoke(this, EventArgs.Empty);
     }
-    public void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+    public void Load(List<ISaveLoad> primitives, int indexInPrimitives)
     {
         if (SchedulesToSave != null)
         {

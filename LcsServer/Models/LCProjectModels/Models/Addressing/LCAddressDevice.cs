@@ -53,7 +53,7 @@ public abstract class LCAddressDevice : LCAddressObject, ISaveLoad
         _savePortIds = Ports.Select(x => x.Id).ToArray();
     }
 
-    public virtual void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+    public virtual void Load(List<ISaveLoad> primitives, int indexInPrimitives)
     {
         List<LCAddressDevicePort> allPorts = primitives.OfType<LCAddressDevicePort>().ToList();
 

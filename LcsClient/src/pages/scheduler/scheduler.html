@@ -1,6 +1,68 @@
 ﻿<div class="container-fluid">
-  <h3 style="margin-top:20px;">{{$t("labels.devices")}}</h3>
+  <h3 style="margin-top:20px;">{{$t("labels.projectProjectScheduler")}}</h3>
+  <div class="row ">
+    <div class="col-xl-6 mx-auto">
+      <span>{{$t("labels.ScheduleGroupControlTabItem")}}</span>
+      <i class="icon" :class="playActiveSelector()" ></i>
+    </div>
+  </div>
   <div class="row">
-    
+    <div class="col-xl-3">
+      <ul style="list-style-type:none">
+        <li v-for="(group, index) in this.scheduleGroups">
+          <div :class="group.IsCurrent ? 'selectedGroup' : 'unselectedGroup'" >
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-1 align-baseline groupRow">{{group.Id}}</div>
+              <div class="col-sm-1 align-baseline"><i class="icon" :class="playActiveSelector()" ></i></div>
+              <div class="col-sm-8 align-baseline groupRow">{{group.Name}}</div>
+              <div class="col-sm-1 align-baseline"><PrimButton icon="pi pi-pencil" class="p-button-rounded p-button-secondary" size="small" /></div>
+            </div>
+            <hr/>
+            <div class="row">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-11">{{group.PlayingSchedule.Index}} {{group.PlayingSchedule.DisplayName}}</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-5 groupRow">{{$t("labels.nowPlaying")}}</div>
+                  <div class="col-sm-5 groupRow" v-if="group.PlayingSchedule.CurrentScheduleItem != null">{{group.PlayingSchedule.CurrentScheduleItem}}</div>
+                  <div class="col-sm-5 groupRow" v-else>---//---</div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-5 groupRow">{{$t("labels.nextPlaying")}}</div>
+                  <div class="col-sm-5 groupRow" v-if="group.PlayingSchedule.NextScheduleItem != null">{{group.PlayingSchedule.NextScheduleItem}}</div>
+                  <div class="col-sm-5 groupRow" v-else>---//---</div>
+                </div>
+              </div>
+            </div>
+            <hr/>
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="isAutoStart" class="ml-2 vertCenter"> <Checkbox v-model="group.IsAutoStart" :binary="true" input-id="isAutoStart" class="vertCenter"/>{{ $t("labels.Schedule_IsAutoStart") }} </label>
+              </div>
+              <div class="col-sm-5">
+                <Slider v-model="group.DimmingLevel" :step="1" class="w-14rem" id="DimmLevel"/>
+                <label for="DimmLevel" class="ml-2"> {{ $t("labels.ScheduleDimmingLevel") }} </label>
+              </div>
+            </div>
+          </div>
+      </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-xl-2">
+      <ul style="list-style-type:none">
+<!--        <li v-for="(schedule, index) in this.selectedScheduleGroup.Schedules">
+          <div class="row">
+            <div class="col-sm-5">{{schedule.Index}}</div>
+            <div class="col-sm-5">{{schedule.DisplayName}}</div>
+          </div>
+        </li>-->
+      </ul>
+    </div>
+    <div class="col-xl-7">
+      
+    </div>
   </div>
 </div>

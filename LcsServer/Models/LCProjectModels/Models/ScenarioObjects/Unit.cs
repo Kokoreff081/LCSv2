@@ -243,7 +243,7 @@ namespace LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
         /// <param name="primitives">Все объекты проекта</param>
         /// <param name="indexInPrimitives">Индекс объекта в списке всех примитивов. Для ускоренного поиска родителя</param>
         /// <param name="projectFolderPath">Путь к папке проекта</param>
-        public void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+        public void Load(List<ISaveLoad> primitives, int indexInPrimitives)
         {
             if (_trackIds == null && _mixingColl == null)
             {

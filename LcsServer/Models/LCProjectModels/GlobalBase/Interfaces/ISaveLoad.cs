@@ -14,5 +14,5 @@ public interface ISaveLoad
     /// <param name="primitives">Все объекты проекта</param>
     /// <param name="indexInPrimitives">Индекс объекта в списке всех примитивов. Для ускоренного поиска родителя</param>
     /// <param name="projectFolderPath">Путь к папке проекта</param>
-    void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath);
+    void Load(List<ISaveLoad> primitives, int indexInPrimitives);
 }

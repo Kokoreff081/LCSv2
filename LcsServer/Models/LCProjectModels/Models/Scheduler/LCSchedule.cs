@@ -7,7 +7,7 @@ public class LCSchedule : LCScheduleObject, ISaveLoad
 {
     private int _index;
     private bool _isCurrent;//== is playing now
-    //private bool _isPlaying;
+    private bool _isSelected;//private bool _isPlaying;
     [SaveLoad]
     private IEnumerable<object> _saveScheduleItems;
     
@@ -37,14 +37,14 @@ public class LCSchedule : LCScheduleObject, ISaveLoad
             _isCurrent = value;
         }
     }
-    //public bool IsPlaying
-    //{
-    //    get { return _isPlaying; }
-    //    set
-    //    {
-    //        _isPlaying = value;
-    //    }
-    //}
+    public bool IsSelected
+    {
+        get { return _isSelected; }
+        set
+        {
+            _isSelected = value;
+        }
+    }
     public int Index
     {
         get { return _index; }
@@ -64,7 +64,7 @@ public class LCSchedule : LCScheduleObject, ISaveLoad
         _saveScheduleItems = ScheduleItems.Select(s => new { s.Id, s.SelectedWeekDays, s.IsLooped, s.Name, s.ParentId, s.ScenarioId, s.ScenarioNameForRestore, s.SpecifiedDateTime, s.SpecifiedDateTimes, s.TimeType }).ToArray();
     }
 
-    public void Load(List<ISaveLoad> primitives, int indexInPrimitives, string projectFolderPath)
+    public void Load(List<ISaveLoad> primitives, int indexInPrimitives)
     {
         List<LCScheduleItem> allItems = primitives.OfType<LCScheduleItem>().ToList();
 

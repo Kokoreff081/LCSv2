@@ -80,7 +80,7 @@ public class RasterManager : BaseLCObjectsManager
             for (var i = 0; i < rasterItems.Count; i++)
             {
                 var saveLoadObject = rasterItems[i];
-                saveLoadObject.Load(rasterItems, i, rasterFileName);
+                saveLoadObject.Load(rasterItems, i);
             }
 
             List<LCObject> rasters = rasterItems.Cast<LCObject>().ToList();

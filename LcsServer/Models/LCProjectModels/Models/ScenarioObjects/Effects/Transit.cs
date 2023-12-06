@@ -78,9 +78,9 @@ public class Transit : Effect
             }
         }
 
-        public override void Load(List<ISaveLoad> primitives, int indexOfPrimitives, string projectFolderPath)
+        public override void Load(List<ISaveLoad> primitives, int indexOfPrimitives)
         {
-            base.Load(primitives, indexOfPrimitives, projectFolderPath);
+            base.Load(primitives, indexOfPrimitives);
         }
 
         protected override Effect Clone(IPlayingEntity parent)
