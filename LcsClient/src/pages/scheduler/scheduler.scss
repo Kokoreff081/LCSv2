@@ -154,6 +154,17 @@
   margin-top: 10px;
   font-size: 22px;
 }
+.icon-isLooped:before {
+  content: "\e909";
+  color: #3cc5e7 !important;
+  font-size: 22px;
+}
+
+.icon-isNoLooped:before {
+  content: "\e90a";
+  color: #3cc5e7 !important;
+  font-size: 22px;
+}
 .canvasRenderer {
   overflow-y: auto;
   overflow-x: hidden;
@@ -326,4 +337,29 @@ p-dropdown {
 .unselectedGroup{
   margin-bottom:10px;
   border:#212529 solid 2px;
+}
+.selectedSchedule{
+  margin-bottom:10px;
+  border:#212529 solid 2px;
+  background-color: #a9e6f5;
+  //opacity:0.5;
+  //color:white;
+}
+.unselectedSchedule{
+  margin-bottom:10px;
+  border:#212529 solid 2px;
+}
+.playingSchedule{
+  margin-bottom:10px;
+  border:#212529 solid 2px;
+  background-color: #b0e8d1;
+}
+.div-table {
+  min-height: 38px;
+  padding: 5px;
+  width: 150px;
+}
+.div-table-id {
+  min-height: 38px;
+  width: 50px;
 }

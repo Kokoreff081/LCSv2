@@ -102,6 +102,7 @@
         "schedulerScenario":"Scenario",
         "schedulerDate":"Date",
         "schedulerStart":"Start",
+        "schedulerFinish": "Finish",
         "schedulerRepeat":"Repeat",
         "schedulerDuration":"Duration",
         "weekDaysMonday":"Monday",

@@ -19,7 +19,7 @@ public class ProjectChanger
     private readonly ScenarioManager _scenarioManager;
     private readonly ScheduleManager _scheduleManager;
     private readonly List<ScenarioNameId> scenarioNamesIds;
-    private readonly List<ScheduleFront> scheduleFrontItems;
+    private readonly List<ScheduleGroupFront> scheduleFrontItems;
     private readonly List<LCLampsFront> lcLampsFront;
     private readonly AddressingManager _addressingManager;
     public ProjectToWeb CurrentProject;
@@ -37,7 +37,7 @@ public class ProjectChanger
         _scheduleManager = scheduleManager;
         _addressingManager = addressingManager;
         scenarioNamesIds = new List<ScenarioNameId>();
-        scheduleFrontItems = new List<ScheduleFront>();
+        scheduleFrontItems = new List<ScheduleGroupFront>();
         /*schedulerFilesFront = new List<SchedulerFilesFront>();*/
         lcLampsFront = new List<LCLampsFront>();
         CurrentProject = new ProjectToWeb();
@@ -58,10 +58,12 @@ public class ProjectChanger
         }
 
         var tmpFile = new FileInfo(files[0]);
+        int counter = 1;
         foreach (var file in files)
         {
             var fileInfo = new FileInfo(file);
-            CurrentProject.Versions.Add(fileInfo.FullName);
+            CurrentProject.Versions.Add(new LcsProjectVersion(){Id = counter, Name = fileInfo.FullName});
+            counter++;
             var stringTmpDateTime = tmpFile.Name.Split('_')[1].Split('.')[0];
             var stringDateTime = fileInfo.Name.Split('_')[1].Split('.')[0];
             var tmpDateAndTime = DateTime.ParseExact(stringTmpDateTime, "yyyy-MM-dd-HHmmss", CultureInfo.InvariantCulture);
@@ -73,6 +75,8 @@ public class ProjectChanger
         var baseFolder = Path.Combine(AppContext.BaseDirectory, "LcsProject");
         var currentFolder = Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name));
         CurrentProject.Path = currentFolder;
+        CurrentProject.Name = Configuration.GetValue<string>("DefaultProjectName");
+        CurrentProject.LastModified = DateTime.ParseExact(currentFolder.Split("_")[1], "yyyy-MM-dd-HHmmss", CultureInfo.InvariantCulture);
         if(!Directory.Exists(currentFolder))
             ZipFile.ExtractToDirectory(tmpFile.FullName, Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name)));
 
@@ -270,7 +274,44 @@ public class ProjectChanger
         var scheduleGroups = _scheduleManager.GetScheduleGroups(true, CurrentProject).ToList();
         foreach (var scGroup in scheduleGroups)
         {
-            scheduleFrontItems.Add(new ScheduleFront()
+            var frontSchedules = new List<LcScheduleFront>();
+            foreach (var item in scGroup.Schedules)
+            {
+                var frontSchedule = new LcScheduleFront()
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Index = item.Index,
+                    IsCurrent = item.IsCurrent,
+                    IsSelected = item.IsSelected,
+                    ScheduleItems = new List<ScheduleItemFront>()
+                };
+                foreach (var scheduleItem in item.ScheduleItems)
+                {
+                    frontSchedule.ScheduleItems.Add(new ScheduleItemFront()
+                    {
+                        Id = scheduleItem.Id,
+                        ScenarioId = scheduleItem.ScenarioId,
+                        SelectedWeekDays = scheduleItem.SelectedWeekDays,
+                        IsLooped = scheduleItem.IsLooped,
+                        IsSelected = false,
+                        MinutesStart = scheduleItem.Minutes,
+                        StartTimeType = scheduleItem.TimeType,
+                        FinishTimeType = scheduleItem.FinishTimeType,
+                        IsFinishEnabled = scheduleItem.IsFinishEnabled,
+                        MinutesFinish = scheduleItem.MinutesFinish,
+                        ScenarioName = scenarioNamesIds.Where(w => w.ScenarioId == scheduleItem.ScenarioId).First().ScenarioName,
+                        SpecifiedDateTime = scheduleItem.SpecifiedDateTime,
+                        SpecifiedDateTimeFinish = scheduleItem.SpecifiedDateTimeFinish,
+                        SpecifiedDateTimes = scheduleItem.SpecifiedDateTimes,
+                        Duration = TimeSpan.FromMilliseconds((double)scheduleItem.Scenario.TotalTicks).ToString(@"hh\:mm\:ss"),
+                        TaskChanged = false
+                    });
+                }
+                frontSchedules.Add(frontSchedule);
+                
+            }
+            scheduleFrontItems.Add(new ScheduleGroupFront()
             {
                 Id = scGroup.Id,
                 Name = scGroup.Name,
@@ -279,9 +320,9 @@ public class ProjectChanger
                 DimmingLevel = scGroup.DimmingLevel,
                 IsCurrent = scGroup.IsCurrent,
                 IsAutoStart = scGroup.IsAutoStart,
-                Schedules = scGroup.Schedules,
-                PlayingSchedule = scGroup.Schedules.Any(a=>a.IsCurrent) ? scGroup.Schedules.First(f=>f.IsCurrent) : scGroup.Schedules[0],
-                SelectedSchedule = scGroup.Schedules.Any(a=>a.IsSelected) ? scGroup.Schedules.First(f=>f.IsSelected) : scGroup.Schedules[0],
+                Schedules = frontSchedules,//scGroup.Schedules,
+                PlayingSchedule = frontSchedules.Any(a=>a.IsCurrent) ? frontSchedules.First(f=>f.IsCurrent) : frontSchedules[0],
+                SelectedSchedule = frontSchedules.Any(a=>a.IsSelected) ? frontSchedules.First(f=>f.IsSelected) : frontSchedules[0],
             });
         }
         CurrentProject.Scheduler = scheduleFrontItems;

@@ -5,6 +5,7 @@ using LcsServer.Models.LCProjectModels.Models.Addressing;
 using LcsServer.Models.LCProjectModels.Models.Project;
 using LcsServer.Models.LCProjectModels.Models.Rasters;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -38,29 +39,12 @@ public class ProjectController : Controller
         _addressingManager.Load(projectFolder, true);
         int point = 0;
     }
-
+    [HttpGet]
+    
+    [Route("/[controller]/[action]")]
     public string Index()
     {
-
-        var jObject = new JObject()
-        {
-            ["rasters"] = JsonConvert.SerializeObject(_rasterManager.GetPrimitives<Raster>(),  
-                new JsonSerializerSettings { 
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore 
-                }),
-            ["scenarios"] = JsonConvert.SerializeObject(_scenarioManager.GetPrimitives<Scenario>(), 
-                new JsonSerializerSettings { 
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore 
-                }),
-            ["adressing"] = JsonConvert.SerializeObject(_addressingManager.GetPrimitives<LCAddressObject>(), 
-                new JsonSerializerSettings { 
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore 
-                })   
-        };
-        return
-            jObject.ToString(); //JsonConvert.SerializeObject(json, Formatting.Indented, new JsonSerializerSettings { 
-        //ReferenceLoopHandling = ReferenceLoopHandling.Ignore 
-        //});
+        return JsonConvert.SerializeObject(_pChanger.CurrentProject);
     }
 }
 

@@ -93,6 +93,7 @@
     "schedulerScenario":"Сценарий",
     "schedulerDate":"Дата",
     "schedulerStart":"Старт",
+    "schedulerFinish": "Финиш",
     "schedulerRepeat":"Повторять",
     "schedulerDuration":"Время работы сценария",
     "weekDaysMonday":"Понедельник",

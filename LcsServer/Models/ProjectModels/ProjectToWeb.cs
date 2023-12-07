@@ -10,7 +10,7 @@ public class ProjectToWeb
     {
         Rasters = new List<WebRaster>();
         RasterProjections = new List<WebRasterProjection>();
-        Versions = new List<string>();
+        Versions = new List<LcsProjectVersion>();
     }
     public string Name { get; set; }
 
@@ -18,7 +18,7 @@ public class ProjectToWeb
 
     public List<WebRaster> Rasters { get; set; }
     public List<ScenarioNameId> Scenarios { get; set; }
-    public List<ScheduleFront> Scheduler { get; set; }
+    public List<ScheduleGroupFront> Scheduler { get; set; }
     public List<WebRasterProjection> RasterProjections { get; set; }
     public bool IsTasksPlaying { get; set; }
     public List<LCLampsFront> LCLamps { get; set; }
@@ -26,5 +26,11 @@ public class ProjectToWeb
     public List<NewToWebDevices> ToTreeTable { get; set; }
     public DateTime LastModified { get; set; }
     public string Path { get; set; }
-    public List<string> Versions { get; set; }
+    public List<LcsProjectVersion> Versions { get; set; }
+}
+
+public class LcsProjectVersion
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
 }

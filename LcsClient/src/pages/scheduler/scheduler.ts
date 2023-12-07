@@ -31,6 +31,8 @@ export default class Scheduler extends Vue {
     scenario:any = null;
     scheduleGroups:any[] = [];
     selectedScheduleGroup:any = null;
+    selectedScheduleInSelectedGroup:any = null;
+    selectedScheduleItem:any = null;
     isModalVisible:boolean = false;
     modalDateChangeVisibility:boolean = false;
     repeating:string = 'view';
@@ -73,8 +75,20 @@ export default class Scheduler extends Vue {
             let data = JSON.parse(response.data);
             //console.log(data);
             this.scheduleGroups = data.Schedule;
-            console.log(this.scheduleGroups);
             this.selectedScheduleGroup = this.scheduleGroups.find((item:any)=>item.IsCurrent === true);
+            this.selectedScheduleInSelectedGroup = this.selectedScheduleGroup.Schedules.find((item:any) => item.IsSelected === true);
+            console.log(this.selectedScheduleInSelectedGroup);
+            if(this.selectedScheduleInSelectedGroup === undefined){
+                console.log(this.selectedScheduleGroup.Schedules[0]);
+                this.selectedScheduleGroup.Schedules[0].IsSelected = true;
+                this.selectedScheduleInSelectedGroup = this.selectedScheduleGroup.Schedules.find((item:any) => item.IsSelected === true);
+            }
+            console.log(this.selectedScheduleGroup);
+            this.selectedScheduleItem = this.selectedScheduleInSelectedGroup.ScheduleItems.find((item:any)=>item.IsSelected=== true);
+            if(this.selectedScheduleItem === undefined){
+                this.selectedScheduleInSelectedGroup.ScheduleItems[0].IsSelected = true;
+                this.selectedScheduleItem = this.selectedScheduleInSelectedGroup.ScheduleItems.find((item:any)=>item.IsSelected=== true);
+            }
         }
     }
 
@@ -83,5 +97,52 @@ export default class Scheduler extends Vue {
             return 'icon-playScenario-inactive';
         else
             return 'icon-playScenario';
+    }
+    
+    selectedAndPlayingSelector(lcSchedule:any):string{
+        console.log(lcSchedule);
+        
+        if(lcSchedule.IsCurrent || lcSchedule.IsSelected){
+            if(lcSchedule.IsCurrent && !lcSchedule.IsSelected)
+                return 'playingSchedule';
+            else{
+                return 'selectedSchedule';
+            }
+        }
+        else
+           return 'unselectedSchedule';
+    }
+    selectScheduleGroup(item:any){
+        console.log(this.selectedScheduleGroup);
+        console.log(item);
+        item.IsCurrent = true;
+        this.selectedScheduleGroup.IsCurrent = false;
+        this.selectedScheduleGroup = item;
+    }
+    selectSchedule(item:any){
+        console.log(this.selectedScheduleInSelectedGroup);
+        console.log(item);
+        item.IsSelected = true;
+        this.selectedScheduleInSelectedGroup.IsSelected = false;
+        this.selectedScheduleInSelectedGroup = item;
+    }
+
+    selectScheduleItem(item:any){
+        console.log(this.selectedScheduleItem);
+        console.log(item);
+        item.IsSelected = true;
+        this.selectedScheduleItem.IsSelected = false;
+        this.selectedScheduleItem = item;
+    }
+
+    toggleLoop(task:any) {
+        task.isLooped = !task.isLooped;
+        task.taskChanged = true;
+        return this.loopedSelector(task);
+    }
+    loopedSelector(task:any) {
+        if (task.isLooped)
+            return 'icon icon-isLooped';
+        return 'icon icon-isNoLooped';
     }
 }

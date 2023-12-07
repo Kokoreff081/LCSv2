@@ -2,7 +2,7 @@
 
 namespace LcsServer.Models.ProjectModels;
 
-public class ScheduleFront
+public class ScheduleGroupFront
 {
     private int _index;
     private int _dimmingLevel;
@@ -54,8 +54,8 @@ public class ScheduleFront
         get { return _name; }
         set { _name = value; }
     }
-    public List<LCSchedule> Schedules { get; set; }
+    public List<LcScheduleFront> Schedules { get; set; }
     
-    public LCSchedule SelectedSchedule { get; set; }
-    public LCSchedule PlayingSchedule { get; set; }
+    public LcScheduleFront SelectedSchedule { get; set; }
+    public LcScheduleFront PlayingSchedule { get; set; }
 }
