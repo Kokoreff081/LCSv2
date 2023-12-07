@@ -1,28 +1,32 @@
 ﻿<div class="container-fluid">
   <h3 style="margin-top:20px;">{{$t("labels.projectProjectScheduler")}}</h3>
   <div class="row">
-    <div class="col-xl-6 mx-auto" style="margin-bottom:20px;">
-      <span>{{$t("labels.ScheduleGroupControlTabItem")}}</span>
-      <i class="icon" :class="playActiveSelector()" ></i>
+    <div class="col-xl-6 mx-auto align-items-center d-flex justify-content-center" style="margin-bottom:20px;">
+      <span style="margin-right:30px;display:inline-block;">{{$t("labels.ScheduleGroupControlTabItem")}}</span>
+      <PrimButton icon="pi pi-play" rounded severity="info" raised />
+        <clock></clock>
     </div>
   </div>
   <div class="row">
     <div class="col-3">
-      <div class="mx-auto" style="width:200px;margin-bottom:10px;padding:10px 0px;border:solid black 2px;">
-        <PrimButton icon="pi pi-plus" class="p-button-rounded p-button-secondary" style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-arrow-up" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-arrow-down" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-trash" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
+      <div class="mx-auto" style="width:200px;margin-bottom:10px;padding:10px 0px;">
+        <PrimButton icon="pi pi-plus" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-arrow-up" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-arrow-down" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-trash" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
       </div>
       <ul style="list-style-type:none; width:90%">
         <li v-for="(group, index) in this.scheduleGroups">
           <div :class="group.IsCurrent ? 'selectedGroup' : 'unselectedGroup'" >
           <div class="container" @click="selectScheduleGroup(group)">
             <div class="row">
-              <div class="col-sm-1 align-baseline groupRow" style="padding:5px;">{{group.Id}}</div>
-              <div class="col-sm-1 align-baseline" style="padding:5px;"><i class="icon" :class="playActiveSelector()" ></i></div>
-              <div class="col-sm-8 align-baseline groupRow" style="padding:5px;">{{group.Name}}</div>
-              <div class="col-sm-1 align-baseline" style="padding:5px;"><PrimButton icon="pi pi-pencil" class="p-button-rounded p-button-secondary" size="small"/></div>
+              <div class="col-1 align-baseline groupRow" style="padding:5px;">{{group.Id}}</div>
+              <div class="col-2 align-baseline" style="padding:5px;">
+                <!--<i class="icon" :class="playActiveSelector()" ></i>-->
+                <PrimButton icon="pi pi-play" rounded severity="info"/>
+              </div>
+              <div class="col-7 align-baseline groupRow" style="padding:5px;">{{group.Name}}</div>
+              <div class="col-1 align-baseline" style="padding:5px;"><PrimButton icon="pi pi-pencil" rounded severity="success" raised size="small"/></div>
             </div>
             <hr/>
             <div class="row">
@@ -58,11 +62,11 @@
       </ul>
     </div>
     <div class="col-2">
-      <div class="mx-auto" style="width:200px;margin-bottom:10px;padding:10px 0px;border:solid black 2px;">
-        <PrimButton icon="pi pi-plus" class="p-button-rounded p-button-secondary" style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-arrow-up" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-arrow-down" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-trash" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
+      <div class="mx-auto" style="width:200px;margin-bottom:10px;padding:10px 0px;">
+        <PrimButton icon="pi pi-plus" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-arrow-up" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-arrow-down" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-trash" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
       </div>
       <ul style="list-style-type:none" v-if="this.selectedScheduleGroup && this.selectedScheduleGroup.Schedules">
         <li v-for="(schedule, index) in this.selectedScheduleGroup.Schedules" @click="selectSchedule(schedule)">
@@ -78,47 +82,47 @@
       </ul>
     </div>
     <div class="col-6">
-      <div class="mx-auto" style="width:200px;margin-bottom:10px;padding:10px 0px;border:solid black 2px;">
-        <PrimButton icon="pi pi-plus" class="p-button-rounded p-button-secondary" style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-arrow-up" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-arrow-down" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
-        <PrimButton icon="pi pi-trash" class="p-button-rounded p-button-secondary"  style="margin-left:5px;margin-right:5px;"/>
+      <div class="mx-auto" style="width:200px;margin-bottom:10px;padding:10px 0px;">
+        <PrimButton icon="pi pi-plus" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-arrow-up" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-arrow-down" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
+        <PrimButton icon="pi pi-trash" rounded severity="secondary" raised style="margin-left:5px;margin-right:5px;"/>
       </div>
       <ul style="list-style-type:none">
         <li>
-          <div class="row">
-            <div class="col-1">#</div>
-            <div class="col-2">{{$t("labels.schedulerScenario")}}</div>
-            <div class="col-2">{{$t("labels.schedulerDate")}}</div>
-            <div class="col-1">{{$t("labels.schedulerStart")}}</div>
-            <div class="col-1">{{$t("labels.schedulerFinish")}}</div>
-            <div class="col-1">{{$t("labels.schedulerRepeat")}}</div>
-            <div class="col-1">{{$t("labels.schedulerDuration")}}</div>
-            <div class="col-1" v-if="taskChanged"></div>
+          <div class="row tableHead">
+<!--            <div class="col-1">#</div>-->
+            <div class="col-2 align-items-center d-flex justify-content-center">{{$t("labels.schedulerScenario")}}</div>
+            <div class="col-2 align-items-center d-flex justify-content-center">{{$t("labels.schedulerDate")}}</div>
+            <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerStart")}}</div>
+            <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerFinish")}}</div>
+            <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerRepeat")}}</div>
+            <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerDuration")}}</div>
+            <div class="col-1 align-items-center d-flex justify-content-center" v-if="taskChanged"></div>
           </div>
         </li>
         <li v-if="this.selectedScheduleInSelectedGroup && this.selectedScheduleInSelectedGroup.ScheduleItems" 
             v-for="(scheduleItem, index) in this.selectedScheduleInSelectedGroup.ScheduleItems"  @click="selectScheduleItem(scheduleItem)">
-        <div class="row" :class="selectedAndPlayingSelector(scheduleItem)">
-          <div class="col-1 align-middle">{{scheduleItem.Index}}</div>
-          <div class="col-2 align-middle">{{scheduleItem.ScenarioName}}</div>
-          <div class="col-2 align-middle">
-            <span v-if="scheduleItem.SelectedWeekDays == 0 && scheduleItem.StartTimeType == 0">{{scheduleItem.StartDate}}</span>
+        <div class="row" :class="selectedAndPlayingSelector(scheduleItem)" style="horiz-align: center;">
+<!--          <div class="col-1 align-middle">{{scheduleItem.Index}}</div>-->
+          <div class="col-2 align-items-center d-flex justify-content-center">{{scheduleItem.ScenarioName}}</div>
+          <div class="col-2 align-items-center d-flex justify-content-center">
+            <span v-if="scheduleItem.SelectedWeekDays === 0 && scheduleItem.StartTimeType === 0">{{scheduleItem.StartDate}}</span>
             <span v-else><week-days :taskWeekDays="scheduleItem.SelectedWeekDays" :mode="repeating"></week-days></span>
           </div>
-          <div class="col-1 align-middle">
-            <span v-if="scheduleItem.StartTimeType == 0">{{scheduleItem.StartTime}}</span>
-            <span v-else-if="scheduleItem.StartTimeType == 1">{{scheduleItem.StartTime}} ({{$t("labels.sunrize")}} + {{scheduleItem.MinutesStart}} {{$t("labels.astronomicMinutes")}})</span>
+          <div class="col-1 align-items-center d-flex justify-content-center">
+            <span v-if="scheduleItem.StartTimeType === 0">{{scheduleItem.StartTime}}</span>
+            <span v-else-if="scheduleItem.StartTimeType === 1">{{scheduleItem.StartTime}} ({{$t("labels.sunrize")}} + {{scheduleItem.MinutesStart}} {{$t("labels.astronomicMinutes")}})</span>
             <span v-else>{{scheduleItem.StartTime}} ({{$t("labels.sunset")}} + {{scheduleItem.MinutesStart}} {{$t("labels.astronomicMinutes")}})</span>
           </div>
-          <div class="col-1 align-middle">
-            <span v-if="scheduleItem.FinishTimeType == 0">{{scheduleItem.FinishTime}}</span>
-            <span v-else-if="scheduleItem.FinishTimeType == 1">{{scheduleItem.FinishTime}} ({{$t("labels.sunrize")}} + {{scheduleItem.MinutesFinish}} {{$t("labels.astronomicMinutes")}})</span>
+          <div class="col-1 align-items-center d-flex justify-content-center">
+            <span v-if="scheduleItem.FinishTimeType === 0">{{scheduleItem.FinishTime}}</span>
+            <span v-else-if="scheduleItem.FinishTimeType === 1">{{scheduleItem.FinishTime}} ({{$t("labels.sunrize")}} + {{scheduleItem.MinutesFinish}} {{$t("labels.astronomicMinutes")}})</span>
             <span v-else>{{scheduleItem.FinishTime}} ({{$t("labels.sunset")}} + {{scheduleItem.MinutesFinish}} {{$t("labels.astronomicMinutes")}})</span>
           </div>
-          <div class="col-1 align-middle"><span :class="loopedSelector(scheduleItem)" @click="toggleLoop(scheduleItem)"></span></div>
-          <div class="col-1 align-middle">{{scheduleItem.Duration}}</div>
-          <div class="col-1 align-middle" v-if="scheduleItem.TaskChanged">
+          <div class="col-1 align-items-center d-flex justify-content-center"><span :class="loopedSelector(scheduleItem)" @click="toggleLoop(scheduleItem)"></span></div>
+          <div class="col-1 align-items-center d-flex justify-content-center">{{scheduleItem.Duration}}</div>
+          <div class="col-1 align-items-center d-flex justify-content-center" v-if="scheduleItem.TaskChanged">
             <span class="icon icon-save" @click="saveDateDayChagesInTask"></span>
           </div>
         </div>

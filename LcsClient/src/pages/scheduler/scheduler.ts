@@ -6,6 +6,7 @@ import Dialog from 'primevue/dialog';
 import Calendar from 'primevue/calendar';
 import Checkbox from 'primevue/checkbox';
 import Slider from 'primevue/slider';
+import Clock from '@/components/clock/clock.vue'
 // import Datepicker from '@vuepic/vue-datepicker';
 import WeekDaysComponentVue from '@/components/WeekDaysComponent/WeekDaysComponent.vue';
 import {bool} from "yup";
@@ -18,7 +19,8 @@ import {bool} from "yup";
         'Dialog': Dialog,
         'Calendar': Calendar,
         'Checkbox':Checkbox,
-        'Slider':Slider
+        'Slider':Slider,
+        'clock': Clock,
     }
 })
 
@@ -118,6 +120,9 @@ export default class Scheduler extends Vue {
         item.IsCurrent = true;
         this.selectedScheduleGroup.IsCurrent = false;
         this.selectedScheduleGroup = item;
+        let check = this.selectedScheduleGroup.Schedules.find((item:any) => item.IsSelected === true);
+        this.selectedScheduleInSelectedGroup = check !== undefined ? check : this.selectedScheduleGroup.Schedules[0];
+        
     }
     selectSchedule(item:any){
         console.log(this.selectedScheduleInSelectedGroup);
@@ -125,6 +130,8 @@ export default class Scheduler extends Vue {
         item.IsSelected = true;
         this.selectedScheduleInSelectedGroup.IsSelected = false;
         this.selectedScheduleInSelectedGroup = item;
+        let check = this.selectedScheduleInSelectedGroup.ScheduleItems.find((item:any) => item.IsSelected === true);
+        this.selectedScheduleItem = check !== undefined ? check : this.selectedScheduleInSelectedGroup.ScheduleItems[0];
     }
 
     selectScheduleItem(item:any){

@@ -39,6 +39,8 @@ public class ScheduleItemFront
     }
     public DateTime? FinishDate { get
         {
+            if (!IsFinishEnabled)
+                return null;
             if (SpecifiedDateTimes.Count > 0)
             {
                 return SpecifiedDateTimes[0].Date.ToLocalTime();
