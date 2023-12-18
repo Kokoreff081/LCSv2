@@ -56,6 +56,6 @@ public class ScheduleGroupFront
     }
     public List<LcScheduleFront> Schedules { get; set; }
     
-    public LcScheduleFront SelectedSchedule { get; set; }
-    public LcScheduleFront PlayingSchedule { get; set; }
+    public LcScheduleFront? SelectedSchedule { get; set; }
+    public LcScheduleFront? PlayingSchedule { get; set; }
 }

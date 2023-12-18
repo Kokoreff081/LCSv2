@@ -1,0 +1,41 @@
+﻿<div class="container-fluid">
+  <h3 style="margin-top:20px;">{{$t("labels.projectProjectDevices")}}</h3>
+  <div class="row">
+    <div class="col-11" v-if="projectEquip && projectEquip.length>0">
+      <Tree-table :value="projectEquip" selectionMode="single" :expandedKeys="expandedKeys"
+                 :filters="filters" :scrollable="true"
+                 scrollHeight="70vh">
+        <template #header>
+          <div style="display:flex;">
+            <div class="text-right" style="margin-left:39%;">
+              <div class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <InputText v-model="filters['global']" placeholder="Global Search" size="50" />
+              </div>
+            </div>
+          </div>
+        </template>
+        <Column field="Name" header="" :expander="true" sortable="true" headerClass="text-center" bodyClass="text-center">
+          <template #header>
+            <span>{{$t('labels.deviceName')}}</span>
+          </template>
+        </Column>
+        <Column field="LampAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          <template #header>
+            <span>{{$t('labels.deviceDmxStartAddress')}}</span>
+          </template>
+        </Column>
+        <Column field="ColorsCount" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          <template #header>
+            <span>{{$t('labels.addressingColorsCount')}}</span>
+          </template>
+        </Column>
+        <Column field="IpAddress" header="" sortable="true" headerClass="text-center" bodyClass="text-center">
+          <template #header>
+            <span>{{$t('labels.deviceIpAddress')}}</span>
+          </template>
+        </Column>
+      </Tree-table>
+    </div>
+  </div>
+</div>

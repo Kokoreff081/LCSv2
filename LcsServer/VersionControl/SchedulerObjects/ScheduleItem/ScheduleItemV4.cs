@@ -51,6 +51,7 @@ namespace LCSVersionControl.SchedulerObjects.ScheduleItem;
         public int Minutes { get; set; }
 
         public int MinutesFinish { get; set; }
+        public int DimmingLevel { get; set; }
 
         public override ISaveLoad ToConcreteObject()
         {
@@ -60,6 +61,7 @@ namespace LCSVersionControl.SchedulerObjects.ScheduleItem;
             scheduleItem.SpecifiedDateTimeFinish = SpecifiedDateTimeFinish;
             scheduleItem.IsFinishEnabled = IsFinishEnabled;
             scheduleItem.FinishTimeType = FinishTimeType;
+            scheduleItem.DimmingLevel = DimmingLevel;
             return scheduleItem;
         }
         public override BaseVC FromConcreteObject(ISaveLoad o)
@@ -80,7 +82,8 @@ namespace LCSVersionControl.SchedulerObjects.ScheduleItem;
                 TimeType = scheduleItem.TimeType,
                 Minutes = scheduleItem.Minutes,
                 MinutesFinish = scheduleItem.MinutesFinish,
-                SpecifiedDateTimeFinish = scheduleItem.SpecifiedDateTimeFinish
+                SpecifiedDateTimeFinish = scheduleItem.SpecifiedDateTimeFinish,
+                DimmingLevel = scheduleItem.DimmingLevel,
             };
 
             return scheduleItemVc;
@@ -100,5 +103,7 @@ namespace LCSVersionControl.SchedulerObjects.ScheduleItem;
             IsLooped = scheduleItemV3.IsLooped;
             TimeType = StartTimeType.Time;
             Minutes = 0;
+            MinutesFinish = 0;
+            DimmingLevel = 100;
         }
     }

@@ -54,7 +54,7 @@ export const MENU = [
 
             {
                 name: i18n.global.t('labels.projectProjectDevices'),
-                path: '/adressing'
+                path: '/addressing'
             }
         ]
     }

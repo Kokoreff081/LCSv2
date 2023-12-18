@@ -176,7 +176,8 @@
         "projectProjectDevices": "Device addressing",
         "projectProjectScheduler": "Project scheduler",
         "projectProjectScenPlayer": "Scenarios and rasters",
-        "rendererFitToRasters": "Set default scale"
+        "rendererFitToRasters": "Set default scale",
+        "addressingColorsCount": "Colors count"
     },
     "messages": {
         "retrieveNewPassword": "You forgot your password? Here you can easily retrieve a new password.",

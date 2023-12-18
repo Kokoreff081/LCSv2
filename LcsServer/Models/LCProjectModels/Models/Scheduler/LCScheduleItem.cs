@@ -4,6 +4,7 @@ using LcsServer.Models.LCProjectModels.GlobalBase.Interfaces;
 using LcsServer.Models.LCProjectModels.GlobalBase.Utils;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
 using LcsServer.Models.LCProjectModels.Models.Scheduler.Enums;
+using Newtonsoft.Json;
 using NLog;
 using TimeZoneConverter;
 
@@ -20,6 +21,7 @@ public class LCScheduleItem : LCScheduleObject, ISaveLoad, IEquatable<LCSchedule
     private bool _isFinishEnabled;
     private int _minutes;
     private int _minutesFinish;
+    private int _dimmingLevel = 100;
     private StartTimeType _timeType;
     private FinishTimeType _timeTypeFinish;
     
@@ -109,7 +111,18 @@ public class LCScheduleItem : LCScheduleObject, ISaveLoad, IEquatable<LCSchedule
             }
         }
     }
-
+    public int DimmingLevel
+    {
+        get => _dimmingLevel;
+        set
+        {
+            if(_dimmingLevel != value)
+            {
+                _dimmingLevel = value;
+                Changed?.Invoke(nameof(DimmingLevel));
+            }
+        }
+    }
     /// <summary>
     /// Дополнительные минуты для Астрономического времени
     /// </summary>
@@ -183,7 +196,7 @@ public class LCScheduleItem : LCScheduleObject, ISaveLoad, IEquatable<LCSchedule
             }
         }
     }
-
+    [JsonIgnore]
     /// <summary>
     /// Сценарий найденый по ScenarioId
     /// </summary>

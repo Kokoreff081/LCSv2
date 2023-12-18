@@ -16,6 +16,7 @@ import {getAuthStatus, GoogleProvider} from '@/utils/oidc-providers';
 import Devices from "@/pages/devices/devices.vue";
 import Scenarios from "@/pages/Scenarios/scenarios.vue";
 import Scheduler from "@/pages/scheduler/scheduler.vue";
+import Addressing from "@/pages/addressing/Addresing.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -61,7 +62,7 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path: 'addressing',
                 name: 'Addressing',
-                component: Blank,
+                component: Addressing,
                 meta: {
                     requiresAuth: true
                 }

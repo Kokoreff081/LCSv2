@@ -21,7 +21,7 @@ public class ProjectToWeb
     public List<ScheduleGroupFront> Scheduler { get; set; }
     public List<WebRasterProjection> RasterProjections { get; set; }
     public bool IsTasksPlaying { get; set; }
-    public List<LCLampsFront> LCLamps { get; set; }
+    public List<LCLampFront> LCLamps { get; set; }
     public List<LCLampFront> OnlyProjectLamps { get; set; }
     public List<NewToWebDevices> ToTreeTable { get; set; }
     public DateTime LastModified { get; set; }

@@ -20,7 +20,7 @@ public class ProjectChanger
     private readonly ScheduleManager _scheduleManager;
     private readonly List<ScenarioNameId> scenarioNamesIds;
     private readonly List<ScheduleGroupFront> scheduleFrontItems;
-    private readonly List<LCLampsFront> lcLampsFront;
+    private readonly List<LCLampFront> lcLampsFront;
     private readonly AddressingManager _addressingManager;
     public ProjectToWeb CurrentProject;
     //private readonly LCHub _lcHub;
@@ -39,7 +39,7 @@ public class ProjectChanger
         scenarioNamesIds = new List<ScenarioNameId>();
         scheduleFrontItems = new List<ScheduleGroupFront>();
         /*schedulerFilesFront = new List<SchedulerFilesFront>();*/
-        lcLampsFront = new List<LCLampsFront>();
+        lcLampsFront = new List<LCLampFront>();
         CurrentProject = new ProjectToWeb();
         
         InitProjectData();
@@ -225,38 +225,37 @@ public class ProjectChanger
                 ipAddress = item.IpAddress.ToString();
                 longName = item.ToString();
             }
-            LCLampsFront lclamp = new LCLampsFront()
+            LCLampFront lclamp = new LCLampFront()
             {
                 Id = device.Id,
                 IpAddress = ipAddress,
                 Name = longName,
                 Type = "ArtNetDevice",
-                Children = new List<FrontPort>(),
+                Children = new List<LCLampFront>(),
             };
             foreach (LCAddressDevicePort devicePort in addressObjects.OfType<LCAddressDevicePort>()
                          .Where(x => x.ParentId == device.Id))
             {
                 var adressedLamps = addressLamps.Where(x => x.ParentId == devicePort.Universe.Id).ToList();
-                lclamp.Children.Add(new FrontPort()
+                lclamp.Children.Add(new LCLampFront()
                 {
                     Id = devicePort.Universe.Id,
                     ParentId = devicePort.ParentId,
                     Type = "Port",
                     Name = devicePort.DisplayName,
                     DmxSize = devicePort.DmxSize,
-                    /*Children = fullInfoLamp
-                        .Where(w=>adressedLamps.Contains(w.AddressData))
+                    Children = adressedLamps
                         .Select(s => new LCLampFront { 
                             Id = s.Id,
                             Name = s.Name,
-                            AddressData = s.AddressData,
+                            AddressData = s,
                             IpAddress=lclamp.IpAddress,
                             ParentPort= "Port_" + devicePort.PortNumber,
-                            Type = s.LampDescriptor.Vendor.Series,
-                            ColorsCount = s.AddressData.ColorsCount,
-                            LampAddress = s.AddressData.LampAddress
+                            //Type = s.LampDescriptor.Vendor.Series,
+                            ColorsCount = s.ColorsCount,
+                            LampAddress = s.LampAddress
                         })
-                        .ToList()*/
+                        .ToList()
                 });
             }
             lcLampsFront.Add(lclamp);
@@ -311,7 +310,8 @@ public class ProjectChanger
                 frontSchedules.Add(frontSchedule);
                 
             }
-            scheduleFrontItems.Add(new ScheduleGroupFront()
+
+            var frontGroup = new ScheduleGroupFront()
             {
                 Id = scGroup.Id,
                 Name = scGroup.Name,
@@ -320,10 +320,23 @@ public class ProjectChanger
                 DimmingLevel = scGroup.DimmingLevel,
                 IsCurrent = scGroup.IsCurrent,
                 IsAutoStart = scGroup.IsAutoStart,
-                Schedules = frontSchedules,//scGroup.Schedules,
-                PlayingSchedule = frontSchedules.Any(a=>a.IsCurrent) ? frontSchedules.First(f=>f.IsCurrent) : frontSchedules[0],
-                SelectedSchedule = frontSchedules.Any(a=>a.IsSelected) ? frontSchedules.First(f=>f.IsSelected) : frontSchedules[0],
-            });
+                Schedules = frontSchedules, //scGroup.Schedules,
+            };
+            if (frontSchedules.Count > 0)
+            {
+                frontGroup.PlayingSchedule = frontSchedules.Any(a => a.IsCurrent)
+                    ? frontSchedules.First(f => f.IsCurrent)
+                    : frontSchedules[0];
+                frontGroup.SelectedSchedule = frontSchedules.Any(a => a.IsSelected)
+                    ? frontSchedules.First(f => f.IsSelected)
+                    : frontSchedules[0];
+            }
+            else
+            {
+                frontGroup.PlayingSchedule = null;
+                frontGroup.SelectedSchedule = null;
+            }
+            scheduleFrontItems.Add(frontGroup);
         }
         CurrentProject.Scheduler = scheduleFrontItems;
     }

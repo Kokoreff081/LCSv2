@@ -138,7 +138,31 @@ public class ScheduleManager : BaseLCObjectsManager
         ScheduleFileChanged?.Invoke();
     }*/
     
+    public void NewSaveMethod(string projectPath, string projectName, bool autoSave, ProjectToWeb CurrentProject)
+    {
+        var schedulerFileName = FileManager.GetSchedulerFilePath(projectPath);
+        FileManager.CreateIfNotExist(Path.GetDirectoryName(schedulerFileName));
+        List<LCScheduleGroup> scheduleGroups = GetPrimitives<LCScheduleGroup>().ToList();
+        if (!scheduleGroups.Any(a => a.DisplayName == "default"))
+        {
+            int counter = 1;
+            var defaultGroup = new LCScheduleGroup(GetNewCurrentId(), counter, "default", 100, 0, true);
+            defaultGroup.Description = "Default schedule group";
+            defaultGroup.Schedules = new List<LCSchedule>() { new LCSchedule(GetNewCurrentId(), defaultGroup.Id, "Scheduler", 0, true) };
+            AddObjects(new List<LCScheduleGroup>() { defaultGroup }.Cast<LCObject>().ToArray());
+        }
+        //            _versionControlManagerEx.ConvertToVCAndSave(GetPrimitives<LCObject>().OfType<ISaveLoad>(), projectPath, schedulerFileName, false);
+        var groups = GetScheduleGroups(false, CurrentProject);
+        var objectsToSave = new List<LCScheduleObject>();
+        foreach (var group in groups)
+        {
+            objectsToSave.Add(group);
+            objectsToSave.AddRange(group.GetGroupObjects());
+        }
 
+        _versionControlManagerEx.ConvertToVCAndSave(objectsToSave.OfType<ISaveLoad>()/*GetPrimitives<LCObject>().OfType<ISaveLoad>()*/, projectPath, schedulerFileName, false);
+
+    }
     public void Save(string projectPath)
     {
         var schedulerFileName = ((SchedulerSettings)_settingsService.GetSettings(SettingsType.Scheduler)).SchedulerFile.Value;
@@ -182,11 +206,33 @@ public class ScheduleManager : BaseLCObjectsManager
         {
             item.Load(GetPrimitives<LCScheduleObject>().OfType<ISaveLoad>().ToList(), 0);
         }
+        var groups = RestoreScheduleGroups(schedulerObjects);
         RestoreScheduleItems(schedulerObjects.OfType<LCScheduleGroup>().ToList(), generateNewId);
 
-        AddObjects(schedulerObjects.Cast<LCObject>().ToArray());
+        AddObjects(groups.Cast<LCObject>().ToArray());
     }
+    private List<LCScheduleGroup> RestoreScheduleGroups(List<ISaveLoad> scheduleObjects)
+    {
+        var result = scheduleObjects.OfType<LCScheduleGroup>().ToList();
+        for(int i=0; i<result.Count;i++)
+        {
+            var lcGroup = result[i];
+            lcGroup.Schedules = new List<LCSchedule>();
+            foreach(var lcSchedule in scheduleObjects.OfType<LCSchedule>().ToList())
+            {
+                lcSchedule.ScheduleItems = new List<LCScheduleItem>();
+                foreach(var scheduleItem in scheduleObjects.OfType<LCScheduleItem>().ToList())
+                {
+                    if (scheduleItem.ParentId == lcSchedule.Id)
+                        lcSchedule.ScheduleItems.Add(scheduleItem);
+                }
+                if(lcSchedule.ParentId == lcGroup.Id)
+                    lcGroup.Schedules.Add(lcSchedule);
+            }
+        }
 
+        return result;
+    }
     /*private void LoadScheduleFileList()
     {
         SchedulerSettings schedulerSettings = (SchedulerSettings)_settingsService.GetSettings(SettingsType.Scheduler);

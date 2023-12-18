@@ -9,7 +9,7 @@ import Slider from 'primevue/slider';
 import Clock from '@/components/clock/clock.vue'
 // import Datepicker from '@vuepic/vue-datepicker';
 import WeekDaysComponentVue from '@/components/WeekDaysComponent/WeekDaysComponent.vue';
-import {bool} from "yup";
+
 @Component({
     components: {
         'myselect': Dropdown,

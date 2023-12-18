@@ -167,7 +167,8 @@
     "projectProjectDevices": "Адресация устройств",
     "projectProjectScheduler": "Планировщик",
     "projectProjectScenPlayer": "Сценарии и растры",
-    "rendererFitToRasters":"Сбросить масштаб"
+    "rendererFitToRasters":"Сбросить масштаб",
+    "addressingColorsCount": "Количество цветов"
   },
   "messages": {
     "retrieveNewPassword": "You forgot your password? Here you can easily retrieve a new password.",
