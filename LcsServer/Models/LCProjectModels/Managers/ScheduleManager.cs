@@ -206,10 +206,10 @@ public class ScheduleManager : BaseLCObjectsManager
         {
             item.Load(GetPrimitives<LCScheduleObject>().OfType<ISaveLoad>().ToList(), 0);
         }
-        var groups = RestoreScheduleGroups(schedulerObjects);
+        //var groups = RestoreScheduleGroups(schedulerObjects);
         RestoreScheduleItems(schedulerObjects.OfType<LCScheduleGroup>().ToList(), generateNewId);
 
-        AddObjects(groups.Cast<LCObject>().ToArray());
+        AddObjects(schedulerObjects.Cast<LCObject>().ToArray());
     }
     private List<LCScheduleGroup> RestoreScheduleGroups(List<ISaveLoad> scheduleObjects)
     {

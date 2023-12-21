@@ -27,6 +27,7 @@ public class ProjectToWeb
     public DateTime LastModified { get; set; }
     public string Path { get; set; }
     public List<LcsProjectVersion> Versions { get; set; }
+    public string CurrentFile { get; set; }
 }
 
 public class LcsProjectVersion

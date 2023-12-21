@@ -15,7 +15,7 @@ public class LCScheduleGroupV1 : BaseVC
     public bool IsCurrent { get; set; }
     public string Description { get; set; }
     public bool IsAutoStart { get; set; }
-    public List<LCSchedule> Schedules { get; set; }
+    public List<LCScheduleToSave> Schedules { get; set; }
     public override BaseVC FromConcreteObject(ISaveLoad o)
     {
         LCScheduleGroup lcGroup = (LCScheduleGroup)o;
@@ -27,7 +27,7 @@ public class LCScheduleGroupV1 : BaseVC
             DimmingLevel = lcGroup.DimmingLevel,
             Index = lcGroup.Index,
             IsCurrent = lcGroup.IsCurrent,
-            Schedules = lcGroup.Schedules,
+            Schedules = lcGroup.SchedulesToSave,
             Description = lcGroup.Description,
             IsAutoStart = lcGroup.IsAutoStart
         };
@@ -38,7 +38,7 @@ public class LCScheduleGroupV1 : BaseVC
     public override ISaveLoad ToConcreteObject()
     {
         LCScheduleGroup lcGroup = new LCScheduleGroup(Id, ParentId, Name, DimmingLevel, Index, IsCurrent, Description);
-        lcGroup.Schedules = Schedules ?? new List<LCSchedule>();
+        lcGroup.SchedulesToSave = Schedules;
         lcGroup.IsAutoStart = IsAutoStart;
         return lcGroup;
     }

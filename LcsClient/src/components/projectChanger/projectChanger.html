@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-sm-2">{{ $t("labels.currentProject") }} - {{this.projectName}} ({{this.lastModified}})</div>
-  <div class="col-sm-2 custom-file">
+  <div class="col-2">{{ $t("labels.currentProject") }} - {{this.projectName}} ({{this.lastModified}})</div>
+  <div class="col-2 custom-file">
     <app-input
       icon="upload"
       class="mb-3"
@@ -10,11 +10,11 @@
       v-model="currentFile"
       ></app-input>
   </div>
-  <div class="col-sm-5">
-    <Dropdown :options="this.projectVersions" v-model="selectedVersion" @change="onScenarioSelect" optionLabel="Name" optionValue="Id" :editable="false"
-              />
+  <div class="col-5">
+    <Dropdown :options="this.projectVersions" v-model="selectedVersion" @change="onVersionSelect" optionLabel="Name" optionValue="Id" :editable="false"
+              :virtualScrollerOptions="{ itemSize: 50 }" panel-style="{'min-width':'350px'}" />
   </div>
-  <div class="col-sm-2">
+  <div class="col-2">
     <Button class="btn btn-primary btn-block" @click="refreshCurProject">
       <i class="fa fa-edit"></i> &nbsp;
       {{ $t('labels.projectRefreshButton') }}

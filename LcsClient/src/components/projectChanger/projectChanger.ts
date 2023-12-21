@@ -23,11 +23,20 @@ export default class ProjectChanger extends Vue {
             console.log(token);
             let headers = {"Accept": "application/json", "Authorization": "Bearer " + token};
             let response = await instance.get('/Project/Index', {headers});
-            var data = JSON.parse(response.data);
+            let data = JSON.parse(response.data);
+            console.log(data);
             this.projectName = data.Name;
             this.projectVersions = data.Versions;
             this.lastModified = data.LastModified;
-            this.selectedVersion = data.Path;
+            let projectVersion:any = this.projectVersions.find((item:any)=>item.Name === data.Path);
+            console.log(projectVersion);
+            this.selectedVersion = projectVersion.Id;
         }
+    }
+    
+    async onVersionSelect(){
+        console.log(this.selectedVersion);
+        let selectedProjectVersion = this.projectVersions.find((item:any) => item.Id == this.selectedVersion);
+        console.log(selectedProjectVersion);
     }
 }

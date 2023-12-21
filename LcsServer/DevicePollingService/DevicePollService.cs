@@ -414,7 +414,7 @@ public class DevicePollService : IDisposable
         switch (e.Packet.OpCode)
         {
             case ArtNetOpCodes.PollReply:
-                 ProcessPollReply((ArtPollReplyPacket)e.Packet, e.Source);
+                ProcessPollReply((ArtPollReplyPacket)e.Packet, e.Source);
                 break;
             case ArtNetOpCodes.TodData:
                 ProcessTodData((ArtTodDataPacket)e.Packet, e.Source);

@@ -595,7 +595,7 @@ public class RdmDevice : BaseDevice
             set
             {
                 _lastSeen = value;
-                AddParamToDb(value.ToString(), nameof(LastSeen));
+                //AddParamToDb(value.ToString(), nameof(LastSeen));
             }
         }
 

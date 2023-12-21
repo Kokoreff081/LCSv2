@@ -152,10 +152,10 @@ public class DevicesController : Controller
                 if (device.Type == "RdmDevice")
                 {
                     var rdmDev = new RdmDeviceToWeb(device.deviceId);
-                    rdmDev.BootSoftwareVersionId =
+                    /*rdmDev.BootSoftwareVersionId =
                         int.Parse(deviceParams.First(f => f.ParamName == "BootSoftwareVersionId").ParamValue);
                     rdmDev.BootSoftwareVersionLabel =
-                        deviceParams.First(f => f.ParamName == "BootSoftwareVersionLabel").ParamValue;
+                        deviceParams.First(f => f.ParamName == "BootSoftwareVersionLabel").ParamValue;*/
                     rdmDev.DeviceModelId =
                         short.Parse(deviceParams.First(f => f.ParamName == "DeviceModelId").ParamValue);
                     rdmDev.DmxAddress =
@@ -167,7 +167,7 @@ public class DevicesController : Controller
                         byte.Parse(deviceParams.First(f => f.ParamName == "DmxPersonalityCount").ParamValue);
                     rdmDev.Label = deviceParams.First(f => f.ParamName == "Label").ParamValue;
                     rdmDev.LampHours = int.Parse(deviceParams.First(f => f.ParamName == "LampHours").ParamValue);
-                    rdmDev.LastSeen = DateTime.Parse(deviceParams.First(f => f.ParamName == "LastSeen").ParamValue);
+                    //rdmDev.LastSeen = DateTime.Parse(deviceParams.First(f => f.ParamName == "LastSeen").ParamValue);
                     try
                     {
                         rdmDev.LampStrikes =

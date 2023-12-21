@@ -125,12 +125,12 @@ namespace LcsServer.DevicePollingService.Models;
                         var existenDevice = _db.Devices.First(f => f.deviceId == device.Id);
                         switch (existenDevice.Type)
                         {
-                            case "RdmDevice":
+                            /*case "RdmDevice":
                                 var param = _db.DeviceParams.First(f =>
                                     f.ParamName == "LastSeen" && f.DeviceId == existenDevice.Id);
                                 param.ParamValue = DateTime.Now.ToString();
                                 param.LastPoll = DateTime.Now;
-                                break;
+                                break;*/
                             case "GatewayOutputUniverse":
                             case "GatewayInputUniverse":
                                 existenDevice.StatusId =

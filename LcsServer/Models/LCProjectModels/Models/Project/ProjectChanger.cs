@@ -62,7 +62,7 @@ public class ProjectChanger
         foreach (var file in files)
         {
             var fileInfo = new FileInfo(file);
-            CurrentProject.Versions.Add(new LcsProjectVersion(){Id = counter, Name = fileInfo.FullName});
+            CurrentProject.Versions.Add(new LcsProjectVersion(){Id = counter, Name = fileInfo.Name});
             counter++;
             var stringTmpDateTime = tmpFile.Name.Split('_')[1].Split('.')[0];
             var stringDateTime = fileInfo.Name.Split('_')[1].Split('.')[0];
@@ -74,9 +74,10 @@ public class ProjectChanger
 
         var baseFolder = Path.Combine(AppContext.BaseDirectory, "LcsProject");
         var currentFolder = Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name));
-        CurrentProject.Path = currentFolder;
+        CurrentProject.Path = tmpFile.Name;
         CurrentProject.Name = Configuration.GetValue<string>("DefaultProjectName");
         CurrentProject.LastModified = DateTime.ParseExact(currentFolder.Split("_")[1], "yyyy-MM-dd-HHmmss", CultureInfo.InvariantCulture);
+        CurrentProject.CurrentFile = currentFolder;
         if(!Directory.Exists(currentFolder))
             ZipFile.ExtractToDirectory(tmpFile.FullName, Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name)));
 
