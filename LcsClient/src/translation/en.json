@@ -158,7 +158,7 @@
         "Schedule_CurrentLCScheduleItem": "Current schedule list",
         "Schedule_DeleteGroup": "Delete schedule group",
         "Schedule_EditGroup": "Edit schedule group",
-        "Schedule_IsAutoStart": "Is autostart enabled",
+        "Schedule_IsAutoStart": "Autostart enabled",
         "ScheduleDimmingLevel": "Dimming level",
         "ScheduleGroup_ScheduleRename": "Rename Schedule",
         "SchedulerFinishEnabled": "Enable finish time",

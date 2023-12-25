@@ -154,7 +154,7 @@
     "Schedule_CurrentLCScheduleItem": "Текущее расписание",
     "Schedule_DeleteGroup": "Удалить группу расписаний планировщика",
     "Schedule_EditGroup": "Редактировать группу задач планировщика",
-    "Schedule_IsAutoStart": "Разрешен ли автозапуск",
+    "Schedule_IsAutoStart": "Разрешен автозапуск",
     "ScheduleDimmingLevel": "Уровень диммирования",
     "ScheduleGroup_ScheduleRename": "Переименовать список задач",
     "SchedulerFinishEnabled": "Использовать время финиша",

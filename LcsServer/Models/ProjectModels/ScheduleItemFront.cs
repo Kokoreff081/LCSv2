@@ -17,6 +17,7 @@ public class ScheduleItemFront
     public WeekDays SelectedWeekDays { get; set; }
     public DateTime SpecifiedDateTime { get; set; }
     public DateTime SpecifiedDateTimeFinish { get; set; }
+    public int DimmingLevel { get; set; }
     public DateTime? StartDate { get
         {
             if (SpecifiedDateTimes.Count > 0)

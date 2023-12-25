@@ -23,19 +23,22 @@ public class ProjectChanger
     private readonly List<LCLampFront> lcLampsFront;
     private readonly AddressingManager _addressingManager;
     public ProjectToWeb CurrentProject;
+    private IWebHostEnvironment Environment;
     //private readonly LCHub _lcHub;
 
     public ProjectChanger(IConfiguration _configuration,
         RasterManager rasterManager,
         ScenarioManager scenarioManager,
         ScheduleManager scheduleManager,
-        AddressingManager addressingManager)
+        AddressingManager addressingManager,
+        IWebHostEnvironment _environment)
     {
         Configuration = _configuration;
         _rasterManager = rasterManager;
         _scenarioManager = scenarioManager;
         _scheduleManager = scheduleManager;
         _addressingManager = addressingManager;
+        Environment = _environment;
         scenarioNamesIds = new List<ScenarioNameId>();
         scheduleFrontItems = new List<ScheduleGroupFront>();
         /*schedulerFilesFront = new List<SchedulerFilesFront>();*/
@@ -61,7 +64,9 @@ public class ProjectChanger
         int counter = 1;
         foreach (var file in files)
         {
+            
             var fileInfo = new FileInfo(file);
+            File.Copy(file, Path.Combine(Environment.WebRootPath, fileInfo.Name), true);
             CurrentProject.Versions.Add(new LcsProjectVersion(){Id = counter, Name = fileInfo.Name});
             counter++;
             var stringTmpDateTime = tmpFile.Name.Split('_')[1].Split('.')[0];
@@ -72,7 +77,7 @@ public class ProjectChanger
                 tmpFile = fileInfo;
         }
 
-        var baseFolder = Path.Combine(AppContext.BaseDirectory, "LcsProject");
+        var baseFolder = Path.Combine(Environment.WebRootPath, "LcsProject");
         var currentFolder = Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name));
         CurrentProject.Path = tmpFile.Name;
         CurrentProject.Name = Configuration.GetValue<string>("DefaultProjectName");
@@ -122,6 +127,78 @@ public class ProjectChanger
         }
     }
 
+    private void AllManagersClear()
+    {
+        _rasterManager.RemoveAllObjects();
+        _scenarioManager.RemoveAllObjects();
+        _addressingManager.RemoveAllObjects();
+        _scheduleManager.RemoveAllObjects();
+    }
+    public void ReInitProjectData(string path)
+    {
+        AllManagersClear();
+        CurrentProject = new ProjectToWeb();
+        var tmpPath = Path.Combine(Environment.WebRootPath, path);
+        var tmpFile = new FileInfo(tmpPath);
+        var baseFolder = Path.Combine(Environment.WebRootPath, "LcsProject");
+        var files = Directory.GetFiles(baseFolder);
+        int counter = 1;
+        foreach (var file in files)
+        {
+            var fileInfo = new FileInfo(file);
+            CurrentProject.Versions.Add(new LcsProjectVersion() { Id = counter, Name = fileInfo.Name });
+        }
+
+        var currentFolder = Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name));
+        CurrentProject.Path = tmpFile.Name;
+        CurrentProject.Name = Configuration.GetValue<string>("DefaultProjectName");
+        CurrentProject.LastModified = DateTime.ParseExact(currentFolder.Split("_")[1], "yyyy-MM-dd-HHmmss", CultureInfo.InvariantCulture);
+        CurrentProject.CurrentFile = currentFolder;
+        if(!Directory.Exists(currentFolder))
+            ZipFile.ExtractToDirectory(tmpFile.FullName, Path.Combine(baseFolder, Path.GetFileNameWithoutExtension(tmpFile.Name)));
+        
+        var dataFiles = Directory.GetFiles(currentFolder);
+        foreach (var file in dataFiles)
+        {
+            var fi = new FileInfo(file);
+            if (fi.Extension != FileManager.ProjectLCSFilenameExtension)
+            {
+                switch (fi.Name)
+                {
+                    case "rasters.json":
+                        _rasterManager.Load(fi.FullName, true);
+                        break;
+                    case "scenarios.json":
+                        _scenarioManager.LoadScenarios(fi.FullName, _rasterManager.GetPrimitives<Raster>().ToList());
+                        break;
+                    case "addressing.json":
+                        _addressingManager.Load(fi.FullName, true);
+                        var lamps = _addressingManager.GetPrimitives<LCAddressLamp>().ToList();
+                        var json = string.Empty;
+                        if (File.Exists(Path.Combine(currentFolder, "lampsIdNames.json")))
+                        {
+                            string text = File.ReadAllText(Path.Combine(currentFolder, "lampsIdNames.json"));
+                            var lampsDict = JsonConvert.DeserializeObject<Dictionary<int, string>>(text);
+                            foreach (var lamp in lamps)
+                            {
+                                lamp.Name = lampsDict[lamp.Id];
+                            }
+                        }
+
+                        break;
+                    case "scheduler.json":
+                        _scheduleManager.Load(fi.FullName, false);
+                        break;
+                    case "projectInfo.json":
+                        CurrentProject.ProjectInfo = JsonConvert.DeserializeObject<ProjectInfo>(File.ReadAllText(file));
+                        break;
+                    
+                }
+            }
+        }
+        
+        FillCurProject();
+    }
     private void FillCurProject()
     {
         
@@ -305,6 +382,7 @@ public class ProjectChanger
                         SpecifiedDateTimeFinish = scheduleItem.SpecifiedDateTimeFinish,
                         SpecifiedDateTimes = scheduleItem.SpecifiedDateTimes,
                         Duration = TimeSpan.FromMilliseconds((double)scheduleItem.Scenario.TotalTicks).ToString(@"hh\:mm\:ss"),
+                        DimmingLevel = scheduleItem.DimmingLevel,
                         TaskChanged = false
                     });
                 }

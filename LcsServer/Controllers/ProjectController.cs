@@ -1,15 +1,21 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using LcsServer.Models.LCProjectModels.GlobalBase;
 using LcsServer.Models.LCProjectModels.Managers;
 using LcsServer.Models.LCProjectModels.Models.Addressing;
 using LcsServer.Models.LCProjectModels.Models.Project;
 using LcsServer.Models.LCProjectModels.Models.Rasters;
 using LcsServer.Models.LCProjectModels.Models.ScenarioObjects;
+using LcsServer.Models.ProjectModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SharpCompress.Archives;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Common;
 
 namespace LcsServer.Controllers;
 
@@ -21,7 +27,12 @@ public class ProjectController : Controller
     private ScheduleManager _scheduleManager;
     private readonly IConfiguration Configuration;
     private ProjectChanger _pChanger;
-    public ProjectController(IConfiguration _configuration, RasterManager rastMan, AddressingManager addressingManager, ScenarioManager scenarioManager, ScheduleManager scheduleManager, ProjectChanger pChanger)
+    private string baseFolder;
+    private IWebHostEnvironment Environment;
+    public ProjectController(IConfiguration _configuration,
+        RasterManager rastMan, AddressingManager addressingManager,
+        ScenarioManager scenarioManager, ScheduleManager scheduleManager,
+        ProjectChanger pChanger, IWebHostEnvironment _environment)
     {
         Configuration = _configuration;
         _rasterManager = rastMan;
@@ -29,15 +40,9 @@ public class ProjectController : Controller
         _scenarioManager = scenarioManager;
         _scheduleManager = scheduleManager;
         _pChanger = pChanger;
-        string projectFolder = Path.Combine(Configuration.GetValue<string>("LightCadProjectsFolder"),
-            Configuration.GetValue<string>("DefaultProjectFolder"));
-        if(!_rasterManager.GetPrimitives<Raster>().Any())
-            _rasterManager.Load(projectFolder, true);
-        if(!_scenarioManager.GetPrimitives<Scenario>().Any())
-            _scenarioManager.LoadScenarios(projectFolder, _rasterManager.GetPrimitives<Raster>().ToList());
-       // if(!_addressingManager.GetPrimitives<Scenario>().Any())
-        _addressingManager.Load(projectFolder, true);
-        int point = 0;
+        Environment = _environment;
+        baseFolder = Path.Combine(Environment.WebRootPath, "LcsProject");
+
     }
     [HttpGet]
     
@@ -45,6 +50,73 @@ public class ProjectController : Controller
     public string Index()
     {
         return JsonConvert.SerializeObject(_pChanger.CurrentProject);
+    }
+    
+    public async Task<string> UploadProject(IFormFile file)
+    {
+        if(file != null)
+        {
+            try
+            {
+                string filePath = Path.Combine(baseFolder, file.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                string fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string path = Path.Combine(baseFolder, fileName);
+
+                if (file.FileName.Contains(".rar"))
+                {
+                    using (var archive = RarArchive.Open(filePath))
+                    {
+
+                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        {
+                            if (entry.Key.StartsWith(fileName))
+                            {
+                                path = baseFolder;
+                            }
+                            else
+                            {
+                                Directory.CreateDirectory(path);
+                            }
+
+                            entry.WriteToDirectory(path, new ExtractionOptions()
+                            {
+                                ExtractFullPath = true,
+                                Overwrite = true
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    if(!Directory.Exists(Path.Combine(baseFolder, fileName)))
+                        ZipFile.ExtractToDirectory(filePath, Path.Combine(baseFolder, fileName));
+                }
+
+                path = Path.Combine(baseFolder, fileName);
+                _pChanger.ReInitProjectData(file.FileName);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        return Index();
+    }
+    [HttpPost]
+    [Authorize(Roles = "admin, user")]
+    [Route("/[controller]/[action]")]
+    public string ChangeProjectVersion([FromBody] LcsProjectVersion sv)
+    {
+        if(sv == null)
+            return JsonConvert.SerializeObject(NotFound());
+        var newVersion = _pChanger.CurrentProject.Versions.First(f => f.Id == sv.Id);
+        _pChanger.ReInitProjectData(newVersion.Name);
+        return Index();
     }
 }
 

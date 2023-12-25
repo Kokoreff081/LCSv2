@@ -73,7 +73,7 @@
           <div :class="selectedAndPlayingSelector(schedule)">
             <div class="container">
               <div class="row">
-                <div class="col-sm-5">{{schedule.Index}}</div>
+                <div class="col-sm-5">{{schedule.Index +1}}</div>
                 <div class="col-sm-5">{{schedule.Name}}</div>
               </div>
             </div>
@@ -94,10 +94,11 @@
 <!--            <div class="col-1">#</div>-->
             <div class="col-2 align-items-center d-flex justify-content-center">{{$t("labels.schedulerScenario")}}</div>
             <div class="col-2 align-items-center d-flex justify-content-center">{{$t("labels.schedulerDate")}}</div>
-            <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerStart")}}</div>
-            <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerFinish")}}</div>
+            <div class="col-2 align-items-center d-flex justify-content-center">{{$t("labels.schedulerStart")}}</div>
+            <div class="col-2 align-items-center d-flex justify-content-center">{{$t("labels.schedulerFinish")}}</div>
+              <div class="col-2 align-items-center d-flex justify-content-center">{{$t("labels.ScheduleDimmingLevel")}}</div>
             <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerRepeat")}}</div>
-            <div class="col-1 align-items-center d-flex justify-content-center">{{$t("labels.schedulerDuration")}}</div>
+            
             <div class="col-1 align-items-center d-flex justify-content-center" v-if="taskChanged"></div>
           </div>
         </li>
@@ -110,18 +111,19 @@
             <span v-if="scheduleItem.SelectedWeekDays === 0 && scheduleItem.StartTimeType === 0">{{scheduleItem.StartDate}}</span>
             <span v-else><week-days :taskWeekDays="scheduleItem.SelectedWeekDays" :mode="repeating"></week-days></span>
           </div>
-          <div class="col-1 align-items-center d-flex justify-content-center">
+          <div class="col-2 align-items-center d-flex justify-content-center">
             <span v-if="scheduleItem.StartTimeType === 0">{{scheduleItem.StartTime}}</span>
             <span v-else-if="scheduleItem.StartTimeType === 1">{{scheduleItem.StartTime}} ({{$t("labels.sunrize")}} + {{scheduleItem.MinutesStart}} {{$t("labels.astronomicMinutes")}})</span>
             <span v-else>{{scheduleItem.StartTime}} ({{$t("labels.sunset")}} + {{scheduleItem.MinutesStart}} {{$t("labels.astronomicMinutes")}})</span>
           </div>
-          <div class="col-1 align-items-center d-flex justify-content-center">
+          <div class="col-2 align-items-center d-flex justify-content-center">
             <span v-if="scheduleItem.FinishTimeType === 0">{{scheduleItem.FinishTime}}</span>
             <span v-else-if="scheduleItem.FinishTimeType === 1">{{scheduleItem.FinishTime}} ({{$t("labels.sunrize")}} + {{scheduleItem.MinutesFinish}} {{$t("labels.astronomicMinutes")}})</span>
             <span v-else>{{scheduleItem.FinishTime}} ({{$t("labels.sunset")}} + {{scheduleItem.MinutesFinish}} {{$t("labels.astronomicMinutes")}})</span>
           </div>
+            <div class="col-2 align-items-center d-flex justify-content-center">{{scheduleItem.DimmingLevel}}</div>
           <div class="col-1 align-items-center d-flex justify-content-center"><span :class="loopedSelector(scheduleItem)" @click="toggleLoop(scheduleItem)"></span></div>
-          <div class="col-1 align-items-center d-flex justify-content-center">{{scheduleItem.Duration}}</div>
+          
           <div class="col-1 align-items-center d-flex justify-content-center" v-if="scheduleItem.TaskChanged">
             <span class="icon icon-save" @click="saveDateDayChagesInTask"></span>
           </div>

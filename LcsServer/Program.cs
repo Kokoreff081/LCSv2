@@ -28,7 +28,7 @@ var webApplicationOptions = new WebApplicationOptions()
     WebRootPath = "wwwroot",
 
 };
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(webApplicationOptions);
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true); //load local settings

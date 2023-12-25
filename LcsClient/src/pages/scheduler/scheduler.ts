@@ -148,7 +148,7 @@ export default class Scheduler extends Vue {
         return this.loopedSelector(task);
     }
     loopedSelector(task:any) {
-        if (task.isLooped)
+        if (task.IsLooped)
             return 'icon icon-isLooped';
         return 'icon icon-isNoLooped';
     }
