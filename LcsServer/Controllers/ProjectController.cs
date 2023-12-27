@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using LcsServer.Hubs;
 using LcsServer.Models.LCProjectModels.GlobalBase;
 using LcsServer.Models.LCProjectModels.Managers;
 using LcsServer.Models.LCProjectModels.Models.Addressing;
@@ -29,10 +30,11 @@ public class ProjectController : Controller
     private ProjectChanger _pChanger;
     private string baseFolder;
     private IWebHostEnvironment Environment;
+    private readonly LCHub _lcHub;
     public ProjectController(IConfiguration _configuration,
         RasterManager rastMan, AddressingManager addressingManager,
         ScenarioManager scenarioManager, ScheduleManager scheduleManager,
-        ProjectChanger pChanger, IWebHostEnvironment _environment)
+        ProjectChanger pChanger, IWebHostEnvironment _environment, LCHub lcHub)
     {
         Configuration = _configuration;
         _rasterManager = rastMan;
@@ -42,7 +44,7 @@ public class ProjectController : Controller
         _pChanger = pChanger;
         Environment = _environment;
         baseFolder = Path.Combine(Environment.WebRootPath, "LcsProject");
-
+        _lcHub = lcHub;
     }
     [HttpGet]
     
@@ -99,6 +101,7 @@ public class ProjectController : Controller
 
                 path = Path.Combine(baseFolder, fileName);
                 _pChanger.ReInitProjectData(file.FileName);
+                await _lcHub.ProjectChanged(_pChanger.CurrentProject);
             }
             catch (Exception ex)
             {

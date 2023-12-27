@@ -9,6 +9,7 @@ import Slider from 'primevue/slider';
 import Clock from '@/components/clock/clock.vue'
 // import Datepicker from '@vuepic/vue-datepicker';
 import WeekDaysComponentVue from '@/components/WeekDaysComponent/WeekDaysComponent.vue';
+import {HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
 
 @Component({
     components: {
@@ -76,24 +77,39 @@ export default class Scheduler extends Vue {
             let response = await instance.get('/Scheduler/Index', {headers});
             let data = JSON.parse(response.data);
             //console.log(data);
-            this.scheduleGroups = data.Schedule;
-            this.selectedScheduleGroup = this.scheduleGroups.find((item:any)=>item.IsCurrent === true);
+            this.initComponentData(data);
+        }
+        this.connection = new HubConnectionBuilder()
+            .withUrl("/api/lchub")
+            .withAutomaticReconnect()
+            .configureLogging(LogLevel.Information)
+            .build();
+        this.connection.start().then(() => {
+            this.connFlag = true;
+        }).catch((err:any) => { console.error(err.toString()) });
+
+        this.connection.on('ProjectChanged', (newProject:any) => {
+            let data = {'Schedule':newProject.Scheduler, 'Scenarios':newProject.Scenarios};
+            this.initComponentData(data);
+        });
+    }
+    initComponentData(data:any){
+        this.scheduleGroups = data.Schedule;
+        this.selectedScheduleGroup = this.scheduleGroups.find((item:any)=>item.IsCurrent === true);
+        this.selectedScheduleInSelectedGroup = this.selectedScheduleGroup.Schedules.find((item:any) => item.IsSelected === true);
+        console.log(this.selectedScheduleInSelectedGroup);
+        if(this.selectedScheduleInSelectedGroup === undefined){
+            console.log(this.selectedScheduleGroup.Schedules[0]);
+            this.selectedScheduleGroup.Schedules[0].IsSelected = true;
             this.selectedScheduleInSelectedGroup = this.selectedScheduleGroup.Schedules.find((item:any) => item.IsSelected === true);
-            console.log(this.selectedScheduleInSelectedGroup);
-            if(this.selectedScheduleInSelectedGroup === undefined){
-                console.log(this.selectedScheduleGroup.Schedules[0]);
-                this.selectedScheduleGroup.Schedules[0].IsSelected = true;
-                this.selectedScheduleInSelectedGroup = this.selectedScheduleGroup.Schedules.find((item:any) => item.IsSelected === true);
-            }
-            console.log(this.selectedScheduleGroup);
+        }
+        console.log(this.selectedScheduleGroup);
+        this.selectedScheduleItem = this.selectedScheduleInSelectedGroup.ScheduleItems.find((item:any)=>item.IsSelected=== true);
+        if(this.selectedScheduleItem === undefined){
+            this.selectedScheduleInSelectedGroup.ScheduleItems[0].IsSelected = true;
             this.selectedScheduleItem = this.selectedScheduleInSelectedGroup.ScheduleItems.find((item:any)=>item.IsSelected=== true);
-            if(this.selectedScheduleItem === undefined){
-                this.selectedScheduleInSelectedGroup.ScheduleItems[0].IsSelected = true;
-                this.selectedScheduleItem = this.selectedScheduleInSelectedGroup.ScheduleItems.find((item:any)=>item.IsSelected=== true);
-            }
         }
     }
-
     playActiveSelector() {
         if (this.startStop)
             return 'icon-playScenario-inactive';

@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.IO.Compression;
 using System.Net.Mime;
+using LcsServer.Hubs;
 using LcsServer.Models.LCProjectModels.GlobalBase;
 using LcsServer.Models.LCProjectModels.Managers;
 using LcsServer.Models.LCProjectModels.Models.Addressing;
@@ -24,7 +25,7 @@ public class ProjectChanger
     private readonly AddressingManager _addressingManager;
     public ProjectToWeb CurrentProject;
     private IWebHostEnvironment Environment;
-    //private readonly LCHub _lcHub;
+    
 
     public ProjectChanger(IConfiguration _configuration,
         RasterManager rasterManager,
@@ -134,7 +135,7 @@ public class ProjectChanger
         _addressingManager.RemoveAllObjects();
         _scheduleManager.RemoveAllObjects();
     }
-    public void ReInitProjectData(string path)
+    public async void ReInitProjectData(string path)
     {
         AllManagersClear();
         CurrentProject = new ProjectToWeb();
@@ -198,6 +199,7 @@ public class ProjectChanger
         }
         
         FillCurProject();
+        
     }
     private void FillCurProject()
     {

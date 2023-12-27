@@ -6,6 +6,7 @@ using LcsServer.DatabaseLayer;
 using LcsServer.DevicePollingService;
 using LcsServer.DevicePollingService.Interfaces;
 using LcsServer.DevicePollingService.Models;
+using LcsServer.Hubs;
 using LcsServer.Models.LCProjectModels.Managers;
 using LcsServer.Models.LCProjectModels.Models.Project;
 using LCSVersionControl;
@@ -122,6 +123,11 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+builder.Services.AddSignalR(o =>
+{
+    o.EnableDetailedErrors = true;
+});
+builder.Services.AddSingleton<LCHub>();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -152,5 +158,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapHub<LCHub>("/api/lchub");
 app.Run();

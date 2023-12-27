@@ -13,6 +13,7 @@ import {ProfabricComponents} from '@profabric/vue-components';
 
 import './index.scss';
 import {faEnvelope, faLock, faUpload} from '@fortawesome/free-solid-svg-icons';
+import * as signalR from "@microsoft/signalr";
 
 library.add(faEnvelope, faLock, faUpload);
 

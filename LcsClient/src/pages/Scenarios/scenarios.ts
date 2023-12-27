@@ -4,6 +4,8 @@ import Button from 'primevue/button';
 import Dropdown from 'primevue/dropdown';
 import instance from "@/utils/axios";
 import Konva from "konva";
+import {HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
+import {bool} from "yup";
 
 @Component({
     components: {
@@ -52,12 +54,41 @@ export default class Scenarios extends Vue {
             let response = await instance.get('/Renderer/Index', {headers});
             let data = JSON.parse(response.data);
             console.log(data);
-            data.Rasters.forEach((elem:any) => this.groups.push({ id: elem.Id, name: elem.Name }));
-            this.renderRasters = data.Rasters;
-            this.scenarios = data.Scenarios;
-            this.selectedScenario = this.scenarios[0];
-            this.drawRastersInitial(this.renderRasters);
+            let initialFlag:boolean = true; 
+            this.initComponentData(data, initialFlag);
         }
+
+        this.connection = new HubConnectionBuilder()
+            .withUrl("/api/lchub")
+            .withAutomaticReconnect()
+            .configureLogging(LogLevel.Information)
+            .build();
+        this.connection.start().then(() => {
+            this.connFlag = true;
+        }).catch((err:any) => { console.error(err.toString()) });
+
+        this.connection.on('ProjectChanged', (newProject:any) => {
+            let that = this;
+            this.stage.destroyChildren();
+            that.xScale = 1;
+            that.yScale = 1;
+            let initialFlag:boolean = false;
+            let data = {'Rasters':newProject.Rasters, 'Scenarios':newProject.Scenarios};
+            this.initComponentData(data, initialFlag);
+            //this.redrawRasters(newProject.Rasters);
+            
+        });
+    }
+    
+    initComponentData(data:any, flag:boolean){
+        data.Rasters.forEach((elem:any) => this.groups.push({ id: elem.Id, name: elem.Name }));
+        this.renderRasters = data.Rasters;
+        this.scenarios = data.Scenarios;
+        this.selectedScenario = this.scenarios[0];
+        if(flag)
+            this.drawRastersInitial(this.renderRasters);
+        else
+            this.redrawRasters(this.renderRasters);
     }
     onSliderValChanged() {
         console.log(this.sliderVal);

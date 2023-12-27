@@ -5,6 +5,7 @@ import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
 import { FilterMatchMode, FilterOperator } from 'primevue/api';
 import {ref} from "vue";
+import {HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
 
 @Component({
     components: {
@@ -18,7 +19,26 @@ export default class Addressing extends Vue {
     projectEquip:any[] = []
     filters: any = ref({});
     expandedKeys: any = [];
+    connection:any = null;
+    connFlag:boolean = false;
     async mounted() {
+        await this.initComponentData();
+
+        this.connection = new HubConnectionBuilder()
+            .withUrl("/api/lchub")
+            .withAutomaticReconnect()
+            .configureLogging(LogLevel.Information)
+            .build();
+        this.connection.start().then(() => {
+            this.connFlag = true;
+        }).catch((err:any) => { console.error(err.toString()) });
+
+        this.connection.on('ProjectChanged', (newProject:any) => {
+            this.initComponentData();
+        });
+    }
+    
+    async initComponentData(){
         let user = this.$store.state.auth.authentication.profile;
         if (user && user.role == 'user' || user.role == 'admin') {
             let token = user.access_token;
